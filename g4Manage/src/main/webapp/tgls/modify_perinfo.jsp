@@ -48,6 +48,11 @@
     <form id="addForm" class="layui-form" >
         <input type="hidden" name="uID" value="${result.data.uID}"/>
         <div class="layui-form-item">
+        <label class="layui-form-label">头像</label>
+        <img value="${result.data.uPhoto}" width="200" height="200" )/>
+            <button style="margin-left: 10px;" class="layui-btn layui-btn-primary">选择图片</button>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">用户名</label>
             <div class="layui-input-inline shortInput">
                 <input type="text" name="uAccount" value="${result.data.uAccount}"  readonly="readonly" required lay-verify="required" autocomplete="off" class="layui-input">
@@ -65,17 +70,18 @@
                 <input type="text" name="uTel" value="${result.data.uTel}"required lay-verify="required" autocomplete="off" class="layui-input">
             </div>
         </div>
-
+        <div class="layui-form-item">
+            <label class="layui-form-label">住址</label>
+            <div class="layui-input-inline shortInput">
+                <input type="text" name="uAddr"  value="${result.data.uAddr}" required lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+        </div>
         <div class="layui-form-item">
             <label class="layui-form-label">入职时间</label>
             <div class="layui-input-inline shortInput">
                 <input type="text"  value="<fmt:formatDate value="${result.data.uHiredate}" pattern="yyyy年MM月dd日HH点mm分ss秒" />"  required lay-verify="required" autocomplete="off" class="layui-input">
             </div>
         </div>
-
-
-
-
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit lay-filter="submitBut">确认修改</button>
