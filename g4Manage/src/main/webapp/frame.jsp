@@ -64,13 +64,16 @@
 	<div class="menu">
 		<ul>
 			<li>
-				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/modify_perinfo.jsp',this)"> <i class="iconfont icon-yonghu1 left"></i>个人信息</i></a>
+				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/Fir.jsp',this)"><i class="iconfont icon-shouye left"></i>系统首页</i></a>
+			</li>
+			<li>
+				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/modify_perinfo.jsp',this)"> <i class="iconfont icon-gerenzhongxin-denglu left"></i>个人信息</i></a>
 			</li>
 			<li>
 				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/modify_password.jsp',this)"><i class="iconfont icon-xiugaimima left"></i>修改密码</i></a>
 			</li>
 			<li>
-				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/Fir.jsp',this)"><i class="iconfont icon-yonghu1 left"></i>系统首页</i></a>
+				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/announce.jsp',this)"><i class="iconfont icon-tongzhi left"></i>发布通知</i></a>
 			</li>
 			<li>
 				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-liuliangyunpingtaitubiao03 left"></i>用户管理<i class="iconfont icon-dajiantouyou right"></i></a>
@@ -84,7 +87,7 @@
 				</dl>
 			</li>
 			<li>
-				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-shangpin left"></i>仓库管理<i class="iconfont icon-dajiantouyou right"></i></a>
+				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-yunying left"></i>仓库管理<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/save_list.jsp',this)">仓库信息</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/save_add.jsp',this)">新增仓库</a></dt>
@@ -100,7 +103,7 @@
 				</dl>
 			</li>
 			<li>
-				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-yunying left"></i>订单管理<i class="iconfont icon-dajiantouyou right"></i></a>
+				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-dingdan left"></i>订单管理<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/inorder_add.jsp',this)">新增入货单</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/outorder_add.jsp',this)">新增出货单</a></dt>
@@ -111,7 +114,7 @@
 				</dl>
 			</li>
 			<li>
-				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-icon left"></i>打印模板<i class="iconfont icon-dajiantouyou right"></i></a>
+				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-biaodanpeizhi left"></i>打印模板<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/print/outPrintData.jsp',this)">出库单打印模版</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/print/inPrintData.jsp',this)">入库单打印模版</a></dt>
