@@ -40,20 +40,22 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label">原始密码</label>
 					<div class="layui-input-inline shortInput">
-						<input type="password" name="oldpassword" required lay-verify="required" autocomplete="off" class="layui-input">
+						<input type="text" value="${result.data.uPwd}" required lay-verify="required" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">新密码</label>
 					<div class="layui-input-inline shortInput">
-						<input type="password" name="password" required lay-verify="required" autocomplete="off" class="layui-input">
+						<input id="newPwd" type="password" name="uPwd" required lay-verify="required" autocomplete="off" class="layui-input">
 					</div>
+					<img id="pass_new" src="../images/invisible.png" onclick="hideShowPsw2()" style="display: inline-block;width: 35px;height: 35px;vertical-align: middle">
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">确认新密码</label>
 					<div class="layui-input-inline shortInput">
-						<input type="password" name="password2" required lay-verify="required" autocomplete="off" class="layui-input">
+						<input id="comPwd" type="password"  required lay-verify="required" autocomplete="off" class="layui-input">
 					</div>
+					<img id="pass_com" src="../images/invisible.png" onclick="hideShowPsw3()" style="display: inline-block;width: 35px;height: 35px;vertical-align: middle">
 				</div>
 				
 				<div class="layui-form-item">
@@ -73,6 +75,64 @@
 						return false;
 					});
 				});
+				//密码显示操作
+				var passImg2 = document.getElementById("pass_new");
+				var passImg3= document.getElementById("pass_com");
+				var passInput2 = document.getElementById("newPwd");
+				var passInput3 = document.getElementById("comfirmPwd");
+				function hideShowPsw2(){
+					if (passInput2.type == "password") {
+						passInput2.type = "text";
+						passImg2.src = "../images/visible.png";
+					}else {
+						passInput2.type = "password";
+						passImg2.src = "../images/invisible.png";
+					}
+				}
+				function hideShowPsw3(){
+					if (passInput3.type == "password") {
+						passInput3.type = "text";
+						passImg3.src = "../images/visible.png";
+					}else {
+						passInput3.type = "password";
+						passImg3.src = "../images/invisible.png";
+					}
+				}
+			//检查提交
+				function checkSame(){
+					var Pwd = $("#uPwd").val();
+					//判断是否有更改过内容
+					if(Pwd=="${result.data.uPwd}")
+						$.messager.alert("提示","未做任何修改");
+						return false;
+				// }else{
+				// 	if(pwd==null || pwd==""){
+				// 	$("#pwdSpan").css({"color":"red"});
+				// 	$("#pwdSpan").html("新密码不能为空");
+				// 	return false;
+				// }
+					//验证表单数据是否有效
+					if($('#updateUser').form("validate")) {
+						//提交并查看结果
+						$.ajax({
+							url: "/userEdit",
+							type: "POST",
+							dataType: "json",
+							data: $('#addForm').serialize(),
+							success: function (data) {
+								if (data.status == 200) {
+									//接收到成功的提示
+									alert("修改成功");
+									window.location.href = "modify_password";
+								} else {
+									alert(data.msg);
+									window.location.href = "modify_password";
+								}
+							}
+
+						})
+					}
+				}
 			</script>
 
 		</div>
