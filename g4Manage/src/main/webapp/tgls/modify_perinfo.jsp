@@ -53,9 +53,9 @@
             <button style="margin-left: 10px;" class="layui-btn layui-btn-primary">选择图片</button>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">用户名</label>
+            <label class="layui-form-label">工号(登录名)</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uAccount" value="${result.data.uAccount}"  readonly="readonly" required lay-verify="required" autocomplete="off" class="layui-input">
+                <input type="text" readonly="readonly" name="uAccount" value="${result.data.uAccount}"  readonly="readonly" required lay-verify="required" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -79,7 +79,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">入职时间</label>
             <div class="layui-input-inline shortInput">
-                <input type="text"  value="<fmt:formatDate value="${result.data.uHiredate}" pattern="yyyy年MM月dd日HH点mm分ss秒" />"  required lay-verify="required" autocomplete="off" class="layui-input">
+                <input type="text"  readonly="readonly" value="<fmt:formatDate value="${result.data.uHiredate}" pattern="yyyy年MM月dd日HH点mm分ss秒" />"  required lay-verify="required" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
