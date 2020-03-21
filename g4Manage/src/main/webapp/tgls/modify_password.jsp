@@ -36,7 +36,7 @@
 
 	<body>
 		<div class="cBody">
-			<form id="addForm" class="layui-form" action="">
+			<form id="editForm" class="layui-form" action="">
 				<div class="layui-form-item">
 					<label class="layui-form-label">原始密码</label>
 					<div class="layui-input-inline shortInput">
@@ -46,7 +46,7 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label">新密码</label>
 					<div class="layui-input-inline shortInput">
-						<input id="newPwd" type="password" name="uPwd" required lay-verify="required" autocomplete="off" class="layui-input">
+						<input id="uPwd" type="password" name="uPwd" required lay-verify="required" autocomplete="off" class="layui-input">
 					</div>
 					<img id="pass_new" src="../images/invisible.png" onclick="hideShowPsw2()" style="display: inline-block;width: 35px;height: 35px;vertical-align: middle">
 				</div>
@@ -71,7 +71,8 @@
 					var form = layui.form;
 					//监听提交
 					form.on('submit(submitBut)', function(data) {
-						layer.msg(JSON.stringify(data.field));
+						//提交结果
+						checkSame();
 						return false;
 					});
 				});
@@ -102,23 +103,17 @@
 				function checkSame(){
 					var Pwd = $("#uPwd").val();
 					//判断是否有更改过内容
-					if(Pwd=="${result.data.uPwd}")
-						$.messager.alert("提示","未做任何修改");
+					if(Pwd == "${result.data.uPwd}"){
+						alert("未做任何修改");
 						return false;
-				// }else{
-				// 	if(pwd==null || pwd==""){
-				// 	$("#pwdSpan").css({"color":"red"});
-				// 	$("#pwdSpan").html("新密码不能为空");
-				// 	return false;
-				// }
-					//验证表单数据是否有效
-					if($('#updateUser').form("validate")) {
+					}
+
 						//提交并查看结果
 						$.ajax({
 							url: "/userEdit",
 							type: "POST",
 							dataType: "json",
-							data: $('#addForm').serialize(),
+							data: $('#editForm').serialize(),
 							success: function (data) {
 								if (data.status == 200) {
 									//接收到成功的提示
@@ -131,7 +126,6 @@
 							}
 
 						})
-					}
 				}
 			</script>
 
