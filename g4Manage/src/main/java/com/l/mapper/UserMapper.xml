@@ -17,8 +17,11 @@
             <if test="uName!=null and uName!=''">
                 uName = #{uName},
             </if>
-            <if test="uPwd!=null and uPwd!=''">
-                uPwd = #{uPwd},
+            <if test="uAddr!=null and uAddr!=''">
+                uAddr = #{uAddr},
+            </if>
+            <if test="uPhoto!=null and uPhoto!=''">
+                uPhoto = #{uPhoto},
             </if>
             <if test="uTel!=null and uTel!=''">
                 uTel = #{uTel},

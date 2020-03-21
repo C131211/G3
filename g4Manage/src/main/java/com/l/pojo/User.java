@@ -17,6 +17,8 @@ public class User {
     private String uPwd;
     private String uName;
     private String uTel;
+    private String uAddr;
+    private String uPhoto;
     private Date uHiredate;
     private int rID;
     private int uStatus;
@@ -28,15 +30,35 @@ public class User {
     public String toString() {
         return "User{" +
                 "uID=" + uID +
-                ", uAccount=" + uAccount +
+                ", uAccount='" + uAccount + '\'' +
                 ", uPwd='" + uPwd + '\'' +
                 ", uName='" + uName + '\'' +
                 ", uTel='" + uTel + '\'' +
+                ", uAddr='" + uAddr + '\'' +
+                ", uPhoto='" + uPhoto + '\'' +
                 ", uHiredate=" + uHiredate +
                 ", rID=" + rID +
                 ", uStatus=" + uStatus +
                 '}';
     }
+
+    public String getuAddr() {
+        return uAddr;
+    }
+
+    public void setuAddr(String uAddr) {
+        this.uAddr = uAddr;
+    }
+
+    public String getuPhoto() {
+        return uPhoto;
+    }
+
+    public void setuPhoto(String uPhoto) {
+        this.uPhoto = uPhoto;
+    }
+
+
 
     public int getuID() {
         return uID;
