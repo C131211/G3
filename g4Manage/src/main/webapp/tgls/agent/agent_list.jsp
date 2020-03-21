@@ -68,6 +68,7 @@
             <th>成员名</th>
             <th>密码</th>
             <th>联系方式</th>
+            <th>住址</th>
             <th>入职时间</th>
             <th>角色ID</th>
             <th>状态</th>
@@ -90,14 +91,15 @@
             </td>
         </tr>
         <tr>
-            <td>龙九山</td>
-            <td>DLS201802281450280741</td>
-            <td>无锡市</td>
-            <td>龙九山</td>
-            <td>龙九山</td>
-            <td>18600001111</td>
-            <td>028-6666666</td>
-            <td>123456789@qq.com</td>
+            <td value="${result.data.uID}"></td>
+            <td value="${result.data.uAccount}"></td>
+            <td value="${result.data.uName}"></td>
+            <td value="${result.data.uPwd}"></td>
+            <td value="${result.data.uTel}"></td>
+            <td value="${result.data.uAddr}"></td>
+            <td value="${result.data.uHiredate}"></td>
+            <td value="${result.data.rID}"></td>
+            <td value="${result.data.uStatus}"></td>
             <td>
                 <button class="layui-btn layui-btn-xs" onclick="updateBut()">修改</button>
                 <button class="layui-btn layui-btn-xs">删除</button>
