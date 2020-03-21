@@ -20,7 +20,7 @@
 <body>
 <div class="bg"></div>
 <div class="container">
-    <span>测试</span>
+    <span>测试1</span>
     <div class="line bouncein">
         <div class="xs6 xm4 xs3-move xm4-move">
             <div style="height:80px;"></div>
