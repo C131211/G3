@@ -47,8 +47,10 @@ public class UserServiceImpl implements UserService {
         index  = userMapper.updUserById(user);
         if(index>0){
             //成功修改
+            User user1 = userMapper.selUserById(user.getuID());
             result.setStatus(200);
             result.setMsg("OK");
+            result.setData(user1);
             return result;
         }else {
             result.setMsg("修改失败");
@@ -61,9 +63,11 @@ public class UserServiceImpl implements UserService {
         int index = -1;
         GResult result = new GResult();
         index = userMapper.updUserHeadImgById(uPhoto, uID);
+        User user = userMapper.selUserById(uID);
         if (index>0){
             result.setMsg("OK");
             result.setStatus(200);
+            result.setData(user);
             return result;
         }else {
             result.setMsg("上传失败");

@@ -50,8 +50,11 @@ public class UserController {
      */
     @RequestMapping("/updateUser")
     @ResponseBody
-    public GResult updateUser(User user){
-        return userService.updUserById(user);
+    public GResult updateUser(User user,HttpServletRequest req){
+        HttpSession session = req.getSession();
+        GResult result = userService.updUserById(user);
+        ((GResult) session.getAttribute("result")).setData(result.getData());
+        return result;
     }
 
     /**
@@ -73,6 +76,7 @@ public class UserController {
             FileUtils.copyInputStreamToFile(file.getInputStream(), new File(filePath +"/"+ user.getuID() + suffix));
             uPhoto =  user.getuID() + suffix;
              result = userService.updUserHeadImgById(uPhoto, user.getuID());
+            ((GResult) session.getAttribute("result")).setData(result.getData());
             return result;
         } catch (IOException e) {
             e.printStackTrace();

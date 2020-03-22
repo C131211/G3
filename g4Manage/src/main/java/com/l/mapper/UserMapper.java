@@ -34,5 +34,12 @@ public interface UserMapper {
     int updUserHeadImgById(String uPhoto,int uID);
 
 
+    /**
+     * 通过id查找该用户
+     * @param uID
+     * @return
+     */
+    User selUserById(int uID);
+
 
 }

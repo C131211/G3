@@ -35,4 +35,8 @@
          update user set uPhoto=#{0} where uID = #{1}
     </update>
 
+    <select id="selUserById" parameterType="int" resultType="com.l.pojo.User">
+        select * from user where uID=#{0}
+    </select>
+
 </mapper>
