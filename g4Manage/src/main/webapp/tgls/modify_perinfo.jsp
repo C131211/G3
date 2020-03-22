@@ -49,8 +49,8 @@
         <input type="hidden" name="uID" value="${result.data.uID}"/>
         <div class="layui-form-item">
         <label class="layui-form-label">头像</label>
-        <img value="${result.data.uPhoto}" width="200" height="200" )/>
-            <button style="margin-left: 10px;" class="layui-btn layui-btn-primary">选择图片</button>
+        <img id="headImg"  width="200px" height="200px" )/>
+            <input id="upload" value="${result.data.uPhoto}" style="margin-left: 10px;" type="file" onchange="uploadimg()"></input>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">工号(登录名)</label>
@@ -91,6 +91,29 @@
     </form>
 
     <script>
+            //图片上传
+            $(function() {
+                //头像预览
+                    $("#upload").on("change",function(){
+                        var objUrl = getObjectURL(this.files[0]) ; //获取图片的路径，该路径不是图片在本地的路径
+                        if (objUrl) {
+                            $("#headImg").attr("src", objUrl) ; //将图片路径存入src中，显示出图片
+                        }
+                    });
+                });
+            //建立一個可存取到該file的url
+            function getObjectURL(file) {
+                var url = null ;
+                if (window.createObjectURL!=undefined) { // basic
+                    url = window.createObjectURL(file) ;
+                } else if (window.URL!=undefined) { // mozilla(firefox)
+                    url = window.URL.createObjectURL(file) ;
+                } else if (window.webkitURL!=undefined) { // webkit or chrome
+                    url = window.webkitURL.createObjectURL(file) ;
+                }
+                return url ;
+            }
+
         layui.use('form', function() {
             var form = layui.form;
             //监听提交
