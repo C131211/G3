@@ -59,8 +59,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">角色说明</label>
             <div class="layui-input-inline shortInput">
-                <textarea name="rExplain" lay-verify="required" autocomplete="off" class="layui-input"
-                          style="width: 353px;height: 100px">
+                <textarea name="rExplain" lay-verify="required" autocomplete="off" class="layui-textarea">
                 </textarea>
             </div>
             <i class="iconfont icon-huaban bt"></i>
@@ -90,7 +89,7 @@
                 if (data.status == 200) {
                     //接收到成功的提示
                     alert("修改成功");
-                    top.location.href = "/index.jsp"
+                    location.reload();
                 } else {
                     alert(data.msg);
                 }

@@ -48,34 +48,56 @@
 
 	<body>
 		<div class="cBody">
-			<form id="addForm" class="layui-form" action="">
+			<form id="addGoods" class="layui-form" action="">
 				<div class="layui-form-item">
 					<label class="layui-form-label">商品名称</label>
 					<div class="layui-input-block">
-						<input type="text" name="goodsName" required lay-verify="required" autocomplete="off" class="layui-input">
+						<input type="text" name="gName" required lay-verify="required" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">数量</label>
+					<div class="layui-input-block">
+						<input type="text" name="gNum"  autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">进货价</label>
+					<div class="layui-input-block">
+						<input type="text" name="gInprice" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">出货价</label>
+					<div class="layui-input-block">
+						<input type="text" name="gOutprice" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">描述</label>
 					<div class="layui-input-block">
-						<textarea name="desc" class="layui-textarea"></textarea>
+						<textarea name="gExplain" class="layui-textarea"></textarea>
 					</div>
 				</div>
 				<div class="layui-form-item">
-					<label class="layui-form-label">是否是批发商品</label>
+					<label class="layui-form-label">存放时间</label>
 					<div class="layui-input-block">
-						<input type="radio" name="sfpfsp" value="nan" title="是">
-						<input type="radio" name="sfpfsp" value="nv" title="否" checked>
+						<input type="text" name="gSatime" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">存放仓库</label>
+					<div class="layui-input-block">
+						<input type="text" name="sID" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">状态</label>
 					<div class="layui-input-block">
-						<input type="radio" name="sex" value="nan" title="启用">
-						<input type="radio" name="sex" value="nv" title="禁用" checked>
+						<input type="radio" name="gStatus" value="1" title="启用">
+						<input type="radio" name="gStatus" value="0" title="禁用" checked>
 					</div>
 				</div>
-				
 				<div class="layui-form-item">
 					<div class="layui-input-block">
 						<button class="layui-btn" lay-submit lay-filter="submitBut">立即提交</button>
@@ -92,24 +114,24 @@
 					var layer = layui.layer;
 					//监听提交
 					form.on('submit(submitBut)', function(data) {
+						$.ajax({
+							url: "/updateUser",//添加商品
+							type: "POST",
+							dataType: "json",
+							data: $('#addGoods').serialize(),
+							success: function (data) {
+								if (data.status == 200) {
+									//接收到成功的提示
+									alert("修改成功");
+									location.reload();
+								} else {
+									alert(data.msg);
+								}
+							}
+
+						})
 						return false;
-					});
-					form.verify({
-						//数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
-					  	ZHCheck: [
-						    /^[\u0391-\uFFE5]+$/
-						    ,'只允许输入中文'
-					  	] 
-					});
-					//拖拽上传
-					upload.render({
-						elem: '#goodsPic',
-						url: '/upload/',
-						done: function(res) {
-						  	console.log(res)
-						}
-					});
-				});
+					})
 			</script>
 
 		</div>
