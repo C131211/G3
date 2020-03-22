@@ -40,88 +40,104 @@
         <form class="layui-form" action="">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
-                    <input type="text" name="name" required lay-verify="required" placeholder="输入员工名或者员工号"
+                    <input type="text" name="uName" required lay-verify="required" placeholder="输入员工名"
                            autocomplete="off" class="layui-input">
                 </div>
                 <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
             </div>
         </form>
-
-        <script>
-            layui.use('form', function () {
-                var form = layui.form;
-
-                //监听提交
-                form.on('submit(formDemo)', function (data) {
-                    layer.msg(JSON.stringify(data.field));
-                    return false;
-                });
-            });
-        </script>
     </div>
 
-    <table class="layui-table">
+    <table class="layui-table" id="uList"
+           data-options="toolbar:funListToolbar,url:'数据库用户表',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">
         <thead>
         <tr>
-            <th>用户ID</th>
-            <th>工号</th>
-            <th>成员名</th>
-            <th>密码</th>
-            <th>联系方式</th>
-            <th>住址</th>
-            <th>入职时间</th>
-            <th>角色ID</th>
-            <th>状态</th>
-            <th>操作</th>
+            <th data-options="field:uID">用户ID</th>
+            <th data-options="field:uAccount">工号</th>
+            <th data-options="field:uName">员工名</th>
+            <th data-options="field:uPwd">密码</th>
+            <th data-options="field:uTel">联系方式</th>
+            <th data-options="field:uAddr">住址</th>
+            <th data-options="field:uHiredate">入职时间</th>
+            <th data-options="field:rID">角色ID</th>
+            <th data-options="field:'uStatus',formatter:function(value){
+							if(value==1){value='正常';return value;}else{value='锁定';return value;}
+							}"><span>用户状态</span></th>
+            <th data-options="">操作</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td>龙九山</td>
-            <td>DLS201802281450280741</td>
-            <td>无锡市</td>
-            <td>龙九山</td>
-            <td>龙九山</td>
-            <td>18600001111</td>
-            <td>028-6666666</td>
-            <td>123456789@qq.com</td>
-            <td>
-                <button class="layui-btn layui-btn-xs" onclick="updateBut()">修改</button>
-                <button class="layui-btn layui-btn-xs">删除</button>
-            </td>
-        </tr>
-        <tr>
-            <td value="${result.data.uID}"></td>
-            <td value="${result.data.uAccount}"></td>
-            <td value="${result.data.uName}"></td>
-            <td value="${result.data.uPwd}"></td>
-            <td value="${result.data.uTel}"></td>
-            <td value="${result.data.uAddr}"></td>
-            <td value="${result.data.uHiredate}"></td>
-            <td value="${result.data.rID}"></td>
-            <td value="${result.data.uStatus}"></td>
-            <td>
-                <button class="layui-btn layui-btn-xs" onclick="updateBut()">修改</button>
-                <button class="layui-btn layui-btn-xs">删除</button>
-            </td>
-        </tr>
-        <tr>
-            <td>龙九山</td>
-            <td>DLS201802281450280741</td>
-            <td>无锡市</td>
-            <td>龙九山</td>
-            <td>龙九山</td>
-            <td>18600001111</td>
-            <td>028-6666666</td>
-            <td>123456789@qq.com</td>
-            <td>
-                <button class="layui-btn layui-btn-xs" onclick="updateBut()">修改</button>
-                <button class="layui-btn layui-btn-xs">删除</button>
-            </td>
-        </tr>
-        </tbody>
     </table>
+    <script>
+        layui.use('form', function () {
+            var form = layui.form;
 
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    </script>
+
+    <script>
+        //查询作用
+        $("#select").click(function () {
+            $('#uList').datagrid({
+                queryParams: {
+                    username: $("#selectText").val()
+                }
+            });
+        });
+
+
+        //dataGrid工具栏
+        var funListToolbar = [{
+            text: '新增',
+            iconCls: 'icon-add',
+            handler: function () {
+                window.location.href = "user-add";
+            }
+        }, {
+            text: '编辑',
+            iconCls: 'icon-edit',
+            handler: function () {
+                var select = $("#uList").datagrid('getSelected');
+                if (select == null || select == '') {
+                    $.messager.alert('提示', '必须选择一个内容才能编辑!');
+                    return;
+                }
+                window.location.href = "user/queryid/" + select.uid;
+            }
+
+        }, {
+            text: '删除',
+            iconCls: 'icon-cancel',
+            handler: function () {
+                var select = $("#uList").datagrid('getSelected');
+                if (select == null || select == '') {
+                    $.messager.alert('提示', '必须选择一个内容才能删除!');
+                    return;
+                }
+                var UserConfirm = window.confirm("你确认要删除用户名为" + select.username + "的用户吗");
+                if (UserConfirm) {
+                    $.ajax({
+                        url: "user/del",//删除用户
+                        dataType: "json",
+                        type: "POST",
+                        data: {uid: select.uid},
+                        success: function (data) {
+                            if (data.status == 200) {
+                                alert(data.msg);
+                                window.location.reload();
+                            } else {
+                                alert(data.msg);
+                            }
+                        }
+                    })
+                }
+            }
+        }];
+    </script>
     <!-- layUI 分页模块 -->
     <div id="pages"></div>
     <script>

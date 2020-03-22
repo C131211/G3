@@ -66,64 +66,19 @@
         </script>
     </div>
 
-    <table class="layui-table">
+    <table class="layui-table"id="funcList"
+           data-options="toolbar:funListToolbar,url:'数据库功能表',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">
         <thead>
         <tr>
-            <th>功能ID</th>
-            <th>功能名称</th>
-            <th>功能地址</th>
-            <th>功能状态</th>
+            <th data-options="field:fID">功能ID</th>
+            <th data-options="field:fName">功能名称</th>
+            <th data-options="field:fUrl">功能地址</th>
+            <th data-options="field:fStatus,formatter:function(value){
+							if(value==1){value='正常';return value;}else{value='锁定';return value;}
+							}"><span>功能状态</span></th>
             <th>操作</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td>龙九山</td>
-            <td>DLS201802281450280741</td>
-            <td>无锡市</td>
-            <td>龙九山</td>
-            <td>龙九山</td>
-            <td>18600001111</td>
-            <td>028-6666666</td>
-            <td>123456789@qq.com</td>
-            <td>
-                <button class="layui-btn layui-btn-xs">修改</button>
-                <button class="layui-btn layui-btn-xs">删除</button>
-            </td>
-        </tr>
-        <tr>
-        <tr>
-            <td>龙九山</td>
-            <td>DLS201802281450280741</td>
-            <td>无锡市</td>
-            <td>龙九山</td>
-            <td>龙九山</td>
-            <td>18600001111</td>
-            <td>028-6666666</td>
-            <td>123456789@qq.com</td>
-            <td>
-                <button class="layui-btn layui-btn-xs">修改</button>
-                <button class="layui-btn layui-btn-xs">删除</button>
-            </td>
-        </tr>
-        <tr>
-        <tr>
-            <td>龙九山</td>
-            <td>DLS201802281450280741</td>
-            <td>无锡市</td>
-            <td>龙九山</td>
-            <td>龙九山</td>
-            <td>18600001111</td>
-            <td>028-6666666</td>
-            <td>123456789@qq.com</td>
-            <td>
-                <button class="layui-btn layui-btn-xs">修改</button>
-                <button class="layui-btn layui-btn-xs">删除</button>
-            </td>
-        </tr>
-        <tr>
-
-        </tbody>
     </table>
 
     <!-- layUI 分页模块 -->

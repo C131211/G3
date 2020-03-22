@@ -5,7 +5,7 @@
   Time: 13:21
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 
@@ -16,13 +16,13 @@
     <meta name="renderer" content="webkit">
     <!--国产浏览器高速模式-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="RL" />
+    <meta name="author" content="RL"/>
     <!-- 作者 -->
-    <meta name="revised" content="" />
+    <meta name="revised" content=""/>
     <!-- 定义页面的最新版本 -->
-    <meta name="description" content="网站简介" />
+    <meta name="description" content="网站简介"/>
     <!-- 网站简介 -->
-    <meta name="keywords" content="搜索关键字，以半角英文逗号隔开" />
+    <meta name="keywords" content="搜索关键字，以半角英文逗号隔开"/>
     <title>仓库管理系统</title>
 
     <!-- 公共样式 开始 -->
@@ -40,7 +40,7 @@
     <!-- 公共样式 结束 -->
 
     <style>
-        .layui-form{
+        .layui-form {
             margin-right: 30%;
         }
     </style>
@@ -49,24 +49,27 @@
 
 <body>
 <div class="cBody">
-    <form id="addForm" class="layui-form" action="">
+    <form id="addRole" class="layui-form" action="">
         <div class="layui-form-item">
             <label class="layui-form-label">角色名称</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="rName" required lay-verify="required|identity" autocomplete="off" class="layui-input">
+                <input type="text" name="rName" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">角色说明</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="rExplain" required lay-verify="required|ZHCheck" placeholder="例:张三(只允许输入中文)" autocomplete="off" class="layui-input">
+                <textarea name="rExplain" lay-verify="required" autocomplete="off" class="layui-input"
+                          style="width: 353px;height: 100px">
+                </textarea>
             </div>
+            <i class="iconfont icon-huaban bt"></i>
         </div>
-            <label class="layui-form-label">角色状态</label>
-            <div class="layui-input-block">
-                <input type="radio" name="sex" value="nan" title="启用" checked>
-                <input type="radio" name="sex" value="nv" title="禁用">
-            </div>
+        <label class="layui-form-label">角色状态</label>
+        <div class="layui-input-block">
+            <input type="radio" name="rStatus" value="1" title="启用" checked>
+            <input type="radio" name="rStatus" value="0" title="禁用">
+        </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit lay-filter="submitBut">立即提交</button>
@@ -76,5 +79,36 @@
     </form>
 </div>
 </body>
+<script>
+    function addUser() {
+        $.ajax({
+            url: "/updateUser",//添加角色
+            type: "POST",
+            dataType: "json",
+            data: $('#addRole').serialize(),
+            success: function (data) {
+                if (data.status == 200) {
+                    //接收到成功的提示
+                    alert("修改成功");
+                    top.location.href = "/index.jsp"
+                } else {
+                    alert(data.msg);
+                }
+            }
+
+        })
+    }
+
+    layui.use('form', function () {
+        var form = layui.form;
+        //监听提交
+        form.on('submit(submitBut)', function (data) {
+            //提交结果
+            addUser();
+            return false;
+        });
+    })
+
+</script>
 
 </html>
