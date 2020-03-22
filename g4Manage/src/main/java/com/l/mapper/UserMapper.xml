@@ -30,4 +30,9 @@
         where uID = #{uID}
     </update>
 
+
+    <update id="updUserHeadImgById" >
+         update user set uPhoto=#{0} where uID = #{1}
+    </update>
+
 </mapper>

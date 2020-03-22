@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 
-/**
- * 万能提示键 alt + 回车
- */
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -55,6 +52,21 @@ public class UserServiceImpl implements UserService {
             return result;
         }else {
             result.setMsg("修改失败");
+            return result;
+        }
+    }
+
+    @Override
+    public GResult updUserHeadImgById(String uPhoto, int uID) {
+        int index = -1;
+        GResult result = new GResult();
+        index = userMapper.updUserHeadImgById(uPhoto, uID);
+        if (index>0){
+            result.setMsg("OK");
+            result.setStatus(200);
+            return result;
+        }else {
+            result.setMsg("上传失败");
             return result;
         }
     }

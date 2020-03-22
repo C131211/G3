@@ -22,4 +22,13 @@ public interface UserService {
      */
     GResult updUserById(User user);
 
+
+    /**
+     * 根据uid修改头像
+     * @param uPhoto
+     * @param uID
+     * @return
+     */
+    GResult updUserHeadImgById(String uPhoto,int uID);
+
 }

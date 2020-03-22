@@ -45,12 +45,12 @@
 
 <body>
 <div class="cBody">
-    <form id="addForm" class="layui-form" >
+    <form id="addForm" class="layui-form" enctype="multipart/form-data" >
         <input type="hidden" name="uID" value="${result.data.uID}"/>
         <div class="layui-form-item">
         <label class="layui-form-label">头像</label>
-        <img id="headImg"  width="200px" height="200px" )/>
-            <input id="upload" value="${result.data.uPhoto}" style="margin-left: 10px;" type="file" onchange="uploadimg()"></input>
+        <img id="headImg"  src="/images/headImgs/${result.data.uPhoto}" width="200px" height="200px"  )/>
+            <input id="file" accept ="image/*" name="file" style="margin-left: 10px;" type="file" />
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">工号(登录名)</label>
@@ -94,10 +94,11 @@
             //图片上传
             $(function() {
                 //头像预览
-                    $("#upload").on("change",function(){
+                    $("#file").on("change",function(){
                         var objUrl = getObjectURL(this.files[0]) ; //获取图片的路径，该路径不是图片在本地的路径
                         if (objUrl) {
                             $("#headImg").attr("src", objUrl) ; //将图片路径存入src中，显示出图片
+                            setTimeout("checkHeadImg()",2000);
                         }
                     });
                 });
@@ -113,6 +114,43 @@
                 }
                 return url ;
             }
+
+
+            //上传头像文件
+            function uploadHeradImg(){
+                var formData = new FormData();
+                formData.append("file",$('#file')[0].files[0]);
+
+                $.ajax({
+                    url:'/uploadHeadImg',
+                    dataType:'json',
+                    type:'POST',
+                    async: false,
+                    data: formData,
+                    processData : false, // 使数据不做处理
+                    contentType : false, // 不要设置Content-Type请求头
+                    success: function(data){
+                        console.log(data);
+                        if (data.status == 'ok') {
+                            //修改img的src
+                            alert('上传成功！');
+                        }
+                    },
+                    error:function(response){
+                        console.log(response);
+                    }
+                });
+            }
+
+
+            function checkHeadImg(){
+                if(confirm("是否确认要上传此文件作为头像？")){
+                    uploadHeradImg();
+                }else{
+                    $("#headImg").attr("src","/images/headImgs/${result.data.uPhoto}");
+                }
+            }
+
 
         layui.use('form', function() {
             var form = layui.form;

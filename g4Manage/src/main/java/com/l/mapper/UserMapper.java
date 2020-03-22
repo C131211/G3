@@ -26,6 +26,13 @@ public interface UserMapper {
      */
     int updUserById(User user);
 
+    /**
+     * 根据Id修改头像路径
+     * @param uPhoto
+     * @return
+     */
+    int updUserHeadImgById(String uPhoto,int uID);
+
 
 
 }
