@@ -42,7 +42,6 @@
             <label class="layui-form-label">原始密码</label>
             <div class="layui-input-inline shortInput">
                 <input id="oldPwd" type="text" required lay-verify="required" autocomplete="off" class="layui-input">
-                <span id="oldSpan"></span>
             </div>
         </div>
         <div class="layui-form-item">
@@ -145,7 +144,7 @@
                                 if (data.status == 200) {
                                     //接收到成功的提示
                                     alert("修改成功");
-                                    top.location.href="/index.jsp"
+                                    top.location.href = "/index.jsp"
                                 } else {
                                     alert(data.msg);
                                 }
@@ -159,14 +158,12 @@
                         return false;
                     }
                 }
-                }
-            else
-            {
+            } else {
                 $("#comSpan").html("原密码错误");
                 $("#comSpan").css("color", "red");
                 return false;
             }
-            }
+        }
 
     </script>
     <script type="application/javascript">

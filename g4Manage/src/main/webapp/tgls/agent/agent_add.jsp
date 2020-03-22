@@ -42,73 +42,120 @@
 
 <body>
 <div class="cBody">
-    <form id="addForm" class="layui-form" action="">
+    <form id="addAgent" class="layui-form" action="">
         <div class="layui-form-item">
             <label class="layui-form-label">工号（登录账号）</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uAccount" required lay-verify="required|identity" autocomplete="off"
+                <input type="text" name="uAccount" id="Account" required lay-verify="required" autocomplete="off"
                        class="layui-input">
-            </div><i class="iconfont icon-huaban bt"></i>
+            </div>
+            <i class="iconfont icon-huaban bt"></i>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">员工名字</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uName" required lay-verify="required|ZHCheck" placeholder="例:张三(只允许输入中文)"
+                <input type="text" name="uName" required lay-verify="required" placeholder="例:张三(只允许输入中文)"
                        autocomplete="off" class="layui-input">
             </div>
+            <i class="iconfont icon-huaban bt"></i>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">登录密码</label>
             <div class="layui-input-inline shortInput">
-                <input type="password" name="uPwd" autocomplete="off" class="layui-input">
-            </div><i class="iconfont icon-huaban bt"></i>
+                <input type="password" name="uPwd" autocomplete="off" lay-verify="required" class="layui-input">
+            </div>
+            <i class="iconfont icon-huaban bt"></i>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">手机号码</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uTel" required lay-verify="required|phone" placeholder="例：13000000000"
+                <input type="text" name="uTel"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">住址</label>
+            <div class="layui-input-inline shortInput">
+                <input type="text" name="uAddr"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">入职时间</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uHiredate" autocomplete="off" class="layui-input">
+                <input id="date" type="text" readonly="readonly" name="uHiredate" autocomplete="off"
+                       class="layui-input">
             </div>
         </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">用户角色</label>
-                <div class="layui-input-inline shortInput">
-                    <select name="rID" id="rID">
-						<option value="0">
-						</option>
-                        <option value="1">
-                            超级管理员
-                        </option>
-                        <option value="2">
-                            仓管员
-                        </option>
-                        <option value="3">
-                            运输员
-                        </option>
-                    </select><span id="roleSpan"></span>
-                </div><i class="iconfont icon-huaban bt"></i>
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户角色</label>
+            <div class="layui-input-inline shortInput">
+                <select name="rID" id="rID" required lay-verify="required">
+                    <option value=""></option>
+                    <option value="1">
+                        超级管理员
+                    </option>
+                    <option value="2">
+                        仓管员
+                    </option>
+                    <option value="3">
+                        运输员
+                    </option>
+                </select><span id="roleSpan"></span>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">用户状态</label>
-                <div class="layui-input-block">
-                    <input type="radio" name="sex" value="nan" title="启用" checked>
-                    <input type="radio" name="sex" value="nv" title="禁用">
-                </div>
+            <i class="iconfont icon-huaban bt"></i>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户状态</label>
+            <div class="layui-input-block">
+                <input type="radio" name="uStatus" value="1" title="启用" checked>
+                <input type="radio" name="uStatus" value="0" title="禁用">
             </div>
-
-            <div class="layui-form-item">
-                <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="submitBut">立即提交</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="submitBut">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
+        </div>
     </form>
+    <script>
+        //入职时间
+        var today = new Date();
+        var submitTime = today.getFullYear() + '年' + (today.getMonth() + 1) + '月' + today.getDate() + '日';
+        $("#date").attr('value', submitTime);
+
+        function addUser() {
+            $.ajax({
+                url: "/updateUser",//添加用户
+                type: "POST",
+                dataType: "json",
+                data: $('#addAgent').serialize(),
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        alert("修改成功");
+                        top.location.href = "/index.jsp"
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+
+            })
+        }
+
+        layui.use('form', function () {
+            var form = layui.form;
+            //监听提交
+            form.on('submit(submitBut)', function (data) {
+                //提交结果
+                addUser();
+                return false;
+            });
+        })
+
+
+    </script>
 </div>
 </body>
 
