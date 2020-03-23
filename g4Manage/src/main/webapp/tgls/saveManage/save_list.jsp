@@ -70,14 +70,18 @@
 				</script>
 			</div>
 			
-			<table class="layui-table">
+			<table class="layui-table" id="sList"
+				   data-options="toolbar:funListToolbar,url:'数据库仓库表',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">>
 				<thead>
 					<tr>
-						<th>仓库号</th>
-						<th>仓库地址</th>
-						<th>总容量</th>
-						<th>现存量</th>
-						<th>状态</th>
+						<th data-options="field:sID">仓库号</th>
+						<th data-options="field:sAddr">仓库地址</th>
+						<th data-options="field:sTsave">总容量</th>
+						<th data-options="field:sNsave">现存量</th>
+						<th data-options="field:sExplain">仓库描述</th>
+						<th data-options="field:sStatus field:'sStatus' formatter:function(value){
+						if(value==1){value='正常';return value;}else{value='锁定';return value;}
+						}"><span>状态</span></th>
 						<th>操作</th>
 					</tr>
 				</thead>

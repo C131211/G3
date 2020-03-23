@@ -47,12 +47,12 @@
 </head>
 <body>
 <div class="cBody">
-    <div class="addInOrder">
+    <form id="addInOrder" action="">
         <div class="layui-row">
             <label class="layui-form-label" style="text-align: center ; ">表单操作</label>
             <div style="display: inline-block;font-size: xx-large">
-                <button class="layui-btn layui-btn-xs">新增一行</button>
-                <button class="layui-btn layui-btn-xs">提交表单</button>
+                <button class="layui-btn layui-btn-xs" onclick="newRow()">新增一行</button>
+                <button class="layui-btn layui-btn-xs" lay-submit lay-filter="submitBut">提交表单</button>
             </div>
             <table class="layui-table printTable id="
                    data-options="toolbar:funListToolbar,url:'数据库用户表',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">
@@ -117,7 +117,7 @@
                 </tr>
                 <tr>
                     <th>
-                        <select name="rID" id="rID">
+                        <select name="gID" id="gID">
                             <option value="0">
                             </option>
                             <option value="1">
@@ -132,7 +132,7 @@
                         </select><span id="roleSpan"></span>
                     </th>
                     <th>
-                    //返回商品名称
+                        //返回商品名称
                     </th>
                     <th><input class="layui-input" type="text" name="ILNum" required lay-verify="required"
                                autocomplete="off" width="auto"></th>
@@ -144,8 +144,35 @@
                 </tbody>
             </table>
         </div>
-    </div>
-
+    </form>
 </div>
+<script>
+    function newRow() {
+    }
+
+    layui.use(['upload', 'form'], function () {
+        var form = layui.form;
+        //监听提交
+        form.on('submit(submitBut)', function (data) {
+            $.ajax({
+                url: "/updateUser", //添加入货单
+                type: "POST",
+                dataType: "json",
+                data: $('#addInOrder').serialize(),
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        alert("添加成功");
+                        location.reload();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+
+            });
+            return false;
+        })
+    })
+</script>
 </body>
 </html>

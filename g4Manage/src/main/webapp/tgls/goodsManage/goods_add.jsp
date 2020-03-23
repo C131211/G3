@@ -129,9 +129,10 @@
                         }
                     }
 
-                })
+                });
                 return false;
             })
+        })
     </script>
 
 </div>
