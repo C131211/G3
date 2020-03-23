@@ -49,7 +49,7 @@
     </div>
 
     <table class="layui-table" id="uList"
-           data-options="toolbar:funListToolbar,url:'数据库用户表',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">
+           data-options="toolbar:funListToolbar,url:'/userList',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">
         <thead>
         <tr>
             <th data-options="field:uID">用户ID</th>

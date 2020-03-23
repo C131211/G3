@@ -81,13 +81,6 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">入职时间</label>
-            <div class="layui-input-inline shortInput">
-                <input id="date" type="text" readonly="readonly" name="uHiredate" autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
             <label class="layui-form-label">用户角色</label>
             <div class="layui-input-inline shortInput">
                 <select name="rID" id="rID" required lay-verify="required">
@@ -127,7 +120,7 @@
 
         function addUser() {
             $.ajax({
-                url: "/updateUser",//添加用户
+                url: "/addUser",//添加用户
                 type: "POST",
                 dataType: "json",
                 data: $('#addAgent').serialize(),

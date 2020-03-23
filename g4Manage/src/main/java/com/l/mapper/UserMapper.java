@@ -3,6 +3,8 @@ package com.l.mapper;
 import com.l.pojo.User;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 /**
  * 数据层接口
  */
@@ -41,5 +43,18 @@ public interface UserMapper {
      */
     User selUserById(int uID);
 
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     */
+    int insUser(User user);
+
+
+    /**
+     * 分页查询用户
+     * @return
+     */
+    List<User> selAllUser(User user);
 
 }

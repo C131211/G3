@@ -1,5 +1,8 @@
 package com.l.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.l.commons.pojo.ExDataGrid;
 import com.l.commons.pojo.GResult;
 import com.l.service.UserService;
 import com.l.mapper.UserMapper;
@@ -7,7 +10,8 @@ import com.l.pojo.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-
+import java.util.Date;
+import java.util.List;
 
 
 @Service
@@ -73,5 +77,54 @@ public class UserServiceImpl implements UserService {
             result.setMsg("上传失败");
             return result;
         }
+    }
+
+    @Override
+    public GResult insUser(User user) {
+        GResult result = new GResult();
+        user.setuHiredate(new Date());
+        int index = -1;
+        index = userMapper.insUser(user);
+        if (index>0){
+            result.setStatus(200);
+            result.setMsg("OK");
+            return result;
+        }else {
+            result.setMsg("error");
+            return result;
+        }
+    }
+
+    @Override
+    public ExDataGrid selAllUser(User user,int page,int rows) {
+        PageHelper.startPage(page, rows);
+
+
+        //如果传进来的user为空，即查询所有的用户
+        if (user.getuName()==null||user.getuName().equals("")){
+            List<User> list = userMapper.selAllUser(user);
+            PageInfo<User> pi = new PageInfo<>(list);
+            GResult result = new GResult();
+            ExDataGrid dataGrid = new ExDataGrid();
+            dataGrid.setRows(pi.getList());
+            dataGrid.setTotal(pi.getTotal());
+            return dataGrid;
+        }else{
+            //如果user有内容，做用户名的查询，并把username做高亮处理
+            //查询的字段
+            String str0 = user.getuName();
+            //替换成红色
+            String  str = "<span style='color:red'>"+str0+"</span>";
+            List<User> list = userMapper.selAllUser(user);
+            for(User userList:list){
+                userList.setuName(userList.getuName().replace(str0, str));
+            }
+            PageInfo<User> pi = new PageInfo<>(list);
+            ExDataGrid dataGrid = new ExDataGrid();
+            dataGrid.setRows(pi.getList());
+            dataGrid.setTotal(pi.getTotal());
+            return dataGrid;
+        }
+
     }
 }
