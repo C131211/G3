@@ -47,54 +47,77 @@
 </head>
 <body>
 <div class="cBody">
-    <p style="text-align: center;font-size: xx-large;">入库单</p>
-    <div style=" position: relative;float:left;display: inline-block">
-        <div class="layui-form-item">
-            <table class="layui-table">
+    <div class="addInOrder">
+        <div class="layui-row">
+            <label class="layui-form-label" style="text-align: center ; ">表单操作</label>
+            <div style="display: inline-block;font-size: xx-large">
+                <button class="layui-btn layui-btn-xs">新增一行</button>
+                <button class="layui-btn layui-btn-xs">提交表单</button>
+            </div>
+            <table class="layui-table printTable id="
+                   data-options="toolbar:funListToolbar,url:'数据库用户表',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">
                 <tbody>
                 <tr>
-                    <th>
-                        <p style="display: inline-block;float: left;text-align: center;font-size: x-large">入库单信息</p>
+                    <td class="printName" colspan="7">入库单</td>
+                </tr>
+                <tr>
+                    <td class="printDis" colspan="7">
+                        <span>单据日期：<div class="layui-input-inline">
+                            <input type="text" name="ILDate" required lay-verify="required"
+                                   autocomplete="off"
+                                   class="layui-input">
+                        </div></span>
+                        <span class="right">单据编号:
+                            <div class="layui-input-inline">
+                            <input type="text" name="ILID" required lay-verify="required"
+                                   autocomplete="off"
+                                   class="layui-input">
+                        </div></span>
+                        <span>入库类型：采购入库</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="8%" class="textCenter">入库信息
                     </th>
-                    <th><label class="layui-form-label" style="text-align: center ">供货商</label>
+                    <th width="10%" class="textCenter">入库库号
                         <div class="layui-input-inline">
-                            <input type="text" name="uAccount" required lay-verify="required|identity"
+                            <input type="text" name="sID" required lay-verify="required"
                                    autocomplete="off"
                                    class="layui-input">
                         </div>
                     </th>
-                    <th><label class="layui-form-label" style="text-align: center ">请填写单号</label>
+                    <th width="10%" class="textCenter">经手人
                         <div class="layui-input-inline">
-                            <input type="text" name="uAccount" required lay-verify="required|identity"
+                            <input type="text" name="ILBy" required lay-verify="required"
                                    autocomplete="off"
                                    class="layui-input">
                         </div>
                     </th>
-                    <th><label class="layui-form-label" style="text-align: center ">请填写仓库</label>
+                    <th width="10%" class="textCenter">确认人
                         <div class="layui-input-inline">
-                            <input type="text" name="uAccount" required lay-verify="required|identity"
+                            <input type="text" name="ILComfirm" required lay-verify="required"
                                    autocomplete="off"
                                    class="layui-input">
                         </div>
                     </th>
-                    <th>
-                        <label class="layui-form-label" style="text-align: center ;; ">表单操作</label>
-                        <div style="display: inline-block;font-size: xx-large">
-                            <button class="layui-btn layui-btn-xs">新增一行</button>
-                            <button class="layui-btn layui-btn-xs">提交表单</button>
+                    <th width="10%" class="textCenter">供货商
+                        <div class="layui-input-inline">
+                            <input type="text" name="ILFrom" required lay-verify="required"
+                                   autocomplete="off"
+                                   class="layui-input">
                         </div>
                     </th>
                 </tr>
                 <tr>
-                    <th width="7%" class="textCenter">货物号</th>
-                    <th width="7%">商品名称</th>
-                    <th width="7%" class="textCenter">入库数量</th>
-                    <th width="7%" class="textCenter">入库单价</th>
-                    <th width="7%" class="textCenter">入库总金额</th>
+                    <th width="8%" class="textCenter" data-options="field:gID">货物号</th>
+                    <th width="10%" class="textCenter">商品名称</th>
+                    <th width="10%" class="textCenter">入库数量</th>
+                    <th width="10%" class="textCenter">入库单价</th>
+                    <th width="10%" class="textCenter">入库总金额</th>
                 </tr>
                 <tr>
                     <th>
-                        <select name="rID" id="rID" style="width: auto;height:auto">
+                        <select name="rID" id="rID">
                             <option value="0">
                             </option>
                             <option value="1">
@@ -109,169 +132,13 @@
                         </select><span id="roleSpan"></span>
                     </th>
                     <th>
-
+                    //返回商品名称
                     </th>
-                    <th><input class="layui-input" type="text" name="ILNum" required lay-verify="required|identity"
+                    <th><input class="layui-input" type="text" name="ILNum" required lay-verify="required"
                                autocomplete="off" width="auto"></th>
-                    <th><input class="layui-input" type="text" name="ILprice" required lay-verify="required|identity"
+                    <th><input class="layui-input" type="text" name="ILprice" required lay-verify="required"
                                autocomplete="off" width="auto"></th>
-                    <th><input class="layui-input" type="text" name="ILTotal" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                </tr>
-                <tr>
-                    <th>
-                        <select name="rID" id="rID" style="width: auto;height:auto">
-                            <option value="0">
-                            </option>
-                            <option value="1">
-                                超级管理员
-                            </option>
-                            <option value="2">
-                                仓管员
-                            </option>
-                            <option value="3">
-                                运输员
-                            </option>
-                        </select><span id="roleSpan"></span>
-                    </th>
-                    <th>
-
-                    </th>
-                    <th><input class="layui-input" type="text" name="ILNum" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                    <th><input class="layui-input" type="text" name="ILprice" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                    <th><input class="layui-input" type="text" name="ILTotal" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                </tr>
-                <tr>
-                    <th>
-                        <select name="rID" id="rID" style="width: auto;height:auto">
-                            <option value="0">
-                            </option>
-                            <option value="1">
-                                超级管理员
-                            </option>
-                            <option value="2">
-                                仓管员
-                            </option>
-                            <option value="3">
-                                运输员
-                            </option>
-                        </select><span id="roleSpan"></span>
-                    </th>
-                    <th>
-
-                    </th>
-                    <th><input class="layui-input" type="text" name="ILNum" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                    <th><input class="layui-input" type="text" name="ILprice" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                    <th><input class="layui-input" type="text" name="ILTotal" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                </tr>
-                <tr>
-                    <th>
-                        <select name="rID" id="rID" style="width: auto;height:auto">
-                            <option value="0">
-                            </option>
-                            <option value="1">
-                                超级管理员
-                            </option>
-                            <option value="2">
-                                仓管员
-                            </option>
-                            <option value="3">
-                                运输员
-                            </option>
-                        </select><span id="roleSpan"></span>
-                    </th>
-                    <th>
-
-                    </th>
-                    <th><input class="layui-input" type="text" name="ILNum" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                    <th><input class="layui-input" type="text" name="ILprice" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                    <th><input class="layui-input" type="text" name="ILTotal" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                </tr>
-                <tr>
-                    <th>
-                        <select name="rID" id="rID" style="width: auto;height:auto">
-                            <option value="0">
-                            </option>
-                            <option value="1">
-                                超级管理员
-                            </option>
-                            <option value="2">
-                                仓管员
-                            </option>
-                            <option value="3">
-                                运输员
-                            </option>
-                        </select><span id="roleSpan"></span>
-                    </th>
-                    <th>
-
-                    </th>
-                    <th><input class="layui-input" type="text" name="ILNum" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                    <th><input class="layui-input" type="text" name="ILprice" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                    <th><input class="layui-input" type="text" name="ILTotal" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                </tr>
-                <tr>
-                    <th>
-                        <select name="rID" id="rID" style="width: auto;height:auto">
-                            <option value="0">
-                            </option>
-                            <option value="1">
-                                超级管理员
-                            </option>
-                            <option value="2">
-                                仓管员
-                            </option>
-                            <option value="3">
-                                运输员
-                            </option>
-                        </select><span id="roleSpan"></span>
-                    </th>
-                    <th>
-
-                    </th>
-                    <th><input class="layui-input" type="text" name="ILNum" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                    <th><input class="layui-input" type="text" name="ILprice" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                    <th><input class="layui-input" type="text" name="ILTotal" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                </tr>
-                <tr>
-                    <th>
-                        <select name="rID" id="rID" style="width: auto;height:auto">
-                            <option value="0">
-                            </option>
-                            <option value="1">
-                                超级管理员
-                            </option>
-                            <option value="2">
-                                仓管员
-                            </option>
-                            <option value="3">
-                                运输员
-                            </option>
-                        </select><span id="roleSpan"></span>
-                    </th>
-                    <th>
-
-                    </th>
-                    <th><input class="layui-input" type="text" name="ILNum" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                    <th><input class="layui-input" type="text" name="ILprice" required lay-verify="required|identity"
-                               autocomplete="off" width="auto"></th>
-                    <th><input class="layui-input" type="text" name="ILTotal" required lay-verify="required|identity"
+                    <th><input class="layui-input" type="text" name="ILTotal" required lay-verify="required"
                                autocomplete="off" width="auto"></th>
                 </tr>
                 </tbody>
