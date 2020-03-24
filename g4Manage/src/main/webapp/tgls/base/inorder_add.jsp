@@ -51,11 +51,11 @@
         <div class="layui-row">
             <label class="layui-form-label" style="text-align: center ; ">表单操作</label>
             <div style="display: inline-block;font-size: xx-large">
-                <button class="layui-btn layui-btn-xs" onclick="newRow()">新增一行</button>
-                <button class="layui-btn layui-btn-xs" lay-submit lay-filter="submitBut">提交表单</button>
+                <button class="layui-btn layui-btn-xs" onclick="newBut()">新增一行</button>
+                <button class="layui-btn layui-btn-xs" onclick="addBut()">提交表单</button>
             </div>
-            <table class="layui-table printTable id="
-                   data-options="toolbar:funListToolbar,url:'数据库用户表',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">
+            <table class="layui-table printTable " id=""
+                   data-options="toolbar:funListToolbar,url:'数据库商品表',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">
                 <tbody>
                 <tr>
                     <td class="printName" colspan="7">入库单</td>
@@ -147,13 +147,29 @@
     </form>
 </div>
 <script>
-    function newRow() {
+function newBut() {
+    var updateFrame = null;
+        layui.use('layer', function() {
+            var layer = layui.layer;
+
+            //iframe层-父子操作
+            updateFrame = layer.open({
+                title: "商品信息修改",
+                type: 2,
+                area: ['70%', '60%'],
+                scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                maxmin: true,
+                content: 'goods_update.html'
+            });
+        });
+
     }
 
-    layui.use(['upload', 'form'], function () {
-        var form = layui.form;
-        //监听提交
-        form.on('submit(submitBut)', function (data) {
+}
+    function addBut(){
+        layui.use('form', function() {
+            //监听提交
+            var form = layui.form;
             $.ajax({
                 url: "/updateUser", //添加入货单
                 type: "POST",
@@ -172,7 +188,9 @@
             });
             return false;
         })
-    })
+
+    }
+
 </script>
 </body>
 </html>

@@ -57,7 +57,6 @@
                 <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
             </div>
         </form>
-
         <script>
             layui.use('form', function () {
                 var form = layui.form;
