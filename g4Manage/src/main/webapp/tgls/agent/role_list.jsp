@@ -67,39 +67,17 @@
         </script>
     </div>
 
-    <table class="layui-table" id="rList"
-           data-options="toolbar:funListToolbar,url:'数据库角色表',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">
+    <table class="layui-table" lay-data="{url:'/demo/table/user/', page:true, id:'rList'}" lay-filter="test">
         <thead>
         <tr>
-            <th data-options="field:rID">角色ID</th>
-            <th data-options="field:rName">角色名称</th>
-            <th data-options="field:rExplain">角色说明</th>
-            <th data-options="field:rStatus formatter:function(value){
-							if(value==1){value='正常';return value;}else{value='锁定';return value;}
-							}"><span>角色状态</span></th>
+            <th lay-data="{field:'rID'}">角色ID</th>
+            <th lay-data="{field:'rName'}">角色名称</th>
+            <th lay-data="{field:'rExplain'}">角色说明</th>
+            <th lay-data="{field:'rStatus'}">角色状态</th>
             <th>操作</th>
         </tr>
         </thead>
     </table>
-
-    <!-- layUI 分页模块 -->
-    <div id="pages"></div>
-    <script>
-        layui.use(['laypage', 'layer'], function () {
-            var laypage = layui.laypage,
-                layer = layui.layer;
-
-            //总页数大于页码总数
-            laypage.render({
-                elem: 'pages'
-                , count: 100
-                , layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
-                , jump: function (obj) {
-                    console.log(obj)
-                }
-            });
-        });
-    </script>
 </div>
 </body>
 

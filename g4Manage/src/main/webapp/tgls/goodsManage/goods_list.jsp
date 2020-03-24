@@ -70,42 +70,22 @@
         </script>
     </div>
 
-    <table class="layui-table" id="gList"
-           data-options="toolbar:funListToolbar,url:'数据库商品表',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">
+    <table class="layui-table" lay-data="{url:'/demo/table/user/', page:true, id:'gList'}" lay-filter="test">
         <thead>
         <tr>
-            <th data-options="field:gID">商品号</th>
-            <th data-options="field:gName">商品名称</th>
-            <th data-options="field:gInprice">入货价</th>
-            <th data-options="field:gOutprice">市场价格</th>
-            <th data-options="field:gNum">商品数量</th>
-            <th data-options="field:sID">存放仓库</th>
-            <th data-options="field:gSatime">入仓日期</th>
-            <th data-options="field:gExplain">描述</th>
-            <th data-options="field:'gStatus' formatter:function(value){
-							if(value==1){value='正常';return value;}else{value='缺货';return value;}
-							}"><span>状态</span></th>
+            <th lay-data="{field:'gID'}">商品号</th>
+            <th lay-data="{field:'gName'}">商品名称</th>
+            <th lay-data="{field:'gInprice'}">入货价</th>
+            <th lay-data="{field:'gOutprice'}">市场价格</th>
+            <th lay-data="{field:'gNum'}">商品数量</th>
+            <th lay-data="{field:'sID'}">存放仓库</th>
+            <th lay-data="{field:'gSatime'}">入仓日期</th>
+            <th lay-data="{field:'gExplain'}">描述</th>
+            <th lay-data="{field:'gStatus'}">商品状态</th>
             <th>操作</th>
         </tr>
         </thead>
     </table>
-
-    <!-- layUI 分页模块 -->
-    <div id="pages"></div>
-    <script>
-        layui.use('laypage', function () {
-            var laypage = layui.laypage;
-
-            //总页数大于页码总数
-            laypage.render({
-                elem: 'pages'
-                , count: 100
-                , layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
-                , jump: function (obj) {
-//					      console.log(obj)
-                }
-            });
-        });
         // //修改规格
         // function specificationsBut(){
         // 	layui.use('layer', function() {
@@ -141,7 +121,6 @@
             });
 
         }
-    </script>
 </div>
 </body>
 

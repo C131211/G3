@@ -48,21 +48,18 @@
         </form>
     </div>
 
-    <table class="layui-table" id="uList"
-           data-options="toolbar:funListToolbar,url:'/userList',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">
+    <table class="layui-table" lay-data="{url:'/demo/table/user/', page:true, id:'uList'}" lay-filter="test">
         <thead>
         <tr>
-            <th data-options="field:uID">用户ID</th>
-            <th data-options="field:uAccount">工号</th>
-            <th data-options="field:uName">员工名</th>
-            <th data-options="field:uPwd">密码</th>
-            <th data-options="field:uTel">联系方式</th>
-            <th data-options="field:uAddr">住址</th>
-            <th data-options="field:uHiredate">入职时间</th>
-            <th data-options="field:rID">角色ID</th>
-            <th data-options="field:'uStatus',formatter:function(value){
-							if(value==1){value='正常';return value;}else{value='锁定';return value;}
-							}"><span>用户状态</span></th>
+            <th lay-data="{field:'uID'}">用户ID</th>
+            <th lay-data={field:'uAccount'}">工号</th>
+            <th lay-data={field:'uAccount'}">员工名</th>
+            <th lay-data={field:'uAccount'}">密码</th>
+            <th lay-data={field:'uAccount'}">联系方式</th>
+            <th lay-data={field:'uAccount'}">住址</th>
+            <th lay-data={field:'uAccount'}">入职时间</th>
+            <th lay-data={field:'uAccount'}">角色ID</th>
+            <th lay-data={field:'uStatus'}">用户状态</th>
             <th data-options="">操作</th>
         </tr>
         </thead>
@@ -88,73 +85,29 @@
                 }
             });
         });
-
-
-        //dataGrid工具栏
-        var funListToolbar = [{
-            text: '新增',
-            iconCls: 'icon-add',
-            handler: function () {
-                window.location.href = "user-add";
-            }
-        }, {
-            text: '编辑',
-            iconCls: 'icon-edit',
-            handler: function () {
-                var select = $("#uList").datagrid('getSelected');
-                if (select == null || select == '') {
-                    $.messager.alert('提示', '必须选择一个内容才能编辑!');
-                    return;
-                }
-                window.location.href = "user/queryid/" + select.uid;
-            }
-
-        }, {
-            text: '删除',
-            iconCls: 'icon-cancel',
-            handler: function () {
-                var select = $("#uList").datagrid('getSelected');
-                if (select == null || select == '') {
-                    $.messager.alert('提示', '必须选择一个内容才能删除!');
-                    return;
-                }
-                var UserConfirm = window.confirm("你确认要删除用户名为" + select.username + "的用户吗");
-                if (UserConfirm) {
-                    $.ajax({
-                        url: "user/del",//删除用户
-                        dataType: "json",
-                        type: "POST",
-                        data: {uid: select.uid},
-                        success: function (data) {
-                            if (data.status == 200) {
-                                alert(data.msg);
-                                window.location.reload();
-                            } else {
-                                alert(data.msg);
-                            }
-                        }
-                    })
-                }
-            }
-        }];
-    </script>
-    <!-- layUI 分页模块 -->
-    <div id="pages"></div>
-    <script>
-        layui.use('laypage', function () {
-            var laypage = layui.laypage;
-
-            //总页数大于页码总数
-            laypage.render({
-                elem: 'pages'
-                , count: 100
-                , layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
-                , jump: function (obj) {
-//					      console.log(obj)
-                }
-            });
-        });
-
+        //制作表格第二种方法
+        // layui.use('table', function(){
+        //     var table = layui.table;
+        //     //表单初始化
+        //     table.render({
+        //         elem: '#demo'
+        //         ,height: 312
+        //         ,url: '/demo/table/user/' //数据接口
+        //         ,page: true //开启分页
+        //         ,cols: [[ //表头
+        //             {field: 'uID', title: '用户ID', width:80, sort: true, fixed: 'left'}
+        //             ,{field: 'uAccount', title: '工号(用户名)', width:80,sort: true}
+        //             ,{field: 'uName', title: '员工名', width:80}
+        //             ,{field: 'uPwd', title: '密码', width:80}
+        //             ,{field: 'uTel', title: '手机号', width: 177}
+        //             ,{field: 'uAddr', title: '住址', width: 80}
+        //             ,{field: 'uHiredate', title: '入职时间', width: 80, sort: true}
+        //             ,{field: 'rID', title: '角色ID'}
+        //             ,{field: 'uStatus', title: '用户状态', width: 80}
+        //         ]]
+        //     });
+        //
+        // });
         //修改按钮
         var updateFrame = null;
 

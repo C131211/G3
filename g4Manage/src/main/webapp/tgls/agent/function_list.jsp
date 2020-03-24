@@ -66,16 +66,13 @@
         </script>
     </div>
 
-    <table class="layui-table"id="funcList"
-           data-options="toolbar:funListToolbar,url:'数据库功能表',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">
+    <table class="layui-table" lay-data="{url:'/demo/table/user/', page:true, id:'funcList'}" lay-filter="test">
         <thead>
         <tr>
-            <th data-options="field:fID">功能ID</th>
-            <th data-options="field:fName">功能名称</th>
-            <th data-options="field:fUrl">功能地址</th>
-            <th data-options="field:fStatus,formatter:function(value){
-							if(value==1){value='正常';return value;}else{value='锁定';return value;}
-							}"><span>功能状态</span></th>
+            <th lay-data="{field:'fID'}">功能ID</th>
+            <th lay-data="{field:'fName'}">功能名称</th>
+            <th lay-data="{field:'fUrl'}">功能地址</th>
+            <th lay-data="{field:'fStatus'}">功能状态</th>
             <th>操作</th>
         </tr>
         </thead>

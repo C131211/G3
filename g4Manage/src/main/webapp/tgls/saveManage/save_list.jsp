@@ -69,19 +69,16 @@
 					});
 				</script>
 			</div>
-			
-			<table class="layui-table" id="sList"
-				   data-options="toolbar:funListToolbar,url:'数据库仓库表',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">>
+
+			<table class="layui-table" lay-data="{url:'/demo/table/user/', page:true, id:'sList'}" lay-filter="test">
 				<thead>
 					<tr>
-						<th data-options="field:sID">仓库号</th>
-						<th data-options="field:sAddr">仓库地址</th>
-						<th data-options="field:sTsave">总容量</th>
-						<th data-options="field:sNsave">现存量</th>
-						<th data-options="field:sExplain">仓库描述</th>
-						<th data-options="field:sStatus field:'sStatus' formatter:function(value){
-						if(value==1){value='正常';return value;}else{value='锁定';return value;}
-						}"><span>状态</span></th>
+						<th lay-data="{field:'sID'}">仓库号</th>
+						<th lay-data="{field:'sAddr'}">仓库地址</th>
+						<th lay-data="{field:'sTsave'}">总容量</th>
+						<th lay-data="{field:'sNsave'}">现存量</th>
+						<th lay-data="{field:'sExplain'}">仓库描述</th>
+						<th lay-data="{field:'sStatus'}">状态</th>
 						<th>操作</th>
 					</tr>
 				</thead>
@@ -98,23 +95,7 @@
 					</tr>
 				</tbody>
 			</table>
-			
-			<!-- layUI 分页模块 -->
-			<div id="pages"></div>
 			<script>
-				layui.use('laypage', function() {
-					var laypage = layui.laypage;
-				
-					//总页数大于页码总数
-					laypage.render({
-					    elem: 'pages'
-					    ,count: 100
-					    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
-					    ,jump: function(obj){
-//					      console.log(obj)
-					    }
-					});
-				});
 				//修改规格
 				function specificationsBut(){
 					layui.use('layer', function() {

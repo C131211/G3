@@ -89,6 +89,10 @@
                                     readonly="readonly" required lay-verify="required" autocomplete="off"
                                     class="layui-input">
                             </div></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="printDis" colspan="7">
                         <span>入库类型：采购入库</span>
                         <span class="right">入库库号：
                             <div class="layui-input-inline">
