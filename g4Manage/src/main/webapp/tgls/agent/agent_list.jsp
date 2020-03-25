@@ -32,6 +32,11 @@
     <script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <!-- 公共样式 结束 -->
 
+    <%--引入css--%>
+    <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css"  media="all">
+    <%--引入js--%>
+    <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
+
 </head>
 
 <body>
@@ -48,22 +53,8 @@
         </form>
     </div>
 
-    <table class="layui-table" lay-data="{url:'/demo/table/user/', page:true, id:'uList'}" lay-filter="test">
-        <thead>
-        <tr>
-            <th lay-data="{field:'uID'}">用户ID</th>
-            <th lay-data={field:'uAccount'}">工号</th>
-            <th lay-data={field:'uAccount'}">员工名</th>
-            <th lay-data={field:'uAccount'}">密码</th>
-            <th lay-data={field:'uAccount'}">联系方式</th>
-            <th lay-data={field:'uAccount'}">住址</th>
-            <th lay-data={field:'uAccount'}">入职时间</th>
-            <th lay-data={field:'uAccount'}">角色ID</th>
-            <th lay-data={field:'uStatus'}">用户状态</th>
-            <th data-options="">操作</th>
-        </tr>
-        </thead>
-    </table>
+    <table class="layui-hide" id="uList"></table>
+
     <script>
         layui.use('form', function () {
             var form = layui.form;
@@ -85,29 +76,6 @@
                 }
             });
         });
-        //制作表格第二种方法
-        // layui.use('table', function(){
-        //     var table = layui.table;
-        //     //表单初始化
-        //     table.render({
-        //         elem: '#demo'
-        //         ,height: 312
-        //         ,url: '/demo/table/user/' //数据接口
-        //         ,page: true //开启分页
-        //         ,cols: [[ //表头
-        //             {field: 'uID', title: '用户ID', width:80, sort: true, fixed: 'left'}
-        //             ,{field: 'uAccount', title: '工号(用户名)', width:80,sort: true}
-        //             ,{field: 'uName', title: '员工名', width:80}
-        //             ,{field: 'uPwd', title: '密码', width:80}
-        //             ,{field: 'uTel', title: '手机号', width: 177}
-        //             ,{field: 'uAddr', title: '住址', width: 80}
-        //             ,{field: 'uHiredate', title: '入职时间', width: 80, sort: true}
-        //             ,{field: 'rID', title: '角色ID'}
-        //             ,{field: 'uStatus', title: '用户状态', width: 80}
-        //         ]]
-        //     });
-        //
-        // });
         //修改按钮
         var updateFrame = null;
 
@@ -129,6 +97,30 @@
         }
     </script>
 </div>
+
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+        table.render({
+            elem: '#uList'
+            ,url:'/userList'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [[
+                {field:'uID', width:80, title: 'ID', sort: true}
+                ,{field: 'uAccount', title: '工号(用户名)', width:80,sort: true}
+                 ,{field: 'uName', title: '员工名', width:80}
+                 ,{field: 'uPwd', title: '密码', width:80}
+                 ,{field: 'uTel', title: '手机号', width: 177}
+                 ,{field: 'uAddr', title: '住址', width: 80}
+                 ,{field: 'uHiredate', title: '入职时间', width: 80, sort: true}
+                 ,{field: 'rID', title: '角色ID'}
+                 ,{field: 'uStatus', title: '用户状态', width: 80}
+            ]]
+        });
+    });
+</script>
+
+
 </body>
 
 

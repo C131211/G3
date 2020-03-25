@@ -1,6 +1,6 @@
 package com.l.controller;
 
-import com.l.commons.pojo.ExDataGrid;
+import com.l.commons.pojo.DataGrid;
 import com.l.commons.pojo.GResult;
 import com.l.pojo.User;
 import com.l.service.UserService;
@@ -106,8 +106,8 @@ public class UserController {
      */
     @RequestMapping("/userList")
     @ResponseBody
-    public ExDataGrid showUserManage(User user,@RequestParam(defaultValue = "1")int page, @RequestParam(defaultValue = "3")int rows){
-        ExDataGrid dataGrid = userService.selAllUser(user, page, rows);
+    public DataGrid showUserManage(User user,@RequestParam(defaultValue = "1")int page, @RequestParam(defaultValue = "3")int rows){
+        DataGrid dataGrid = userService.selAllUser(user, page, rows);
         return dataGrid;
     }
 

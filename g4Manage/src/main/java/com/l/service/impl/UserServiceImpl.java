@@ -2,7 +2,7 @@ package com.l.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.l.commons.pojo.ExDataGrid;
+import com.l.commons.pojo.DataGrid;
 import com.l.commons.pojo.GResult;
 import com.l.service.UserService;
 import com.l.mapper.UserMapper;
@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ExDataGrid selAllUser(User user,int page,int rows) {
+    public DataGrid selAllUser(User user,int page,int rows) {
         PageHelper.startPage(page, rows);
 
 
@@ -105,9 +105,11 @@ public class UserServiceImpl implements UserService {
             List<User> list = userMapper.selAllUser(user);
             PageInfo<User> pi = new PageInfo<>(list);
             GResult result = new GResult();
-            ExDataGrid dataGrid = new ExDataGrid();
-            dataGrid.setRows(pi.getList());
+            DataGrid dataGrid = new DataGrid();
+            dataGrid.setData(pi.getList());
             dataGrid.setTotal(pi.getTotal());
+            dataGrid.setCode(0);
+            dataGrid.setMsg("OK");
             return dataGrid;
         }else{
             //如果user有内容，做用户名的查询，并把username做高亮处理
@@ -120,9 +122,11 @@ public class UserServiceImpl implements UserService {
                 userList.setuName(userList.getuName().replace(str0, str));
             }
             PageInfo<User> pi = new PageInfo<>(list);
-            ExDataGrid dataGrid = new ExDataGrid();
-            dataGrid.setRows(pi.getList());
+            DataGrid dataGrid = new DataGrid();
+            dataGrid.setData(pi.getList());
             dataGrid.setTotal(pi.getTotal());
+            dataGrid.setCode(0);
+            dataGrid.setMsg("OK");
             return dataGrid;
         }
 

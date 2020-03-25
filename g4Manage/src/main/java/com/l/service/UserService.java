@@ -1,6 +1,6 @@
 package com.l.service;
 
-import com.l.commons.pojo.ExDataGrid;
+import com.l.commons.pojo.DataGrid;
 import com.l.commons.pojo.GResult;
 import com.l.pojo.User;
 
@@ -44,7 +44,7 @@ public interface UserService {
      * @param user
      * @return
      */
-    ExDataGrid selAllUser(User user,int page,int rows);
+    DataGrid selAllUser(User user,int page,int rows);
     
 
 }
