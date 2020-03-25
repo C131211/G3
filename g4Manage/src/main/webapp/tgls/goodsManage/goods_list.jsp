@@ -42,7 +42,7 @@
 
 <body>
 <div class="cBody">
-    <div class="console">
+    <div class="goodList">
         <form class="layui-form" action="">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
@@ -69,59 +69,30 @@
             });
         </script>
     </div>
-
-    <table class="layui-table" lay-data="{url:'/demo/table/user/', page:true, id:'gList'}" lay-filter="test">
-        <thead>
-        <tr>
-            <th lay-data="{field:'gID'}">商品号</th>
-            <th lay-data="{field:'gName'}">商品名称</th>
-            <th lay-data="{field:'gInprice'}">入货价</th>
-            <th lay-data="{field:'gOutprice'}">市场价格</th>
-            <th lay-data="{field:'gNum'}">商品数量</th>
-            <th lay-data="{field:'sID'}">存放仓库</th>
-            <th lay-data="{field:'gSatime'}">入仓日期</th>
-            <th lay-data="{field:'gExplain'}">描述</th>
-            <th lay-data="{field:'gStatus'}">商品状态</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-    </table>
-        // //修改规格
-        // function specificationsBut(){
-        // 	layui.use('layer', function() {
-        // 		var layer = layui.layer;
-        //
-        // 		//iframe层-父子操作
-        // 		layer.open({
-        // 			type: 2,
-        // 			area: ['70%', '60%'],
-        // 			fixed: false, //不固定
-        // 			maxmin: true,
-        // 			content: 'specifications_list.html'
-        // 		});
-        // 	});
-        //
-        // }
-        //修改按钮
-        var updateFrame = null;
-
-        function updateBut() {
-            layui.use('layer', function () {
-                var layer = layui.layer;
-
-                //iframe层-父子操作
-                updateFrame = layer.open({
-                    title: "商品信息修改",
-                    type: 2,
-                    area: ['70%', '60%'],
-                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
-                    maxmin: true,
-                    content: 'goods_update.jsp'
-                });
-            });
-
-        }
+    <table class="layui-hide" id="gList"></table>
 </div>
 </body>
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+        table.render({
+            elem: '#gList'   //表格ID
+            , url: '/userList' //数据接口
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , page: true     //开启分页
+            , cols: [[
 
+                , {field: 'gID', title: '仓库ID', width: 80,}
+                , {field: 'gName', title: '现存量', width: 80}
+                , {field: 'gNum', title: '总存量', width: 80}
+                , {field: 'gInprice', title: '入货价', width: 80}
+                , {field: 'gOutprice', title: '市场价', width: 80}
+                , {field: 'gExplain', title: '商品说明', width: 300}
+                , {field: 'gSatime', title: '存放时间', width: 90}
+                , {field: 'sID', title: '存放仓库', width: 90}
+                , {field: 'gStatus', title: '商品状态', width: 90}
+            ]]
+        });
+    });
+</script>
 </html>

@@ -42,7 +42,7 @@
 
 	<body>
 		<div class="cBody">
-			<div class="console">
+			<div class="saveList">
 				<form class="layui-form" action="">
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
@@ -69,69 +69,27 @@
 					});
 				</script>
 			</div>
-
-			<table class="layui-table" lay-data="{url:'/demo/table/user/', page:true, id:'sList'}" lay-filter="test">
-				<thead>
-					<tr>
-						<th lay-data="{field:'sID'}">仓库号</th>
-						<th lay-data="{field:'sAddr'}">仓库地址</th>
-						<th lay-data="{field:'sTsave'}">总容量</th>
-						<th lay-data="{field:'sNsave'}">现存量</th>
-						<th lay-data="{field:'sExplain'}">仓库描述</th>
-						<th lay-data="{field:'sStatus'}">状态</th>
-						<th>操作</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>HTML5</td>
-						<td><img src="../../images/goodsPIC1.png" width="20" height="20" onmouseenter="imgBig(this)" onmouseleave="imgSmall(this)"/></td>
-						<td>10</td>
-						<td>斤</td>
-						<td>技术</td>
-						<td>
-							<button class="layui-btn layui-btn-xs" onclick="updateBut()">修改</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<script>
-				//修改规格
-				function specificationsBut(){
-					layui.use('layer', function() {
-						var layer = layui.layer;
-						
-						//iframe层-父子操作
-						layer.open({
-							type: 2,
-							area: ['70%', '60%'],
-							fixed: false, //不固定
-							maxmin: true,
-							content: 'specifications_list.html'
-						});
-					});
-					
-				}
-				//修改按钮
-				var updateFrame = null;
-				function updateBut(){
-					layui.use('layer', function() {
-						var layer = layui.layer;
-							
-						//iframe层-父子操作
-						updateFrame = layer.open({
-                    		title: "商品信息修改",
-							type: 2,
-							area: ['70%', '60%'],
-							scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
-							maxmin: true,
-							content: 'save_update.jsp'
-						});
-					});
-					
-				}
-			</script>
 		</div>
 	</body>
+	<table class="layui-hide" id="saList"></table>
+	<script>
+		layui.use('table', function () {
+			var table = layui.table;
+			table.render({
+				elem: '#saList'   //表格ID
+				, url: '/userList' //数据接口
+				, cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+				, page: true     //开启分页
+				, cols: [[
 
+					, {field: 'sID', title: '仓库ID', width: 80,}
+					, {field: 'sNsave', title: '现存量', width: 80}
+					, {field: 'sTsave', title: '总存量', width: 80}
+					, {field: 'sAddr', title: '仓库地址', width: 300}
+					, {field: 'sExplain', title: '角色说明', width: 300}
+					, {field: 'sStatus', title: '角色状态', width: 90}
+				]]
+			});
+		});
+	</script>
 </html>
