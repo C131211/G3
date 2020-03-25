@@ -5,7 +5,7 @@
   Time: 15:46
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 
@@ -16,13 +16,13 @@
     <meta name="renderer" content="webkit">
     <!--国产浏览器高速模式-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="穷在闹市" />
+    <meta name="author" content="穷在闹市"/>
     <!-- 作者 -->
-    <meta name="revised" content="穷在闹市.v3, 2019/05/01" />
+    <meta name="revised" content="穷在闹市.v3, 2019/05/01"/>
     <!-- 定义页面的最新版本 -->
-    <meta name="description" content="网站简介" />
+    <meta name="description" content="网站简介"/>
     <!-- 网站简介 -->
-    <meta name="keywords" content="搜索关键字，以半角英文逗号隔开" />
+    <meta name="keywords" content="搜索关键字，以半角英文逗号隔开"/>
     <title>穷在闹市出品</title>
 
     <!-- 公共样式 开始 -->
@@ -43,60 +43,47 @@
 
 <body>
 <div class="cBody">
-    <div class="console">
+    <div class="PowerList">
         <form class="layui-form" action="">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
-                    <input type="text" name="name" required lay-verify="required" placeholder="输入功能名" autocomplete="off" class="layui-input">
+                    <input type="text" name="name" required lay-verify="required" placeholder="输入功能名" autocomplete="off"
+                           class="layui-input">
                 </div>
                 <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
             </div>
         </form>
-
         <script>
-            layui.use('form', function() {
+            layui.use('form', function () {
                 var form = layui.form;
 
                 //监听提交
-                form.on('submit(formDemo)', function(data) {
+                form.on('submit(formDemo)', function (data) {
                     layer.msg(JSON.stringify(data.field));
                     return false;
                 });
             });
         </script>
+        <table class="layui-hide" id="powList"></table>
     </div>
-
-    <table class="layui-table" lay-data="{url:'/demo/table/user/', page:true, id:'funcList'}" lay-filter="test">
-        <thead>
-        <tr>
-            <th lay-data="{field:'fID'}">功能ID</th>
-            <th lay-data="{field:'fName'}">功能名称</th>
-            <th lay-data="{field:'fUrl'}">功能地址</th>
-            <th lay-data="{field:'fStatus'}">功能状态</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-    </table>
-
-    <!-- layUI 分页模块 -->
-    <div id="pages"></div>
-    <script>
-        layui.use(['laypage', 'layer'], function() {
-            var laypage = layui.laypage,
-                layer = layui.layer;
-
-            //总页数大于页码总数
-            laypage.render({
-                elem: 'pages'
-                ,count: 100
-                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
-                ,jump: function(obj){
-                    console.log(obj)
-                }
-            });
-        });
-    </script>
 </div>
 </body>
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+        table.render({
+            elem: '#powList'   //表格ID
+            , url: '/userList' //数据接口
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , page: true     //开启分页
+            , cols: [[
 
+                , {field: 'pID', title: '权限ID', width: 80}
+                , {field: 'rID', title: '角色ID', width: 80}
+                , {field: 'fID', title: '功能ID', width: 80}
+                , {field: 'pExplain', title: '权限说明', width: 300}
+            ]]
+        });
+    });
+</script>
 </html>

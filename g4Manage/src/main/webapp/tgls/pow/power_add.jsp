@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Richard Lyu
-  Date: 2020/3/16
-  Time: 13:21
+  Date: 2020/3/25
+  Time: 14:28
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -49,25 +49,27 @@
 
 <body>
 <div class="cBody">
-    <form id="addRole" class="layui-form" action="">
+    <form id="addPower" class="layui-form" action="">
         <div class="layui-form-item">
-            <label class="layui-form-label">角色名称</label>
+            <label class="layui-form-label">角色ID</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="rName" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">角色说明</label>
-            <div class="layui-input-inline shortInput">
-                <textarea name="rExplain" lay-verify="required" autocomplete="off" class="layui-textarea">
-                </textarea>
+                <input type="text" lay-verify="required" name="rID" autocomplete="off" class="layui-input">
             </div>
             <i class="iconfont icon-huaban bt"></i>
         </div>
-        <label class="layui-form-label">角色状态</label>
-        <div class="layui-input-block">
-            <input type="radio" name="rStatus" value="1" title="启用" checked>
-            <input type="radio" name="rStatus" value="0" title="禁用">
+        <div class="layui-form-item">
+            <label class="layui-form-label">功能ID</label>
+            <div class="layui-input-inline shortInput">
+                <input name="fID" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+            <i class="iconfont icon-huaban bt"></i>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">权限说明</label>
+            <div class="layui-input-inline shortInput">
+                <textarea name="pExplain" autocomplete="off" class="layui-textarea">
+                </textarea>
+            </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
@@ -79,12 +81,12 @@
 </div>
 </body>
 <script>
-    function addUser() {
+    function addPow() {
         $.ajax({
-            url: "/updateUser",//添加角色
+            url: "/updateUser",//添加权限
             type: "POST",
             dataType: "json",
-            data: $('#addRole').serialize(),
+            data: $('#addPower').serialize(),
             success: function (data) {
                 if (data.status == 200) {
                     //接收到成功的提示
@@ -103,7 +105,7 @@
         //监听提交
         form.on('submit(submitBut)', function (data) {
             //提交结果
-            addUser();
+            addPow();
             return false;
         });
     })

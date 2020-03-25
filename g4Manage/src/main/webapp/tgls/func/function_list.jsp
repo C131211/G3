@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: Richard Lyu
   Date: 2020/3/11
-  Time: 15:44
+  Time: 15:46
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -43,17 +43,16 @@
 
 <body>
 <div class="cBody">
-    <div class="console">
+    <div class="functionList">
         <form class="layui-form" action="">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
-                    <input type="text" name="name" required lay-verify="required" placeholder="输入角色名" autocomplete="off"
+                    <input type="text" name="name" required lay-verify="required" placeholder="输入功能名" autocomplete="off"
                            class="layui-input">
                 </div>
                 <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
             </div>
         </form>
-
         <script>
             layui.use('form', function () {
                 var form = layui.form;
@@ -65,20 +64,26 @@
                 });
             });
         </script>
+        <table class="layui-hide" id="funcList"></table>
     </div>
-
-    <table class="layui-table" lay-data="{url:'/demo/table/user/', page:true, id:'rList'}" lay-filter="test">
-        <thead>
-        <tr>
-            <th lay-data="{field:'rID'}">角色ID</th>
-            <th lay-data="{field:'rName'}">角色名称</th>
-            <th lay-data="{field:'rExplain'}">角色说明</th>
-            <th lay-data="{field:'rStatus'}">角色状态</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-    </table>
 </div>
 </body>
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+        table.render({
+            elem: '#funcList'   //表格ID
+            , url: '/userList' //数据接口
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , page: true     //开启分页
+            , cols: [[
 
+                , {field: 'fID', title: '功能ID', width: 80}
+                , {field: 'fName', title: '功能名', width: 150}
+                , {field: 'fUrl', title: '功能地址', width: 300}
+                , {field: 'fStatus', title: '功能状态', width: 90}
+            ]]
+        });
+    });
+</script>
 </html>

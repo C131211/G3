@@ -41,7 +41,7 @@
 
 <body>
 <div class="cBody">
-    <div class="console">
+    <div class="agentList">
         <form class="layui-form" action="">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
@@ -102,19 +102,20 @@
     layui.use('table', function(){
         var table = layui.table;
         table.render({
-            elem: '#uList'
-            ,url:'/userList'
+            elem: '#uList'   //表格ID
+            ,url:'/userList' //数据接口
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,page:true     //开启分页
             ,cols: [[
                 {field:'uID', width:80, title: 'ID', sort: true}
-                ,{field: 'uAccount', title: '工号(用户名)', width:80,sort: true}
+                ,{field: 'uAccount', title: '工号(用户名)', width:150,sort: true}
                  ,{field: 'uName', title: '员工名', width:80}
                  ,{field: 'uPwd', title: '密码', width:80}
-                 ,{field: 'uTel', title: '手机号', width: 177}
-                 ,{field: 'uAddr', title: '住址', width: 80}
-                 ,{field: 'uHiredate', title: '入职时间', width: 80, sort: true}
-                 ,{field: 'rID', title: '角色ID'}
-                 ,{field: 'uStatus', title: '用户状态', width: 80}
+                 ,{field: 'uTel', title: '手机号', width: 150}
+                 ,{field: 'uAddr', title: '住址', width: 300}
+                 ,{field: 'uHiredate', title: '入职时间', width: 150, sort: true}
+                 ,{field: 'rID', title: '角色ID',width: 80}
+                 ,{field: 'uStatus', title: '用户状态', width: 90}
             ]]
         });
     });

@@ -67,23 +67,33 @@
 				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/Fir.jsp',this)"><i class="iconfont icon-shouye left"></i>系统首页</i></a>
 			</li>
 			<li>
-				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/modify_perinfo.jsp',this)"> <i class="iconfont icon-gerenzhongxin-denglu left"></i>个人信息</i></a>
-			</li>
-			<li>
-				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/modify_password.jsp',this)"><i class="iconfont icon-xiugaimima left"></i>修改密码</i></a>
-			</li>
-			<li>
 				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/announce.jsp',this)"><i class="iconfont icon-tongzhi left"></i>发布通知</i></a>
 			</li>
 			<li>
-				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-liuliangyunpingtaitubiao03 left"></i>用户管理<i class="iconfont icon-dajiantouyou right"></i></a>
+				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-yonghu left"></i>个人信息管理<i class="iconfont icon-dajiantouyou right"></i></a>
+				<dl>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/modify_perinfo.jsp',this)">个人信息</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/modify_password.jsp',this)">密码修改</a></dt>
+				</dl>
+			</li>
+
+			<li>
+				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-wodeyewuyuan left"></i>用户与角色管理<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/agent/agent_add.jsp',this)">添加用户</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/agent/agent_list.jsp',this)">用户列表</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/agent/power_list.jsp',this)">权限列表</a></dt>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/agent/role_add.jsp',this)">添加角色</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/agent/role_list.jsp',this)">角色列表</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/agent/function_list.jsp',this)">功能列表</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/role/role_add.jsp',this)">添加角色</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/role/role_list.jsp',this)">角色列表</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/role/role_update.jsp',this)">角色更新</a></dt>
+				</dl>
+			</li>
+			<li>
+				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-liuliangyunpingtaitubiao03 left"></i>权限与功能管理<i class="iconfont icon-dajiantouyou right"></i></a>
+				<dl>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/pow/power_add.jsp',this)">新增权限</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/pow/power_list.jsp',this)">权限列表</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/func/function_add.jsp',this)">新增功能</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/func/function_list.jsp',this)">功能列表</a></dt>
 				</dl>
 			</li>
 			<li>
@@ -115,13 +125,13 @@
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/maintain.jsp',this)">维护中页面</a></dt>
 				</dl>
 			</li>
-			<li>
-				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-biaodanpeizhi left"></i>打印模板<i class="iconfont icon-dajiantouyou right"></i></a>
-				<dl>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/print/outPrintData.jsp',this)">出库单打印模版</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/print/inPrintData.jsp',this)">入库单打印模版</a></dt>
-				</dl>
-			</li>
+<%--			<li>--%>
+<%--				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-biaodanpeizhi left"></i>打印模板<i class="iconfont icon-dajiantouyou right"></i></a>--%>
+<%--				<dl>--%>
+<%--					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/print/outPrintData.jsp',this)">出库单打印模版</a></dt>--%>
+<%--					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/print/inPrintData.jsp',this)">入库单打印模版</a></dt>--%>
+<%--				</dl>--%>
+<%--			</li>--%>
 			<li>
 				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-icon left"></i>报表模块<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
