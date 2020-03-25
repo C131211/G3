@@ -127,8 +127,8 @@
                 success: function (data) {
                     if (data.status == 200) {
                         //接收到成功的提示
-                        alert("修改成功");
-                        top.location.href = "/index.jsp"
+                        alert("添加成功");
+                        location.reload();
                     } else {
                         alert(data.msg);
                     }
