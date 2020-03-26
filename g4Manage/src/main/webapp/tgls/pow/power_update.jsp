@@ -1,11 +1,17 @@
 <%--
   Created by IntelliJ IDEA.
   User: Richard Lyu
-  Date: 2020/3/16
-  Time: 13:37
+  Date: 2020/3/26
+  Time: 20:22
   To change this template use File | Settings | File Templates.
 --%>
-
+<%--
+  Created by IntelliJ IDEA.
+  User: Richard Lyu
+  Date: 2020/3/26
+  Time: 19:51
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -46,31 +52,29 @@
 
 <body>
 <div class="cBody">
-    <form id="updateRole" class="layui-form" enctype="multipart/form-data">
-        <input type="hidden" name="rID" value="${result.data.rID}"/>
+    <form id="updatePower" class="layui-form" enctype="multipart/form-data">
+        <input type="hidden" name="pID" value="${result.data.pID}"/>
         <div class="layui-form-item">
-            <label class="layui-form-label">角色名</label>
+            <label class="layui-form-label">角色ID</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="rName" value="${result.data.rName}"
-                       required autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">角色说明</label>
-            <div class="layui-input-inline shortInput">
-                <textarea type="text" name="rExplain" value="${result.data.rExplain}"
-                       autocomplete="off" class="layui-textarea">
-                </textarea>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户状态</label>
-            <div class="layui-input-inline shortInput">
-                <input type="text" name="rStatus"
-                       value="${result.data.rStatus}"
+                <input type="text" name="rID" value="${result.data.rID}"
                        autocomplete="off" class="layui-input">
             </div>
-            <span>tips:0启用,1禁用</span>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">功能ID</label>
+            <div class="layui-input-inline shortInput">
+                <input type="text" name="fID" value="${result.data.fID}"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">权限说明</label>
+            <div class="layui-input-inline shortInput">
+                <textarea type="text" name="pExplain" value="${result.data.pExplain}"
+                          autocomplete="off" class="layui-textarea">
+                </textarea>
+            </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
@@ -89,7 +93,7 @@
                     url: "/updateUser",
                     dataType: "json",
                     type: "POST",
-                    data: $('#updateRole').serialize(),
+                    data: $('#updatePower').serialize(),
                     success: function (data) {
                         if (data.status == 200) {
                             alert("更改成功");
@@ -108,7 +112,7 @@
     <script type="application/javascript">
         $(function () {
             //检查是否拥有标识
-            checkLogin(${sessionScope.result.data.rID});
+            checkLogin(${sessionScope.result.data.pID});
         })
     </script>
 

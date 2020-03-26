@@ -84,7 +84,6 @@
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/agent/agent_list.jsp',this)">用户列表</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/role/role_add.jsp',this)">添加角色</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/role/role_list.jsp',this)">角色列表</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/role/role_update.jsp',this)">角色更新</a></dt>
 				</dl>
 			</li>
 			<li>
@@ -101,7 +100,6 @@
 				<dl>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/save_list.jsp',this)">仓库信息</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/save_add.jsp',this)">新增仓库</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/save_del.jsp',this)">删除仓库</a></dt>
 				</dl>
 			</li>
 			<li>
@@ -109,7 +107,6 @@
 				<dl>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodsManage/goods_list.jsp',this)">货物库</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodsManage/goods_add.jsp',this)">添加货物</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodsManage/goods_del.jsp',this)">删除货物</a></dt>
 				</dl>
 			</li>
 			<li>

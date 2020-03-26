@@ -77,7 +77,6 @@
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
         <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
     </div>
 </script>
 <script>
@@ -90,14 +89,14 @@
             , page: true     //开启分页
             , height: 'full-200'  //高度最大化自适应
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-            , defaultToolbar: ['filter', 'exports', 'print',]
+            , defaultToolbar: ['exports', 'print',]
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'rID', title: '角色ID', width: 80}
-                , {field: 'rName', title: '角色名', width: 150}
-                , {field: 'rExplain', title: '角色说明', width: 300}
+                , {field: 'rName', title: '角色名', }
+                , {field: 'rExplain', title: '角色说明', }
                 , {
-                    field: 'rStatus', title: '角色状态', width: 90, templet: function (d) {
+                    field: 'rStatus', title: '角色状态', templet: function (d) {
                         if (d == 0) {
                             return d = "正常"
                         } else {
@@ -134,14 +133,13 @@
                     layer.close(index);
                 });
             } else if (obj.event === 'edit') {
-                layer.prompt({
-                    formType: 2
-                    , value: data.email
-                }, function (value, index) {
-                    obj.update({
-                        email: value
-                    });
-                    layer.close(index);
+                layer.open({
+                    title: "角色信息修改",
+                    type: 2,
+                    area: ['70%', '60%'],
+                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                    maxmin: true,
+                    content: 'role_update.jsp'
                 });
             }
         });

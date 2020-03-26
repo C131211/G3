@@ -92,14 +92,14 @@
             , page: true     //开启分页
             , height: 'full-200'  //高度最大化自适应
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-            , defaultToolbar: ['filter', 'exports', 'print',]
+            , defaultToolbar: ['exports', 'print',]
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'sID', title: '仓库ID', width: 80,}
                 , {field: 'sNsave', title: '现存量', width: 80}
                 , {field: 'sTsave', title: '总存量', width: 80}
                 , {field: 'sAddr', title: '仓库地址', width: 200}
-                , {field: 'sExplain', title: '仓库说明', width: 300}
+                , {field: 'sExplain', title: '仓库说明', }
                 , {
                     field: 'sStatus', title: '仓库状态', width: 90, templet: function (d) {
                         if (d == 0) {
@@ -138,14 +138,13 @@
                     layer.close(index);
                 });
             } else if (obj.event === 'edit') {
-                layer.prompt({
-                    formType: 2
-                    , value: data.email
-                }, function (value, index) {
-                    obj.update({
-                        email: value
-                    });
-                    layer.close(index);
+                layer.open({
+                    title: "仓库信息修改",
+                    type: 2,
+                    area: ['70%', '60%'],
+                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                    maxmin: true,
+                    content: 'save_update.jsp'
                 });
             }
         });

@@ -92,23 +92,23 @@
             , page: true     //开启分页
             , height: 'full-200'  //高度最大化自适应
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-            , defaultToolbar: ['filter', 'exports', 'print',]
+            , defaultToolbar: ['exports', 'print',]
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'gID', title: '仓库ID', width: 80,}
-                , {field: 'gName', title: '现存量', width: 80}
-                , {field: 'gNum', title: '总存量', width: 80}
+                , {field: 'gID', title: '货物ID', width: 80,}
+                , {field: 'gName', title: '货物名', width: 80}
+                , {field: 'gNum', title: '存量', width: 80}
                 , {field: 'gInprice', title: '入货价', width: 80}
                 , {field: 'gOutprice', title: '市场价', width: 80}
-                , {field: 'gExplain', title: '商品说明', width: 300}
-                , {field: 'gSatime', title: '存放时间', width: 90}
+                , {field: 'gExplain', title: '商品说明', }
+                , {field: 'gSatime', title: '存放时间', width: 120}
                 , {field: 'sID', title: '存放仓库', width: 90}
                 , {
                     field: 'gStatus', title: '商品状态', width: 90, templet: function (d) {
                         if (d == 0) {
                             return d = "正常"
                         } else {
-                            return d = "锁定"
+                            return d = "缺货"
                         }
                     }
                 }
@@ -140,14 +140,13 @@
                     layer.close(index);
                 });
             } else if (obj.event === 'edit') {
-                layer.prompt({
-                    formType: 2
-                    , value: data.email
-                }, function (value, index) {
-                    obj.update({
-                        email: value
-                    });
-                    layer.close(index);
+                layer.open({
+                    title: "商品信息修改",
+                    type: 2,
+                    area: ['70%', '60%'],
+                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                    maxmin: true,
+                    content: 'goods_update.jsp'
                 });
             }
         });

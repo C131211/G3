@@ -88,12 +88,13 @@
             , page: true     //开启分页
             , height: 'full-200'  //高度最大化自适应
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-            , defaultToolbar: ['filter', 'exports', 'print',]
+            , defaultToolbar: ['exports', 'print',]
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'fID', title: '功能ID', width: 80}
-                , {field: 'fName', title: '功能名', width: 150}
-                , {field: 'fUrl', title: '功能地址', width: 300}
+                , {field: 'fName', title: '功能名', }
+                , {field: 'fUrl', title: '功能地址', }
+                , {field: 'fExplain', title: '功能说明', }
                 , {
                     field: 'fStatus', title: '功能状态', width: 90, templet: function (d) {
                         if (d == 0) {
@@ -131,14 +132,13 @@
                     layer.close(index);
                 });
             } else if (obj.event === 'edit') {
-                layer.prompt({
-                    formType: 2
-                    , value: data.email
-                }, function (value, index) {
-                    obj.update({
-                        email: value
-                    });
-                    layer.close(index);
+                layer.open({
+                    title: "功能修改",
+                    type: 2,
+                    area: ['70%', '60%'],
+                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                    maxmin: true,
+                    content: 'function_update.jsp'
                 });
             }
         });

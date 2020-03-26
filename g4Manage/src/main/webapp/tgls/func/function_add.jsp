@@ -64,6 +64,13 @@
             </div>
             <i class="iconfont icon-huaban bt"></i>
         </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">功能说明</label>
+                <div class="layui-input-inline shortInput">
+                    <textarea name="fExplain" lay-verify="required" autocomplete="off" class="layui-textarea">
+                    </textarea>
+                </div>
+        </div>
         <label class="layui-form-label">功能状态</label>
         <div class="layui-input-block">
             <input type="radio" name="fStatus" value="0" title="启用" checked>
