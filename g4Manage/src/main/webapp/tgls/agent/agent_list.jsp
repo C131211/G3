@@ -133,7 +133,13 @@
                  ,{field: 'uAddr', title: '住址', width: 250}
                  ,{field: 'uHiredate', title: '入职时间', width: 150, sort: true}
                  ,{field: 'rID', title: '角色ID',width: 80}
-                 ,{field: 'uStatus', title: '用户状态', width: 90}
+                 ,{field: 'uStatus', title: '用户状态', width: 90,templet:function(d){
+                    if(d==0){
+                       return d="正常"
+                    }else{
+                        return d="锁定"
+                    }
+                }}
                 ,{field: 'right', title:'操作', toolbar: '#barDemo', width:144}
             ]]
         });
