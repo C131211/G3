@@ -43,7 +43,7 @@
 
 <body>
 <div class="cBody">
-    <div class="console">
+    <div class="roleList">
         <form class="layui-form" action="">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
@@ -67,9 +67,19 @@
         </script>
     </div>
 
-    <table class="layui-hide" id="rList"></table>
+    <table class="layui-hide" id="rList" lay-filter="rTools"></table>
 </div>
-</body>
+<script id="barDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script id="toolbarDemo" type="text/html">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    </div>
+</script>
 <script>
     layui.use('table', function () {
         var table = layui.table;
@@ -78,14 +88,75 @@
             , url: '/userList' //数据接口
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , page: true     //开启分页
+            , height: 'full-200'  //高度最大化自适应
+            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                title: '提示'
+                , layEvent: 'LAYTABLE_TIPS'
+                , icon: 'layui-icon-tips'
+            }]
             , cols: [[
-
+                {type: 'checkbox', fixed: 'left'}
                 , {field: 'rID', title: '角色ID', width: 80}
                 , {field: 'rName', title: '角色名', width: 150}
                 , {field: 'rExplain', title: '角色说明', width: 300}
-                , {field: 'rStatus', title: '角色状态', width: 90}
+                , {
+                    field: 'rStatus', title: '角色状态', width: 90, templet: function (d) {
+                        if (d == 0) {
+                            return d = "正常"
+                        } else {
+                            return d = "锁定"
+                        }
+                    }
+                }
+                , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
             ]]
+        });
+        //头工具栏事件
+        table.on('toolbar(rTools)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：' + data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                    break;
+
+                //自定义头工具栏右侧图标 - 提示
+                case 'LAYTABLE_TIPS':
+                    layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                    break;
+            }
+            ;
+        });
+        //监听行工具事件
+        table.on('tool(rTools)', function (obj) {
+            var data = obj.data;
+            //console.log(obj)
+            if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.prompt({
+                    formType: 2
+                    , value: data.email
+                }, function (value, index) {
+                    obj.update({
+                        email: value
+                    });
+                    layer.close(index);
+                });
+            }
         });
     });
 </script>
+</body>
 </html>
