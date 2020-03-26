@@ -66,8 +66,8 @@
         </div>
         <label class="layui-form-label">角色状态</label>
         <div class="layui-input-block">
-            <input type="radio" name="rStatus" value="1" title="启用" checked>
-            <input type="radio" name="rStatus" value="0" title="禁用">
+            <input type="radio" name="rStatus" value="0" title="启用" checked>
+            <input type="radio" name="rStatus" value="1" title="禁用">
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">

@@ -101,8 +101,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label">用户状态</label>
             <div class="layui-input-block">
-                <input type="radio" name="uStatus" value="1" title="启用" checked>
-                <input type="radio" name="uStatus" value="0" title="禁用">
+                <input type="radio" name="uStatus" value="0" title="启用" checked>
+                <input type="radio" name="uStatus" value="1" title="禁用">
             </div>
         </div>
         <div class="layui-form-item">

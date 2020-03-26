@@ -93,11 +93,7 @@
             , page: true     //开启分页
             , height: 'full-200'  //高度最大化自适应
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-            , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
-                title: '提示'
-                , layEvent: 'LAYTABLE_TIPS'
-                , icon: 'layui-icon-tips'
-            }]
+            , defaultToolbar: ['filter', 'exports', 'print',]
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'gID', title: '仓库ID', width: 80,}
@@ -131,14 +127,6 @@
                 case 'getCheckLength':
                     var data = checkStatus.data;
                     layer.msg('选中了：' + data.length + ' 个');
-                    break;
-                case 'isAll':
-                    layer.msg(checkStatus.isAll ? '全选' : '未全选');
-                    break;
-
-                //自定义头工具栏右侧图标 - 提示
-                case 'LAYTABLE_TIPS':
-                    layer.alert('这是工具栏右侧自定义的一个图标按钮');
                     break;
             }
             ;
