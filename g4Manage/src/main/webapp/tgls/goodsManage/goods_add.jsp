@@ -75,7 +75,7 @@
                 <input type="text" name="gOutprice" autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
+        <div c lass="layui-form-item">
             <label class="layui-form-label">描述</label>
             <div class="layui-input-block">
                 <textarea name="gExplain" class="layui-textarea"></textarea>

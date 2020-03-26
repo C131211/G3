@@ -130,7 +130,19 @@
             </div>
         </div>
     </form>
-
+    <script>
+        layui.use(['upload','form'], function() {
+            var form = layui.form;
+            var upload = layui.upload;
+            var layer = layui.layer;
+            //监听提交
+            //解决了layui.open弹窗从内部关闭这个弹窗的问题
+            form.on('submit(submitBut)', function (data) {
+                var updateFrame = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                parent.layer.close(updateFrame);  //再改变当前层的标题
+            })
+        })
+    </script>
 
 </div>
 </body>

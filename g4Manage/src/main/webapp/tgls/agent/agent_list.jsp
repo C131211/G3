@@ -76,25 +76,6 @@
                 }
             });
         });
-        //修改按钮
-        var updateFrame = null;
-
-        function updateBut() {
-            layui.use('layer', function () {
-                var layer = layui.layer;
-
-                //iframe层-父子操作
-                updateFrame = layer.open({
-                    title: "用户信息修改",
-                    type: 2,
-                    area: ['70%', '60%'],
-                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
-                    maxmin: true,
-                    content: 'agent_update.jsp'
-                });
-            });
-
-        }
     </script>
 </div>
 <script id="barDemo" type="text/html">
@@ -161,16 +142,15 @@
                     obj.del();
                     layer.close(index);
                 });
-            } else if(obj.event === 'edit'){
-                layer.prompt({
-                    formType: 2
-                    ,value: data.email
-                }, function(value, index){
-                    obj.update({
-                        email: value
-                    });
-                    layer.close(index);
-                });
+            } else if(obj.event === 'edit') {
+                    layer.open({
+                    title: "用户信息修改",
+                    type: 2,
+                    area: ['70%', '60%'],
+                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                    maxmin: true,
+                    content: 'agent_update.jsp'
+                })
             }
         });
     });
