@@ -131,4 +131,20 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+
+    @Override
+    public GResult selUserById(int uID) {
+        User user = userMapper.selUserById(uID);
+        GResult result = new GResult();
+        if (user!=null){
+            result.setMsg("OK");
+            result.setStatus(200);
+            result.setData(user);
+        }else {
+            result.setMsg("error");
+        }
+
+
+        return result;
+    }
 }

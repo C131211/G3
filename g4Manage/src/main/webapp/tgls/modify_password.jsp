@@ -31,6 +31,8 @@
     <script src="../framework/jquery.mCustomScrollbar.min.js"></script>
     <script src="../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <!-- 公共样式 结束 -->
+    <%--引入js--%>
+    <script src="/js/checkLogin.js"></script>
 
 </head>
 

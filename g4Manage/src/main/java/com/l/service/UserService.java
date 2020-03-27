@@ -45,6 +45,13 @@ public interface UserService {
      * @return
      */
     DataGrid selAllUser(User user,int page,int rows);
-    
+
+
+    /**
+     * 根据id查找该用户
+     * @param uID
+     * @return
+     */
+    GResult selUserById(int uID);
 
 }

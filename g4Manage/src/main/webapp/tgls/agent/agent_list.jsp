@@ -19,17 +19,15 @@
     <title>仓库管理系统</title>
 
     <!-- 公共样式 开始 -->
-    <link rel="stylesheet" type="text/css" href="../../css/base.css">
-    <link rel="stylesheet" type="text/css" href="../../css/iconfont.css">
-    <script type="text/javascript" src="../../framework/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
-    <script type="text/javascript" src="../../layui/layui.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
+    <script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
     <!-- 滚动条插件 -->
     <link rel="stylesheet" type="text/css" href="../../css/jquery.mCustomScrollbar.css">
-    <script src="../../framework/jquery-ui-1.10.4.min.js"></script>
-    <script src="../../framework/jquery.mousewheel.min.js"></script>
-    <script src="../../framework/jquery.mCustomScrollbar.min.js"></script>
-    <script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+    <script src="/framework/jquery-ui-1.10.4.min.js"></script>
+    <script src="/framework/jquery.mousewheel.min.js"></script>
+    <script src="/framework/jquery.mCustomScrollbar.min.js"></script>
+    <script src="/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <!-- 公共样式 结束 -->
 
     <%--引入css--%>
@@ -84,8 +82,7 @@
 </script>
 <script id="toolbarDemo" type="text/html">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="addUser">增加新用户</button>
     </div>
 </script>
 <script>
@@ -108,12 +105,20 @@
                  ,{field: 'uTel', title: '手机号', width: 130}
                  ,{field: 'uAddr', title: '住址', width: 250}
                  ,{field: 'uHiredate', title: '入职时间', width: 150, sort: true}
-                 ,{field: 'rID', title: '角色ID',width: 80}
-                 ,{field: 'uStatus', title: '用户状态', width: 90,templet:function(d){
-                    if(d==0){
-                       return d="正常"
-                    }else{
-                        return d="锁定"
+                 ,{field: 'rID', title: '角色ID',width: 80,templet:function(d){
+                            if(d.rID==0){
+                                return d.rID="超级管理员"
+                            }else if(d.rID==1){
+                                return d.rID="仓管员"
+                            }else if(d.rID==2){
+                                return d.rID="运输员"
+                             }
+                        }}
+                ,{field: 'uStatus', title: '用户状态', width: 90,templet:function(d){
+                    if(d.uStatus==0){
+                       return d.uStatus="正常"
+                    }else {
+                        return d.uStatus="锁定"
                     }
                 }}
                 ,{field: 'right', title:'操作', toolbar: '#barDemo', width:144}
@@ -123,20 +128,22 @@
         table.on('toolbar(uTools)', function(obj){
             var checkStatus = table.checkStatus(obj.config.id);
             switch(obj.event){
-                case 'getCheckData':
-                    var data = checkStatus.data;
-                    layer.alert(JSON.stringify(data));
-                    break;
-                case 'getCheckLength':
-                    var data = checkStatus.data;
-                    layer.msg('选中了：'+ data.length + ' 个');
+                case 'addUser':
+                    layer.open({
+                        title:"增加用户",
+                        type: 2,
+                        area: ['70%', '60%'],
+                        scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                        maxmin: true,
+                        content: 'agent_add.jsp'
+                    })
                     break;
             };
         });
+
         //监听行工具事件
         table.on('tool(uTools)', function(obj){
             var data = obj.data;
-            //console.log(obj)
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
@@ -149,7 +156,7 @@
                     area: ['70%', '60%'],
                     scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
                     maxmin: true,
-                    content: 'agent_update.jsp'
+                    content: '/userOperation?uID='+data.uID+'&pageType=edit'
                 })
             }
         });

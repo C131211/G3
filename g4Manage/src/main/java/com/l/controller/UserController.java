@@ -111,6 +111,31 @@ public class UserController {
         return dataGrid;
     }
 
+    /**
+     * 控制页面跳转并且附带参数信息
+     * @return
+     */
+    @RequestMapping("/userOperation")
+    public String PageJump(int uID,String pageType,HttpServletRequest req){
+        //跳到对应的页面
+        if(pageType.equals("edit")){
+            req.setAttribute("uID",uID);
+            return "/tgls/agent/agent_update.jsp";
+        }else {
+            return "/tgls/agent/agent_error.jsp";
+        }
+    }
+
+    /**
+     * 根据id查询该用户
+     * @return
+     */
+    @RequestMapping("/selUserById")
+    @ResponseBody
+    public GResult selUserById(int uID){
+        return  userService.selUserById(uID);
+    }
+
 
 
 

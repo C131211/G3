@@ -80,7 +80,6 @@
 			<li>
 				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-wodeyewuyuan left"></i>用户与角色管理<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/agent/agent_add.jsp',this)">添加用户</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/agent/agent_list.jsp',this)">用户列表</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/role/role_add.jsp',this)">添加角色</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/role/role_list.jsp',this)">角色列表</a></dt>
