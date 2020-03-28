@@ -115,11 +115,23 @@
         //监听行工具事件
         table.on('tool(fTools)', function (obj) {
             var data = obj.data;
-            //console.log(obj)
-            if (obj.event === 'del') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del();
-                    layer.close(index);
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    $.ajax({
+                        url: "/userDelById",//添加用户
+                        type: "POST",
+                        dataType: "json",
+                        data: {uID:data.uID},
+                        success: function (data) {
+                            if (data.status == 200) {
+                                //接收到成功的提示
+                                window.location.reload();
+                            } else {
+                                alert(data.msg);
+                            }
+                        }
+
+                    })
                 });
             } else if(obj.event === 'edit') {
                 layer.open({
