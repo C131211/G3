@@ -43,7 +43,7 @@
         insert into user VALUES(DEFAULT ,#{uAccount},#{uPwd},#{uName},#{uTel},#{uHiredate},#{rID},#{uStatus},#{uAddr},NULL )
     </insert>
 
-    <select id="selAllUser" resultType="com.l.pojo.User">
+    <select id="selAllUser" resultType="com.l.pojo.User" parameterType="com.l.pojo.User">
         select * from user
         <where>
             <if test="uName!=null and uName!=''">
