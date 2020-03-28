@@ -27,7 +27,7 @@
 <body>
 <div class="cBody">
 	<form id="updateGoods" class="layui-form" enctype="multipart/form-data">
-		<input type="hidden" name="gID" id="gID"
+		<input type="hidden" name="gID" id="gID">
 		<div class="layui-form-item">
 			<label class="layui-form-label">商品名</label>
 			<div class="layui-input-inline shortInput">

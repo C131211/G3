@@ -96,6 +96,7 @@
 				<dl>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/save_list.jsp',this)">仓库信息</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodsManage/goods_list.jsp',this)">商品信息</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodlist/gl_list.jsp',this)">货物类别</i></a></dt>
 				</dl>
 			</li>
 			<li>

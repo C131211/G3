@@ -1,15 +1,16 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Richard Lyu
+  Date: 2020/3/28
+  Time: 17:39
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-    <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
-    <meta name="renderer" content="webkit">
-    <!--国产浏览器高速模式-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>仓库管理系统</title>
 
     <!-- 公共样式 开始 -->
     <link rel="stylesheet" type="text/css" href="/css/base.css">
@@ -32,98 +33,84 @@
 
 <body>
 <div class="cBody">
-    <div class="layui-tab" lay-filter="myPage">
-        <ul class="layui-tab-title">
-            <li class="layui-this" lay-id="historyList">历史列表</li>
-            <li lay-id="todayList">今日列表</li>
-        </ul>
-        <table class="layui-hide" id="outList" lay-filter="OLTools"></table>
+    <div class="glList">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <div class="layui-input-inline">
+                    <input type="text" name="name" required lay-verify="required" placeholder="输入功能名" autocomplete="off"
+                           class="layui-input">
+                </div>
+                <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
+            </div>
+        </form>
+        <script>
+            layui.use('form', function () {
+                var form = layui.form;
+
+                //监听提交
+                form.on('submit(formDemo)', function (data) {
+                    layer.msg(JSON.stringify(data.field));
+                    return false;
+                });
+            });
+        </script>
+        <table class="layui-hide" id="glList" lay-filter="glTools"></table>
     </div>
 </div>
 </body>
-<script>
-    layui.use('element', function () {
-        var element = layui.element;
-
-        //获取hash来切换选项卡，假设当前地址的hash为lay-id对应的值
-        var layid = location.hash.replace(/^#test1=/, '');
-        element.tabChange('myPage', layid); //假设当前地址为：http://a.com#test1=222，那么选项卡会自动切换到“发送消息”这一项
-
-        //监听Tab切换，以改变地址hash值
-        element.on('tab(myPage)', function () {
-            location.hash = 'test1=' + this.getAttribute('lay-id');
-            console.log(this.getAttribute('lay-id'));
-        });
-    });
-</script>
 <script id="barDemo" type="text/html">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script id="toolbarDemo" type="text/html">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="addOutOrder">新增出货单</button>
+        <button class="layui-btn layui-btn-sm" lay-event="addGoodList">新增货物类别</button>
     </div>
 </script>
 <script>
-    //初始化表格
     layui.use('table', function () {
         var table = layui.table;
         table.render({
-            elem: '#outList'   //表格ID
-            , url: '/userList' //数据接口
+            elem: '#glList'   //表格ID
+            , url: '/getGoodList' //数据接口
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , page: true     //开启分页
             , height: 'full-200'  //高度最大化自适应
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-            , defaultToolbar: ['exports', 'print']
+            , defaultToolbar: ['exports', 'print',]
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'OLID', title: '出货单号', sort: true}
-                , {field: 'OLDate', title: '出货日期', sort: true}
-                , {field: 'sID', title: '出货仓库', sort: true}
-                , {field: 'OLDestin', title: '合作商', sort: true}
-                , {field: 'OLBy', title: '经手人', sort: true}
-                , {field: 'OLComfirm', title: '确认人', sort: true}
-                , {
-                    field: 'OLStatus', title: '出货单状态', templet: function (d) {
-                        if (d.OLStatus == 0) {
-                            return d.OLStatus = "完成"
-                        } else {
-                            return d.OLStatus = "未完成"
-                        }
-                    }
-                }
+                , {field: 'glId', title: '货物类别ID', width: 80}
+                , {field: 'goodName', title: '货物类别名', }
                 , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
             ]]
         });
         //头工具栏事件
-        table.on('toolbar(OLTools)', function (obj) {
+        table.on('toolbar(glTools)', function (obj) {
             var checkStatus = table.checkStatus(obj.config.id);
-            switch (obj.event) {
-                case 'addOutOrder':
+            switch(obj.event) {
+                case 'addGoodList':
                     layer.open({
-                        title: "增加出货单",
+                        title: "增加货物类别",
                         type: 2,
                         area: ['70%', '60%'],
                         scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
                         maxmin: true,
-                        content: 'outorder_add.jsp',
+                        content: 'gl_add.jsp'
                     });
                     break;
             }
         });
-
         //监听行工具事件
-        table.on('tool(OLTools)', function (obj) {
+        table.on('tool(glTools)', function (obj) {
             var data = obj.data;
-            if (obj.event === 'del') {
-                layer.confirm('真的删除行么', function (index) {
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
                     $.ajax({
-                        url: "/userDelById",//添加用户
+                        url: "/delGoodList",
                         type: "POST",
                         dataType: "json",
-                        data: {uID: data.uID},
+                        data: {uID:data.uID},
                         success: function (data) {
                             if (data.status == 200) {
                                 //接收到成功的提示
@@ -135,9 +122,9 @@
 
                     })
                 });
-            } else if (obj.event === 'edit') {
+            } else if(obj.event === 'edit') {
                 layer.open({
-                    title: "出货单信息修改",
+                    title: "货物类别修改",
                     type: 2,
                     area: ['70%', '60%'],
                     scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
@@ -145,11 +132,10 @@
                     end: function () {
                         window.location.reload();
                     },
-                    content: '/userOperation?OLID=' + data.OLID + '&pageType=edit',
-
+                    content: '/funcOperation?glId='+data.glId+'&pageType=edit'
                 })
             }
-        })
-    })
+        });
+    });
 </script>
 </html>

@@ -90,69 +90,71 @@
                 , {field: 'ILFrom', title: '合作商', sort: true}
                 , {field: 'ILBy', title: '经手人', sort: true}
                 , {field: 'ILComfirm', title: '确认人', sort: true}
-                ,{field: 'ILStatus', title: '入货单状态', templet:function(d){
-                        if(d.uStatus==0){
-                            return d.uStatus="完成"
-                        }else {
-                            return d.uStatus="未完成"
+                , {
+                    field: 'ILStatus', title: '入货单状态', templet: function (d) {
+                        if (d.uStatus == 0) {
+                            return d.uStatus = "完成"
+                        } else {
+                            return d.uStatus = "未完成"
                         }
-                    }}
+                    }
+                }
                 , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
             ]]
         });
-    });
-    //头工具栏事件
-    table.on('toolbar(ILTools)', function(obj){
-        var checkStatus = table.checkStatus(obj.config.id);
-        switch(obj.event){
-            case 'addInOrder':
+        //头工具栏事件
+        table.on('toolbar(ILTools)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'addInOrder':
+                    layer.open({
+                        title: "增加入货单",
+                        type: 2,
+                        area: ['70%', '60%'],
+                        scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                        maxmin: true,
+                        content: 'inorder_add.jsp',
+                    });
+                    break;
+            }
+        });
+
+        //监听行工具事件
+        table.on('tool(ILTools)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    $.ajax({
+                        url: "/userDelById",//添加用户
+                        type: "POST",
+                        dataType: "json",
+                        data: {uID: data.uID},
+                        success: function (data) {
+                            if (data.status == 200) {
+                                //接收到成功的提示
+                                window.location.reload();
+                            } else {
+                                alert(data.msg);
+                            }
+                        }
+
+                    })
+                });
+            } else if (obj.event === 'edit') {
                 layer.open({
-                    title:"增加入货单",
+                    title: "入货单信息修改",
                     type: 2,
                     area: ['70%', '60%'],
                     scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
                     maxmin: true,
-                    content: 'inorder_add.jsp',
-                })
-                break;
-        };
-    });
-
-    //监听行工具事件
-    table.on('tool(ILTools)', function(obj){
-        var data = obj.data;
-        if(obj.event === 'del'){
-            layer.confirm('真的删除行么', function(index){
-                $.ajax({
-                    url: "/userDelById",//添加用户
-                    type: "POST",
-                    dataType: "json",
-                    data: {uID:data.uID},
-                    success: function (data) {
-                        if (data.status == 200) {
-                            //接收到成功的提示
-                            window.location.reload();
-                        } else {
-                            alert(data.msg);
-                        }
-                    }
+                    end: function () {
+                        window.location.reload();
+                    },
+                    content: '/userOperation?ILID=' + data.ILID + '&pageType=edit',
 
                 })
-            });
-        } else if(obj.event === 'edit') {
-            layer.open({
-                title: "入货单信息修改",
-                type: 2,
-                area: ['70%', '60%'],
-                scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
-                maxmin: true,
-                end: function () {
-                    window.location.reload();
-                },
-                content: '/userOperation?ILID='+data.ILID+'&pageType=edit',
-
-            })
-        }
+            }
+        })
     })
 </script>
 </html>

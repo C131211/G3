@@ -60,31 +60,47 @@
                     </td>
                 </tr>
                 <tr>
-                    <th width="8%" class="textCenter">入库信息
+                    <th rowspan="2" width="8%" class="textCenter">入库信息
                     </th>
-                    <th width="10%" class="textCenter">入库库号
-                        <div class="layui-input-inline">
-                            <input type="text" name="sID" required lay-verify="required"
-                                   autocomplete="off"
-                                   class="layui-input">
-                        </div>
-                    </th>
+                    <th width="10%" class="textCenter">入库库号</th>
                     <th width="10%" class="textCenter">经手人
-                        <div class="layui-input-inline">
+                    </th>
+                    <th width="10%" class="textCenter">确认人
+                    </th>
+                    <th width="10%" class="textCenter">供货商
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                            <select name="sID" id="sID" required lay-verify="required" class="layui-select" >
+                                <option value=""></option>
+                                <option value="0">
+                                    超级管理员
+                                </option>
+                                <option value="1">
+                                    仓管员
+                                </option>
+                                <option value="2">
+                                    运输员
+                                </option>
+                            </select><span id="roleSpan"></span>
+                    </th>
+                    <th>
+                        <div class="layui-input">
                             <input type="text" name="ILBy" required lay-verify="required"
                                    autocomplete="off"
                                    class="layui-input">
                         </div>
                     </th>
-                    <th width="10%" class="textCenter">确认人
-                        <div class="layui-input-inline">
+                    <th>
+                        <div class="layui-input">
                             <input type="text" name="ILComfirm" required lay-verify="required"
                                    autocomplete="off"
                                    class="layui-input">
                         </div>
                     </th>
-                    <th width="10%" class="textCenter">供货商
-                        <div class="layui-input-inline">
+                    <th>
+                        <div class="layui-input">
                             <input type="text" name="ILFrom" required lay-verify="required"
                                    autocomplete="off"
                                    class="layui-input">
@@ -101,15 +117,14 @@
                 <tr>
                     <th>
                         <select name="gID" id="gID">
+                            <option value=""></option>
                             <option value="0">
-                            </option>
-                            <option value="1">
                                 超级管理员
                             </option>
-                            <option value="2">
+                            <option value="1">
                                 仓管员
                             </option>
-                            <option value="3">
+                            <option value="2">
                                 运输员
                             </option>
                         </select><span id="roleSpan"></span>
@@ -130,9 +145,9 @@
     </form>
 </div>
 <script>
-function newBut() {
-    var updateFrame = null;
-        layui.use('layer', function() {
+    function newBut() {
+        var updateFrame = null;
+        layui.use('layer', function () {
             var layer = layui.layer;
 
             //iframe层-父子操作
@@ -148,9 +163,10 @@ function newBut() {
 
     }
 
-}
-    function addBut(){
-        layui.use('form', function() {
+    }
+
+    function addBut() {
+        layui.use('form', function () {
             //监听提交
             var form = layui.form;
             $.ajax({
