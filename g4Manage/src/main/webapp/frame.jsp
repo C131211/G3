@@ -81,31 +81,21 @@
 				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-wodeyewuyuan left"></i>用户与角色管理<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/agent/agent_list.jsp',this)">用户列表</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/role/role_add.jsp',this)">添加角色</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/role/role_list.jsp',this)">角色列表</a></dt>
 				</dl>
 			</li>
 			<li>
 				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-liuliangyunpingtaitubiao03 left"></i>权限与功能管理<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/pow/power_add.jsp',this)">新增权限</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/pow/power_list.jsp',this)">权限列表</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/func/function_add.jsp',this)">新增功能</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/func/function_list.jsp',this)">功能列表</a></dt>
 				</dl>
 			</li>
 			<li>
-				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-yunying left"></i>仓库管理<i class="iconfont icon-dajiantouyou right"></i></a>
+				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-yunying left"></i>仓库和商品管理<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/save_list.jsp',this)">仓库信息</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/save_add.jsp',this)">新增仓库</a></dt>
-				</dl>
-			</li>
-			<li>
-				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-shangpin left"></i>商品管理<i class="iconfont icon-dajiantouyou right"></i></a>
-				<dl>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodsManage/goods_list.jsp',this)">货物库</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodsManage/goods_add.jsp',this)">添加货物</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodsManage/goods_list.jsp',this)">商品信息</a></dt>
 				</dl>
 			</li>
 			<li>

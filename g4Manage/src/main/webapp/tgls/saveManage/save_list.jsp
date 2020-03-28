@@ -4,33 +4,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-    <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
-    <meta name="renderer" content="webkit">
-    <!--国产浏览器高速模式-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="RL"/>
-    <!-- 作者 -->
-    <meta name="revised" content=""/>
-    <!-- 定义页面的最新版本 -->
-    <meta name="description" content="网站简介"/>
-    <!-- 网站简介 -->
-    <meta name="keywords" content="搜索关键字，以半角英文逗号隔开"/>
-    <title>仓库管理系统</title>
 
     <!-- 公共样式 开始 -->
-    <link rel="stylesheet" type="text/css" href="../../css/base.css">
-    <link rel="stylesheet" type="text/css" href="../../css/iconfont.css">
-    <script type="text/javascript" src="../../framework/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
-    <script type="text/javascript" src="../../layui/layui.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
+    <script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
     <!-- 滚动条插件 -->
     <link rel="stylesheet" type="text/css" href="../../css/jquery.mCustomScrollbar.css">
-    <script src="../../framework/jquery-ui-1.10.4.min.js"></script>
-    <script src="../../framework/jquery.mousewheel.min.js"></script>
-    <script src="../../framework/jquery.mCustomScrollbar.min.js"></script>
-    <script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+    <script src="/framework/jquery-ui-1.10.4.min.js"></script>
+    <script src="/framework/jquery.mousewheel.min.js"></script>
+    <script src="/framework/jquery.mCustomScrollbar.min.js"></script>
+    <script src="/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <!-- 公共样式 结束 -->
+
+    <%--引入css--%>
+    <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css"  media="all">
+    <%--引入js--%>
+    <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
 
     <style>
         .layui-table img {
@@ -78,8 +68,7 @@
 </script>
 <script id="toolbarDemo" type="text/html">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="addSave">增加新仓库</button>
     </div>
 </script>
 <script>
@@ -115,18 +104,18 @@
         //头工具栏事件
         table.on('toolbar(sTools)', function (obj) {
             var checkStatus = table.checkStatus(obj.config.id);
-            switch (obj.event) {
-                case 'getCheckData':
-                    var data = checkStatus.data;
-                    layer.alert(JSON.stringify(data));
+            switch(obj.event) {
+                case 'addSave':
+                    layer.open({
+                        title: "增加仓库",
+                        type: 2,
+                        area: ['70%', '60%'],
+                        scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                        maxmin: true,
+                        content: 'save_add.jsp'
+                    });
                     break;
-                case 'getCheckLength':
-                    var data = checkStatus.data;
-                    layer.msg('选中了：' + data.length + ' 个');
-                    break;
-
             }
-            ;
         });
         //监听行工具事件
         table.on('tool(sTools)', function (obj) {
@@ -137,15 +126,15 @@
                     obj.del();
                     layer.close(index);
                 });
-            } else if (obj.event === 'edit') {
+            } else if(obj.event === 'edit') {
                 layer.open({
                     title: "仓库信息修改",
                     type: 2,
                     area: ['70%', '60%'],
                     scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
                     maxmin: true,
-                    content: 'save_update.jsp'
-                });
+                    content: '/saveOperation?sID='+data.sID+'&pageType=edit'
+                })
             }
         });
     });

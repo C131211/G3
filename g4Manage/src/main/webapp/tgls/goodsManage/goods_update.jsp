@@ -12,32 +12,13 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-	<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
-	<meta name="renderer" content="webkit">
-	<!--国产浏览器高速模式-->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="author" content=""/>
-	<!-- 作者 -->
-	<meta name="revised" content=""/>
-	<!-- 定义页面的最新版本 -->
-	<meta name="description" content="网站简介"/>
-	<!-- 网站简介 -->
-	<meta name="keywords" content="搜索关键字，以半角英文逗号隔开"/>
-	<title>仓库管理系统</title>
 
 	<!-- 公共样式 开始 -->
-	<link rel="stylesheet" type="text/css" href="../css/base.css">
-	<link rel="stylesheet" type="text/css" href="../css/iconfont.css">
-	<script type="text/javascript" src="../framework/jquery-1.11.3.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
-	<script type="text/javascript" src="../layui/layui.js"></script>
-	<!-- 滚动条插件 -->
-	<link rel="stylesheet" type="text/css" href="../css/jquery.mCustomScrollbar.css">
-	<script src="../framework/jquery-ui-1.10.4.min.js"></script>
-	<script src="../framework/jquery.mousewheel.min.js"></script>
-	<script src="../framework/jquery.mCustomScrollbar.min.js"></script>
-	<script src="../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+	<link rel="stylesheet" type="text/css" href="/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/css/iconfont.css">
+	<script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/layui/css/layui.css">
+	<script type="text/javascript" src="/layui/layui.js"></script>
 	<script src="/js/checkLogin.js"></script>
 	<!-- 公共样式 结束 -->
 
@@ -46,66 +27,62 @@
 <body>
 <div class="cBody">
 	<form id="updateGoods" class="layui-form" enctype="multipart/form-data">
-		<input type="hidden" name="gID" value="${result.data.gID}"/>
+		<input type="hidden" name="gID" id="gID"
 		<div class="layui-form-item">
 			<label class="layui-form-label">商品名</label>
 			<div class="layui-input-inline shortInput">
-				<input type="text" name="gName" value="${result.data.gName}"
+				<input type="text" name="gName" id="gName"
 					   autocomplete="off" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">商品数量</label>
 			<div class="layui-input-inline shortInput">
-				<input type="text" name="gNum" value="${result.data.gNum}"
+				<input type="text" name="gNum" id="gNum"
 					   autocomplete="off" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
 		<label class="layui-form-label">入货价</label>
 		<div class="layui-input-inline shortInput">
-			<input type="text" name="gInprice" value="${result.data.gNum}"
+			<input type="text" name="gInprice" id="gInprice"
 				   autocomplete="off" class="layui-input">
 		</div>
 	</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">出货价</label>
 			<div class="layui-input-inline shortInput">
-				<input type="text" name="gOutprice" value="${result.data.gOutprice}"
+				<input type="text" name="gOutprice" id="gOutprice"
 					   autocomplete="off" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">商品说明</label>
 			<div class="layui-input-inline shortInput">
-                <textarea type="text" name="gExplain" value="${result.data.gExplain}"
+                <textarea type="text" name="gExplain" id="gExplain"
 						  autocomplete="off" class="layui-textarea">
                 </textarea>
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">存放时间</label>
-			<div class="layui-input-inline shortInput">
-				<input type="text" name="gSatime" readonly="readonly"
-					   value="<fmt:formatDate value="${result.data.uHiredate}" pattern="yyyy年MM月dd日" />" required
-					   autocomplete="off" class="layui-input">
-			</div>
-		</div>
-		<div class="layui-form-item">
 			<label class="layui-form-label">存放仓库</label>
 			<div class="layui-input-inline shortInput">
-				<input type="text" name="sID" value="${result.data.sID}"
+				<input type="text" name="sID" id="sID"
 					   autocomplete="off" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">商品状态</label>
 			<div class="layui-input-inline shortInput">
-				<input type="text" name="gStatus"
-					   value="${result.data.gStatus}"
-					   autocomplete="off" class="layui-input">
+				<select name="gStatus" id="gStatus">
+					<option value="0">
+						正常
+					</option>
+					<option value="1">
+						缺货
+					</option>
+				</select>
 			</div>
-			<span>tips:1缺货,0正常</span>
 		</div>
 		<div class="layui-form-item">
 			<div class="layui-input-block">
@@ -120,6 +97,7 @@
 			var form = layui.form;
 			//监听提交
 			form.on('submit(submitBut)', function (data) {
+				console.log($('#updateGoods').serialize());
 				$.ajax({
 					url: "/updateUser",
 					dataType: "json",
@@ -144,6 +122,29 @@
 		$(function () {
 			//检查是否拥有标识
 			checkLogin(${sessionScope.result.data.gID});
+			//请求该id的用户数据
+			$.ajax({
+				url: "/selUserById",
+				dataType: "json",
+				type: "POST",
+				data: {uID:"${requestScope.gID}"},
+				success: function (data) {
+					if (data.status == 200) {
+						$("#gID").val(data.data.gID);
+						$("#gName").val(data.data.gName);
+						$("#gNum").val(data.data.gNum);
+						$("#gInprice").val(data.data.gInprice);
+						$("#gOutprice").val(data.data.gOutprice);
+						$("#gExplain").val(data.data.gExplain);
+						$("#sID").val(data.data.sID);
+						$("#gStatus").val(data.data.gStatus);
+					} else {
+						layer.msg("获取失败");
+					}
+
+				}
+			});
+
 		})
 	</script>
 

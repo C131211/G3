@@ -12,59 +12,39 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-    <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
-    <meta name="renderer" content="webkit">
-    <!--国产浏览器高速模式-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content=""/>
-    <!-- 作者 -->
-    <meta name="revised" content=""/>
-    <!-- 定义页面的最新版本 -->
-    <meta name="description" content="网站简介"/>
-    <!-- 网站简介 -->
-    <meta name="keywords" content="搜索关键字，以半角英文逗号隔开"/>
-    <title>仓库管理系统</title>
 
     <!-- 公共样式 开始 -->
-    <link rel="stylesheet" type="text/css" href="../css/base.css">
-    <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
-    <script type="text/javascript" src="../framework/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
-    <script type="text/javascript" src="../layui/layui.js"></script>
-    <!-- 滚动条插件 -->
-    <link rel="stylesheet" type="text/css" href="../css/jquery.mCustomScrollbar.css">
-    <script src="../framework/jquery-ui-1.10.4.min.js"></script>
-    <script src="../framework/jquery.mousewheel.min.js"></script>
-    <script src="../framework/jquery.mCustomScrollbar.min.js"></script>
-    <script src="../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
+    <script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/layui/css/layui.css">
+    <script type="text/javascript" src="/layui/layui.js"></script>
     <script src="/js/checkLogin.js"></script>
     <!-- 公共样式 结束 -->
-
 </head>
 
 <body>
 <div class="cBody">
     <form id="updateFunction" class="layui-form" enctype="multipart/form-data">
-        <input type="hidden" name="fID" value="${result.data.fID}"/>
+        <input type="hidden" name="fID" id="fID">
         <div class="layui-form-item">
             <label class="layui-form-label">功能名</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="fName" value="${result.data.fName}"
+                <input type="text" name="fName" id="fName"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">功能地址</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="fUrl" value="${result.data.fUrl}"
+                <input type="text" name="fUrl" id="fUrl"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">功能说明</label>
             <div class="layui-input-inline shortInput">
-                <textarea type="text" name="fExplain" value="${result.data.fExplain}"
+                <textarea type="text" name="fExplain" id="fExplain"
                        autocomplete="off" class="layui-textarea">
                 </textarea>
             </div>
@@ -72,11 +52,15 @@
         <div class="layui-form-item">
             <label class="layui-form-label">功能状态</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="fStatus"
-                       value="${result.data.fStatus}"
-                       autocomplete="off" class="layui-input">
+                <select name="fStatus" id="fStatus">
+                    <option value="0">
+                        启用
+                    </option>
+                    <option value="1">
+                        禁用
+                    </option>
+                </select>
             </div>
-            <span>tips:0启用,1禁用</span>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
@@ -91,6 +75,7 @@
             var form = layui.form;
             //监听提交
             form.on('submit(submitBut)', function (data) {
+                console.log($('#updateFunction').serialize());
                 $.ajax({
                     url: "/updateUser",
                     dataType: "json",
@@ -115,6 +100,25 @@
         $(function () {
             //检查是否拥有标识
             checkLogin(${sessionScope.result.data.fID});
+            //请求该id的用户数据
+            $.ajax({
+                url: "/selUserById",  //地址
+                dataType: "json",
+                type: "POST",
+                data: {rID:"${requestScope.fID}"},
+                success: function (data) {
+                    if (data.status == 200) {
+                        $("#fID").val(data.data.fID);
+                        $("#fName").val(data.data.fName);
+                        $("#fExplain").val(data.data.fExplain);
+                        $("#fStatus").val(data.data.fStatus);
+                    } else {
+                        layer.msg("获取失败");
+                    }
+
+                }
+            });
+
         })
     </script>
 

@@ -13,19 +13,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-    <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
-    <meta name="renderer" content="webkit">
-    <!--国产浏览器高速模式-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content=""/>
-    <!-- 作者 -->
-    <meta name="revised" content=""/>
-    <!-- 定义页面的最新版本 -->
-    <meta name="description" content="网站简介"/>
-    <!-- 网站简介 -->
-    <meta name="keywords" content="搜索关键字，以半角英文逗号隔开"/>
-    <title>仓库管理系统</title>
 
     <!-- 公共样式 开始 -->
     <link rel="stylesheet" type="text/css" href="../css/base.css">
@@ -33,12 +20,6 @@
     <script type="text/javascript" src="../framework/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
     <script type="text/javascript" src="../layui/layui.js"></script>
-    <!-- 滚动条插件 -->
-    <link rel="stylesheet" type="text/css" href="../css/jquery.mCustomScrollbar.css">
-    <script src="../framework/jquery-ui-1.10.4.min.js"></script>
-    <script src="../framework/jquery.mousewheel.min.js"></script>
-    <script src="../framework/jquery.mCustomScrollbar.min.js"></script>
-    <script src="../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <script src="/js/checkLogin.js"></script>
     <!-- 公共样式 结束 -->
 
@@ -47,18 +28,18 @@
 <body>
 <div class="cBody">
     <form id="updateRole" class="layui-form" enctype="multipart/form-data">
-        <input type="hidden" name="rID" value="${result.data.rID}"/>
+        <input type="hidden" name="rID" id="rID">
         <div class="layui-form-item">
             <label class="layui-form-label">角色名</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="rName" value="${result.data.rName}"
+                <input type="text" name="rName" id="rName"
                        required autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">角色说明</label>
             <div class="layui-input-inline shortInput">
-                <textarea type="text" name="rExplain" value="${result.data.rExplain}"
+                <textarea type="text" name="rExplain" id="rExplain"
                        autocomplete="off" class="layui-textarea">
                 </textarea>
             </div>
@@ -66,11 +47,15 @@
         <div class="layui-form-item">
             <label class="layui-form-label">用户状态</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="rStatus"
-                       value="${result.data.rStatus}"
-                       autocomplete="off" class="layui-input">
+                <select name="rStatus" id="rStatus">
+                    <option value="0">
+                        正常
+                    </option>
+                    <option value="1">
+                        锁定
+                    </option>
+                </select>
             </div>
-            <span>tips:0启用,1禁用</span>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
@@ -85,6 +70,7 @@
             var form = layui.form;
             //监听提交
             form.on('submit(submitBut)', function (data) {
+                console.log($('#updateRole').serialize());
                 $.ajax({
                     url: "/updateUser",
                     dataType: "json",
@@ -109,6 +95,25 @@
         $(function () {
             //检查是否拥有标识
             checkLogin(${sessionScope.result.data.rID});
+            //请求该id的用户数据
+            $.ajax({
+                url: "/selUserById",  //地址
+                dataType: "json",
+                type: "POST",
+                data: {rID:"${requestScope.rID}"},
+                success: function (data) {
+                    if (data.status == 200) {
+                        $("#rID").val(data.data.rID);
+                        $("#rName").val(data.data.rName);
+                        $("#rExplain").val(data.data.rExplain);
+                        $("#rStatus").val(data.data.rStatus);
+                    } else {
+                        layer.msg("获取失败");
+                    }
+
+                }
+            });
+
         })
     </script>
 
