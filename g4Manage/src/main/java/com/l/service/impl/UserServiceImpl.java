@@ -104,7 +104,6 @@ public class UserServiceImpl implements UserService {
         if (user.getuName()==null||user.getuName().equals("")){
             List<User> list = userMapper.selAllUser(user);
             PageInfo<User> pi = new PageInfo<>(list);
-            GResult result = new GResult();
             DataGrid dataGrid = new DataGrid();
             dataGrid.setData(pi.getList());
             dataGrid.setTotal(pi.getTotal());
@@ -159,6 +158,21 @@ public class UserServiceImpl implements UserService {
             result.setStatus(200);
             result.setMsg("OK");
             result.setData(user1);
+            return result;
+        }else {
+            result.setMsg("修改失败");
+            return result;
+        }
+    }
+
+    @Override
+    public GResult delUserByID(int uID) {
+        int index = -1;
+        index = userMapper.delUserById(uID);
+        GResult result = new GResult();
+        if(index>0){
+            result.setStatus(200);
+            result.setMsg("OK");
             return result;
         }else {
             result.setMsg("修改失败");

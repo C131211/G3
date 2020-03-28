@@ -52,15 +52,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">手机号码</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uTel"
-                       autocomplete="off" class="layui-input">
+                <input type="text" name="uTel" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">住址</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uAddr"
-                       autocomplete="off" class="layui-input">
+                <input type="text" name="uAddr" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -68,13 +66,13 @@
             <div class="layui-input-inline shortInput">
                 <select name="rID" id="rID" required lay-verify="required">
                     <option value=""></option>
-                    <option value="1">
+                    <option value="0">
                         超级管理员
                     </option>
-                    <option value="2">
+                    <option value="1">
                         仓管员
                     </option>
-                    <option value="3">
+                    <option value="2">
                         运输员
                     </option>
                 </select><span id="roleSpan"></span>
@@ -110,8 +108,8 @@
                 success: function (data) {
                     if (data.status == 200) {
                         //接收到成功的提示
-                        alert("添加成功");
-                        location.reload();
+                        layer.msg("添加成功");
+                        window.setTimeout('parent.layer.closeAll()',500);
                     } else {
                         alert(data.msg);
                     }

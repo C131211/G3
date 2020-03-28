@@ -64,5 +64,12 @@ public interface UserMapper {
      */
     int updUserManageById(User user);
 
+    /**
+     * 根据id删除用户
+     * @param uID
+     * @return
+     */
+    int delUserById(int uID);
+
 
 }

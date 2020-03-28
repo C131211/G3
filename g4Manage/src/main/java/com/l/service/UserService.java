@@ -62,4 +62,11 @@ public interface UserService {
      */
     GResult updEditUserById(User user);
 
+    /**
+     * 根据id删除用户
+     * @param uID
+     * @return
+     */
+    GResult delUserByID(int uID);
+
 }

@@ -153,4 +153,14 @@ public class UserController {
         return result;
     }
 
+    /**
+     * 根据id删除该用户
+     * @return
+     */
+    @RequestMapping("userDelById")
+    @ResponseBody
+    public GResult delUserById(int uID){
+        return userService.delUserByID(uID);
+    }
+
 }

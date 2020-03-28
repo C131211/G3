@@ -40,7 +40,7 @@
     </select>
 
     <insert id="insUser" parameterType="com.l.pojo.User">
-        insert into user VALUES(DEFAULT ,#{uAccount},#{uPwd},#{uName},#{uTel},#{uHiredate},#{rID},#{uStatus},#{uAddr},NULL )
+        insert into user (uID,uAccount,uPwd,uName,uTel,uAddr,uHiredate,rID,uStatus) values(DEFAULT,#{uAccount},#{uPwd},#{uName},#{uTel},#{uAddr},#{uHiredate},#{rID},#{uStatus})
     </insert>
 
     <select id="selAllUser" resultType="com.l.pojo.User" parameterType="com.l.pojo.User">
@@ -71,5 +71,10 @@
         </set>
         where uID = #{uID}
     </update>
+
+
+    <delete id="delUserById" parameterType="int">
+        delete from user where uID=#{0}
+    </delete>
 
 </mapper>

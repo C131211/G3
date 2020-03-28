@@ -127,6 +127,9 @@
                         area: ['70%', '60%'],
                         scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
                         maxmin: true,
+                        end: function () {
+                            window.location.reload();
+                        },
                         content: 'agent_add.jsp',
                     })
                     break;
@@ -138,8 +141,21 @@
             var data = obj.data;
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
-                    obj.del();
-                    layer.close(index);
+                    $.ajax({
+                        url: "/userDelById",//添加用户
+                        type: "POST",
+                        dataType: "json",
+                        data: {uID:data.uID},
+                        success: function (data) {
+                            if (data.status == 200) {
+                                //接收到成功的提示
+                             window.location.reload();
+                            } else {
+                                alert(data.msg);
+                            }
+                        }
+
+                    })
                 });
             } else if(obj.event === 'edit') {
                     layer.open({
