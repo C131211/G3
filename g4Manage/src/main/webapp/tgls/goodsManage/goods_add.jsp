@@ -97,7 +97,7 @@
             //监听提交
             form.on('submit(submitBut)', function (data) {
                 $.ajax({
-                    url: "/updateUser", //添加商品
+                    url: "/updateUser", ////商品表添加数据接口
                     type: "POST",
                     dataType: "json",
                     data: $('#addGood').serialize(),

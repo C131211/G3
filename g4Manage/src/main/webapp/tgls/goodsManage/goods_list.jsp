@@ -76,7 +76,7 @@
         var table = layui.table;
         table.render({
             elem: '#gList'   //表格ID
-            , url: '/userList' //数据接口
+            , url: '/userList' //商品表数据接口
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , page: true     //开启分页
             , height: 'full-200'  //高度最大化自适应
@@ -136,6 +136,9 @@
                     area: ['70%', '60%'],
                     scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
                     maxmin: true,
+                    end: function () {
+                        window.location.reload();
+                    },
                     content: '/goodOperation?gID='+data.gID+'&pageType=edit'
                 })
             }

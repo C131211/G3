@@ -70,7 +70,7 @@
 <script>
     function addFunc() {
         $.ajax({
-            url: "/updateUser",//添加功能
+            url: "/updateUser",//功能表添加数据接口
             type: "POST",
             dataType: "json",
             data: $('#addFunction').serialize(),

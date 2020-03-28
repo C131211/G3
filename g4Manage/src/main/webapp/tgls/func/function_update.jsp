@@ -77,7 +77,7 @@
             form.on('submit(submitBut)', function (data) {
                 console.log($('#updateFunction').serialize());
                 $.ajax({
-                    url: "/updateUser",
+                    url: "/updateUser",//功能表更新数据接口
                     dataType: "json",
                     type: "POST",
                     data: $('#updateFunction').serialize(),
@@ -102,7 +102,7 @@
             checkLogin(${sessionScope.result.data.fID});
             //请求该id的用户数据
             $.ajax({
-                url: "/selUserById",  //地址
+                url: "/selUserById",  ////功能表更新数据接口
                 dataType: "json",
                 type: "POST",
                 data: {rID:"${requestScope.fID}"},

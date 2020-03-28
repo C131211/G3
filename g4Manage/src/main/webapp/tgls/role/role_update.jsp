@@ -72,7 +72,7 @@
             form.on('submit(submitBut)', function (data) {
                 console.log($('#updateRole').serialize());
                 $.ajax({
-                    url: "/updateUser",
+                    url: "/updateUser", //角色表更新数据接口
                     dataType: "json",
                     type: "POST",
                     data: $('#updateRole').serialize(),
@@ -97,7 +97,7 @@
             checkLogin(${sessionScope.result.data.rID});
             //请求该id的用户数据
             $.ajax({
-                url: "/selUserById",  //地址
+                url: "/selUserById",  ////角色表更新数据接口
                 dataType: "json",
                 type: "POST",
                 data: {rID:"${requestScope.rID}"},

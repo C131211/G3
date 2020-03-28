@@ -99,7 +99,7 @@
 			form.on('submit(submitBut)', function (data) {
 				console.log($('#updateGoods').serialize());
 				$.ajax({
-					url: "/updateUser",
+					url: "/updateUser",//商品表更新数据接口
 					dataType: "json",
 					type: "POST",
 					data: $('#updateGoods').serialize(),
@@ -124,7 +124,7 @@
 			checkLogin(${sessionScope.result.data.gID});
 			//请求该id的用户数据
 			$.ajax({
-				url: "/selUserById",
+				url: "/selUserById",//商品表更新数据接口
 				dataType: "json",
 				type: "POST",
 				data: {uID:"${requestScope.gID}"},

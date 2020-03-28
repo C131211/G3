@@ -66,7 +66,7 @@
             form.on('submit(submitBut)', function (data) {
                 console.log($('#updatePower').serialize());
                 $.ajax({
-                    url: "/updateUser",
+                    url: "/updateUser",//权限表更新数据接口
                     dataType: "json",
                     type: "POST",
                     data: $('#updatePower').serialize(),
@@ -91,7 +91,7 @@
             checkLogin(${sessionScope.result.data.pID});
             //请求该id的用户数据
             $.ajax({
-                url: "/selUserById",
+                url: "/selUserById",//权限表更新数据接口
                 dataType: "json",
                 type: "POST",
                 data: {uID:"${requestScope.pID}"},

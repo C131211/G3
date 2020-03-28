@@ -65,7 +65,7 @@
 <script>
     function addPow() {
         $.ajax({
-            url: "/updateUser",//添加权限
+            url: "/updateUser",//权限表添加数据接口
             type: "POST",
             dataType: "json",
             data: $('#addPower').serialize(),

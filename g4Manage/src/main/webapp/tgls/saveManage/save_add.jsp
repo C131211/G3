@@ -77,7 +77,7 @@
     <script>
         function addSave() {
             $.ajax({
-                url: "/addUser",//添加用户
+                url: "/addUser",//仓库表添加数据接口
                 type: "POST",
                 dataType: "json",
                 data: $('#addSave').serialize(),
