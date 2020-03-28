@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+
+<mapper namespace="com.l.mapper.GoodListMapper">
+        <select id="selAllGoodList" resultType="com.l.pojo.GoodList">
+                select * from goodlist
+        </select>
+
+        <insert id="insGoodList" parameterType="String">
+                insert into goodlist values(DEFAULT ,#{0})
+        </insert>
+
+        <delete id="delGoodListById" parameterType="int">
+                delete from goodlist where glId=#{0}
+        </delete>
+
+        <update id="updGoodListById" parameterType="com.l.pojo.GoodList">
+                update goodlist set goodName=#{goodName} where glId=#{glId}
+        </update>
+
+
+</mapper>
