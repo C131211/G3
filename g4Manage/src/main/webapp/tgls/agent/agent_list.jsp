@@ -83,6 +83,10 @@
         table.render({
             elem: '#uList'   //表格ID
             ,url:'/userList' //数据接口
+            ,request: {
+                pageName: 'page' //页码的参数名称，默认：page
+                ,limitName: 'rows' //每页数据量的参数名，默认：limit
+            }
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,page:true     //开启分页
             ,height:'full-200'  //高度最大化自适应
@@ -167,7 +171,7 @@
                     end: function () {
                         window.location.reload();
                     },
-                    content: '/userOperation?uID='+data.uID+'&pageType=edit',
+                    content: '/PageOperation?id='+data.uID+'&pageType=userEdit',
 
                 })
             }

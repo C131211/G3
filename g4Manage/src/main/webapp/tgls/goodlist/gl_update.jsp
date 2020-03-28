@@ -48,7 +48,6 @@
             var form = layui.form;
             //监听提交
             form.on('submit(submitBut)', function (data) {
-                console.log($('#updateGoodList').serialize());
                 $.ajax({
                     url: "/setGoodList",//商品表更新数据接口
                     dataType: "json",
@@ -56,12 +55,11 @@
                     data: $('#updateGoodList').serialize(),
                     success: function (data) {
                         if (data.status == 200) {
-                            alert("更改成功");
-                            window.location.reload();
+                            layer.msg("更改成功");
+                            window.setTimeout('parent.layer.closeAll()',500 );
                         } else {
                             layer.msg("更改失败");
                         }
-
                     }
                 });
                 return false;
@@ -72,21 +70,24 @@
     <script type="application/javascript">
         $(function () {
             //检查是否拥有标识
-            checkLogin(${sessionScope.result.data.glId});
-            //请求该id的用户数据
+            checkLogin(${sessionScope.result.data.uID});
             $.ajax({
-                url: "/setGoodList",//商品表更新数据接口
+                url: "/getGoodListById",//商品表更新数据接口
                 dataType: "json",
                 type: "POST",
-                data: {uID:"${requestScope.glId}"},
+                data: {glId:"${requestScope.glId}"},
                 success: function (data) {
                     if (data.status == 200) {
-                        $("#glId").val(data.data.glId);
-                        $("#goodName").val(data.data.goodName);
+                        layui.use('form', function () {
+                            var form = layui.form;
+                            $("#glId").val(data.data.glId);
+                            $("#goodName").val(data.data.goodName);
+                            form.render();
+                        });
+
                     } else {
                         layer.msg("获取失败");
                     }
-
                 }
             });
 

@@ -1,5 +1,8 @@
 package com.l.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.l.commons.pojo.DataGrid;
 import com.l.commons.pojo.GResult;
 import com.l.mapper.GoodListMapper;
 import com.l.pojo.GoodList;
@@ -18,14 +21,18 @@ public class GoodListServiceImpl implements GoodListService {
     private GoodListMapper goodListMapper;
 
     @Override
-    public GResult selAllGoodList() {
+    public DataGrid selAllGoodList(int page,int rows) {
+        PageHelper.startPage(page, rows);
         GResult result = new GResult();
         List<GoodList> list = goodListMapper.selAllGoodList();
 
-        result.setMsg("OK");
-        result.setData(list);
-        result.setStatus(200);
-        return result;
+        PageInfo<GoodList> pi = new PageInfo<>(list);
+        DataGrid dataGrid = new DataGrid();
+        dataGrid.setData(pi.getList());
+        dataGrid.setCount(pi.getTotal());
+        dataGrid.setCode(0);
+        dataGrid.setMsg("OK");
+        return dataGrid;
     }
 
     @Override
@@ -65,6 +72,21 @@ public class GoodListServiceImpl implements GoodListService {
         if (index>0){
             result.setMsg("OK");
             result.setStatus(200);
+        }else {
+            result.setMsg("error");
+        }
+
+        return result;
+    }
+
+    @Override
+    public GResult selGoodListById(int glId) {
+        GResult result = new GResult();
+        GoodList goodList = goodListMapper.selGoodListById(glId);
+        if (goodList!=null){
+            result.setMsg("OK");
+            result.setStatus(200);
+            result.setData(goodList);
         }else {
             result.setMsg("error");
         }

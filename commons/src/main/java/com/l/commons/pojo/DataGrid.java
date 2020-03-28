@@ -11,7 +11,7 @@ public class DataGrid implements Serializable{
     private int code;
     private String msg;
     //总条数
-    private long total;
+    private long count;
 
     //当前页显示数据
     private List<?> data;
@@ -32,12 +32,12 @@ public class DataGrid implements Serializable{
         this.msg = msg;
     }
 
-    public long getTotal() {
-        return total;
+    public long getCount() {
+        return count;
     }
 
-    public void setTotal(long total) {
-        this.total = total;
+    public void setCount(long count) {
+        this.count = count;
     }
 
     public List<?> getData() {

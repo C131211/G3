@@ -1,5 +1,6 @@
 package com.l.service;
 
+import com.l.commons.pojo.DataGrid;
 import com.l.commons.pojo.GResult;
 import com.l.pojo.GoodList;
 
@@ -10,30 +11,37 @@ import java.util.List;
  */
 public interface GoodListService {
     /**
-     * 查询所有的货物列表
+     * 鏌ヨ鎵�鏈夌殑璐х墿鍒楄〃
      * @return
      */
-    GResult selAllGoodList();
+    DataGrid selAllGoodList(int page,int rows);
 
     /**
-     * 增加货物类别
+     * 澧炲姞璐х墿绫诲埆
      * @param goodName
      * @return
      */
     GResult insGoodList(String goodName);
 
     /**
-     * 根据id删除货物类别
+     * 鏍规嵁id鍒犻櫎璐х墿绫诲埆
      * @param glId
      * @return
      */
     GResult delGoodListById(int glId);
 
     /**
-     * 更新货物类别
+     * 鏇存柊璐х墿绫诲埆
      * @param goodList
      * @return
      */
     GResult updGoodListById(GoodList goodList);
+
+    /**
+     * 鏍规嵁ID鑾峰彇绫诲埆
+     * @param glId
+     * @return
+     */
+    GResult selGoodListById(int glId);
 
 }

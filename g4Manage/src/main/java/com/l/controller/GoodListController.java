@@ -1,5 +1,6 @@
 package com.l.controller;
 
+import com.l.commons.pojo.DataGrid;
 import com.l.commons.pojo.GResult;
 import com.l.pojo.GoodList;
 import com.l.service.GoodListService;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by c on 2020/3/28.
@@ -18,17 +20,17 @@ public class GoodListController {
     private GoodListService goodListService;
 
     /**
-     * 获取所有的货物类别
+     * 鑾峰彇鎵�鏈夌殑璐х墿绫诲埆
      * @return
      */
     @RequestMapping("/getGoodList")
     @ResponseBody
-    public GResult getAllGoodList(){
-        return goodListService.selAllGoodList();
+    public DataGrid getAllGoodList(int page,int rows){
+        return goodListService.selAllGoodList(page, rows);
     }
 
     /**
-     *增加类别
+     *澧炲姞绫诲埆
      * @param goodName
      * @return
      */
@@ -39,7 +41,7 @@ public class GoodListController {
     }
 
     /**
-     * 编辑类别
+     * 缂栬緫绫诲埆
      * @param goodList
      * @return
      */
@@ -50,7 +52,7 @@ public class GoodListController {
     }
 
     /**
-     * 删除类别
+     * 鍒犻櫎绫诲埆
      * @param glId
      * @return
      */
@@ -60,6 +62,11 @@ public class GoodListController {
         return goodListService.delGoodListById(glId);
     }
 
+    @RequestMapping("/getGoodListById")
+    @ResponseBody
+    public GResult getGoodListById(int glId){
+        return goodListService.selGoodListById(glId);
+    }
 
 
 }

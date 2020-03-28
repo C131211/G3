@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService {
             PageInfo<User> pi = new PageInfo<>(list);
             DataGrid dataGrid = new DataGrid();
             dataGrid.setData(pi.getList());
-            dataGrid.setTotal(pi.getTotal());
+            dataGrid.setCount(pi.getTotal());
             dataGrid.setCode(0);
             dataGrid.setMsg("OK");
             return dataGrid;
@@ -123,7 +123,7 @@ public class UserServiceImpl implements UserService {
             PageInfo<User> pi = new PageInfo<>(list);
             DataGrid dataGrid = new DataGrid();
             dataGrid.setData(pi.getList());
-            dataGrid.setTotal(pi.getTotal());
+            dataGrid.setCount(pi.getTotal());
             dataGrid.setCode(0);
             dataGrid.setMsg("OK");
             return dataGrid;

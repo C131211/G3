@@ -10,30 +10,37 @@ import java.util.List;
 public interface GoodListMapper {
 
     /**
-     * ²éÑ¯ËùÓĞµÄ»õÎïÖÖÀà
+     * æŸ¥è¯¢æ‰€æœ‰çš„è´§ç‰©ç§ç±»
      * @return
      */
     List<GoodList> selAllGoodList();
 
 
     /**
-     * Ôö¼Ó»õÎïÖÖÀà
+     * å¢åŠ è´§ç‰©ç§ç±»
      * @param goodName
      * @return
      */
     int insGoodList(String goodName);
 
     /**
-     * ¸ù¾İidÉ¾³ı»õÎïÖÖÀà
+     * æ ¹æ®idåˆ é™¤è´§ç‰©ç§ç±»
      * @param glId
      * @return
      */
     int delGoodListById(int glId);
 
     /**
-     * ¸ù¾İidĞŞ¸Ä»õÎïÀà±ğ
+     * æ ¹æ®idä¿®æ”¹è´§ç‰©ç±»åˆ«
      * @return
      */
     int updGoodListById(GoodList goodList);
+
+    /**
+     * æ ¹æ®idè·å–è¯¥ç§ç±»
+     * @param glId
+     * @return
+     */
+    GoodList selGoodListById(int glId);
 
 }

@@ -22,6 +22,10 @@
         <update id="updGoodListById" parameterType="com.l.pojo.GoodList">
                 update goodlist set goodName=#{goodName} where glId=#{glId}
         </update>
+        
+        <select id="selGoodListById" parameterType="int" resultType="com.l.pojo.GoodList">
+                select * from goodlist where glId=#{0}
+        </select>
 
 
 </mapper>
