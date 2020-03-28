@@ -139,5 +139,18 @@ public class UserController {
 
 
 
+    /**
+     * 管理编辑用户信息
+     * @param user
+     * @return
+     */
+    @RequestMapping("/editUser")
+    @ResponseBody
+    public GResult editUser(User user,HttpServletRequest req){
+        HttpSession session = req.getSession();
+        GResult result = userService.updEditUserById(user);
+        ((GResult) session.getAttribute("result")).setData(result.getData());
+        return result;
+    }
 
 }

@@ -57,7 +57,12 @@ public interface UserMapper {
      */
     List<User> selAllUser(User user);
 
-
+    /**
+     * 管理页面修改用户信息
+     * @param user
+     * @return
+     */
+    int updUserManageById(User user);
 
 
 }

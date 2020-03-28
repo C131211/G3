@@ -52,4 +52,24 @@
         </where>
     </select>
 
+    <update id="updUserManageById" parameterType="com.l.pojo.User">
+        update user
+        <set>
+            <if test="uPwd!=null and uPwd!=''">
+                uPwd = #{uPwd},
+            </if>
+            <if test="uName!=null and uName!=''">
+                uName = #{uName},
+            </if>
+            <if test="uAddr!=null and uAddr!=''">
+                uAddr = #{uAddr},
+            </if>
+            <if test="uTel!=null and uTel!=''">
+                uTel = #{uTel},
+            </if>
+                rID = #{rID}, uStatus = #{uStatus}
+        </set>
+        where uID = #{uID}
+    </update>
+
 </mapper>

@@ -54,4 +54,12 @@ public interface UserService {
      */
     GResult selUserById(int uID);
 
+
+    /**
+     * 修改用户信息，密码
+     * @param user
+     * @return
+     */
+    GResult updEditUserById(User user);
+
 }

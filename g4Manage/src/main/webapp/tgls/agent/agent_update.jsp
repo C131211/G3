@@ -12,16 +12,16 @@
 
 <head>
     <meta charset="UTF-8">
-
     <!-- 公共样式 开始 -->
     <link rel="stylesheet" type="text/css" href="/css/base.css">
     <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
     <script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/layui/css/layui.css">
-    <script type="text/javascript" src="/layui/layui.js"></script>
     <script src="/js/checkLogin.js"></script>
+    <%--引入css--%>
+    <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css"  media="all">
+    <%--引入js--%>
+    <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
     <!-- 公共样式 结束 -->
-
 </head>
 
 <body>
@@ -63,7 +63,7 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">用户角色</label>
-            <div class="layui-input-inline shortInput">
+            <div class="layui-input-block shortInput">
                 <select name="rID" id="rID">
                     <option value="0">
                         超级管理员
@@ -79,7 +79,7 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">用户状态</label>
-            <div class="layui-input-inline shortInput">
+            <div class="layui-input-block shortInput">
                 <select name="uStatus" id="uStatus">
                     <option value="0">
                         正常
@@ -103,16 +103,15 @@
             var form = layui.form;
             //监听提交
             form.on('submit(submitBut)', function (data) {
-                console.log($('#updateAgent').serialize());
                 $.ajax({
-                    url: "/updateUser",
+                    url: "/editUser",
                     dataType: "json",
                     type: "POST",
                     data: $('#updateAgent').serialize(),
                     success: function (data) {
                         if (data.status == 200) {
-                            alert("更改成功");
-                            window.location.reload();
+                            layer.msg("更改成功");
+                            window.setTimeout('parent.layer.closeAll()',500 );
                         } else {
                             layer.msg("更改失败");
                         }
@@ -136,21 +135,23 @@
                 data: {uID:"${requestScope.uID}"},
                 success: function (data) {
                     if (data.status == 200) {
-                        $("#uID").val(data.data.uID);
-                        $("#uAccount").val(data.data.uAccount);
-                        $("#uName").val(data.data.uName);
-                        $("#uPwd").val(data.data.uPwd);
-                        $("#uTel").val(data.data.uTel);
-                        $("#uAddr").val(data.data.uAddr);
-                        $("#rID").val(data.data.rID);
-                        $("#uStatus").val(data.data.uStatus);
+                        layui.use('form', function () {
+                            var form = layui.form;
+                            $("#uID").val(data.data.uID);
+                            $("#uAccount").val(data.data.uAccount);
+                            $("#uName").val(data.data.uName);
+                            $("#uPwd").val(data.data.uPwd);
+                            $("#uTel").val(data.data.uTel);
+                            $("#uAddr").val(data.data.uAddr);
+                            $("#rID").val(data.data.rID);
+                            $("#uStatus").val(data.data.uStatus);
+                            form.render();
+                        });
                     } else {
                         layer.msg("获取失败");
                     }
-
                 }
             });
-
         })
     </script>
 

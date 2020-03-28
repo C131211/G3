@@ -147,4 +147,22 @@ public class UserServiceImpl implements UserService {
 
         return result;
     }
+
+    @Override
+    public GResult updEditUserById(User user) {
+        int index = -1;
+        GResult result = new GResult();
+        index  = userMapper.updUserManageById(user);
+        if(index>0){
+            //成功修改
+            User user1 = userMapper.selUserById(user.getuID());
+            result.setStatus(200);
+            result.setMsg("OK");
+            result.setData(user1);
+            return result;
+        }else {
+            result.setMsg("修改失败");
+            return result;
+        }
+    }
 }
