@@ -14,7 +14,7 @@ public class Save {
     private String sExplain;
     private int sStatus;
     private String goods;
-    private List<?> good;
+    private List<Good> good;
 
     public int getsID() {
         return sID;
@@ -72,11 +72,11 @@ public class Save {
         this.goods = goods;
     }
 
-    public List<?> getGood() {
+    public List<Good> getGood() {
         return good;
     }
 
-    public void setGood(List<?> good) {
+    public void setGood(List<Good> good) {
         this.good = good;
     }
 }

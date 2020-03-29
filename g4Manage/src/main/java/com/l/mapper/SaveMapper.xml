@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+
+<mapper namespace="com.l.mapper.SaveMapper">
+        <select id="selAllSaveSName" resultType="com.l.pojo.Save">
+                select sID,sName from save where sStatus=0
+        </select>
+
+        <insert id="insSave" parameterType="com.l.pojo.Save" >
+          insert into save (sID,sName,sTsave,sAddr,sExplain,sStatus) VALUES(DEFAULT ,#{sName},#{sTsave},#{sAddr},#{sExplain},0)
+        </insert>
+
+
+</mapper>

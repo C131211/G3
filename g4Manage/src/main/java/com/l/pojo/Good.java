@@ -1,0 +1,110 @@
+package com.l.pojo;
+
+import java.util.Date;
+
+/**
+ * Created by c on 2020/3/29.
+ */
+public class Good {
+
+    private int gID;
+    private String gName;
+    private int gNum;
+    private int gInprice;
+    private int gOutprice;
+    private String gExplain;
+    private Date gSatime;
+    private int sID;
+    private int gStatus;
+
+
+    @Override
+    public String toString() {
+        return "Good{" +
+                "gID=" + gID +
+                ", gName='" + gName + '\'' +
+                ", gNum=" + gNum +
+                ", gInprice=" + gInprice +
+                ", gOutprice=" + gOutprice +
+                ", gExplain='" + gExplain + '\'' +
+                ", gSatime=" + gSatime +
+                ", sID=" + sID +
+                ", gStatus=" + gStatus +
+                '}';
+    }
+
+    public Good() {
+    }
+
+    public int getgID() {
+        return gID;
+    }
+
+    public void setgID(int gID) {
+        this.gID = gID;
+    }
+
+    public String getgName() {
+        return gName;
+    }
+
+    public void setgName(String gName) {
+        this.gName = gName;
+    }
+
+    public int getgNum() {
+        return gNum;
+    }
+
+    public void setgNum(int gNum) {
+        this.gNum = gNum;
+    }
+
+    public int getgInprice() {
+        return gInprice;
+    }
+
+    public void setgInprice(int gInprice) {
+        this.gInprice = gInprice;
+    }
+
+    public int getgOutprice() {
+        return gOutprice;
+    }
+
+    public void setgOutprice(int gOutprice) {
+        this.gOutprice = gOutprice;
+    }
+
+    public String getgExplain() {
+        return gExplain;
+    }
+
+    public void setgExplain(String gExplain) {
+        this.gExplain = gExplain;
+    }
+
+    public Date getgSatime() {
+        return gSatime;
+    }
+
+    public void setgSatime(Date gSatime) {
+        this.gSatime = gSatime;
+    }
+
+    public int getsID() {
+        return sID;
+    }
+
+    public void setsID(int sID) {
+        this.sID = sID;
+    }
+
+    public int getgStatus() {
+        return gStatus;
+    }
+
+    public void setgStatus(int gStatus) {
+        this.gStatus = gStatus;
+    }
+}
