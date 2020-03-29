@@ -34,6 +34,12 @@
 <div class="cBody">
     <form id="addSave" class="layui-form" action="">
         <div class="layui-form-item">
+            <div class="layui-form-item">
+                <label class="layui-form-label">仓库地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="sName" required lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
             <label class="layui-form-label">仓库地址</label>
             <div class="layui-input-block">
                 <input type="text" name="sAddr" required lay-verify="required" autocomplete="off" class="layui-input">

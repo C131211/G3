@@ -75,8 +75,13 @@
             , url: '/userList' //功能表数据接口
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , page: true     //开启分页
+            ,request: {
+                pageName: 'page' //页码的参数名称，默认：page
+                ,limitName: 'rows' //每页数据量的参数名，默认：limit
+            }
             , height: 'full-200'  //高度最大化自适应
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , method:'post'//传输方式
             , defaultToolbar: ['exports', 'print',]
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
@@ -143,7 +148,7 @@
                     end: function () {
                         window.location.reload();
                     },
-                    content: '/funcOperation?fID='+data.fID+'&pageType=edit'
+                    content: '/PageOperation?id='+data.fId+'&pageType=functionEdit'
                 })
             }
         });

@@ -28,7 +28,14 @@
 <body>
 <div class="cBody">
 	<form id="updateSave" class="layui-form" enctype="multipart/form-data">
-		<input type="hidden" name="sID" id="sID"
+		<input type="hidden" name="sID" id="sID">
+		<div class="layui-form-item">
+			<label class="layui-form-label">仓库名字</label>
+			<div class="layui-input-inline shortInput">
+				<input type="text" name="sAddr" id="sName"
+					   autocomplete="off" class="layui-input">
+			</div>
+		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">现存量</label>
 			<div class="layui-input-inline shortInput">
@@ -119,6 +126,7 @@
 				success: function (data) {
 					if (data.status == 200) {
 						$("#sID").val(data.data.sID);
+						$("#sName").val(data.data.sName);
 						$("#sNsave").val(data.data.sNsave);
 						$("#sTsave").val(data.data.sTsave);
 						$("#sAddr").val(data.data.sAddr);
