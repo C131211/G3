@@ -66,6 +66,9 @@
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
+<script id="LookbarDemo" type="text/html">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看仓库货物</a>
+</script>
 <script id="toolbarDemo" type="text/html">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="addSave">增加新仓库</button>
@@ -104,6 +107,7 @@
                         }
                     }
                 }
+                , {field: 'right', title: '具体仓库货物', toolbar: '#LookbarDemo', width: 144}
                 , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
             ]]
         });
@@ -126,7 +130,12 @@
         //监听行工具事件
         table.on('tool(sTools)', function (obj) {
             var data = obj.data;
-            if(obj.event === 'del'){
+            if(obj.event === 'detail') {
+                layer.alert(JSON.stringify(data), {
+                    title: '货物数据：'
+                });
+            }
+            else if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     $.ajax({
                         url: "/userDelById",//添加仓库
