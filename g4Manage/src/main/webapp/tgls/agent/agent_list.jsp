@@ -35,10 +35,10 @@
         <form class="layui-form" action="">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
-                    <input type="text" name="uName" required lay-verify="required" placeholder="输入员工名"
+                    <input type="text"  id="selectUName" required lay-verify="required" placeholder="输入员工名"
                            autocomplete="off" class="layui-input">
                 </div>
-                <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
+                <button class="layui-btn" lay-submit lay-filter="formDemo" id="select">检索</button>
             </div>
         </form>
     </div>
@@ -48,7 +48,6 @@
     <script>
         layui.use('form', function () {
             var form = layui.form;
-
             //监听提交
             form.on('submit(formDemo)', function (data) {
                 layer.msg(JSON.stringify(data.field));
@@ -57,16 +56,6 @@
         });
     </script>
 
-    <script>
-        //查询作用
-        $("#select").click(function () {
-            $('#uList').datagrid({
-                queryParams: {
-                    username: $("#selectText").val()
-                }
-            });
-        });
-    </script>
 </div>
 <script id="barDemo" type="text/html">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -92,6 +81,7 @@
             ,height:'full-200'  //高度最大化自适应
             ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             ,defaultToolbar: ['exports', 'print' ]
+            ,method:'post'//传输方式
             ,cols: [[
                 {type:'checkbox',fixed:'left'}
                 ,{field:'uID', width:80, title: 'ID', sort: true}
@@ -100,7 +90,9 @@
                  ,{field: 'uPwd', title: '密码', width:80}
                  ,{field: 'uTel', title: '手机号', width: 130}
                  ,{field: 'uAddr', title: '住址', width: 250}
-                 ,{field: 'uHiredate', title: '入职时间', width: 150, sort: true}
+                 ,{field: 'uHiredate', title: '入职时间', width: 150, sort: true,
+                    templet:'<div>{{ Format(d.uHiredate,"yyyy-MM-dd")}}</div>'
+                }
                  ,{field: 'rID', title: '角色ID',width: 80,templet:function(d){
                             if(d.rID==0){
                                 return d.rID="超级管理员"
@@ -176,7 +168,52 @@
                 })
             }
         });
+
+
+        //查询作用
+        $("#select").click(function (){
+            table.reload("uList",{
+                where: { //设定异步数据接口的额外参数，任意设
+                    uName: $("#selectUName").val()
+                }
+                ,page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        })
+
+
     });
+
+
+
+    //时间格式化
+    function Format(datetime,fmt) {
+        if (parseInt(datetime)==datetime) {
+            if (datetime.length==10) {
+                datetime=parseInt(datetime)*1000;
+            } else if(datetime.length==13) {
+                datetime=parseInt(datetime);
+            }
+        }
+        datetime=new Date(datetime);
+        var o = {
+            "M+" : datetime.getMonth()+1,                 //月份
+            "d+" : datetime.getDate(),                    //日
+            "h+" : datetime.getHours(),                   //小时
+            "m+" : datetime.getMinutes(),                 //分
+            "s+" : datetime.getSeconds(),                 //秒
+            "q+" : Math.floor((datetime.getMonth()+3)/3), //季度
+            "S"  : datetime.getMilliseconds()             //毫秒
+        };
+        if(/(y+)/.test(fmt))
+            fmt=fmt.replace(RegExp.$1, (datetime.getFullYear()+"").substr(4 - RegExp.$1.length));
+        for(var k in o)
+            if(new RegExp("("+ k +")").test(fmt))
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+        return fmt;
+    }
+
 </script>
 
 

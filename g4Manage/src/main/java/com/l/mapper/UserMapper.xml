@@ -47,7 +47,7 @@
         select * from user
         <where>
             <if test="uName!=null and uName!=''">
-                and uName=#{uName}
+                and uName like "%"#{uName}"%"
             </if>
         </where>
     </select>
