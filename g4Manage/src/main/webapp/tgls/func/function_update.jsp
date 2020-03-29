@@ -105,7 +105,7 @@
                 url: "/selUserById",  ////功能表更新数据接口
                 dataType: "json",
                 type: "POST",
-                data: {rID:"${requestScope.fID}"},
+                data: {fID:"${requestScope.fID}"},
                 success: function (data) {
                     if (data.status == 200) {
                         $("#fID").val(data.data.fID);

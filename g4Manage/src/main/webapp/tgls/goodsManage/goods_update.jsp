@@ -127,7 +127,7 @@
 				url: "/selUserById",//商品表更新数据接口
 				dataType: "json",
 				type: "POST",
-				data: {uID:"${requestScope.gID}"},
+				data: {gID:"${requestScope.gID}"},
 				success: function (data) {
 					if (data.status == 200) {
 						$("#gID").val(data.data.gID);

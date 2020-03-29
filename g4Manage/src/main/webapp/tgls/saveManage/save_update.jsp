@@ -122,7 +122,7 @@
 				url: "/selUserById", //仓库表更新数据接口
 				dataType: "json",
 				type: "POST",
-				data: {uID:"${requestScope.sID}"},
+				data: {sID:"${requestScope.sID}"},
 				success: function (data) {
 					if (data.status == 200) {
 						$("#sID").val(data.data.sID);

@@ -94,7 +94,7 @@
                 url: "/selUserById",//权限表更新数据接口
                 dataType: "json",
                 type: "POST",
-                data: {uID:"${requestScope.pID}"},
+                data: {pID:"${requestScope.pID}"},
                 success: function (data) {
                     if (data.status == 200) {
                         $("#pID").val(data.data.pID);
