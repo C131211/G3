@@ -17,6 +17,25 @@ public class Save {
     private String goods;
     private List<Good> good;
 
+
+    public Save() {
+    }
+
+    @Override
+    public String toString() {
+        return "Save{" +
+                "sID=" + sID +
+                ", sNsave=" + sNsave +
+                ", sName='" + sName + '\'' +
+                ", sTsave=" + sTsave +
+                ", sAddr='" + sAddr + '\'' +
+                ", sExplain='" + sExplain + '\'' +
+                ", sStatus=" + sStatus +
+                ", goods='" + goods + '\'' +
+                ", good=" + good +
+                '}';
+    }
+
     public String getsName() {
         return sName;
     }

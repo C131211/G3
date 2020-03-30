@@ -53,4 +53,9 @@
                 select sID,sName, sTsave,sAddr,sExplain,sStatus from save where sID=#{0}
         </select>
 
+
+        <update id="updSaveGoods" >
+                update save set  goods=#{1} where sID=#{0}
+        </update>
+
 </mapper>

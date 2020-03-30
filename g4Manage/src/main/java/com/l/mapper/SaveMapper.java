@@ -48,6 +48,13 @@ public interface SaveMapper {
      */
     Save selSaveById(int sID);
 
+    /**
+     * 根据id修改货物
+     * @param sID
+     * @param goods
+     * @return
+     */
+    int updSaveGoods(int sID,String goods);
 
 
 }

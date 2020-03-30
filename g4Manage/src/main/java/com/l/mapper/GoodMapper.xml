@@ -8,7 +8,7 @@
 
 <mapper namespace="com.l.mapper.GoodMapper">
 
-        <select id="selGoodById" parameterType="String">
+        <select id="selGoodById" parameterType="String" resultType="com.l.pojo.Good">
                 select * from good where gID = #{0}
         </select>
 
