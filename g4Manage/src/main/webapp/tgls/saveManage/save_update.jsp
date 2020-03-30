@@ -32,15 +32,8 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">仓库名字</label>
 			<div class="layui-input-inline shortInput">
-				<input type="text" name="sAddr" id="sName"
+				<input type="text" name="sName" id="sName"
 					   autocomplete="off" class="layui-input">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">现存量</label>
-			<div class="layui-input-inline shortInput">
-				<input type="text" name="sNsave" id="sNsave"
-					   required autocomplete="off" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -94,7 +87,7 @@
 			form.on('submit(submitBut)', function (data) {
 				console.log($('#updateSave').serialize());
 				$.ajax({
-					url: "/setSave", //仓库表更新数据接口
+					url: "/editSave", //仓库表更新数据接口
 					dataType: "json",
 					type: "POST",
 					data: $('#updateSave').serialize(),
@@ -116,10 +109,10 @@
 	<script type="application/javascript">
 		$(function () {
 			//检查是否拥有标识
-			checkLogin(${sessionScope.result.data.sID});
+			checkLogin(${sessionScope.result.data.uID});
 			//请求该id的用户数据
 			$.ajax({
-				url: "/editSave", //仓库表更新数据接口
+				url: "/getSaveById", //仓库表更新数据接口
 				dataType: "json",
 				type: "POST",
 				data: {sID:"${requestScope.sID}"},

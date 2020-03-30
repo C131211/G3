@@ -158,4 +158,19 @@ public class SaveServiceImpl implements SaveService {
         }
         return result;
     }
+
+    @Override
+    public GResult selSaveById(int sID) {
+        Save save = saveMapper.selSaveById(sID);
+        GResult result = new GResult();
+        if (save!=null ){
+            result.setMsg("OK");
+            result.setData(save);
+            result.setStatus(200);
+        }else {
+            result.setMsg("获取出错");
+        }
+
+        return result;
+    }
 }

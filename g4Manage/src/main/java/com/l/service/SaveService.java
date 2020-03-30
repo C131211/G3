@@ -46,4 +46,11 @@ public interface SaveService {
      */
     GResult updSave(Save save);
 
+    /**
+     * 根据id获取仓库信息
+     * @param sID
+     * @return
+     */
+    GResult selSaveById(int sID);
+
 }

@@ -77,6 +77,18 @@ public class SaveController {
     }
 
 
+    /**
+     * 根据id获取仓库信息
+     * @param sID
+     * @return
+     */
+    @RequestMapping("/getSaveById")
+    @ResponseBody
+    public GResult getSaveById(int sID){
+        return saveService.selSaveById(sID);
+    }
+
+
 
 
 }

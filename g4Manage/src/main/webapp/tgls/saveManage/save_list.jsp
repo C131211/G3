@@ -163,7 +163,7 @@
                     end: function () {
                         window.location.reload();
                     },
-                    content: '/PageOperation?id='+data.sID+'&pageType=editSave'
+                    content: '/PageOperation?id='+data.sID+'&pageType=saveEdit'
                 })
             }
         });

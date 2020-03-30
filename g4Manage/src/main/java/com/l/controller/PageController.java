@@ -24,7 +24,11 @@ public class PageController {
             }else if(pageType.equals("glEdit")){
                 req.setAttribute("glId",id);
                 return "/tgls/goodlist/gl_update.jsp";
-            } else {
+            }else if (pageType.equals("saveEdit")){
+                req.setAttribute("sID",id);
+                return "/tgls/saveManage/save_update.jsp";
+            }
+            else {
                 return "/tgls/error/error_canshu.jsp";
             }
         }

@@ -42,7 +42,11 @@ public interface SaveMapper {
      */
     int updSave(Save save);
 
-
+    /**
+     * 获取该仓库的信息
+     * @return
+     */
+    Save selSaveById(int sID);
 
 
 

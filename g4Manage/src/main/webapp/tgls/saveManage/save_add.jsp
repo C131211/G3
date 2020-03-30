@@ -48,7 +48,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">仓库现容量</label>
             <div class="layui-input-block">
-                <input type="text" name="sNsave" autocomplete="off" class="layui-input">
+                <input type="text"  autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
