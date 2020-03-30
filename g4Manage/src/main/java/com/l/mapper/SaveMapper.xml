@@ -7,7 +7,7 @@
 
 
 <mapper namespace="com.l.mapper.SaveMapper">
-        <select id="selAllSaveSName" resultType="com.l.pojo.Save">
+        <select id="selAllSaveSName" resultType="com.l.pojo.Save" >
                 select sID,sName from save where sStatus=0
         </select>
 
@@ -15,5 +15,37 @@
           insert into save (sID,sName,sTsave,sAddr,sExplain,sStatus) VALUES(DEFAULT ,#{sName},#{sTsave},#{sAddr},#{sExplain},0)
         </insert>
 
+        <select id="selAllSave" parameterType="com.l.pojo.Save" resultType="com.l.pojo.Save">
+                select * from save
+                <where>
+                        <if test="sName!=null and sName!=''">
+                                and sName like "%"#{sName}"%"
+                        </if>
+                </where>
+        </select>
+        
+        <delete id="delSaveById" parameterType="int">
+                delete from save where sID = #{0}
+        </delete>
+        
+        <update id="updSave" parameterType="com.l.pojo.Save">
+                update save
+                <set>
+                        <if test="sName!=null and sName!=''">
+                                sName = #{sName},
+                        </if>
+                        <if test="sTsave!=null and sTsave!=''">
+                                sTsave = #{sTsave},
+                        </if>
+                        <if test="sAddr!=null and sAddr!=''">
+                                sAddr = #{sAddr},
+                        </if>
+                        <if test="sExplain!=null and sExplain!=''">
+                                sExplain = #{sExplain},
+                        </if>
+                                sStatus = #{sStatus},
+                </set>
+                where sID = #{sID}
+        </update>
 
 </mapper>

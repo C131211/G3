@@ -8,6 +8,8 @@
 
 <mapper namespace="com.l.mapper.GoodMapper">
 
-
+        <select id="selGoodById" parameterType="String">
+                select * from good where gID = #{0}
+        </select>
 
 </mapper>

@@ -9,12 +9,21 @@ import java.util.List;
 public class Save {
     private int sID;
     private int sNsave;
+    private String sName;
     private int sTsave;
     private String sAddr;
     private String sExplain;
     private int sStatus;
     private String goods;
     private List<Good> good;
+
+    public String getsName() {
+        return sName;
+    }
+
+    public void setsName(String sName) {
+        this.sName = sName;
+    }
 
     public int getsID() {
         return sID;
