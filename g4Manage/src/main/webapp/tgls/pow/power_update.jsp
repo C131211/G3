@@ -30,6 +30,13 @@
     <form id="updatePower" class="layui-form" enctype="multipart/form-data">
         <input type="hidden" name="pID" id="pID">
         <div class="layui-form-item">
+            <label class="layui-form-label">权限名称</label>
+            <div class="layui-input-inline shortInput">
+                <input type="text" name="pName" id="pName"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">角色ID</label>
             <div class="layui-input-inline shortInput">
                 <input type="text" name="rID" id="rID"
@@ -64,7 +71,6 @@
             var form = layui.form;
             //监听提交
             form.on('submit(submitBut)', function (data) {
-                console.log($('#updatePower').serialize());
                 $.ajax({
                     url: "/updateUser",//权限表更新数据接口
                     dataType: "json",
@@ -72,12 +78,11 @@
                     data: $('#updatePower').serialize(),
                     success: function (data) {
                         if (data.status == 200) {
-                            alert("更改成功");
-                            window.location.reload();
+                            layer.msg("更改成功");
+                            window.setTimeout('parent.layer.closeAll()',500 );
                         } else {
                             layer.msg("更改失败");
                         }
-
                     }
                 });
                 return false;
@@ -88,7 +93,7 @@
     <script type="application/javascript">
         $(function () {
             //检查是否拥有标识
-            checkLogin(${sessionScope.result.data.pID});
+            checkLogin(${sessionScope.result.data.uID});
             //请求该id的用户数据
             $.ajax({
                 url: "/selUserById",//权限表更新数据接口

@@ -33,6 +33,13 @@
 <div class="cBody">
     <form id="addPower" class="layui-form" action="">
         <div class="layui-form-item">
+            <label class="layui-form-label">权限名称</label>
+            <div class="layui-input-inline shortInput">
+                <input name="pName" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+            <i class="iconfont icon-huaban bt"></i>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">角色ID</label>
             <div class="layui-input-inline shortInput">
                 <input type="text" lay-verify="required" name="rID" autocomplete="off" class="layui-input">
@@ -65,15 +72,15 @@
 <script>
     function addPow() {
         $.ajax({
-            url: "/updateUser",//权限表添加数据接口
+            url: "/addUser",//添加用户
             type: "POST",
             dataType: "json",
             data: $('#addPower').serialize(),
             success: function (data) {
                 if (data.status == 200) {
                     //接收到成功的提示
-                    alert("修改成功");
-                    location.reload();
+                    layer.msg("添加成功");
+                    window.setTimeout('parent.layer.closeAll()',500);
                 } else {
                     alert(data.msg);
                 }

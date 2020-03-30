@@ -70,7 +70,6 @@
             var form = layui.form;
             //监听提交
             form.on('submit(submitBut)', function (data) {
-                console.log($('#updateRole').serialize());
                 $.ajax({
                     url: "/updateUser", //角色表更新数据接口
                     dataType: "json",
@@ -78,8 +77,8 @@
                     data: $('#updateRole').serialize(),
                     success: function (data) {
                         if (data.status == 200) {
-                            alert("更改成功");
-                            window.location.reload();
+                            layer.msg("更改成功");
+                            window.setTimeout('parent.layer.closeAll()',500 );
                         } else {
                             layer.msg("更改失败");
                         }
@@ -94,7 +93,7 @@
     <script type="application/javascript">
         $(function () {
             //检查是否拥有标识
-            checkLogin(${sessionScope.result.data.rID});
+            checkLogin(${sessionScope.result.data.uID});
             //请求该id的用户数据
             $.ajax({
                 url: "/selUserById",  ////角色表更新数据接口

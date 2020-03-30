@@ -92,28 +92,33 @@
 
 
     <script>
-        layui.use(['upload', 'form'], function () {
+        function addGoods() {
+            $.ajax({
+                url: "/addUser",//添加用户
+                type: "POST",
+                dataType: "json",
+                data: $('#addGood').serialize(),
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        layer.msg("添加成功");
+                        window.setTimeout('parent.layer.closeAll()',500);
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+
+            })
+        }
+
+        layui.use('form', function () {
             var form = layui.form;
             //监听提交
             form.on('submit(submitBut)', function (data) {
-                $.ajax({
-                    url: "/updateUser", ////商品表添加数据接口
-                    type: "POST",
-                    dataType: "json",
-                    data: $('#addGood').serialize(),
-                    success: function (data) {
-                        if (data.status == 200) {
-                            //接收到成功的提示
-                            alert("修改成功");
-                            location.reload();
-                        } else {
-                            alert(data.msg);
-                        }
-                    }
-
-                });
+                //提交结果
+                addGoods();
                 return false;
-            })
+            });
         })
     </script>
 

@@ -85,7 +85,6 @@
 			var form = layui.form;
 			//监听提交
 			form.on('submit(submitBut)', function (data) {
-				console.log($('#updateSave').serialize());
 				$.ajax({
 					url: "/editSave", //仓库表更新数据接口
 					dataType: "json",
@@ -93,8 +92,8 @@
 					data: $('#updateSave').serialize(),
 					success: function (data) {
 						if (data.status == 200) {
-							alert("更改成功");
-							window.location.reload();
+							layer.msg("更改成功");
+							window.setTimeout('parent.layer.closeAll()',500 );
 						} else {
 							layer.msg("更改失败");
 						}

@@ -46,12 +46,6 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">仓库现容量</label>
-            <div class="layui-input-block">
-                <input type="text"  autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
             <label class="layui-form-label">仓库总容量</label>
             <div class="layui-input-block">
                 <input type="text" name="sTsave" required lay-verify="required" autocomplete="off" class="layui-input">
@@ -82,23 +76,24 @@
 
     <script>
         function addSave() {
-            $.ajax({
-                url: "/addSave",//仓库表添加数据接口
-                type: "POST",
-                dataType: "json",
-                data: $('#addSave').serialize(),
-                success: function (data) {
-                    if (data.status == 200) {
-                        //接收到成功的提示
-                        alert("添加成功");
-                        location.reload();
-                    } else {
-                        alert(data.msg);
+                $.ajax({
+                    url: "/addSave",//添加用户
+                    type: "POST",
+                    dataType: "json",
+                    data: $('#addSave').serialize(),
+                    success: function (data) {
+                        if (data.status == 200) {
+                            //接收到成功的提示
+                            layer.msg("添加成功");
+                            window.setTimeout('parent.layer.closeAll()',500);
+                        } else {
+                            alert(data.msg);
+                        }
                     }
-                }
 
-            })
-        }
+                })
+            }
+
 
         layui.use('form', function () {
             var form = layui.form;

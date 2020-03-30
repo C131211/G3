@@ -37,7 +37,7 @@
         <form class="layui-form" action="">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
-                    <input type="text" name="name" required lay-verify="required" placeholder="输入角色名" autocomplete="off"
+                    <input type="text" name="selectRName" required lay-verify="required" placeholder="输入角色名" autocomplete="off"
                            class="layui-input">
                 </div>
                 <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
@@ -112,6 +112,9 @@
                         area: ['70%', '60%'],
                         scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
                         maxmin: true,
+                        end: function () {
+                            window.location.reload();
+                        },
                         content: 'role_add.jsp'
                     });
                     break;
@@ -126,7 +129,7 @@
                         url: "/userDelById",//添加用户
                         type: "POST",
                         dataType: "json",
-                        data: {uID:data.uID},
+                        data: {rID:data.rID},
                         success: function (data) {
                             if (data.status == 200) {
                                 //接收到成功的提示
@@ -148,10 +151,21 @@
                     end: function () {
                         window.location.reload();
                     },
-                    content: '/PageOperation?id='+data.rId+'&pageType=roleEdit'
+                    content: '/PageOperation?id='+data.rID+'&pageType=roleEdit'
                 });
             }
         });
+        //查询作用
+        $("#select").click(function (){
+            table.reload("rList",{
+                where: { //设定异步数据接口的额外参数，任意设
+                    rName: $("#selectRName").val()
+                }
+                ,page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        })
     });
 </script>
 </body>

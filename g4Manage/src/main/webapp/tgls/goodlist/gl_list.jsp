@@ -37,7 +37,7 @@
         <form class="layui-form" action="">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
-                    <input type="text" name="name" required lay-verify="required" placeholder="输入功能名" autocomplete="off"
+                    <input type="text" name="selectGlName" required lay-verify="required" placeholder="输入货物类名" autocomplete="off"
                            class="layui-input">
                 </div>
                 <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
@@ -143,6 +143,19 @@
                 })
             }
         });
+
+
+        //查询作用
+        $("#select").click(function (){
+            table.reload("glList",{
+                where: { //设定异步数据接口的额外参数，任意设
+                    goodName: $("#selectGlName").val()
+                }
+                ,page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        })
     });
 </script>
 </html>

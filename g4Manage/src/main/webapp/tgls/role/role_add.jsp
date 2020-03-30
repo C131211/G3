@@ -63,15 +63,15 @@
 <script>
     function addRole() {
         $.ajax({
-            url: "/updateUser",//角色表添加数据接口
+            url: "/addUser",//添加用户
             type: "POST",
             dataType: "json",
             data: $('#addRole').serialize(),
             success: function (data) {
                 if (data.status == 200) {
                     //接收到成功的提示
-                    alert("修改成功");
-                    location.reload();
+                    layer.msg("添加成功");
+                    window.setTimeout('parent.layer.closeAll()',500);
                 } else {
                     alert(data.msg);
                 }

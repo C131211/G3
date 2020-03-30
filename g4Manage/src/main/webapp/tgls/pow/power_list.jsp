@@ -37,7 +37,7 @@
         <form class="layui-form" action="">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
-                    <input type="text" name="name" required lay-verify="required" placeholder="输入功能名" autocomplete="off"
+                    <input type="text" name="selectPName" required lay-verify="required" placeholder="输入权限名" autocomplete="off"
                            class="layui-input">
                 </div>
                 <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
@@ -86,6 +86,7 @@
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'pID', title: '权限ID', width: 80}
+                , {field: 'pName', title: '权限名称', width: 100}
                 , {field: 'rID', title: '角色ID', width: 80}
                 , {field: 'fID', title: '功能ID', width: 80}
                 , {field: 'pExplain', title: '权限说明', }
@@ -103,6 +104,9 @@
                         area: ['70%', '60%'],
                         scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
                         maxmin: true,
+                        end: function () {
+                            window.location.reload();
+                        },
                         content: 'power_add.jsp'
                     });
                     break;
@@ -117,7 +121,7 @@
                         url: "/userDelById",//添加用户
                         type: "POST",
                         dataType: "json",
-                        data: {uID:data.uID},
+                        data: {pID:data.pID},
                         success: function (data) {
                             if (data.status == 200) {
                                 //接收到成功的提示
@@ -139,10 +143,22 @@
                     end: function () {
                         window.location.reload();
                     },
-                    content:'/PageOperation?id='+data.pId+'&pageType=powerEdit'
+                    content:'/PageOperation?id='+data.pID+'&pageType=powerEdit'
                 })
             }
         });
+
+        //查询作用
+        $("#select").click(function (){
+            table.reload("powList",{
+                where: { //设定异步数据接口的额外参数，任意设
+                    pName: $("#selectPName").val()
+                }
+                ,page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        })
     });
 </script>
 

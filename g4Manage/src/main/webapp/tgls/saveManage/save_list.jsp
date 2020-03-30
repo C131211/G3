@@ -36,13 +36,8 @@
         <form class="layui-form" action="">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
-                    <input type="text" name="name" required lay-verify="required" placeholder="输入仓库地址"
+                    <input type="text" name="selectSName" required lay-verify="required" placeholder="输入仓库名称"
                            autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-input-inline">
-                    <select name="provid" id="provid" lay-filter="provid">
-                        <option value="">存放仓库</option>
-                    </select>
                 </div>
                 <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
             </div>
@@ -122,6 +117,9 @@
                         area: ['70%', '60%'],
                         scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
                         maxmin: true,
+                        end: function () {
+                            window.location.reload();
+                        },
                         content: 'save_add.jsp'
                     });
                     break;
@@ -167,6 +165,19 @@
                 })
             }
         });
+
+
+        //查询作用
+        $("#select").click(function (){
+            table.reload("saList",{
+                where: { //设定异步数据接口的额外参数，任意设
+                    sName: $("#selectSName").val()
+                }
+                ,page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        })
     });
 </script>
 </body>
