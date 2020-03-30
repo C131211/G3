@@ -95,10 +95,10 @@
                 , {field: 'sExplain', title: '仓库说明', }
                 , {
                     field: 'sStatus', title: '仓库状态', width: 90, templet: function (d) {
-                        if (d == 0) {
-                            return d = "正常"
-                        } else {
-                            return d = "锁定"
+                        if(d.sStatus==0){
+                            return d.sStatus="正常"
+                        }else {
+                            return d.sStatus="锁定"
                         }
                     }
                 }

@@ -91,10 +91,10 @@
                 , {field: 'rExplain', title: '角色说明', }
                 , {
                     field: 'rStatus', title: '角色状态', templet: function (d) {
-                        if (d == 0) {
-                            return d = "正常"
-                        } else {
-                            return d = "锁定"
+                        if(r.uStatus==0){
+                            return r.uStatus="正常"
+                        }else {
+                            return r.uStatus="锁定"
                         }
                     }
                 }

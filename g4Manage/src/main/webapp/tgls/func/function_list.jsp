@@ -91,10 +91,10 @@
                 , {field: 'fExplain', title: '功能说明', }
                 , {
                     field: 'fStatus', title: '功能状态', width: 90, templet: function (d) {
-                        if (d == 0) {
-                            return d = "正常"
-                        } else {
-                            return d = "锁定"
+                        if(d.fStatus==0){
+                            return d.fStatus="正常"
+                        }else {
+                            return d.fStatus="锁定"
                         }
                     }
                 }

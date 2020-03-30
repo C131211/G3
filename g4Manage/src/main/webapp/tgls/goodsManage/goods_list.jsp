@@ -99,10 +99,10 @@
                 , {field: 'sID', title: '存放仓库', width: 90}
                 , {
                     field: 'gStatus', title: '商品状态', width: 90, templet: function (d) {
-                        if (d == 0) {
-                            return d = "正常"
-                        } else {
-                            return d = "缺货"
+                        if(g.uStatus==0){
+                            return g.uStatus="正常"
+                        }else {
+                            return g.uStatus="缺货"
                         }
                     }
                 }
