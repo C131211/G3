@@ -94,7 +94,7 @@
 			form.on('submit(submitBut)', function (data) {
 				console.log($('#updateSave').serialize());
 				$.ajax({
-					url: "/updateUser", //仓库表更新数据接口
+					url: "/setSave", //仓库表更新数据接口
 					dataType: "json",
 					type: "POST",
 					data: $('#updateSave').serialize(),
@@ -119,7 +119,7 @@
 			checkLogin(${sessionScope.result.data.sID});
 			//请求该id的用户数据
 			$.ajax({
-				url: "/selUserById", //仓库表更新数据接口
+				url: "/editSave", //仓库表更新数据接口
 				dataType: "json",
 				type: "POST",
 				data: {sID:"${requestScope.sID}"},

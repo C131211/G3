@@ -35,7 +35,7 @@
     <form id="addSave" class="layui-form" action="">
         <div class="layui-form-item">
             <div class="layui-form-item">
-                <label class="layui-form-label">仓库地址</label>
+                <label class="layui-form-label">仓库名称</label>
                 <div class="layui-input-block">
                     <input type="text" name="sName" required lay-verify="required" autocomplete="off" class="layui-input">
                 </div>

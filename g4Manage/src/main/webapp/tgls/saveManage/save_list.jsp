@@ -79,7 +79,7 @@
         var table = layui.table;
         table.render({
             elem: '#saList'   //表格ID
-            , url: '/userList' //仓库表数据接口
+            , url: '/getAllSave' //仓库表数据接口
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , page: true     //开启分页
             ,request: {
@@ -107,7 +107,7 @@
                         }
                     }
                 }
-                , {field: 'right', title: '具体仓库货物', toolbar: '#LookbarDemo', width: 144}
+                , {field: 'goods', title: '查看仓库货物详情', toolbar: '#LookbarDemo', width: 144}
                 , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
             ]]
         });
@@ -138,10 +138,10 @@
             else if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     $.ajax({
-                        url: "/userDelById",//添加仓库
+                        url: "/delSave",//添加仓库
                         type: "POST",
                         dataType: "json",
-                        data: {uID:data.uID},
+                        data: {sID:data.sID},
                         success: function (data) {
                             if (data.status == 200) {
                                 //接收到成功的提示
@@ -163,7 +163,7 @@
                     end: function () {
                         window.location.reload();
                     },
-                    content: '/PageOperation?id='+data.sId+'&pageType=saveEdit'
+                    content: '/PageOperation?id='+data.sID+'&pageType=editSave'
                 })
             }
         });
