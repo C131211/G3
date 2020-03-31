@@ -27,11 +27,7 @@ public class PageController {
             }else if (pageType.equals("saveEdit")){
                 req.setAttribute("sID",id);
                 return "/tgls/saveManage/save_update.jsp";
-            }else if (pageType.equals("goodDetails")){
-                req.setAttribute("gid",id);
-                return "";
-            }
-            else {
+            } else {
                 return "/tgls/error/error_canshu.jsp";
             }
         }

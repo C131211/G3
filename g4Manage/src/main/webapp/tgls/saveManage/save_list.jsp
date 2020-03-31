@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css"  media="all">
     <%--引入js--%>
     <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
+    <%--引入时间格式转换--%>
+    <script src="/js/TimeFormat.js" charset="utf-8"></script>
 
     <style>
         .layui-table img {
@@ -102,7 +104,7 @@
                         }
                     }
                 }
-                , {field: 'goods', title: '查看仓库货物详情', toolbar: '#LookbarDemo', width: 144}
+                , {field: 'good', title: '查看仓库货物详情', toolbar: '#LookbarDemo', width: 144}
                 , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
             ]]
         });
@@ -128,9 +130,21 @@
         //监听行工具事件
         table.on('tool(sTools)', function (obj) {
             var data = obj.data;
+            var htmlStr = "<table class='layui-table'> <colgroup> <col width='150'> <col width='200'> <col> </colgroup> <thead> <tr> <th>货物名</th> <th>货物数量</th><th>进货价</th><th>出货价</th><th>商品描述</th><th>进仓日期</th> <th>储存仓库号</th><th>货物状态</th> </tr> </thead> <tbody> ";
+            layui.each(data.good, function (index, item) {
+                if(item.gStatus=='0'){
+                    item.gStatus='锁定';
+                }else{
+                    item.gStatus='正常';
+                }
+                item.gSatime = Format(item.gSatime,"yyyy-MM-dd")
+                htmlStr += "<tr> <td>"+item.gName+"</td> <td>"+item.gNum+"</td> <td>"+item.gInprice+"</td> <td>"+item.gOutprice+"</td> <td>"+item.gExplain+"</td> <td>"+item.gSatime+"</td> <td>"+item.sID+"</td>  <td >"+item.gStatus+"</td> </tr>";
+            })
+            htmlStr +=  "</tbody> </table>"
             if(obj.event === 'detail') {
-                layer.alert(JSON.stringify(data), {
-                    title: '货物数据：'
+                layer.open({
+                    type: 1,
+                    content:htmlStr
                 });
             }
             else if(obj.event === 'del'){
