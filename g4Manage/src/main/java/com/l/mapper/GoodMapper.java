@@ -13,5 +13,12 @@ public interface GoodMapper {
      */
     Good selGoodById(String gID);
 
+    /**
+     * 增加货物
+     * @param good
+     * @return
+     */
+    int insGood(Good good);
+
 
 }

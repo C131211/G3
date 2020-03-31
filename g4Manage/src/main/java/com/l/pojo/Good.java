@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class Good {
 
-    private int gID;
+    private String gID;
     private String gName;
     private int gNum;
     private int gInprice;
@@ -36,11 +36,11 @@ public class Good {
     public Good() {
     }
 
-    public int getgID() {
+    public String getgID() {
         return gID;
     }
 
-    public void setgID(int gID) {
+    public void setgID(String gID) {
         this.gID = gID;
     }
 

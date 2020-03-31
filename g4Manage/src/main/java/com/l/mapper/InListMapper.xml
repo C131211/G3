@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+
+<mapper namespace="com.l.mapper.InListMapper">
+        <insert id="insInList" parameterType="com.l.pojo.InList">
+                insert into inlist (ILID,gID,ILprice,ILNum,ILTotal,ILDate,ILFrom,ILBy,ILComfirm,sID,ILStatus,goodName)
+                 VALUES (#{ILID},#{gID},#{ILprice},#{ILNum},#{ILTotal},#{ILDate},#{ILFrom},#{ILBy},#{ILComfirm},#{sID},#{ILStatus},#{goodName})
+        </insert>
+
+</mapper>
