@@ -130,7 +130,25 @@
         //监听行工具事件
         table.on('tool(sTools)', function (obj) {
             var data = obj.data;
-            var htmlStr = "<table class='layui-table'> <colgroup> <col width='150'> <col width='200'> <col> </colgroup> <thead> <tr> <th>货物名</th> <th>货物数量</th><th>进货价</th><th>出货价</th><th>商品描述</th><th>进仓日期</th> <th>储存仓库号</th><th>货物状态</th> </tr> </thead> <tbody> ";
+            var htmlStr =
+                "<div class='cBody'>" +
+                "<table class='layui-table'> " +
+                "<colgroup> <col width='150'> <col width='200'> <col> </colgroup>" +
+                "<thead> " +
+                "<tr> " +
+                "<th>货物名</th> " +
+                "<th>货物数量</th>" +
+                "<th>进货价</th>" +
+                "<th>出货价</th><" +
+                "th>商品描述</th>" +
+                "<th>进仓日期</th>" +
+                " <th>储存仓库号</th>" +
+                "<th>货物状态</th>" +
+                " </tr>" +
+                " </thead>" +
+                "<tbody> " +
+                "</table>" +
+                "</div>";
             layui.each(data.good, function (index, item) {
                 if(item.gStatus=='0'){
                     item.gStatus='锁定';
@@ -143,7 +161,11 @@
             htmlStr +=  "</tbody> </table>"
             if(obj.event === 'detail') {
                 layer.open({
+                    title: "详细仓库货物",
                     type: 1,
+                    area: ['70%', '60%'],
+                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                    maxmin: true,
                     content:htmlStr
                 });
             }
