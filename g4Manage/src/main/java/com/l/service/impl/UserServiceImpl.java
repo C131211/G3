@@ -179,4 +179,18 @@ public class UserServiceImpl implements UserService {
             return result;
         }
     }
+
+    @Override
+    public GResult selUserByRid() {
+        GResult result = new GResult();
+        List<User> list = userMapper.selUserByRid();
+        if (list!=null && list.size()>0){
+            result.setMsg("OK");
+            result.setStatus(200);
+            result.setData(list);
+        }else {
+            result.setMsg("没有合符要求的用户");
+        }
+        return result;
+    }
 }

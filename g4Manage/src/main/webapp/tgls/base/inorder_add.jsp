@@ -288,6 +288,75 @@
             return false;
         });
     })
+    $(function () {
+        //获取下拉框数据
+        $.ajax({
+            url: "/getAllGoodList",
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                if (data.status == 200) {
+                    //接收到成功的提示
+                    for(var i=0;i<data.data.length;i++){
+                        var option = $("<option />");
+                        option.html(data.data[i].goodName);
+                        option.val(data.data[i].goodName);
+                        $("#select_goodName").append(option);
+                    }
+
+                } else {
+                    alert(data.msg);
+                }
+            }
+        })
+
+        //仓库选择
+        $.ajax({
+            url: "/getSaveName",
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                if (data.status == 200) {
+                    //接收到成功的提示
+                    for(var i=0;i<data.data.length;i++){
+                        var option = $("<option />");
+                        option.html(data.data[i].sName);
+                        option.val(data.data[i].sID);
+                        $("#select_sID").append(option);
+                    }
+
+                } else {
+                    alert(data.msg);
+                }
+            }
+        })
+
+
+
+        //确认人选择
+        $.ajax({
+            url: "/getRoleUser",
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                if (data.status == 200) {
+                    //接收到成功的提示
+                    for(var i=0;i<data.data.length;i++){
+                        var option = $("<option />");
+                        option.html(data.data[i].uName);
+                        option.val(data.data[i].uName);
+                        $("#select_user").append(option);
+                    }
+                } else {
+                    alert(data.msg);
+                }
+            }
+        })
+
+
+    })
+
+
 </script>
 </body>
 </html>

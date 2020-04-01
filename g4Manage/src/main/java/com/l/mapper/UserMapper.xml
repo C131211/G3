@@ -76,5 +76,11 @@
     <delete id="delUserById" parameterType="int">
         delete from user where uID=#{0}
     </delete>
+    
+    <select id="selUserByRid" resultType="com.l.pojo.User">
+       select uID,uName from user where rID = '0' or rID='1'and uStatus = '1'
+    </select>
+    
+    
 
 </mapper>

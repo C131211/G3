@@ -69,4 +69,10 @@ public interface UserService {
      */
     GResult delUserByID(int uID);
 
+    /**
+     * 跟据rId筛选出可以确认货单的用户
+     * @return
+     */
+    GResult selUserByRid();
+
 }

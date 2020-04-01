@@ -68,5 +68,15 @@ public class GoodListController {
         return goodListService.selGoodListById(glId);
     }
 
+    /**
+     * 获取所有的货物类别
+     * @return
+     */
+    @RequestMapping("/getAllGoodList")
+    @ResponseBody
+    public GResult getAllGoodList(){
+        return goodListService.getAllGoodList();
+    }
+
 
 }

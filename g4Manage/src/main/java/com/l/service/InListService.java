@@ -13,5 +13,5 @@ public interface InListService {
      * 添加入库单
      * @return
      */
-    GResult insInList(String ILprice,String ILNum,String ILFrom,String ILBy,int sID,String goodName) throws Exception;
+    GResult insInList(String ILprice,String ILNum,String ILFrom,String ILBy,int sID,String goodName,String ILComfirm) throws Exception;
 }

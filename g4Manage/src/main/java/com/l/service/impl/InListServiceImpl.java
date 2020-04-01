@@ -7,6 +7,7 @@ import com.l.mapper.SaveMapper;
 import com.l.pojo.Good;
 import com.l.pojo.InList;
 import com.l.service.InListService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.regex.Pattern;
 /**
  * Created by c on 2020/3/31.
  */
+@Service
 public class InListServiceImpl implements InListService {
 
     @Resource
@@ -30,7 +32,7 @@ public class InListServiceImpl implements InListService {
 
 
     @Override
-    public GResult insInList(String ILprice, String ILNum, String ILFrom, String ILBy, int sID, String goodName) throws Exception {
+    public GResult insInList(String ILprice, String ILNum, String ILFrom, String ILBy, int sID, String goodName,String ILComfirm) throws Exception {
         GResult result = new GResult();
         //表达式对象
         Pattern p = Pattern.compile("[\\d.]+");
@@ -69,6 +71,9 @@ public class InListServiceImpl implements InListService {
             inList.setGoodName(goodNames[i]);
             inList.setILStatus(0);
             inList.setILBy(ILBy);
+            if (ILComfirm!=null && !ILComfirm.equals("")){
+                inList.setILComfirm(ILComfirm);
+            }
             inList.setILTotal(Integer.parseInt(ilPrices[i]) * Integer.parseInt(iLNums[i]));
             gid = UUID.randomUUID().toString();
             inList.setgID(gid);

@@ -93,4 +93,19 @@ public class GoodListServiceImpl implements GoodListService {
 
         return result;
     }
+
+
+    public GResult getAllGoodList(){
+        List<GoodList> goodLists = goodListMapper.selAllGoodList();
+        GResult result = new GResult();
+        if (goodLists!=null && goodLists.size()>0){
+            result.setMsg("OK");
+            result.setStatus(200);
+            result.setData(goodLists);
+        }else {
+            result.setMsg("获取失败");
+        }
+        return result;
+    }
+
 }

@@ -149,4 +149,14 @@ public class UserController {
         return userService.delUserByID(uID);
     }
 
+    /**
+     * 获取可以确认订单的用户
+     * @return
+     */
+    @RequestMapping("/getRoleUser")
+    @ResponseBody
+    public GResult getRoleUser(){
+        return userService.selUserByRid();
+    }
+
 }

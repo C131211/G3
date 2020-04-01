@@ -3,6 +3,7 @@ package com.l.controller;
 import com.l.commons.pojo.GResult;
 import com.l.service.InListService;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -26,9 +27,9 @@ public class InListController {
      */
     @RequestMapping("/addInList")
     @ResponseBody
-    public GResult addInList(String ILprice, String ILNum, String ILFrom, String ILBy, int sID, String goodName){
+    public GResult addInList(String ILprice, String ILNum, String ILFrom, String ILBy, int sID, String goodName,@RequestParam(defaultValue = "")String ILComfirm){
         try {
-            return inListService.insInList(ILprice, ILNum, ILFrom, ILBy, sID, goodName);
+            return inListService.insInList(ILprice, ILNum, ILFrom, ILBy, sID, goodName,ILComfirm);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

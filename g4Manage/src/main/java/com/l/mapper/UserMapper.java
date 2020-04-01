@@ -71,5 +71,11 @@ public interface UserMapper {
      */
     int delUserById(int uID);
 
+    /**
+     * 跟据rId筛选出可以确认货单的用户
+     * @return
+     */
+    List<User> selUserByRid();
+
 
 }

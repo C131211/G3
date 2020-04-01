@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface GoodListService {
     /**
-     * 查询所有的货物列表
+     * 分页查询所有的货物列表
      * @return
      */
     DataGrid selAllGoodList(int page,int rows);
@@ -43,5 +43,11 @@ public interface GoodListService {
      * @return
      */
     GResult selGoodListById(int glId);
+
+    /**
+     * 获取所有类别
+     * @return
+     */
+    GResult getAllGoodList();
 
 }
