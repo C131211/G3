@@ -59,76 +59,120 @@
 <body class="childrenBody">
 <div style="padding: 15px;" class="cBody">
 
-    <form class="layui-form" id="fromId" action="#">
+    <form class="layui-form" id="addInOrder" action="#">
 
         <fieldset class="layui-elem-field">
+            <input type="hidden" name="uName" id="uName">
 
             <div style="padding-top: 25px;" class="layui-field-box">
                 <div class="layui-form-item">
 
-                    <label class="layui-form-label">入库人</label>
+                    <label class="layui-form-label">入库仓库</label>
                     <div class="layui-input-inline" style="width: 13%">
-                        <input type="text" name="ILBy" placeholder="请输入" class="layui-input"
-                               lay-verify="required">
+                        <select class="layui-form-select" lay-verify="required" id="select_sID"></select>
                     </div>
 
-                    <label class="layui-form-label">仓库</label>
-                    <div class="layui-input-inline" style="width: 13%">
-                        <input type="text" name="sID" placeholder="请输入" class="layui-input"
-                               lay-verify="required">
-                    </div>
-
-                    <label class="layui-form-label">金额</label>
-                    <div class="layui-input-inline" style="width: 13%">
-                        <input type="text" name="ILTotal" placeholder="请输入" class="layui-input"
-                               lay-verify="required">
-                    </div>
                 </div>
 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">入库日期</label>
+
+                    <label class="layui-form-label">确认人</label>
                     <div class="layui-input-inline" style="width: 13%">
-                        <input type="text" name="ILDate" placeholder="请输入" class="layui-input"
-                               lay-verify="required">
+                        <select class="layui-form-select" lay-verify="required" id="select_user"></select>
                     </div>
 
-                    <label class="layui-form-label">制单人</label>
-                    <div class="layui-input-inline" style="width: 13%">
-                        <input type="text" name="documentmaker" placeholder="请输入" class="layui-input"
-                               lay-verify="required">
-                    </div>
-
-                    <label class="layui-form-label">供应商</label>
-                    <div class="layui-input-inline" style="width: 13%">
-                        <input type="text" name="ILFrom" placeholder="请输入" class="layui-input"
-                               lay-verify="required">
-                    </div>
                 </div>
             </div>
         </fieldset>
-
-        <script type="text/html" id="selectTool">
-            <select name="selectDemo" lay-filter="selectDemo" lay-search>
-                <option value="">请选择或输入要输入的</option>
-                {{#  layui.each(${selectByExample}, function(index, item){ }}
-                <option>{{ item.goodName }}</option>
-                {{# }); }}
-            </select>
-        </script>
-        <script type="text/html" id="toolbarDemo">
-            <div class="layui-btn-container">
-                <button id="addTable" class="layui-btn layui-btn-sm layui-btn-normal" lay-event="add">添加行</button>
+        <div class="layui-form">
+            <div class="layui-btn">
+                <div class="btn" onclick="add_line()">添加</div>
             </div>
-        </script>
-        <script type="text/html" id="bar">
-            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-        </script>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <td class='td_ID' width="50px">
+                        序号
+                    </td>
+                    <td class='td_goodName'>
+                        商品名字
+                    </td>
+                    <td class='td_ILNum'width="100px">
+                        数量
+                    </td>
+                    <td class='td_ILprice' width="100px">
+                        单价
+                    </td>
+                    <td class='td_ILTotal'>
+                        小计
+                    </td>
+                    <td class='td_ILFrom'>
+                        供货商
+                    </td>
+                    <td class='td_operation'>
+                        操作
+                    </td>
+                </tr>
+                </thead>
+                <tbody id="content"></tbody>
 
-        <table id="demo" lay-filter="tableFilter"></table>
-        <div class="layui-form-item" style="margin-top: 30px;text-align: center;">
-            <button class="layui-btn" lay-submit="" lay-filter="*">保存</button>
-            <a href="$(contextPath)/storage/toList" class="layui-btn layui-btn-primary">返回</a>
+            </table>
         </div>
+
+        <script>
+            function add_line() {
+                max_line_num = $("#content tr:last-child").children("td").html();
+                if (max_line_num == null) {
+                    max_line_num = 1;
+                }
+                else {
+                    max_line_num = parseInt(max_line_num);
+                    max_line_num += 1;
+                }
+                $('#content').append(
+                    "<tr id='line" + max_line_num + "'>" +
+                    "<td class='td_ID'>" + max_line_num + "</td>" +
+                    "<td class='td_goodName'><select class='layui-form-select' lay-verify='required' id='select_goodName' " + max_line_num + "'></select></td>" +
+                    "<td class='td_ILNum'><input type='text' class='layui-input' name='ILNum' lay-verify='required' style='width: 100px' " + max_line_num + "'></input></td>" +
+                    "<td class=td_ILprice'><input type='text' class='layui-input' name='ILprice' lay-verify='required' style='width: 100px' " + max_line_num + "'></input></td>" +
+                    "<td class=td_ILTotal'><input type='text' class='layui-input' name='ILTotal' lay-verify='required' " + max_line_num + "'></input></td>" +
+                    "<td class=td_ILFrom'><input type='text' class='layui-input' name='ILFrom' lay-verify='required' " + max_line_num + "'></input></td>" +
+                    "<td class='td_oparation'>" +
+                    "<botton class='layui-btn' onclick='remove_line(this);'>删除</botton> " + "</td>" +
+                    "</td>");
+            }
+            function remove_line(index) {
+                if (index != null) {
+                    currentStep = $(index).parent().parent().find("td:first-child").html();
+                }
+                if (currentStep == 0) {
+                    alert('请选择一项!');
+                    return false;
+                }
+                if (confirm("确定要删除改记录吗？")) {
+                    $("#content tr").each(function () {
+                        var seq = parseInt($(this).children("td").html());
+                        if (seq == currentStep) { $(this).remove(); }
+                        if (seq > currentStep) { $(this).children("td").each(function (i) { if (i == 0) $(this).html(seq - 1); }); }
+                    });
+                }
+            }
+        </script>
+                <script type="text/html" id="toolbarDemo">
+                    <div class="layui-btn-container">
+                        <button id="addTable" class="layui-btn layui-btn-sm layui-btn-normal" lay-event="add">添加行
+                        </button>
+                    </div>
+                </script>
+                <script type="text/html" id="bar">
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                </script>
+
+                <table id="demo" lay-filter="tableFilter"></table>
+                <div class="layui-form-item" style="margin-top: 30px;text-align: center;">
+                    <button class="layui-btn" lay-submit="" lay-filter="*">提交</button>
+                    <a href="$(contextPath)/storage/toList" class="layui-btn layui-btn-primary">返回</a>
+                </div>
     </form>
 </div>
 <script type="text/javascript"></script>
@@ -136,93 +180,33 @@
     layui.use(['laydate', 'table', 'form', 'jquery'], function () {
         var table = layui.table,
             form = layui.form,
-            laydate = layui.laydate,
             $ = layui.jquery;
 
-        laydate.render({
-            elem: '#date'//指定元素
-        });
-
-        form.on('select(selectDemo)', function (data) {
-            var elem = data.othis.parents('tr');
-            var dataindex = elem.attr("data-index");
-            $.each(tabledata, function (index, value) {
-                if (value.LAY_TABLE_INDEX == dataindex) {
-                    value.goodName = data.value;
-                }
-            });
-
-            if (data.value) ($.ajax({
-                url: "${contextPath}/storage/toSelect",
-                async: true,
-                type: "post",
-                data: {"goodName": data.value},
-                success: function (data) {
-                    if (typeof (data) == "string") {
-                        data = JSON.parse(data)
-                    }
-                    elem.find("td[data-field='goodName']").children().html(data.data.goodName);
-                    elem.find("td[data-field='ILprice']").children().html(data.data.ILprice);
-
-                    $.each(tabledata, function (index, value) {
-                        if (value.LAY_TABLE_INDEX == dataindex) {
-                            value.goodName = data.data.goodName;
-                            value.ILprice = data.data.ILprice;
-                        }
-                    });
-                }
-            }))
-        })
         var tableIns = table.render({
             elem: '#demo'
             , toolbar: '#toolbarDemo'
             , defaultToolbar: []
             , limit: 100
+            , method: 'post'//传输方式
             , cols: [[
-                {field: 'goodName', tit1e: '商品名称', templet: '#selectTool'}
-                , {field: 'ILNum', tit1e: '数量', edit: 'text'}
-                , {field: 'ILprice', tit1e: '入库价', edit: 'text'}
-                , {field: 'subtotal', tit1e: '小计'}
-                , {field: '操作', align: 'center', toolbar: '#bar'}
+                {field: 'goodName', title: '商品名称', templet: '#selectTool'}
+                , {field: 'ILNum', title: '数量', edit: 'text'}
+                , {field: 'ILprice', title: '入库价', edit: 'text'}
+                , {field: 'ILTotal', title: '小计'}
+                , {field: 'ILFrom', title: '供货商',edit:'text'}
+                , {field: 'right', title: '操作', toolbar: '#bar'}
             ]]
             , data: [{
                 "goodName": ""
                 , "ILNum": ""
                 , "ILprice": ""
-                , "subtotal": ""
+                , "ILTotal": ""
+                , "ILFrom": ""
             }]
 
             , done: function (res, curr, count) {
                 tabledata = res.data;
-                $('.layui-form-select').find('input').unbind("blur");
 
-                $('tr').each(function (e) {
-                    var $cr = $(this);
-                    var dataindex = $cr.attr("data-index");
-
-                    $.each(tabledata, function (index, value) {
-
-
-                        if (value.LAY_TABLE_INDEX == dataindex) {
-                            $cr.find('input').val(value.goodName);
-                        }
-
-                    });
-
-                });
-
-                //输入框的值改变时触发
-                $('.layui-form-select').find('input').on("change", function (e) {
-                    var $cr = $(e.target);
-                    console.log(scr);
-                    var dataindex = $cr.parents('tr').attr("data-index");
-                    var selectdata = $cr.val();
-                    $.each(tabledata, function (index, value) {
-                        if (value.LAY_TABLE_INDEX == dataindex) {
-                            value.goodName = selectdata;
-                        }
-                    });
-                });
                 var numberelem = $('.layui-table-main').find("td[data-field='ILNum']");
                 var unitpriceelem = $('.layui-table-main').find("td[data-field='ILprice']");
                 numberelem.on("input", function (e) {
@@ -230,10 +214,10 @@
                     var dataindex = $cr.parents('tr').attr("data-index");
                     var unitprice = $cr.parents('tr').find("td[data-field='ILprice']").children().html();
                     var sub = unitprice * e.target.value;
-                    $cr.parents('tr').find("td[data-field='subtotal']").children().html(sub);
+                    $cr.parents('tr').find("td[data-field='ILTotal']").children().html(sub);
                     $.each(tabledata, function (index, value) {
                         if (value.LAY_TABLE_INDEX == dataindex) {
-                            value.subtotal = sub;
+                            value.ILTotal = sub;
                         }
                     });
                 });
@@ -243,10 +227,10 @@
                     var dataindex = $cr.parents('tr').attr("data-index");
                     var number = $cr.parents('tr').find("td[data-field='ILNum']").children().html();
                     var sub = number * e.target.value;
-                    $cr.parents('tr').find("td[data-field='subtotal']").children().html(sub);
+                    $cr.parents('tr').find("td[data-field='ILTotal']").children().html(sub);
                     $.each(tabledata, function (index, value) {
                         if (value.LAY_TABLE_INDEX == dataindex) {
-                            value.subtotal = sub;
+                            value.ILTotal = sub;
                         }
                     });
                 });
@@ -269,7 +253,8 @@
                     "goodName": ""
                     , "ILNum": ""
                     , "ILprice": ""
-                    , "subtotal": ""
+                    , "ILTotal": ""
+                    , "ILFrom": ""
                 })
                 table.reload('demo', {
                     data: tabledata
@@ -278,26 +263,28 @@
             ;
         });
 
+        function addInOrder() {
+            $.ajax({
+                url: "/addInList",//添加用户
+                type: "POST",
+                dataType: "json",
+                data: $('#addInOrder').serialize(),
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        layer.msg("添加成功");
+                        window.location.reload();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+
+            })
+        }
 
         //保存按钮
         form.on('submit(*)', function (data) {
-            $.ajax({
-                url: "/addInList",//上传的URL
-                async: true,
-                type: "post",
-                data: $(data.form).serialize() + '&tabledata=' + JSON.stringify(tabledata),
-                success: function (data) {
-                    if (typeof (data) == 'string') {
-                        data = JSON.parse(data)
-                    }
-                    if (data.code == 0) {
-                        layer.msg(data.msg);
-                        windowlocation.href = "${contextPath}/storage/toList";
-                    } else {
-                        layer.msg(data.msg);
-                    }
-                }
-            });
+            addInOrder();
             return false;
         });
     })
