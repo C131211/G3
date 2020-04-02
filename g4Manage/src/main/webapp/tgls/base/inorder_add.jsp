@@ -97,7 +97,7 @@
                     <td class='td_goodName'>
                         商品名字
                     </td>
-                    <td class='td_ILNum'width="100px">
+                    <td class='td_ILNum' width="100px">
                         数量
                     </td>
                     <td class='td_ILprice' width="100px">
@@ -124,8 +124,7 @@
                 max_line_num = $("#content tr:last-child").children("td").html();
                 if (max_line_num == null) {
                     max_line_num = 1;
-                }
-                else {
+                } else {
                     max_line_num = parseInt(max_line_num);
                     max_line_num += 1;
                 }
@@ -141,6 +140,7 @@
                     "<botton class='layui-btn' onclick='remove_line(this);'>删除</botton> " + "</td>" +
                     "</td>");
             }
+
             function remove_line(index) {
                 if (index != null) {
                     currentStep = $(index).parent().parent().find("td:first-child").html();
@@ -152,27 +152,44 @@
                 if (confirm("确定要删除改记录吗？")) {
                     $("#content tr").each(function () {
                         var seq = parseInt($(this).children("td").html());
-                        if (seq == currentStep) { $(this).remove(); }
-                        if (seq > currentStep) { $(this).children("td").each(function (i) { if (i == 0) $(this).html(seq - 1); }); }
+                        if (seq == currentStep) {
+                            $(this).remove();
+                        }
+                        if (seq > currentStep) {
+                            $(this).children("td").each(function (i) {
+                                if (i == 0) $(this).html(seq - 1);
+                            });
+                        }
                     });
                 }
             }
-        </script>
-                <script type="text/html" id="toolbarDemo">
-                    <div class="layui-btn-container">
-                        <button id="addTable" class="layui-btn layui-btn-sm layui-btn-normal" lay-event="add">添加行
-                        </button>
-                    </div>
-                </script>
-                <script type="text/html" id="bar">
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                </script>
 
-                <table id="demo" lay-filter="tableFilter"></table>
-                <div class="layui-form-item" style="margin-top: 30px;text-align: center;">
-                    <button class="layui-btn" lay-submit="" lay-filter="*">提交</button>
-                    <a href="$(contextPath)/storage/toList" class="layui-btn layui-btn-primary">返回</a>
-                </div>
+        </script>
+
+        <script type="text/html" id="selectTool">
+            <select name="selectDemo" lay-filter="selectDemo" lay-search>
+                <option value="">请选择或输入要输入的</option>
+                {{# layui.each(${selectByExample}, function(index, item){}}
+                <option>{{ item.goodName }}</option>
+                {{# });}}
+            </select>
+        </script>
+
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <button id="addTable" class="layui-btn layui-btn-sm layui-btn-normal" lay-event="add">添加行
+                </button>
+            </div>
+        </script>
+        <script type="text/html" id="bar">
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        </script>
+
+        <table id="demo" lay-filter="tableFilter"></table>
+        <div class="layui-form-item" style="margin-top: 30px;text-align: center;">
+            <button class="layui-btn" lay-submit="" lay-filter="*">提交</button>
+            <a href="$(contextPath)/storage/toList" class="layui-btn layui-btn-primary">返回</a>
+        </div>
     </form>
 </div>
 <script type="text/javascript"></script>
@@ -180,7 +197,49 @@
     layui.use(['laydate', 'table', 'form', 'jquery'], function () {
         var table = layui.table,
             form = layui.form,
+            laydate = layui.laydate,
             $ = layui.jquery;
+
+        laydate.render({
+            elem: '#date'//指定元素
+        });
+
+        form.on('select(selectDemo)', function (data) {
+            var elem = data.othis.parents('tr');
+            var dataindex = elem.attr("data-index");
+            $.each(tabledata, function (index, value) {
+                if (value.LAY_TABLE_INDEX == dataindex) {
+                    value.goodName = data.value;
+                }
+            });
+
+            if (data.value) ($.ajax({
+                url: "/getAllGoodList",
+                async: true,
+                type: "post",
+                data: {"goodName": data.value},
+                success: function (data) {
+                    if (typeof (data) == "string") {
+                        data = JSON.parse(data)
+                    }
+                    elem.find("td[data-field='goodName']").children().html(data.data.goodName);
+                    elem.find("td[data-field='ILNum']").children().html(data.data.ILNum);
+                    elem.find("td[data-field='ILprice']").children().html(data.data.ILprice);
+                    elem.find("td[data-field='ILTotal']").children().html(data.data.ILTotal);
+                    elem.find("td[data-field='ILFrom']").children().html(data.data.ILFrom);
+
+                    $.each(tabledata, function (index, value) {
+                        if (value.LAY_TABLE_INDEX == dataindex) {
+                            value.goodName = data.data.goodName;
+                            value.ILNum = data.data.ILNum;
+                            value.ILprice = data.data.ILprice;
+                            value.ILTotal = data.data.ILTotal;
+                            value.ILFrom = data.data.ILFrom;
+                        }
+                    });
+                }
+            }))
+        });
 
         var tableIns = table.render({
             elem: '#demo'
@@ -193,7 +252,7 @@
                 , {field: 'ILNum', title: '数量', edit: 'text'}
                 , {field: 'ILprice', title: '入库价', edit: 'text'}
                 , {field: 'ILTotal', title: '小计'}
-                , {field: 'ILFrom', title: '供货商',edit:'text'}
+                , {field: 'ILFrom', title: '供货商', edit: 'text'}
                 , {field: 'right', title: '操作', toolbar: '#bar'}
             ]]
             , data: [{
@@ -206,6 +265,35 @@
 
             , done: function (res, curr, count) {
                 tabledata = res.data;
+                $('.layui-form-select').find('input').unbind("blur");
+
+                $('tr').each(function (e) {
+                    var $cr = $(this);
+                    var dataindex = $cr.attr("data-index");
+
+                    $.each(tabledata, function (index, value) {
+
+
+                        if (value.LAY_TABLE_INDEX == dataindex) {
+                            $cr.find('input').val(value.goodName);
+                        }
+
+                    });
+
+                });
+
+                //输入框的值改变时触发
+                $('.layui-form-select').find('input').on("change", function (e) {
+                    var $cr = $(e.target);
+                    console.log(scr);
+                    var dataindex = $cr.parents('tr').attr("data-index");
+                    var selectdata = $cr.val();
+                    $.each(tabledata, function (index, value) {
+                        if (value.LAY_TABLE_INDEX == dataindex) {
+                            value.goodName = selectdata;
+                        }
+                    });
+                });
 
                 var numberelem = $('.layui-table-main').find("td[data-field='ILNum']");
                 var unitpriceelem = $('.layui-table-main').find("td[data-field='ILprice']");
@@ -288,6 +376,8 @@
             return false;
         });
     })
+
+
     $(function () {
         //获取下拉框数据
         $.ajax({
@@ -297,7 +387,7 @@
             success: function (data) {
                 if (data.status == 200) {
                     //接收到成功的提示
-                    for(var i=0;i<data.data.length;i++){
+                    for (var i = 0; i < data.data.length; i++) {
                         var option = $("<option />");
                         option.html(data.data[i].goodName);
                         option.val(data.data[i].goodName);
@@ -318,7 +408,7 @@
             success: function (data) {
                 if (data.status == 200) {
                     //接收到成功的提示
-                    for(var i=0;i<data.data.length;i++){
+                    for (var i = 0; i < data.data.length; i++) {
                         var option = $("<option />");
                         option.html(data.data[i].sName);
                         option.val(data.data[i].sID);
@@ -332,7 +422,6 @@
         })
 
 
-
         //确认人选择
         $.ajax({
             url: "/getRoleUser",
@@ -341,7 +430,7 @@
             success: function (data) {
                 if (data.status == 200) {
                     //接收到成功的提示
-                    for(var i=0;i<data.data.length;i++){
+                    for (var i = 0; i < data.data.length; i++) {
                         var option = $("<option />");
                         option.html(data.data[i].uName);
                         option.val(data.data[i].uName);
@@ -355,8 +444,9 @@
 
 
     })
-
+</script>
 
 </script>
-</body>
-</html>
+<
+/body>
+< /html>
