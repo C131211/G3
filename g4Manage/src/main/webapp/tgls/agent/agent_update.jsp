@@ -24,7 +24,7 @@
     <!-- 公共样式 结束 -->
 </head>
 
-<body>
+<body class="cBody">
 <div class="cBody">
     <form id="updateAgent" class="layui-form" enctype="multipart/form-data">
         <input type="hidden" name="uID" id="uID" />

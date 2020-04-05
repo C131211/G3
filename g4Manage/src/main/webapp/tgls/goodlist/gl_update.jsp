@@ -24,8 +24,8 @@
 
 </head>
 
-<body>
-<div class="cBody">
+<body class="cBody">
+<div>
     <form id="updateGoodList" class="layui-form" enctype="multipart/form-data">
         <input type="hidden" name="glId" id="glId">
         <div class="layui-form-item">

@@ -25,8 +25,8 @@
 
 </head>
 
-<body>
-<div class="cBody">
+<body class="cBody">
+<div>
     <form id="updateRole" class="layui-form" enctype="multipart/form-data">
         <input type="hidden" name="rID" id="rID">
         <div class="layui-form-item">

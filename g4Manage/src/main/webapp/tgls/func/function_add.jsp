@@ -29,8 +29,8 @@
 
 </head>
 
-<body>
-<div class="cBody">
+<body class="cBody">
+<div>
     <form id="addFunction" class="layui-form" action="">
         <div class="layui-form-item">
             <label class="layui-form-label">功能名</label>

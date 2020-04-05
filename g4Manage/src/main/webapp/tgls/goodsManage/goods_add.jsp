@@ -30,8 +30,8 @@
 
 </head>
 
-<body>
-<div class="cBody">
+<body class="cBody">
+<div>
     <form id="addGood" class="layui-form" action="">
         <div class="layui-form-item">
             <label class="layui-form-label">商品名称</label>

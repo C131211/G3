@@ -30,8 +30,8 @@
 
 </head>
 
-<body>
-<div class="cBody">
+<body class="cBody">
+<div>
     <form id="addSave" class="layui-form" action="">
         <div class="layui-form-item">
             <div class="layui-form-item">

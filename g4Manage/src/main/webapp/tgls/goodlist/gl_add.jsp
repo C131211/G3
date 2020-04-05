@@ -30,8 +30,8 @@
 
 </head>
 
-<body>
-<div class="cBody">
+<body class="cBody">
+<div>
     <form id="addGoodList" class="layui-form" action="">
         <div class="layui-form-item">
             <label class="layui-form-label">货物类别名称</label>

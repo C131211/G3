@@ -25,8 +25,8 @@
 
 </head>
 
-<body>
-<div class="cBody">
+<body class="cBody">
+<div>
 	<form id="updateSave" class="layui-form" enctype="multipart/form-data">
 		<input type="hidden" name="sID" id="sID">
 		<div class="layui-form-item">

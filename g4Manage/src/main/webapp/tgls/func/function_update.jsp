@@ -23,8 +23,8 @@
     <!-- 公共样式 结束 -->
 </head>
 
-<body>
-<div class="cBody">
+<body class="cBody">
+<div>
     <form id="updateFunction" class="layui-form" enctype="multipart/form-data">
         <input type="hidden" name="fID" id="fID">
         <div class="layui-form-item">

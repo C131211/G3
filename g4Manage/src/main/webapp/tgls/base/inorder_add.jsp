@@ -42,12 +42,13 @@
         <div class="layui-form-item">
             <button class="layui-btn layui-btn-normal layui-btn-radius" type="button" onclick="add_tab_line()">添加
             </button>
-            <input  class="layui-btn layui-btn-radius" type="submit" style="float: right" lay-submit lay-filter="submitBut" value="立即提交" />
+            <input class="layui-btn layui-btn-radius" type="submit" style="float: right" lay-submit
+                   lay-filter="submitBut" value="立即提交"/>
         </div>
         <fieldset class="layui-elem-field">
             <div class="layui-form-item" style="padding-top: 25px">
                 <div class="layui-inline">
-                    <label class="layui-form-label">入库库号</label>
+                    <label class="layui-form-label">入库库名</label>
                     <div class="layui-input-inline" style="width: 25%">
                         <select name="sID" id="sID" class="layui-form-select"></select>
                     </div>
@@ -60,46 +61,49 @@
                     </div>
                 </div>
             </div>
-        </fieldset>
-        <div id="test">
-            <div class="layui-form-item">
-                <div class="layui-inline" id="formData">
-                    <label class="layui-form-label">货物名称</label>
-                    <div class="layui-input-inline" style="width: 13%">
-                        <select name="goodName" lay-filter="aihao" class="layui-form-select">
-                            <c:forEach items="${GoodListResult.data}" var="item">
-                                <option>${item.goodName}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
+            <div id="test">
+                <div class="layui-form-item">
                     <div class="layui-inline">
-                        <label class="layui-form-label">入货价</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="ILprice" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <label class="layui-form-label">货物名称</label>
+                        <div class="layui-input-inline" style="width: 13%">
+                            <select name="goodName" lay-filter="ILSelect" class="layui-form-select" lay-verify="required">
+                                <c:forEach items="${GoodListResult.data}" var="item">
+                                    <option>${item.goodName}</option>
+                                </c:forEach>
+                            </select>
                         </div>
-                    </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label">数量</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="ILNum" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">入货价</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="ILprice" placeholder="请输入" autocomplete="off"
+                                       class="layui-input" lay-verify="required">
+                            </div>
                         </div>
-                    </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label">供应商</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="ILFrom" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">数量</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="ILNum" placeholder="请输入" autocomplete="off"
+                                       class="layui-input" lay-verify="required">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">供应商</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="ILFrom" placeholder="请输入" autocomplete="off"
+                                       class="layui-input" lay-verify="required">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </fieldset>
     </blockquote>
 </form>
 
 <script>
     //刷新表单
-    function reloadForm(){
-        layui.use('form', function(){
+    function reloadForm() {
+        layui.use('form', function () {
             var form = layui.form;
             form.render();
         });
@@ -108,43 +112,43 @@
 
     //增加行
     function add_tab_line() {
-        var div = $("<div class='layui-form-item'>"+
-            "<div class='layui-inline'>"+
-            "<label class='layui-form-label'>货物名称</label>"+
-            "<div class='layui-input-inline' style='width: 13%'>"+
-            "<select name='goodName' lay-filter='aihao' class='layui-form-select'>"+
-            "  <c:forEach items='${GoodListResult.data}' var='item'>" +
-            "                                <option>${item.goodName}</option>" +
-            "                   </c:forEach>"+
-            "</select>"+
-            "</div>"+
-            "<div class='layui-inline'>"+
-            "<label class='layui-form-label'>入货价</label>"+
-            "<div class='layui-input-inline'>"+
-            "<input type='text' name='ILprice' placeholder='请输入' autocomplete='off' class='layui-input'>"+
-            "</div>"+
-            "</div>"+
-            "<div class='layui-inline'>"+
-            "<label class='layui-form-label'>数量</label>"+
-            "<div class='layui-input-inline'>"+
-            "<input type='text' name='ILNum' placeholder='请输入' autocomplete='off' class='layui-input'>"+
-            "</div>"+
-            "</div>"+
-            "<div class='layui-inline'>"+
-            "<label class='layui-form-label'>供应商</label>"+
-            "<div class='layui-input-inline'>"+
-            "<input type='text' name='ILFrom' placeholder='请输入' autocomplete='off' class='layui-input'>"+
-            "</div>"+
-            "</div>"+
-            "</div>"+
+        var div = $("<div class='layui-form-item'>" +
+            "<div class='layui-inline'>" +
+            "<label class='layui-form-label'>货物名称</label>" +
+            "<div class='layui-input-inline' style='width: 13%'>" +
+            "<select name='goodName' lay-filter='ILSelect' class='layui-form-select' lay-verify='required'>" +
+            "<c:forEach items='${GoodListResult.data}' var='item'>" +
+            "<option>${item.goodName}</option>" +
+            "</c:forEach>" +
+            "</select>" +
+            "</div>" +
+            "<div class='layui-inline'>" +
+            "<label class='layui-form-label'>入货价</label>" +
+            "<div class='layui-input-inline'>" +
+            "<input type='text' name='ILprice' placeholder='请输入' autocomplete='off' class='layui-input' lay-verify='required'>" +
+            "</div>" +
+            "</div>" +
+            "<div class='layui-inline'>" +
+            "<label class='layui-form-label'>数量</label>" +
+            "<div class='layui-input-inline'>" +
+            "<input type='text' name='ILNum' placeholder='请输入' autocomplete='off' class='layui-input' lay-verify='required'>" +
+            "</div>" +
+            "</div>" +
+            "<div class='layui-inline'>" +
+            "<label class='layui-form-label'>供应商</label>" +
+            "<div class='layui-input-inline'>" +
+            "<input type='text' name='ILFrom' placeholder='请输入' autocomplete='off' class='layui-input' lay-verify='required'>" +
+            "</div>" +
+            "</div>" +
+            "</div>" +
             "</div>"
-        )
+        );
         $("#test").append(div);
         reloadForm();
     }
 
     //提交
-    function addInorder(){
+    function addInorder() {
         $.ajax({
             url: "/addInList",
             type: "POST",
@@ -173,8 +177,7 @@
             addInorder();
             return false;
         });
-    })
-
+    });
 
 
     $(function () {

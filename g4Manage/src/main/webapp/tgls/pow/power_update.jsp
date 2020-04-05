@@ -25,8 +25,8 @@
 
 </head>
 
-<body>
-<div class="cBody">
+<body class="cBody">
+<div>
     <form id="updatePower" class="layui-form" enctype="multipart/form-data">
         <input type="hidden" name="pID" id="pID">
         <div class="layui-form-item">

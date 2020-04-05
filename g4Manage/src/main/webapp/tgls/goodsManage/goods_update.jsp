@@ -24,8 +24,8 @@
 
 </head>
 
-<body>
-<div class="cBody">
+<body class="cBody">
+<div>
 	<form id="updateGoods" class="layui-form" enctype="multipart/form-data">
 		<input type="hidden" name="gID" id="gID">
 		<div class="layui-form-item">

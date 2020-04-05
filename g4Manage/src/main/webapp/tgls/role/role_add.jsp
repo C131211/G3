@@ -29,8 +29,8 @@
 
 </head>
 
-<body>
-<div class="cBody">
+<body class="cBody">
+<div>
     <form id="addRole" class="layui-form" action="">
         <div class="layui-form-item">
             <label class="layui-form-label">角色名称</label>

@@ -37,27 +37,33 @@
 
 <body>
 <div class="cBody">
-    <div class="layui-tab" lay-filter="myPage">
-        <ul class="layui-tab-title">
-            <li class="layui-this" lay-id="historyList">历史列表</li>
-            <li lay-id="todayList">今日列表</li>
-        </ul>
-        <table class="layui-hide" id="inList" lay-filter="ILTools"></table>
+        <div class="layui-tab" lay-filter="test1">
+            <ul class="layui-tab-title">
+                <li class="layui-this" lay-id="111">历史列表</li>
+                <li lay-id="222">今日列表</li>
+            </ul>
+        </div>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            <table class="layui-hide" id="inList" lay-filter="ILTools"></table>
+        </div>
+        <div class="layui-tab-item">2</div>
+    </div>
+
     </div>
 </div>
 </body>
-<script>
-    layui.use('element', function () {
+    <script>
+    layui.use('element', function(){
         var element = layui.element;
 
         //获取hash来切换选项卡，假设当前地址的hash为lay-id对应的值
         var layid = location.hash.replace(/^#test1=/, '');
-        element.tabChange('myPage', layid); //假设当前地址为：http://a.com#test1=222，那么选项卡会自动切换到“发送消息”这一项
+        element.tabChange('test1', layid); //假设当前地址为：http://a.com#test1=222，那么选项卡会自动切换到“发送消息”这一项
 
         //监听Tab切换，以改变地址hash值
-        element.on('tab(myPage)', function () {
-            location.hash = 'test1=' + this.getAttribute('lay-id');
-            console.log(this.getAttribute('lay-id'));
+        element.on('tab(test1)', function(){
+            location.hash = 'test1='+ this.getAttribute('lay-id');
         });
     });
 </script>
@@ -84,7 +90,7 @@
             , defaultToolbar: ['exports', 'print']
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'ILID', title: '入货单号', sort: true}
+                , {field: 'ILID', title: '入货单号', sort: true,event:'Details'}
                 , {field: 'ILDate', title: '入货日期', sort: true}
                 , {field: 'sID', title: '入货仓库', sort: true}
                 , {field: 'ILFrom', title: '合作商', sort: true}
@@ -141,6 +147,19 @@
                     })
                 });
             } else if (obj.event === 'edit') {
+                layer.open({
+                    title: "入货单信息修改",
+                    type: 2,
+                    area: ['70%', '60%'],
+                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                    maxmin: true,
+                    end: function () {
+                        window.location.reload();
+                    },
+                    content: '/userOperation?ILID=' + data.ILID + '&pageType=edit',
+
+                })
+            }else if (obj.event === 'Details'){
                 layer.open({
                     title: "入货单信息修改",
                     type: 2,

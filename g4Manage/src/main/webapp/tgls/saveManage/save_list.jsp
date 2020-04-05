@@ -32,8 +32,8 @@
 
 </head>
 
-<body>
-<div class="cBody">
+<body class="cBody">
+<div>
     <div class="saveList">
         <form class="layui-form" action="">
             <div class="layui-form-item">
