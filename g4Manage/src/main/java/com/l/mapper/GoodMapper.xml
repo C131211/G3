@@ -14,7 +14,7 @@
         
         <insert id="insGood" parameterType="com.l.pojo.Good">
                 insert into good (gID,gName,gNum,gInprice,gOutprice,gExplain,gSatime,sID,gStatus)
-                 VALUES(#{gID},#{gName},#{gNum},#{gInprice},#{gOutprice},#{gExplain},#{gSatime},#{sID},#{gStatus},)
+                 VALUES(#{gID},#{gName},#{gNum},#{gInprice},#{gOutprice},#{gExplain},#{gSatime},#{sID},#{gStatus})
         </insert>
 
 </mapper>

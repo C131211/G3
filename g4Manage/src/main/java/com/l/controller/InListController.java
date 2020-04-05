@@ -2,6 +2,7 @@ package com.l.controller;
 
 import com.l.commons.pojo.GResult;
 import com.l.service.InListService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,6 +12,7 @@ import javax.annotation.Resource;
 /**
  * Created by c on 2020/3/31.
  */
+@Controller
 public class InListController {
     @Resource
     private InListService inListService;

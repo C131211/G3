@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by c on 2020/3/28.
@@ -72,10 +73,14 @@ public class GoodListController {
      * 获取所有的货物类别
      * @return
      */
-    @RequestMapping("/getAllGoodList")
+        @RequestMapping("/getAllGoodList")
     @ResponseBody
-    public GResult getAllGoodList(){
-        return goodListService.getAllGoodList();
+    public GResult getAllGoodList(HttpServletRequest req){
+        HttpSession session = req.getSession();
+        GResult result = goodListService.getAllGoodList();
+        session.setAttribute("GoodListResult",result);
+        return result;
+
     }
 
 
