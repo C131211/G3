@@ -46,37 +46,37 @@
 <body>
 <div class="cBody">
     <form id="addForm" class="layui-form" enctype="multipart/form-data">
-        <input type="hidden" name="uID" value="${result.data.uID}"/>
+        <input type="hidden" name="uID" value="${sessionScope.result.data.uID}"/>
         <div class="layui-form-item">
             <label class="layui-form-label">头像</label>
-            <img id="headImg" src="/images/headImgs/${result.data.uPhoto}" width="200px" height="200px" )/>
+            <img id="headImg" src="/images/headImgs/${sessionScope.result.data.uPhoto}" width="200px" height="200px" )/>
             <input id="file" accept="image/*" name="file" style="margin-left: 10px;" type="file"/>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">工号(登录名)</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" readonly="readonly" name="uAccount" value="${result.data.uAccount}"
+                <input type="text" readonly="readonly" name="uAccount" value="${sessionScope.result.data.uAccount}"
                        readonly="readonly" required lay-verify="required" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">真实姓名</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uName" value="${result.data.uName}" required lay-verify="required"
+                <input type="text" name="uName" value="${sessionScope.result.data.uName}" required lay-verify="required"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">手机号</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uTel" value="${result.data.uTel}" required lay-verify="required"
+                <input type="text" name="uTel" value="${sessionScope.result.data.uTel}" required lay-verify="required"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">住址</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uAddr" value="${result.data.uAddr}" required lay-verify="required"
+                <input type="text" name="uAddr" value="${sessionScope.result.data.uAddr}" required lay-verify="required"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -84,14 +84,13 @@
             <label class="layui-form-label">入职时间</label>
             <div class="layui-input-inline shortInput">
                 <input type="text" readonly="readonly"
-                       value="<fmt:formatDate value="${result.data.uHiredate}" pattern="yyyy年MM月dd日" />" required
+                       value="<fmt:formatDate value="${sessionScope.result.data.uHiredate}" pattern="yyyy年MM月dd日" />" required
                        lay-verify="required" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit lay-filter="submitBut">确认修改</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
     </form>

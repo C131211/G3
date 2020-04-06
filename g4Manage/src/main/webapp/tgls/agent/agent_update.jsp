@@ -65,15 +65,9 @@
             <label class="layui-form-label">用户角色</label>
             <div class="layui-input-block shortInput">
                 <select name="rID" id="rID">
-                    <option value="0">
-                        超级管理员
-                    </option>
-                    <option value="1">
-                        仓管员
-                    </option>
-                    <option value="2">
-                        运输员
-                    </option>
+                    <option value="0">超级管理员</option>
+                    <option value="1">仓管员</option>
+                    <option value="2">运输员</option>
                 </select>
             </div>
         </div>
@@ -81,11 +75,8 @@
             <label class="layui-form-label">用户状态</label>
             <div class="layui-input-block shortInput">
                 <select name="uStatus" id="uStatus">
-                    <option value="0">
-                        正常
-                    </option>
-                    <option value="1">
-                       锁定
+                    <option value="1">正常</option>
+                    <option value="0">锁定
                     </option>
                 </select>
             </div>

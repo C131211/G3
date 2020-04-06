@@ -37,15 +37,14 @@ public class InListServiceImpl implements InListService {
         //表达式对象
         Pattern p = Pattern.compile("[\\d.]+");
         Date date = new Date();
+        String ILID = UUID.randomUUID().toString();
         int goodIndex = -1;
         String goods = "";
         List<InList> list = new ArrayList<>();
-        InList inList = new InList();
         Good good = new Good();
         good.setsID(sID);
         String gid = null;
-        inList.setILDate(date);
-        inList.setILID(UUID.randomUUID().toString());
+
         //解析参数
         String[] ilPrices = ILprice.split(",");
         String[] iLNums = ILNum.split(",");
@@ -53,6 +52,9 @@ public class InListServiceImpl implements InListService {
         String[] goodNames = goodName.split(",");
         //进货价格解析
         for (int i = 0; i < ilPrices.length; i++) {
+            InList inList = new InList();
+            inList.setILDate(date);
+            inList.setILID(ILID);
             //用正则表达式判断是数字还是字母
             Matcher m = p.matcher(ilPrices[i]);
             //如果是数字
@@ -94,7 +96,7 @@ public class InListServiceImpl implements InListService {
         int inListIndex = -1;
         for (InList inLists : list) {
            inListIndex +=  inListMapper.insInList(inLists);
-            goods += inLists.getgID();
+            goods += inLists.getgID()+",";
         }
         //写入仓库
         int i = saveMapper.updSaveGoods(sID, goods);

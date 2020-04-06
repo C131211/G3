@@ -25,7 +25,7 @@
 
 <body class="cBody">
 <div>
-    <form id="addAgent" class="layui-form" action="">
+    <form id="addAgent" class="layui-form" >
         <div class="layui-form-item">
             <label class="layui-form-label">工号（登录账号）</label>
             <div class="layui-input-inline shortInput">
@@ -63,27 +63,20 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">用户角色</label>
-            <div class="layui-input-inline shortInput">
-                <select name="rID" id="rID" required lay-verify="required">
-                    <option value=""></option>
-                    <option value="0">
-                        超级管理员
-                    </option>
-                    <option value="1">
-                        仓管员
-                    </option>
-                    <option value="2">
-                        运输员
-                    </option>
-                </select><span id="roleSpan"></span>
+            <div class="layui-input-inline shortInput"  >
+                <select name="rID" id="rID" required lay-verify="required" class="layui-form-select"  autocomplete="off">
+                    <option value="0">超级管理员</option>
+                    <option value="1">仓管员</option>
+                    <option value="2">运输员</option>
+                </select>
             </div>
             <i class="iconfont icon-huaban bt"></i>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">用户状态</label>
             <div class="layui-input-block">
-                <input type="radio" name="uStatus" value="0" title="启用" checked>
-                <input type="radio" name="uStatus" value="1" title="禁用">
+                <input type="radio" name="uStatus" value="1" title="启用" checked>
+                <input type="radio" name="uStatus" value="0" title="禁用">
             </div>
         </div>
         <div class="layui-form-item">

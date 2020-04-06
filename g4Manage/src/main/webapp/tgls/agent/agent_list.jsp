@@ -91,11 +91,11 @@
                  ,{field: 'uName', title: '员工名', width:80}
                  ,{field: 'uPwd', title: '密码', width:80}
                  ,{field: 'uTel', title: '手机号', width: 130}
-                 ,{field: 'uAddr', title: '住址', width: 250}
+                 ,{field: 'uAddr', title: '住址', width: 230}
                  ,{field: 'uHiredate', title: '入职时间', width: 150, sort: true,
                     templet:'<div>{{ Format(d.uHiredate,"yyyy-MM-dd")}}</div>'
                 }
-                 ,{field: 'rID', title: '角色ID',width: 80,templet:function(d){
+                 ,{field: 'rID', title: '角色名',width: 100,templet:function(d){
                             if(d.rID==0){
                                 return d.rID="超级管理员"
                             }else if(d.rID==1){
@@ -105,7 +105,7 @@
                              }
                         }}
                 ,{field: 'uStatus', title: '用户状态', width: 90,templet:function(d){
-                    if(d.uStatus==0){
+                    if(d.uStatus==1){
                        return d.uStatus="正常"
                     }else {
                         return d.uStatus="锁定"

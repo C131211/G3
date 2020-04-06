@@ -63,7 +63,7 @@
 <script>
     function addRole() {
         $.ajax({
-            url: "/addUser",//添加用户
+            url: "/addRole",
             type: "POST",
             dataType: "json",
             data: $('#addRole').serialize(),

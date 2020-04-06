@@ -65,7 +65,7 @@
 </script>
 <script id="toolbarDemo" type="text/html">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="addRole">增加新角色</button>
+<%--        <button class="layui-btn layui-btn-sm" lay-event="addRole">增加新角色</button>--%>
     </div>
 </script>
 <script>
@@ -73,7 +73,7 @@
         var table = layui.table;
         table.render({
             elem: '#rList'   //表格ID
-            , url: '/userList' //角色表用户接口
+            , url: '/getAllRole' //角色表用户接口
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , page: true     //开启分页
             ,request: {
@@ -86,19 +86,19 @@
             , defaultToolbar: ['exports', 'print',]
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'rID', title: '角色ID', width: 80}
-                , {field: 'rName', title: '角色名', }
-                , {field: 'rExplain', title: '角色说明', }
-                , {
+                ,{field: 'rID', title: '角色ID', width: 100, sort:'true'}
+                ,{field: 'rName', title: '角色名称',width: 150,}
+                ,{field: 'rExplain', title: '角色说明', }
+                ,{
                     field: 'rStatus', title: '角色状态', templet: function (d) {
-                        if(r.uStatus==0){
-                            return r.uStatus="正常"
+                        if(d.rStatus==0){
+                            return d.rStatus="锁定"
                         }else {
-                            return r.uStatus="锁定"
+                            return d.rStatus="正常"
                         }
                     }
                 }
-                , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
+                // , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
             ]]
         });
         //头工具栏事件

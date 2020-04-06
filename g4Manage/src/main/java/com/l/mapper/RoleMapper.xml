@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+
+<mapper namespace="com.l.mapper.RoleMapper">
+    <select id="selAllRole" resultType="com.l.pojo.Role">
+        select * from role
+    </select>
+
+    <insert id="insRole" parameterType="com.l.pojo.Role">
+        insert into role (rID,rName,rExplain,rStatus) values (#rID,#rName,#rExplain,#rStatus)
+    </insert>
+
+
+</mapper>

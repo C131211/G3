@@ -146,9 +146,7 @@
                 "<th>货物状态</th>" +
                 " </tr>" +
                 " </thead>" +
-                "<tbody> " +
-                "</table>" +
-                "</div>";
+                "<tbody> " ;
             layui.each(data.good, function (index, item) {
                 if(item.gStatus=='0'){
                     item.gStatus='锁定';
@@ -158,7 +156,7 @@
                 item.gSatime = Format(item.gSatime,"yyyy-MM-dd")
                 htmlStr += "<tr> <td>"+item.gName+"</td> <td>"+item.gNum+"</td> <td>"+item.gInprice+"</td> <td>"+item.gOutprice+"</td> <td>"+item.gExplain+"</td> <td>"+item.gSatime+"</td> <td>"+item.sID+"</td>  <td >"+item.gStatus+"</td> </tr>";
             })
-            htmlStr +=  "</tbody> </table>"
+            htmlStr +=  "</tbody> </table> </div>"
             if(obj.event === 'detail') {
                 layer.open({
                     title: "详细仓库货物",

@@ -34,6 +34,70 @@
     <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
     <%--引入时间格式转换--%>
     <script src="/js/TimeFormat.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            //获取下拉框数据
+            $.ajax({
+                url: "/getAllGoodList",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        reloadForm();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+
+            //仓库选择
+            $.ajax({
+                url: "/getSaveName",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        for (var i = 0; i < data.data.length; i++) {
+                            var option = $("<option />");
+                            option.html(data.data[i].sName);
+                            option.val(data.data[i].sID);
+                            $("#sID").append(option);
+                        }
+                        reloadForm();
+
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+
+            //确认人选择
+            $.ajax({
+                url: "/getRoleUser",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        for (var i = 0; i < data.data.length; i++) {
+                            var option = $("<option />");
+                            option.html(data.data[i].uName);
+                            option.val(data.data[i].uName);
+                            $("#ILComfirm").append(option);
+                        }
+                        reloadForm();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            })
+
+        })
+    </script>
+
 </head>
 <body class="cBody">
 <form id="addInList" class="layui-form">
@@ -180,66 +244,7 @@
     });
 
 
-    $(function () {
-        //获取下拉框数据
-        $.ajax({
-            url: "/getAllGoodList",
-            type: "POST",
-            dataType: "json",
-            success: function (data) {
-                if (data.status == 200) {
-                    //接收到成功的提示
-                    reloadForm();
-                } else {
-                    alert(data.msg);
-                }
-            }
-        });
 
-        //仓库选择
-        $.ajax({
-            url: "/getSaveName",
-            type: "POST",
-            dataType: "json",
-            success: function (data) {
-                if (data.status == 200) {
-                    //接收到成功的提示
-                    for (var i = 0; i < data.data.length; i++) {
-                        var option = $("<option />");
-                        option.html(data.data[i].sName);
-                        option.val(data.data[i].sID);
-                        $("#sID").append(option);
-                    }
-                    reloadForm();
-
-                } else {
-                    alert(data.msg);
-                }
-            }
-        });
-
-        //确认人选择
-        $.ajax({
-            url: "/getRoleUser",
-            type: "POST",
-            dataType: "json",
-            success: function (data) {
-                if (data.status == 200) {
-                    //接收到成功的提示
-                    for (var i = 0; i < data.data.length; i++) {
-                        var option = $("<option />");
-                        option.html(data.data[i].uName);
-                        option.val(data.data[i].uName);
-                        $("#ILComfirm").append(option);
-                    }
-                    reloadForm();
-                } else {
-                    alert(data.msg);
-                }
-            }
-        })
-
-    })
 
 </script>
 
