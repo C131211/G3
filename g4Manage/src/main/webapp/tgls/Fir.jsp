@@ -41,26 +41,40 @@
 <div class="leftHand" style="width: 25%;height:100%;float: left;position: relative;">
     <div class="person" style="border-style: solid;width: 97%;height: 300px;background-color: yellow">
         <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">个人信息</p>
+        <div class="Image" style="text-align: center">
+        <img src="/images/headImgs/${result.data.uPhoto}" style="width: 140px;height: 140px;">
+            <div style="font-size: large;">工号：${sessionScope.result.data.uAccount}</div>
+            <div style="font-size: large;">姓名：${sessionScope.result.data.uName}</div>
+            <div style="font-size: large;">手机号：${sessionScope.result.data.uTel}</div>
+            <div style="font-size: large;">入职时间：${sessionScope.result.data.uHiredate}</div>
+        </div>
     </div>
-    <div class="datetime" style="border-style: solid;width: 97%;height: 364px;background-color: green;margin-top: 20px">
+    <div class="datetime" style="border-style: solid;width: 97%;height: 374px;background-color: seashell;margin-top: 10px">
     <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">日历</p>
+        <div class="site-demo-laydate" style="text-align: center;">
+            <div class="layui-inline" id="test-n1" ></div>
+        </div>
     </div>
 </div>
 <div class="rightHand" style="width: 75%;height:100%;float: left;position: relative;background-color: #00aaee"></div>
     <div class="middle-left" style="width: 50%;height:100%;float:left;">
         <div class="announce" style="border-style: solid;width: 98.5%;height: 300px;float: left;background-color: whitesmoke">
             <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">通知栏</p>
+            <div class="content">
+
+            </div>
         </div>
-        <div class="event" style="border-style: solid;width:98.5%;height: 364px;background-color: grey;margin-top: 20px;float: left">
+        <div class="event" style="border-style: solid;width:98.5%;height: 374px;background-color: cornsilk;margin-top: 10px;float: left">
         <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">未处理事件</p>
+            <div class="content">
+            </div>
         </div>
     </div>
     <div class="middle-right" style="width: 25%;height: 100%;float:left;">
-
         <div class="tips" style="width: 98.5%;height: 688px;float:left;border-style: solid;">
             <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">
                 备忘录</p>
-            <textarea class="layui-textarea" style="width: 100%;height: 648px"></textarea>
+            <textarea class="layui-textarea" style="width: 100%;height: 648px" name="tip"></textarea>
         </div>
     </div>
 
@@ -73,21 +87,7 @@
         //直接嵌套显示
         laydate.render({
             elem: '#test-n1'
-            ,position: 'static'
-        });
-        laydate.render({
-            elem: '#test-n2'
-            ,position: 'static'
-            ,lang: 'en'
-        });
-        laydate.render({
-            elem: '#test-n3'
-            ,type: 'month'
-            ,position: 'static'
-        });
-        laydate.render({
-            elem: '#test-n4'
-            ,type: 'time'
+            ,theme: 'grid'
             ,position: 'static'
         });
     });
