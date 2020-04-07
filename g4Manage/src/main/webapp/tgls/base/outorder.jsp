@@ -79,12 +79,12 @@
             , defaultToolbar: ['exports', 'print']
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'OLID', title: '出货单号', sort: true}
-                , {field: 'OLDate', title: '出货日期', sort: true}
+                , {field: 'olId', title: '出货单号', sort: true}
+                , {field: 'olDate', title: '出货日期', sort: true}
                 , {field: 'sID', title: '出货仓库', sort: true}
-                , {field: 'OLDestin', title: '合作商', sort: true}
-                , {field: 'OLBy', title: '经手人', sort: true}
-                , {field: 'OLComfirm', title: '确认人', sort: true}
+                , {field: 'olDestin', title: '合作商', sort: true}
+                , {field: 'olBy', title: '经手人', sort: true}
+                , {field: 'olComfirm', title: '确认人', sort: true}
                 , {
                     field: 'OLStatus', title: '出货单状态', templet: function (d) {
                         if (d.OLStatus == 0) {
@@ -123,7 +123,7 @@
                         url: "/userDelById",//添加用户
                         type: "POST",
                         dataType: "json",
-                        data: {uID: data.uID},
+                        data: {olId: data.olId},
                         success: function (data) {
                             if (data.status == 200) {
                                 //接收到成功的提示
@@ -145,7 +145,7 @@
                     end: function () {
                         window.location.reload();
                     },
-                    content: '/userOperation?OLID=' + data.OLID + '&pageType=edit',
+                    content: '/userOperation?olId=' + data.olId + '&pageType=edit',
 
                 })
             }

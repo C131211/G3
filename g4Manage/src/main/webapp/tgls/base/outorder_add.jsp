@@ -37,7 +37,7 @@
 </head>
 <body class="cBody">
 <form id="addOutList" class="layui-form">
-    <input type="hidden" name="OLBy" value="${sessionScope.result.data.uName}">
+    <input type="hidden" name="olBy" value="${sessionScope.result.data.uName}">
     <blockquote>
         <div class="layui-form-item">
             <button class="layui-btn layui-btn-normal layui-btn-radius" type="button" onclick="add_tab_line()">添加
@@ -55,7 +55,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">确认人</label>
                         <div class="layui-input-inline">
-                            <select type="text" id="OLComfirm" name="ILComfirm" placeholder="请输入" autocomplete="off"
+                            <select type="text" id="olComfirm" name="ILComfirm" placeholder="请输入" autocomplete="off"
                                     class="layui-form-select"></select>
                         </div>
                     </div>
@@ -75,21 +75,21 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">出货价</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="OLprice" placeholder="请输入" autocomplete="off"
+                                <input type="text" name="olPrice" placeholder="请输入" autocomplete="off"
                                        class="layui-input" lay-verify="required">
                             </div>
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">数量</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="OLNum" placeholder="请输入" autocomplete="off"
+                                <input type="text" name="olNum" placeholder="请输入" autocomplete="off"
                                        class="layui-input" lay-verify="required">
                             </div>
                         </div>
                         <div class="layui-inline">
                         <label class="layui-form-label">经销商</label>
                         <div class="layui-input-inline">
-                            <select name="OLDestin" lay-filter="ILSelect" class="layui-form-select" lay-verify="required">
+                            <select name="olDestin" lay-filter="ILSelect" class="layui-form-select" lay-verify="required">
                                 <c:forEach items="${GoodListResult.data}" var="item">
                                     <option>${item.buyName}</option>
                                 </c:forEach>
@@ -128,19 +128,19 @@
             "<div class='layui-inline'>" +
             "<label class='layui-form-label'>出货价</label>" +
             "<div class='layui-input-inline'>" +
-            "<input type='text' name='OLprice' placeholder='请输入' autocomplete='off' class='layui-input' lay-verify='required'>" +
+            "<input type='text' name='olPrice' placeholder='请输入' autocomplete='off' class='layui-input' lay-verify='required'>" +
             "</div>" +
             "</div>" +
             "<div class='layui-inline'>" +
             "<label class='layui-form-label'> 数量</label>" +
             "<div class='layui-input-inline'>" +
-            "<input type='text' name='OLNum' placeholder='请输入' autocomplete='off' class='layui-input' lay-verify='required'>" +
+            "<input type='text' name='olNum' placeholder='请输入' autocomplete='off' class='layui-input' lay-verify='required'>" +
             "</div>" +
             "</div>" +
             "<div class='layui-inline'>" +
             "<label class='layui-form-label'>经销商</label>" +
             "<div class='layui-input-inline'>" +
-            "<select name='OLDestin' lay-filter='OLSelect' class='layui-form-select' lay-verify='required'>" +
+            "<select name='olDestin' lay-filter='OLSelect' class='layui-form-select' lay-verify='required'>" +
             "<c:forEach items='${GoodListResult.data}' var='item'>" +
             "<option>${item.buyName}</option>" +
             "</c:forEach>" +
