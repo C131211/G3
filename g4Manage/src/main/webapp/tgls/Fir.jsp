@@ -16,70 +16,82 @@
     <meta name="renderer" content="webkit">
     <!--国产浏览器高速模式-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="RL"/>
-    <!-- 作者 -->
-    <meta name="revised" content=""/>
-    <!-- 定义页面的最新版本 -->
-    <meta name="description" content="网站简介"/>
-    <!-- 网站简介 -->
-    <meta name="keywords" content="搜索关键字，以半角英文逗号隔开"/>
     <title>仓库管理系统</title>
 
     <!-- 公共样式 开始 -->
-    <link rel="stylesheet" type="text/css" href="../../css/base.css">
-    <link rel="stylesheet" type="text/css" href="../../css/iconfont.css">
-    <script type="text/javascript" src="../../framework/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
-    <script type="text/javascript" src="../../layui/layui.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
+    <script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
     <!-- 滚动条插件 -->
     <link rel="stylesheet" type="text/css" href="../../css/jquery.mCustomScrollbar.css">
-    <script src="../../framework/jquery-ui-1.10.4.min.js"></script>
-    <script src="../../framework/jquery.mousewheel.min.js"></script>
-    <script src="../../framework/jquery.mCustomScrollbar.min.js"></script>
-    <script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+    <script src="/framework/jquery-ui-1.10.4.min.js"></script>
+    <script src="/framework/jquery.mousewheel.min.js"></script>
+    <script src="/framework/jquery.mCustomScrollbar.min.js"></script>
+    <script src="/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <!-- 公共样式 结束 -->
-</head>
-<body>
-<div class="cBody">
-<div style="width: 19%;height: 100%;float: left;margin-right: 10px">
-    <h2 style="text-align: center;font-size: x-large;color: yellow">个人信息</h2>
-    <div style="width:100%;height: 280px;margin-bottom:10px;background-color: yellow;">
-        <div style="float: left;margin-bottom: 2px;">
+    <%--引入css--%>
+    <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css" media="all">
+    <%--引入js--%>
+    <script src="../../js/out_intoData.js"></script>
+    <!-- 公共样式 结束 -->
 
+</head>
+<body class="cBody">
+<div class="=whole" style="width: 100%;height: 100%">
+<div class="leftHand" style="width: 25%;height:100%;float: left;position: relative;">
+    <div class="person" style="border-style: solid;width: 97%;height: 300px;background-color: yellow">
+        <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">个人信息</p>
+    </div>
+    <div class="datetime" style="border-style: solid;width: 97%;height: 364px;background-color: green;margin-top: 20px">
+    <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">日历</p>
+    </div>
+</div>
+<div class="rightHand" style="width: 75%;height:100%;float: left;position: relative;background-color: #00aaee"></div>
+    <div class="middle-left" style="width: 50%;height:100%;float:left;">
+        <div class="announce" style="border-style: solid;width: 98.5%;height: 300px;float: left;background-color: whitesmoke">
+            <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">通知栏</p>
+        </div>
+        <div class="event" style="border-style: solid;width:98.5%;height: 364px;background-color: grey;margin-top: 20px;float: left">
+        <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">未处理事件</p>
         </div>
     </div>
-    <h2 style="text-align: center;font-size: x-large;color: grey">日历</h2>
-    <div style="width:100%;height: 420px;">
-        1
+    <div class="middle-right" style="width: 25%;height: 100%;float:left;">
+
+        <div class="tips" style="width: 98.5%;height: 688px;float:left;border-style: solid;">
+            <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">
+                备忘录</p>
+            <textarea class="layui-textarea" style="width: 100%;height: 648px"></textarea>
+        </div>
     </div>
+
 </div>
-<div style="width: 59%;height: 100%;float: left;margin-right: 10px">
-    <h2 style="text-align: center; font-size: x-large;color: red">通知栏</h2>
-    <div style="width: auto;height: 280px;margin-bottom: 10px;background-color: red">
-        1
-    </div>
-    <h2 style="text-align: center; font-size: x-large;color: darkolivegreen">未处理事件</h2>
-    <div style="width: auto;height: 382px;background-color: grey">
-        1
-    </div>
-</div>
-<div style="width: 20%;height: 100%;float: left;">
-    <div style="width: 100%;height: 700px;float: left;">
-    <h2 style="font-size: x-large;text-align: center;color: #00aaee">备忘录</h2>
-        <textarea class="layui-textarea" style="height: 662px;background-image: url("")></textarea>
+<script src="../js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
 
-
-
-
-
-
-
-
-
-
-
-    </div>
-</div>
-</div>
+        //直接嵌套显示
+        laydate.render({
+            elem: '#test-n1'
+            ,position: 'static'
+        });
+        laydate.render({
+            elem: '#test-n2'
+            ,position: 'static'
+            ,lang: 'en'
+        });
+        laydate.render({
+            elem: '#test-n3'
+            ,type: 'month'
+            ,position: 'static'
+        });
+        laydate.render({
+            elem: '#test-n4'
+            ,type: 'time'
+            ,position: 'static'
+        });
+    });
+</script>
 </body>
+
 </html>
