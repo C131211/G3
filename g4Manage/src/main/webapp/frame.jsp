@@ -85,6 +85,13 @@
 				</dl>
 			</li>
 			<li>
+				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-gongyingshang left"></i>经销和供应管理<i class="iconfont icon-dajiantouyou right"></i></a>
+				<dl>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/buyer/buy_list.jsp',this)">经销商信息</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/supply/supply_list.jsp',this)">供应商信息</a></dt>
+				</dl>
+			</li>
+			<li>
 				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-liuliangyunpingtaitubiao03 left"></i>权限与功能管理<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/pow/power_list.jsp',this)">权限列表</a></dt>

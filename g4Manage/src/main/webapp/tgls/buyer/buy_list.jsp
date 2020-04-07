@@ -44,7 +44,7 @@
         <form class="layui-form" action="">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
-                    <input type="text"  id="selectBuyName" required lay-verify="required" placeholder="输入经销商名"
+                    <input type="text"  id="selectBuyName" required lay-verify="required" placeholder="输入供应商名"
                            autocomplete="off" class="layui-input">
                 </div>
                 <button class="layui-btn" lay-submit lay-filter="formDemo" id="select">检索</button>
@@ -72,7 +72,7 @@
 </script>
 <script id="toolbarDemo" type="text/html">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="addBuyer">增加新用户</button>
+        <button class="layui-btn layui-btn-sm" lay-event="addBuyer">增加新经销商</button>
     </div>
 </script>
 <script>

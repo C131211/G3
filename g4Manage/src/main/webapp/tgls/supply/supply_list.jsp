@@ -72,7 +72,7 @@
 </script>
 <script id="toolbarDemo" type="text/html">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="addSupplier">增加新用户</button>
+        <button class="layui-btn layui-btn-sm" lay-event="addSupplier">增加新供应商</button>
     </div>
 </script>
 <script>
@@ -94,9 +94,9 @@
             ,cols: [[
                 {type:'checkbox',fixed:'left'}
                 ,{field:'supId', width:80, title: 'ID', sort: true}
-                ,{field: 'supName', title: '经销商名', width:130}
-                ,{field: 'supIncharge', title: '经销商负责人', width:130}
-                ,{field: 'supTel', title: '经销商联系方式'}
+                ,{field: 'supName', title: '供应商名', width:130}
+                ,{field: 'supIncharge', title: '供应商负责人', width:130}
+                ,{field: 'supTel', title: '供应商联系方式'}
                 ,{field: 'right', title:'操作', toolbar: '#barDemo', width:144}
             ]]
         });
