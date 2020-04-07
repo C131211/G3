@@ -87,12 +87,15 @@
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">购买商</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="OLDestin" placeholder="请输入" autocomplete="off"
-                                       class="layui-input" lay-verify="required">
-                            </div>
+                        <label class="layui-form-label">经销商</label>
+                        <div class="layui-input-inline">
+                            <select name="OLDestin" lay-filter="ILSelect" class="layui-form-select" lay-verify="required">
+                                <c:forEach items="${GoodListResult.data}" var="item">
+                                    <option>${item.buyName}</option>
+                                </c:forEach>
+                            </select>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -129,16 +132,19 @@
             "</div>" +
             "</div>" +
             "<div class='layui-inline'>" +
-            "<label class='layui-form-label'>数量</label>" +
+            "<label class='layui-form-label'> 数量</label>" +
             "<div class='layui-input-inline'>" +
             "<input type='text' name='OLNum' placeholder='请输入' autocomplete='off' class='layui-input' lay-verify='required'>" +
             "</div>" +
             "</div>" +
             "<div class='layui-inline'>" +
-            "<label class='layui-form-label'>购买商</label>" +
+            "<label class='layui-form-label'>经销商</label>" +
             "<div class='layui-input-inline'>" +
-            "<input type='text' name='OLDestin' placeholder='请输入 'autocomplete='off' class='layui-input' lay-verify='required'>" +
-            "</div>" +
+            "<select name='OLDestin' lay-filter='OLSelect' class='layui-form-select' lay-verify='required'>" +
+            "<c:forEach items='${GoodListResult.data}' var='item'>" +
+            "<option>${item.buyName}</option>" +
+            "</c:forEach>" +
+            "</select>" +
             "</div>" +
             "</div>" +
             "</div>"

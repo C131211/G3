@@ -153,8 +153,11 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">供应商</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="ILFrom" placeholder="请输入" autocomplete="off"
-                                       class="layui-input" lay-verify="required">
+                            <select name="ILFrom" lay-filter="ILSelect" class="layui-form-select" lay-verify="required">
+                                <c:forEach items="${GoodListResult.data}" var="item">
+                                    <option>${item.supName}</option>
+                                </c:forEach>
+                            </select>
                             </div>
                         </div>
                     </div>
@@ -201,8 +204,11 @@
             "<div class='layui-inline'>" +
             "<label class='layui-form-label'>供应商</label>" +
             "<div class='layui-input-inline'>" +
-            "<input type='text' name='ILFrom' placeholder='请输入' autocomplete='off' class='layui-input' lay-verify='required'>" +
-            "</div>" +
+            "<select name='ILFrom' lay-filter='ILSelect' class='layui-form-select' lay-verify='required'>" +
+            "<c:forEach items='${GoodListResult.data}' var='item'>" +
+            "<option>${item.supName}</option>" +
+            "</c:forEach>" +
+            "</select>" +
             "</div>" +
             "</div>" +
             "</div>"
