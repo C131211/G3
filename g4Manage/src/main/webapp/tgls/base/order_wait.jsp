@@ -1,11 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
   User: Richard Lyu
-  Date: 2020/3/15
-  Time: 13:46
+  Date: 2020/3/11
+  Time: 15:14
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 
@@ -16,152 +16,163 @@
     <meta name="renderer" content="webkit">
     <!--国产浏览器高速模式-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="RL"/>
-    <!-- 作者 -->
-    <meta name="revised" content=""/>
-    <!-- 定义页面的最新版本 -->
-    <meta name="description" content="网站简介"/>
-    <!-- 网站简介 -->
-    <meta name="keywords" content="搜索关键字，以半角英文逗号隔开"/>
     <title>仓库管理系统</title>
 
     <!-- 公共样式 开始 -->
-    <link rel="stylesheet" type="text/css" href="../../css/base.css">
-    <link rel="stylesheet" type="text/css" href="../../css/iconfont.css">
-    <script type="text/javascript" src="../../framework/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
-    <script type="text/javascript" src="../../layui/layui.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
+    <script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
     <!-- 滚动条插件 -->
     <link rel="stylesheet" type="text/css" href="../../css/jquery.mCustomScrollbar.css">
-    <script src="../../framework/jquery-ui-1.10.4.min.js"></script>
-    <script src="../../framework/jquery.mousewheel.min.js"></script>
-    <script src="../../framework/jquery.mCustomScrollbar.min.js"></script>
-    <script src="../../framework/cframe.js"></script>
-    <!-- 仅供所有子页面使用 -->
+    <script src="/framework/jquery-ui-1.10.4.min.js"></script>
+    <script src="/framework/jquery.mousewheel.min.js"></script>
+    <script src="/framework/jquery.mCustomScrollbar.min.js"></script>
+    <script src="/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <!-- 公共样式 结束 -->
-
+    <%--引入css--%>
+    <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css" media="all">
+    <%--引入js--%>
+    <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
     <script src="../../js/out_intoData.js"></script>
-
-</head>
 
 <body>
 <div class="cBody">
     <div class="layui-tab" lay-filter="myPage">
+        <ul class="layui-tab-title">
+            <li class="layui-this" lay-id="wait_Inlist">待处理入货单</li>
+            <li lay-id="wait_Outlist">待处理出货单</li>
+        </ul>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <table class="layui-table">
-                    <thead>
-                    <tr>
-                        <th>单号</th>
-                        <th>单号日期</th>
-
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>IN-20180304-122835</td>
-                        <td>2018-03-04 20:35</td>
-                        <td>
-                            <div style="display: inline-block;font-size: xx-large">
-                                <button class="layui-btn layui-btn-xs">提交表单</button>
-                            </div>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>IN-20180304-122835</td>
-                        <td>2018-03-04 20:35</td>
-                        <td>
-                            <div style="display: inline-block;font-size: xx-large">
-                                <button class="layui-btn layui-btn-xs">提交表单</button>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <!-- layUI 分页模块 -->
-                <div id="pages1"></div>
-                <script>
-                    layui.use(['laypage', 'layer'], function () {
-                        var laypage = layui.laypage,
-                            layer = layui.layer;
-
-                        //总页数大于页码总数
-                        laypage.render({
-                            elem: 'pages1',
-                            count: 30,
-                            layout: ['prev', 'page', 'next', 'limit', 'skip'],
-                            jump: function (obj) {
-                                console.log(obj)
-                            }
-                        });
-                    });
-                </script>
+                <table class="layui-hide" id="inWait" lay-filter="inWaitTools"></table>
             </div>
             <div class="layui-tab-item">
-                <table class="layui-table">
-                    <thead>
-                    <tr>
-                        <th>单号</th>
-                        <th>出库日期</th>
-                        <th>所属仓库</th>
-                        <th>类型</th>
-                        <th>制单人</th>
-                        <th>商品</th>
-                        <th>规格</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>IN-20180304-122835</td>
-                        <td>2018-03-04 20:35</td>
-                        <td>深圳仓库</td>
-                        <td>采购入库</td>
-                        <td>张三</td>
-                        <td>精选培根</td>
-                        <td>重量：400g</td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <!-- layUI 分页模块 -->
-                <div id="pages2"></div>
-                <script>
-                    layui.use(['laypage', 'layer'], function () {
-                        var laypage = layui.laypage,
-                            layer = layui.layer;
-
-                        //总页数大于页码总数
-                        laypage.render({
-                            elem: 'pages2',
-                            count: 100,
-                            layout: ['prev', 'page', 'next', 'limit', 'skip'],
-                            jump: function (obj) {
-                                console.log(obj)
-                            }
-                        });
-                    });
-                </script>
+                <table class="layui-hide" id="outWait" lay-filter="outWaitTools"></table>
             </div>
+
         </div>
     </div>
-    <script>
-        layui.use('element', function () {
-            var element = layui.element;
-
-            //获取hash来切换选项卡，假设当前地址的hash为lay-id对应的值
-            var layid = location.hash.replace(/^#test1=/, '');
-            element.tabChange('myPage', layid); //假设当前地址为：http://a.com#test1=222，那么选项卡会自动切换到“发送消息”这一项
-
-            //监听Tab切换，以改变地址hash值
-            element.on('tab(myPage)', function () {
-                location.hash = 'test1=' + this.getAttribute('lay-id');
-                console.log(this.getAttribute('lay-id'));
-            });
-        });
-    </script>
 </div>
 </body>
+
+<script>
+    layui.use('element', function () {
+        var element = layui.element;
+
+        //获取hash来切换选项卡，假设当前地址的hash为lay-id对应的值
+        var layid = location.hash.replace(/^#test1=/, '');
+        element.tabChange('myPage', layid); //假设当前地址为：http://a.com#test1=222，那么选项卡会自动切换到“发送消息”这一项
+
+        //监听Tab切换，以改变地址hash值
+        element.on('tab(myPage)', function () {
+            location.hash = 'test1=' + this.getAttribute('lay-id');
+            console.log(this.getAttribute('lay-id'));
+        });
+    });
+</script>
+
+<%--入货单的--%>
+<script id="inbarDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="submit">确认</a>
+</script>
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+
+        table.render({
+            elem: '#inWait'
+            , url: '/demo/table/user/'
+            , toolbar: '#intoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['exports', 'print',]
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'ILID', title: '出货单号', sort: true}
+                , {field: 'ILby', title: '经手人'}
+                , {field: 'ILComfirm', title: '确认人'}
+                , {
+                    field: 'ILStatus', title: '出货单状态', templet: function (d) {
+                        if (d.ILStatus == 0) {
+                            return d.ILStatus = "完成"
+                        } else {
+                            return d.ILStatus = "未完成"
+                        }
+                    }
+
+                }
+                , {field: 'right', title: '操作', toolbar: '#inbarDemo', width: 144}
+            ]]
+        });
+        //监听行工具事件
+        table.on('tool(inWaitTools)', function (obj) {
+            var data = obj.data;
+            //console.log(obj)
+            if (obj.event === 'submit') {
+                layer.prompt({
+                    formType: 2
+                    , value: data.email
+                }, function (value, index) {
+                    obj.update({
+                        email: value
+                    });
+                    layer.close(index);
+                });
+            }
+        });
+    });
+</script>
+
+<%--出货单的--%>
+
+<script id="outbarDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="submit">确认</a>
+</script>
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+
+        table.render({
+            elem: '#outWait'
+            , url: '/demo/table/user/'
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , toolbar: '#outtoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['exports', 'print']
+            , cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'olId', title: '出货单号', sort: true}
+                , {field: 'olBy', title: '经手人'}
+                , {field: 'olComfirm', title: '确认人'}
+                , {
+                    field: 'OLStatus', title: '出货单状态', templet: function (d) {
+                        if (d.OLStatus == 0) {
+                            return d.OLStatus = "完成"
+                        } else {
+                            return d.OLStatus = "未完成"
+                        }
+                    }
+
+                }
+                , {field: 'right', title: '操作', toolbar: '#outbarDemo', width: 144}
+            ]]
+        });
+        //监听行工具事件
+        table.on('tool(outWaitTools)', function (obj) {
+            var data = obj.data;
+            //console.log(obj)
+            if (obj.event === 'submit') {
+                layer.prompt({
+                    formType: 2
+                    , value: data.email
+                }, function (value, index) {
+                    obj.update({
+                        email: value
+                    });
+                    layer.close(index);
+                });
+            }
+        });
+    });
+</script>
+
 
 </html>

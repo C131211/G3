@@ -48,13 +48,6 @@
 <body>
 <div class="cBody">
     <form id="detInOrder" action="">
-        <div class="layui-form-item">
-            <div class="layui-input-inline">
-                <input type="text" name="name" required lay-verify="required" placeholder="输入商品号或名称"
-                       autocomplete="off" class="layui-input">
-            </div>
-            <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
-        </div>
         <div class="layui-row">
             <table class="layui-table printTable" id=""
                    data-options="toolbar:funListToolbar,url:'数据库入库单',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">

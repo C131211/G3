@@ -37,60 +37,63 @@
 
 <body>
 <div class="cBody">
-        <div class="layui-tab" lay-filter="test1">
-            <ul class="layui-tab-title">
-                <li class="layui-this" lay-id="111">历史列表</li>
-                <li lay-id="222">今日列表</li>
-            </ul>
-        </div>
-    <div class="layui-tab-content">
-        <div class="layui-tab-item layui-show">
-            <table class="layui-hide" id="inList" lay-filter="ILTools"></table>
-        </div>
-        <div class="layui-tab-item">2</div>
-    </div>
+    <div class="layui-tab" lay-filter="myPage">
+        <ul class="layui-tab-title">
+            <li class="layui-this" lay-id="historyList">历史列表</li>
+            <li lay-id="todayList">今日列表</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <table class="layui-hide" id="all_inList" lay-filter="allILTools"></table>
+            </div>
+            <div class="layui-tab-item">
+                <table class="layui-hide" id="today_inList" lay-filter="todayILTools"></table>
+            </div>
 
+        </div>
     </div>
 </div>
 </body>
-    <script>
-    layui.use('element', function(){
+
+
+<script>
+    //TAB切换项
+    layui.use('element', function () {
         var element = layui.element;
 
         //获取hash来切换选项卡，假设当前地址的hash为lay-id对应的值
         var layid = location.hash.replace(/^#test1=/, '');
-        element.tabChange('test1', layid); //假设当前地址为：http://a.com#test1=222，那么选项卡会自动切换到“发送消息”这一项
+        element.tabChange('myPage', layid); //假设当前地址为：http://a.com#test1=222，那么选项卡会自动切换到“发送消息”这一项
 
         //监听Tab切换，以改变地址hash值
-        element.on('tab(test1)', function(){
-            location.hash = 'test1='+ this.getAttribute('lay-id');
+        element.on('tab(myPage)', function () {
+            location.hash = 'test1=' + this.getAttribute('lay-id');
+            console.log(this.getAttribute('lay-id'));
         });
     });
 </script>
-<script id="barDemo" type="text/html">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-</script>
-<script id="toolbarDemo" type="text/html">
-    <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="addInOrder">新增入货单</button>
-    </div>
+
+
+<%--历史列表--%>
+<script id="allinbarDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="allinedit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="allindel">删除</a>
 </script>
 <script>
     //初始化表格
     layui.use('table', function () {
         var table = layui.table;
         table.render({
-            elem: '#inList'   //表格ID
+            elem: '#all_inList'   //表格ID
             , url: '/userList' //数据接口
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , page: true     //开启分页
             , height: 'full-200'  //高度最大化自适应
-            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , toolbar: '#allintoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['exports', 'print']
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'ILID', title: '入货单号', sort: true,event:'Details'}
+                , {field: 'ILID', title: '入货单号', sort: true, event: 'allDetails'}
                 , {field: 'ILDate', title: '入货日期', sort: true}
                 , {field: 'sID', title: '入货仓库', sort: true}
                 , {field: 'ILFrom', title: '合作商', sort: true}
@@ -105,30 +108,13 @@
                         }
                     }
                 }
-                , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
+                , {field: 'right', title: '操作', toolbar: '#allinbarDemo', width: 144}
             ]]
         });
-        //头工具栏事件
-        table.on('toolbar(ILTools)', function (obj) {
-            var checkStatus = table.checkStatus(obj.config.id);
-            switch (obj.event) {
-                case 'addInOrder':
-                    layer.open({
-                        title: "增加入货单",
-                        type: 2,
-                        area: ['70%', '60%'],
-                        scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
-                        maxmin: true,
-                        content: 'inorder_add.jsp',
-                    });
-                    break;
-            }
-        });
-
         //监听行工具事件
-        table.on('tool(ILTools)', function (obj) {
+        table.on('tool(allILTools)', function (obj) {
             var data = obj.data;
-            if (obj.event === 'del') {
+            if (obj.event === 'allindel') {
                 layer.confirm('真的删除行么', function (index) {
                     $.ajax({
                         url: "/userDelById",//添加用户
@@ -146,7 +132,7 @@
 
                     })
                 });
-            } else if (obj.event === 'edit') {
+            } else if (obj.event === 'allinedit') {
                 layer.open({
                     title: "入货单信息修改",
                     type: 2,
@@ -159,7 +145,7 @@
                     content: '/userOperation?ILID=' + data.ILID + '&pageType=edit',
 
                 })
-            }else if (obj.event === 'Details'){
+            } else if (obj.event === 'allDetails') {
                 layer.open({
                     title: "入货单信息修改",
                     type: 2,
@@ -176,4 +162,94 @@
         })
     })
 </script>
+
+
+
+<%--今日列表--%>
+<script id="toinbarDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="toinedit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="toindel">删除</a>
+</script>
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+        table.render({
+            elem: '#today_inList'   //表格ID
+            , url: '/userList' //数据接口
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , page: true     //开启分页
+            , height: 'full-200'  //高度最大化自适应
+            , toolbar: '#tointoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['exports', 'print']
+            , cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'ILID', title: '入货单号', sort: true, event: 'toDetails'}
+                , {field: 'ILDate', title: '入货日期', sort: true}
+                , {field: 'sID', title: '入货仓库', sort: true}
+                , {field: 'ILFrom', title: '合作商', sort: true}
+                , {field: 'ILBy', title: '经手人', sort: true}
+                , {field: 'ILComfirm', title: '确认人', sort: true}
+                , {
+                    field: 'ILStatus', title: '入货单状态', templet: function (d) {
+                        if (d.uStatus == 0) {
+                            return d.uStatus = "完成"
+                        } else {
+                            return d.uStatus = "未完成"
+                        }
+                    }
+                }
+                , {field: 'right', title: '操作', toolbar: '#toinbarDemo', width: 144}
+            ]]
+        });
+    //监听行工具事件
+    table.on('tool(todayILTools)', function (obj) {
+        var data = obj.data;
+        if (obj.event === 'del') {
+            layer.confirm('真的删除行么', function (index) {
+                $.ajax({
+                    url: "/userDelById",//添加用户
+                    type: "POST",
+                    dataType: "json",
+                    data: {uID: data.uID},
+                    success: function (data) {
+                        if (data.status == 200) {
+                            //接收到成功的提示
+                            window.location.reload();
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
+
+                })
+            });
+        } else if (obj.event === 'edit') {
+            layer.open({
+                title: "入货单信息修改",
+                type: 2,
+                area: ['70%', '60%'],
+                scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                maxmin: true,
+                end: function () {
+                    window.location.reload();
+                },
+                content: '/userOperation?ILID=' + data.ILID + '&pageType=edit',
+
+            })
+        } else if (obj.event === 'toDetails') {
+            layer.open({
+                title: "入货单信息修改",
+                type: 2,
+                area: ['70%', '60%'],
+                scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                maxmin: true,
+                end: function () {
+                    window.location.reload();
+                },
+                content: '/userOperation?ILID=' + data.ILID + '&pageType=edit',
+
+            })
+        }
+    })
+</script>
+
 </html>
