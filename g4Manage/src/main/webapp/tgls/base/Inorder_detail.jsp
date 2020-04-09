@@ -1,138 +1,48 @@
 <%--
   Created by IntelliJ IDEA.
   User: Richard Lyu
-  Date: 2020/3/23
-  Time: 23:35
+  Date: 2020/3/28
+  Time: 17:39
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-    <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
-    <meta name="renderer" content="webkit">
-    <!--国产浏览器高速模式-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="RL"/>
-    <!-- 作者 -->
-    <meta name="revised" content=""/>
-    <!-- 定义页面的最新版本 -->
-    <meta name="description" content="网站简介"/>
-    <!-- 网站简介 -->
-    <meta name="keywords" content="搜索关键字，以半角英文逗号隔开"/>
-    <title>仓库管理系统</title>
 
     <!-- 公共样式 开始 -->
-    <link rel="stylesheet" type="text/css" href="../../css/base.css">
-    <link rel="stylesheet" type="text/css" href="../../css/iconfont.css">
-    <script type="text/javascript" src="../../framework/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
-    <script type="text/javascript" src="../../layui/layui.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
+    <script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
     <!-- 滚动条插件 -->
     <link rel="stylesheet" type="text/css" href="../../css/jquery.mCustomScrollbar.css">
-    <script src="../../framework/jquery-ui-1.10.4.min.js"></script>
-    <script src="../../framework/jquery.mousewheel.min.js"></script>
-    <script src="../../framework/jquery.mCustomScrollbar.min.js"></script>
-    <script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+    <script src="/framework/jquery-ui-1.10.4.min.js"></script>
+    <script src="/framework/jquery.mousewheel.min.js"></script>
+    <script src="/framework/jquery.mCustomScrollbar.min.js"></script>
+    <script src="/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <!-- 公共样式 结束 -->
 
-    <style>
-        .layui-form {
-            margin-right: 30%;
-        }
-    </style>
+    <%--引入css--%>
+    <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css"  media="all">
+    <%--引入js--%>
+    <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
+
 </head>
-<body>
-<div class="cBody">
-    <form id="detInOrder" action="">
-        <div class="layui-row">
-            <table class="layui-table printTable" id=""
-                   data-options="toolbar:funListToolbar,url:'数据库入库单',fitColumns:true,singleSelect:true,pagination:true,collapsible:true, showFooter:false">
-                <%--               <input type="hidden" name="ILID" value=${result.data.ILID}"/>--%>
-                <tbody>
-                <tr>
-                    <td class="printName" colspan="7">入库单</td>
-                </tr>
-                <tr>
-                    <td class="printDis" colspan="7">
-                        <span>订单状态：
-                            <div class="layui-input-inline">
-                             <input type="text" readonly="readonly" name="ILStatus" value="${result.data.uAccount}"
-                                    readonly="readonly" required lay-verify="required" autocomplete="off"
-                                    class="layui-input">
-                            </div>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="printDis" colspan="7">
-                        <span> 单据日期：
-                            <div class="layui-input-inline">
-                             <input type="text" readonly="readonly" name="ILDate" value="${result.data.uAccount}"
-                                    readonly="readonly" required lay-verify="required" autocomplete="off"
-                                    class="layui-input">
-                            </div>
-                        </span>
-                        <span class="right">单据编号：
-                            <div class="layui-input-inline">
-                             <input type="text" readonly="readonly" name="ILID" value="${result.data.uAccount}"
-                                    readonly="readonly" required lay-verify="required" autocomplete="off"
-                                    class="layui-input">
-                            </div></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="printDis" colspan="7">
-                        <span>入库类型：采购入库</span>
-                        <span class="right">入库库号：
-                            <div class="layui-input-inline">
-                             <input type="text" readonly="readonly" name="sID" value="${result.data.uAccount}"
-                                    readonly="readonly" required lay-verify="required" autocomplete="off"
-                                    class="layui-input">
-                            </div></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th data-options="field:gID" width="10%" class="textCenter">商品号</th>
-                    <th data-options="field:gName" width="10%" class="textCenter">商品名称</th>
-                    <th data-options="field:ILNum" width="10%" class="textCenter">入库数量</th>
-                    <th data-options="field:ILprice" width="10%" class="textCenter">入库单价</th>
-                    <th data-options="field:ILTotal" width="10%" class="textCenter">入库金额</th>
-                </tr>
-                <tr>
-                    <td class="printDis" colspan="7">
-                    <span> 供货商：
-                        <div class="layui-input-inline">
-                             <input type="text" readonly="readonly" name="ILFrom" value="${result.data.uAccount}"
-                                    readonly="readonly" required lay-verify="required" autocomplete="off"
-                                    class="layui-input">
-                            </div>
-                    </span>
-                    </td>
-                </tr>
-                <td class="printOperator" colspan="7">
-                    <span> 经手人：
-                        <div class="layui-input-inline">
-                             <input type="text" readonly="readonly" name="ILBy" value="${result.data.uAccount}"
-                                    readonly="readonly" required lay-verify="required" autocomplete="off"
-                                    class="layui-input">
-                            </div>
-                    </span>
-                    <span class="right">确认人：
-                        <div class="layui-input-inline">
-                             <input type="text" readonly="readonly" name="ILComfirm" value="${result.data.uAccount}"
-                                    readonly="readonly" required lay-verify="required" autocomplete="off"
-                                    class="layui-input">
-                            </div>
-                    </span>
-                </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+
+<body class="cBody">
+<div>
+    <div class="glList">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <div class="layui-input-inline">
+                    <input type="text" name="selectGlName" required lay-verify="required" placeholder="输入货物类名" autocomplete="off"
+                           class="layui-input">
+                </div>
+                <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
+            </div>
+        </form>
         <script>
             layui.use('form', function () {
                 var form = layui.form;
@@ -144,6 +54,112 @@
                 });
             });
         </script>
-
+        <table class="layui-hide" id="inListDetails" lay-filter="inDetailTools"></table>
+    </div>
+</div>
 </body>
+<script id="barDemo" type="text/html">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script id="toolbarDemo" type="text/html">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="addGoodList">新增行</button>
+    </div>
+</script>
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+        table.render({
+            elem: '#inListDetails'   //表格ID
+            , url: '' //数据接口
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , page: true     //开启分页
+            ,request: {
+                pageName: 'page' //页码的参数名称，默认：page
+                ,limitName: 'rows' //每页数据量的参数名，默认：limit
+            }
+            , height: 'full-200'  //高度最大化自适应
+            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['exports', 'print',]
+            , cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'ILID', title: '货单ID', width: 100}
+                , {field: 'gID', title:'货物ID', width: 100}
+                , {field: 'goodName', title: '货物类名', }
+                , {field: 'ILprice', title: '入货价', }
+                , {field: 'ILNum', title: '入货量', }
+                , {field: 'ILTotal', title: '货物小计', }
+                , {field: 'ILDate', title: '货单日期', }
+                , {field: 'ILFrom', title: '供货商', }
+                , {field: 'ILBy', title: '经手人', }
+                , {field: 'ILComfirm', title: '确认人', }
+                , {field: 'sID', title: '仓库号', }
+                , {field: 'ILStatus', title: '入货单状态', templet: function (d) {
+                            if (d.ILStatus == 0) {
+                                return d.ILStatus = "完成"
+                            } else {
+                                return d.ILStatus = "未完成"
+                            }
+                        }
+                    }
+                , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
+            ]]
+        });
+        //头工具栏事件
+        table.on('toolbar(inDetailTools)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event) {
+                case 'addGoodList':
+                    layer.open({
+                        title: "增加货物类别",
+                        type: 2,
+                        area: ['70%', '60%'],
+                        scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                        maxmin: true,
+                        end: function () {
+                            window.location.reload();
+                        },
+                        content: 'gl_add.jsp'
+                    });
+                    break;
+            }
+        });
+        //监听行工具事件
+        table.on('tool(inDetailTools)', function (obj) {
+            var data = obj.data;
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    $.ajax({
+                        url: "/delGoodList",
+                        type: "POST",
+                        dataType: "json",
+                        data: {glId:data.glId},
+                        success: function (data) {
+                            if (data.status == 200) {
+                                //接收到成功的提示
+                                window.location.reload();
+                            } else {
+                                alert(data.msg);
+                            }
+                        }
+
+                    })
+                });
+            }
+        });
+
+
+        //查询作用
+        $("#select").click(function (){
+            table.reload("glList",{
+                where: { //设定异步数据接口的额外参数，任意设
+                    goodName: $("#selectGlName").val()
+                }
+                ,page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        })
+    });
+</script>
 </html>
