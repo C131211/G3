@@ -133,7 +133,7 @@
                         url: "/delGoodList",
                         type: "POST",
                         dataType: "json",
-                        data: {glId:data.glId},
+                        data: {ILID:data.ILID},
                         success: function (data) {
                             if (data.status == 200) {
                                 //接收到成功的提示
@@ -160,6 +160,39 @@
                 }
             });
         })
+            $(function () {
+                //检查是否拥有标识
+                checkLogin(${sessionScope.result.data.uID});
+                //请求该id的用户数据
+                $.ajax({
+                    url: "/selUserById",
+                    dataType: "json",
+                    type: "POST",
+                    data: {ILID:"${requestScope.ILID}"},
+                    success: function (data) {
+                        if (data.status == 200) {
+                            layui.use('form', function () {
+                                var form = layui.form;
+                                $("#ILID").val(data.data.ILID);
+                                $("#gID").val(data.data.gID);
+                                $("#goodName").val(data.data.goodName);
+                                $("#sID").val(data.data.sID);
+                                $("#ILNum").val(data.data.ILNum);
+                                $("#ILprice").val(data.data.ILprice);
+                                $("#ILTotal").val(data.data.ILTotal);
+                                $("#ILDate").val(data.data.ILDate);
+                                $("#ILBy").val(data.data.ILBy);
+                                $("#ILComfirm").val(data.data.ILComfirm);
+                                $("#ILFrom").val(data.data.ILFrom);
+                                $("#ILStatus").val(data.data.ILStatus);
+                                form.render();
+                            });
+                        } else {
+                            layer.msg("获取失败");
+                        }
+                    }
+                });
+            });
     });
 </script>
 </html>

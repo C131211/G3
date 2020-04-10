@@ -133,7 +133,7 @@
                         url: "/delGoodList",
                         type: "POST",
                         dataType: "json",
-                        data: {glId:data.glId},
+                        data: {olId:data.olId},
                         success: function (data) {
                             if (data.status == 200) {
                                 //接收到成功的提示
@@ -159,7 +159,40 @@
                     curr: 1 //重新从第 1 页开始
                 }
             });
-        })
+        });
+        $(function () {
+            //检查是否拥有标识
+            checkLogin(${sessionScope.result.data.uID});
+            //请求该id的用户数据
+            $.ajax({
+                url: "/selUserById",
+                dataType: "json",
+                type: "POST",
+                data: {olID:"${requestScope.olID}"},
+                success: function (data) {
+                    if (data.status == 200) {
+                        layui.use('form', function () {
+                            var form = layui.form;
+                            $("#olId").val(data.data.olId);
+                            $("#gID").val(data.data.gID);
+                            $("#goodName").val(data.data.goodName);
+                            $("#sID").val(data.data.sID);
+                            $("#olNum").val(data.data.olNum);
+                            $("#olPrice").val(data.data.olPrice);
+                            $("#olTotal").val(data.data.olTotal);
+                            $("#olDate").val(data.data.olDate);
+                            $("#olBy").val(data.data.olBy);
+                            $("#olComfirm").val(data.data.olComfirm);
+                            $("#olDestin").val(data.data.olDestin);
+                            $("#olStatus").val(data.data.olStatus);
+                            form.render();
+                        });
+                    } else {
+                        layer.msg("获取失败");
+                    }
+                }
+            });
+        });
     });
 </script>
 </html>
