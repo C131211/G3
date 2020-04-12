@@ -21,10 +21,10 @@ public interface SupplyMapper {
 
     /**
      * 根据Id删除供应商
-     * @param id
+     * @param supId
      * @return
      */
-    int delSupplyById(int id);
+    int delSupplyById(int supId);
 
     /**
      * 修改供应商信息

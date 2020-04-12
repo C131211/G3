@@ -23,7 +23,7 @@ public interface SupplyService {
 
     /**
      * 根据id删除供应商
-     * @param id
+     * @param supId
      * @return
      */
     GResult delSupplyById(int supId);
