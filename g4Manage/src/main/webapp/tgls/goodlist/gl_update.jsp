@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="/layui/css/layui.css">
     <script type="text/javascript" src="/layui/layui.js"></script>
     <script src="/js/checkLogin.js"></script>
+    <script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <!-- 公共样式 结束 -->
 
 </head>
@@ -31,7 +32,14 @@
         <div class="layui-form-item">
             <label class="layui-form-label">货物类别名字</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="goodName" id="goodName"
+                <input type="text" name="goodName" id="goodName" required lay-verify="required|ZHCheck"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">出货价</label>
+            <div class="layui-input-inline shortInput">
+                <input type="text" name="gOutprice" id="gOutprice" required lay-verify="required"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -82,6 +90,7 @@
                             var form = layui.form;
                             $("#glId").val(data.data.glId);
                             $("#goodName").val(data.data.goodName);
+                            $("#gOutprice").val(data.data.gOutprice);
                             form.render();
                         });
 

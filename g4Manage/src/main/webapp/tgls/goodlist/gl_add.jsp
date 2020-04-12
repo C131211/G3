@@ -37,7 +37,15 @@
         <div class="layui-form-item">
             <label class="layui-form-label">货物类别名称</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="goodName" id="goodName" required lay-verify="required" autocomplete="off"
+                <input type="text" name="goodName" id="goodName" required lay-verify="required|ZHCheck" autocomplete="off"
+                       class="layui-input">
+            </div>
+            <i class="iconfont icon-huaban bt"></i>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">出货价</label>
+            <div class="layui-input-inline shortInput">
+                <input type="text" name="gOutprice" id="gOutprice" required lay-verify="required" autocomplete="off"
                        class="layui-input">
             </div>
             <i class="iconfont icon-huaban bt"></i>
