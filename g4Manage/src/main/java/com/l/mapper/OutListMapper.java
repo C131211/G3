@@ -22,4 +22,12 @@ public interface OutListMapper {
      */
     List<OutList> selNoDeal(String olComfirm);
 
+
+    /**
+     * 根据订单Id获取订单信息
+     * @param olId
+     * @return
+     */
+    List<OutList> selOutListById(String olId);
+
 }

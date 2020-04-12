@@ -17,4 +17,8 @@
             select ILID,ILBy,ILComfirm,ILStatus from inlist where ILStatus = 0 and (ILComfirm =#{0} or ILComfirm is null or ILComfirm = '') group by ILID
         </select>
 
+        <select id="selInListById" parameterType="String" resultType="com.l.pojo.InList">
+            select * from  inlist where ILID=#{0}
+        </select>
+
 </mapper>

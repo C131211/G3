@@ -37,4 +37,19 @@ public class OutListController {
         return outListService.selNoDeal(olComfirm, page, rows);
     }
 
+    /**
+     * 根据id获取该订单信息
+     * @param olId
+     * @param page
+     * @param rows
+     * @return
+     */
+    @RequestMapping("/getOutListById")
+    @ResponseBody
+    public DataGrid getInListById(String olId,int page,int rows){
+        return outListService.selOutListById(olId, page, rows);
+    }
+
+
+
 }

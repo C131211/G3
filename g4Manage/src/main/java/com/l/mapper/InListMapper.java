@@ -21,4 +21,11 @@ public interface InListMapper {
      * @return
      */
     List<InList> selNoDeal(String ILComfirm);
+
+    /**
+     * 根据订单Id获取订单信息
+     * @param ILID
+     * @return
+     */
+    List<InList> selInListById(String ILID);
 }

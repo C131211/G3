@@ -23,4 +23,11 @@ public interface InListService {
      */
     DataGrid selNoDeal(String ILComfirm,int page,int rows);
 
+    /**
+     * 根据id显示订单的信息
+     * @param ILID
+     * @return
+     */
+    DataGrid selInListById(String ILID,int page,int rows);
+
 }

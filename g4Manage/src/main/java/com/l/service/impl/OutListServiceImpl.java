@@ -150,4 +150,17 @@ public class OutListServiceImpl  implements OutListService {
         dataGrid.setMsg("OK");
         return dataGrid;
     }
+
+    @Override
+    public DataGrid selOutListById(String olId, int page, int rows) {
+        PageHelper.startPage(page, rows);
+        List<OutList> list = outListMapper.selOutListById(olId);
+        PageInfo<OutList> pi = new PageInfo<>(list);
+        DataGrid dataGrid = new DataGrid();
+        dataGrid.setData(pi.getList());
+        dataGrid.setCount(pi.getTotal());
+        dataGrid.setCode(0);
+        dataGrid.setMsg("OK");
+        return dataGrid;
+    }
 }

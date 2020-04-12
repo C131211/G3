@@ -52,4 +52,10 @@ public class InListController {
         return inListService.selNoDeal(ILComfirm, page, rows);
     }
 
+    @RequestMapping("/getInListById")
+    @ResponseBody
+    public DataGrid getInListById(String ILID,int page,int rows){
+        return inListService.selInListById(ILID, page, rows);
+    }
+
 }
