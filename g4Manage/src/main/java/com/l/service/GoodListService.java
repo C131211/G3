@@ -18,10 +18,10 @@ public interface GoodListService {
 
     /**
      * 增加货物类别
-     * @param goodName
+     * @param goodList
      * @return
      */
-    GResult insGoodList(String goodName);
+    GResult insGoodList(GoodList goodList);
 
     /**
      * 根据id删除货物类别

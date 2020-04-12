@@ -18,10 +18,10 @@ public interface GoodListMapper {
 
     /**
      * 增加货物种类
-     * @param goodName
+     * @param goodList
      * @return
      */
-    int insGoodList(String goodName);
+    int insGoodList(GoodList goodList);
 
     /**
      * 根据id删除货物种类

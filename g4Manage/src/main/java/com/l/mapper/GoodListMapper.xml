@@ -11,8 +11,8 @@
                 select * from goodlist
         </select>
 
-        <insert id="insGoodList" parameterType="String">
-                insert into goodlist values(DEFAULT ,#{0})
+        <insert id="insGoodList" parameterType="com.l.pojo.GoodList">
+                insert into goodlist values(DEFAULT ,#{goodName},#{gOutprice})
         </insert>
 
         <delete id="delGoodListById" parameterType="int">
@@ -20,7 +20,7 @@
         </delete>
 
         <update id="updGoodListById" parameterType="com.l.pojo.GoodList">
-                update goodlist set goodName=#{goodName} where glId=#{glId}
+                update goodlist set goodName=#{goodName},gOutprice=#{gOutprice} where glId=#{glId}
         </update>
         
         <select id="selGoodListById" parameterType="int" resultType="com.l.pojo.GoodList">

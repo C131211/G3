@@ -36,10 +36,10 @@ public class GoodListServiceImpl implements GoodListService {
     }
 
     @Override
-    public GResult insGoodList(String goodName) {
+    public GResult insGoodList(GoodList goodList) {
         GResult result = new GResult();
         int index = -1;
-        index = goodListMapper.insGoodList(goodName);
+        index = goodListMapper.insGoodList(goodList);
         if (index>0){
             result.setMsg("OK");
             result.setStatus(200);

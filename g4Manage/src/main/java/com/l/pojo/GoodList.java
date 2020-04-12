@@ -6,6 +6,7 @@ package com.l.pojo;
 public class GoodList {
     private int glId;
     private String goodName;
+    private int gOutprice;
 
     public GoodList() {
     }
@@ -15,7 +16,16 @@ public class GoodList {
         return "GoodList{" +
                 "glId=" + glId +
                 ", goodName='" + goodName + '\'' +
+                ", gOutprice=" + gOutprice +
                 '}';
+    }
+
+    public int getgOutprice() {
+        return gOutprice;
+    }
+
+    public void setgOutprice(int gOutprice) {
+        this.gOutprice = gOutprice;
     }
 
     public int getGlId() {
