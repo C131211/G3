@@ -88,7 +88,7 @@ public class OutListServiceImpl  implements OutListService {
                 //根据货物id查询该货物详情
                 Good goodById = goodMapper.selGoodById(str);
                 //通过goodName去判断是否拥有这货物
-                if (goodById.getgName().equals(goodNames[i].trim())) {
+                if (goodById!=null && goodById.getgName().equals(goodNames[i].trim())) {
                     outList.setGoodName(goodNames[i]);
                     //添加该货物的数量
                     totalGoodNums += goodById.getgNum();
@@ -133,7 +133,9 @@ public class OutListServiceImpl  implements OutListService {
             outListIndex += outListMapper.insOutList(outList) ;
            // goods += outList.getgID()+",";
         }
-
+        if (outListIndex >0){
+            result.setStatus(200);
+        }
 
         return result;
     }

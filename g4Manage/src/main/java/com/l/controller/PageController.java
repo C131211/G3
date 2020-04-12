@@ -17,7 +17,7 @@ public class PageController {
          * @return
          */
         @RequestMapping("/PageOperation")
-        public String PageJump(int id,String pageType, HttpServletRequest req){
+        public String PageJump(String  id,String pageType, HttpServletRequest req){
             //跳到对应的页面
             if(pageType.equals("userEdit")){
                 req.setAttribute("uID",id);
@@ -30,10 +30,17 @@ public class PageController {
                 return "/tgls/saveManage/save_update.jsp";
             }else if(pageType.equals("supplyEdit")){
                 req.setAttribute("supId",id);
-                return "tgls/supply/supply_update.jsp";
+                return "/tgls/supply/supply_update.jsp";
             }else if (pageType.equals("buyerEdit")){
                 req.setAttribute("buyId",id);
-                return "tgls/buyer/buy_update.jsp";
+                return "/tgls/buyer/buy_update.jsp";
+            }else if (pageType.equals("inlistDetail")) {
+                req.setAttribute("ILID", id);
+                return "/tgls/base/Inorder_detail.jsp";
+            }
+            else if (pageType.equals("outlistDetail")) {
+                req.setAttribute("olId", id);
+                return "/tgls/base/Outorder_detail.jsp";
             } else {
                 return "/tgls/error/error_canshu.jsp";
             }

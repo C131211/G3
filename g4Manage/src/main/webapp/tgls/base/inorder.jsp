@@ -191,10 +191,10 @@
                 , {field: 'ILComfirm', title: '确认人', sort: true}
                 , {
                     field: 'ILStatus', title: '入货单状态', templet: function (d) {
-                        if (d.uStatus == 0) {
-                            return d.uStatus = "完成"
+                        if (d.ILStatus == 0) {
+                            return d.ILStatus = "完成"
                         } else {
-                            return d.uStatus = "未完成"
+                            return d.ILStatus = "未完成"
                         }
                     }
                 }

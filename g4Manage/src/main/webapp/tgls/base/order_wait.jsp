@@ -72,6 +72,7 @@
 <script id="inbarDemo" type="text/html">
     <a class="layui-btn layui-btn-xs" lay-event="intoDetails">查看库单详情</a>
     <a class="layui-btn layui-btn-xs" lay-event="submit">确认</a>
+    <a class="layui-btn layui-btn-xs" lay-event="reject">取消</a>
 </script>
 <script>
     layui.use('table', function () {
@@ -104,7 +105,7 @@
                         }
                     }
                 }
-                , {field: 'right', title: '操作', toolbar: '#inbarDemo', width: 200}
+                , {field: 'right', title: '操作', toolbar: '#inbarDemo', width: 250}
             ]]
         });
         //监听行工具事件
@@ -112,19 +113,25 @@
             var data = obj.data;
             //console.log(obj)
             if (obj.event === 'submit') {
-                layer.prompt({
-                    formType: 2
-                    , value: data.email
-                }, function (value, index) {
-                    obj.update({
-                        email: value
-                    });
-                    layer.close(index);
-                });
+                $.ajax({
+                    url: "1234",//
+                    type: "POST",
+                    dataType: "json",
+                    data: {ILID: data.ilid,ilstatus:1},
+                    success: function (data) {
+                        if (data.status == 200) {
+                            //接收到成功的提示
+                            window.location.reload();
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
+
+                })
             }
             else if (obj.event === 'intoDetails') {
                 layer.open({
-                    title: "入货单信息修改",
+                    title: "订单详细信息",
                     type: 2,
                     area: ['70%', '60%'],
                     scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
@@ -132,12 +139,30 @@
                     end: function () {
                         window.location.reload();
                     },
-                    content: '/userOperation?ILID=' + data.ILID + '&pageType=edit',
+                    content: '/PageOperation?id=' + data.ilid + '&pageType=inlistDetail',
+
+                });
+            }
+            else if (obj.event === 'reject') {
+                $.ajax({
+                    url: "1234",//
+                    type: "POST",
+                    dataType: "json",
+                    data: {ILID: data.ilid, ilstatus: 2},
+                    success: function (data) {
+                        if (data.status == 200) {
+                            //接收到成功的提示
+                            layer.msg("提交");
+                            window.location.reload();
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
 
                 })
             }
-        });
-    });
+    })
+    })
 </script>
 
 <%--出货单的--%>
@@ -145,6 +170,7 @@
 <script id="outbarDemo" type="text/html">
     <a class="layui-btn layui-btn-xs" lay-event="outtoDetails">查看库单详情</a>
     <a class="layui-btn layui-btn-xs" lay-event="submit">确认</a>
+    <a class="layui-btn layui-btn-xs" lay-event="cancel">确认</a>
 </script>
 <script>
     layui.use('table', function () {
@@ -179,7 +205,7 @@
                     }
 
                 }
-                , {field: 'right', title: '操作', toolbar: '#outbarDemo', width: 200}
+                , {field: 'right', title: '操作', toolbar: '#outbarDemo', width: 250}
             ]]
         });
         //监听行工具事件
@@ -187,31 +213,42 @@
             var data = obj.data;
             //console.log(obj)
             if (obj.event === 'submit') {
-                layer.prompt({
-                    formType: 2
-                    , value: data.email
-                }, function (value, index) {
-                    obj.update({
-                        email: value
-                    });
-                    layer.close(index);
-                });
-            }
-            else if (obj.event === 'outtoDetails') {
-                layer.open({
-                    title: "入货单信息修改",
-                    type: 2,
-                    area: ['70%', '60%'],
-                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
-                    maxmin: true,
-                    end: function () {
+                $.ajax({
+                url: "1234",//
+                type: "POST",
+                dataType: "json",
+                data: {olId: data.olId,olStatus:1},
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        layer.msg("提交");
                         window.location.reload();
-                    },
-                    content: '/userOperation?olId=' + data.olId + '&pageType=edit',
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+
+            })
+            }
+            else if (obj.event === 'cancel') {
+                $.ajax({
+                    url: "1234",//
+                    type: "POST",
+                    dataType: "json",
+                    data: {olId: data.olId, olStatus: 2},
+                    success: function (data) {
+                        if (data.status == 200) {
+                            //接收到成功的提示
+                            layer.msg("提交");
+                            window.location.reload();
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
 
                 })
             }
-        });
+        })
     });
 </script>
 

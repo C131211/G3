@@ -52,6 +52,13 @@ public class InListController {
         return inListService.selNoDeal(ILComfirm, page, rows);
     }
 
+    /**
+     * 根据ID获取订单详情
+     * @param ILID
+     * @param page
+     * @param rows
+     * @return
+     */
     @RequestMapping("/getInListById")
     @ResponseBody
     public DataGrid getInListById(String ILID,int page,int rows){

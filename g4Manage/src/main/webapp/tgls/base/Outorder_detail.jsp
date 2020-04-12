@@ -21,9 +21,8 @@
     <script src="/framework/jquery-ui-1.10.4.min.js"></script>
     <script src="/framework/jquery.mousewheel.min.js"></script>
     <script src="/framework/jquery.mCustomScrollbar.min.js"></script>
-    <script src="/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <!-- 公共样式 结束 -->
-
+    <script src="/js/TimeFormat.js" charset="utf-8"></script>
     <%--引入css--%>
     <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css"  media="all">
     <%--引入js--%>
@@ -33,39 +32,12 @@
 
 <body class="cBody">
 <div>
-    <div class="glList">
-        <form class="layui-form" action="">
-            <div class="layui-form-item">
-                <div class="layui-input-inline">
-                    <input type="text" name="selectGlName" required lay-verify="required" placeholder="输入货物类名" autocomplete="off"
-                           class="layui-input">
-                </div>
-                <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
-            </div>
-        </form>
-        <script>
-            layui.use('form', function () {
-                var form = layui.form;
+    <form class="glList">
 
-                //监听提交
-                form.on('submit(formDemo)', function (data) {
-                    layer.msg(JSON.stringify(data.field));
-                    return false;
-                });
-            });
-        </script>
         <table class="layui-hide" id="outListDetails" lay-filter="outDetailTools"></table>
-    </div>
+    </form>
 </div>
 </body>
-<script id="barDemo" type="text/html">
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-</script>
-<script id="toolbarDemo" type="text/html">
-    <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="addGoodList">新增行</button>
-    </div>
-</script>
 <script>
     layui.use('table', function () {
         var table = layui.table;
@@ -83,115 +55,22 @@
             , defaultToolbar: ['exports', 'print',]
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'olId', title: '货单ID', width: 100}
-                , {field: 'gID', title:'货物ID', width: 100}
                 , {field: 'goodName', title: '货物类名', }
                 , {field: 'olPrice', title: '入货价', }
                 , {field: 'olNum', title: '入货量', }
                 , {field: 'olTotal', title: '货物小计', }
-                , {field: 'olDate', title: '货单日期', }
+                , {field: 'olDate', title: '货单日期',
+                    templet:'<div>{{ Format(d.ildate,"yyyy-MM-dd")}}</div>'
+                }
                 , {field: 'olDestin', title: '供货商', }
                 , {field: 'olBy', title: '经手人', }
-                , {field: 'olComfirm', title: '确认人', }
                 , {field: 'sID', title: '仓库号', }
-                , {field: 'olStatus', title: '入货单状态', templet: function (d) {
-                        if (d.olStatus == 0) {
-                            return d.olStatus = "完成"
-                        } else {
-                            return d.olStatus = "未完成"
-                        }
-                    }
-                }
-                , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
             ]]
-        });
-        //头工具栏事件
-        table.on('toolbar(outDetailTools)', function (obj) {
-            var checkStatus = table.checkStatus(obj.config.id);
-            switch(obj.event) {
-                case 'addGoodList':
-                    layer.open({
-                        title: "增加货物类别",
-                        type: 2,
-                        area: ['70%', '60%'],
-                        scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
-                        maxmin: true,
-                        end: function () {
-                            window.location.reload();
-                        },
-                        content: 'gl_add.jsp'
-                    });
-                    break;
-            }
-        });
-        //监听行工具事件
-        table.on('tool(outDetailTools)', function (obj) {
-            var data = obj.data;
-            if(obj.event === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    $.ajax({
-                        url: "/delGoodList",
-                        type: "POST",
-                        dataType: "json",
-                        data: {olId:data.olId},
-                        success: function (data) {
-                            if (data.status == 200) {
-                                //接收到成功的提示
-                                window.location.reload();
-                            } else {
-                                alert(data.msg);
-                            }
-                        }
-
-                    })
-                });
-            }
-        });
-
-
-        //查询作用
-        $("#select").click(function (){
-            table.reload("glList",{
-                where: { //设定异步数据接口的额外参数，任意设
-                    goodName: $("#selectGlName").val()
-                }
-                ,page: {
-                    curr: 1 //重新从第 1 页开始
-                }
-            });
         });
         $(function () {
             //检查是否拥有标识
             checkLogin(${sessionScope.result.data.uID});
             //请求该id的用户数据
-            $.ajax({
-                url: "/selUserById",
-                dataType: "json",
-                type: "POST",
-                data: {olID:"${requestScope.olID}"},
-                success: function (data) {
-                    if (data.status == 200) {
-                        layui.use('form', function () {
-                            var form = layui.form;
-                            $("#olId").val(data.data.olId);
-                            $("#gID").val(data.data.gID);
-                            $("#goodName").val(data.data.goodName);
-                            $("#sID").val(data.data.sID);
-                            $("#olNum").val(data.data.olNum);
-                            $("#olPrice").val(data.data.olPrice);
-                            $("#olTotal").val(data.data.olTotal);
-                            $("#olDate").val(data.data.olDate);
-                            $("#olBy").val(data.data.olBy);
-                            $("#olComfirm").val(data.data.olComfirm);
-                            $("#olDestin").val(data.data.olDestin);
-                            $("#olStatus").val(data.data.olStatus);
-                            form.render();
-                        });
-                    } else {
-                        layer.msg("获取失败");
-                    }
-                }
-            });
         });
     });
 </script>
