@@ -51,7 +51,20 @@
                     }
                 }
             });
-
+            //供应商选择
+            $.ajax({
+                url: "/getSupply",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        reloadForm();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
             //仓库选择
             $.ajax({
                 url: "/getSaveName",
@@ -114,13 +127,17 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">入库库名</label>
                     <div class="layui-input-inline" style="width: 25%">
-                        <select name="sID" id="sID" class="layui-form-select"></select>
+                        <select name="sID" id="sID" class="layui-form-select" lay-verify="required">
+                            <option value="">未选择</option>
+                        </select>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">确认人</label>
                         <div class="layui-input-inline">
                             <select type="text" id="ILComfirm" name="ILComfirm" placeholder="请输入" autocomplete="off"
-                                    class="layui-form-select"></select>
+                                    class="layui-form-select">
+                                <option value="">未选择</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -131,10 +148,12 @@
                         <label class="layui-form-label">货物名称</label>
                         <div class="layui-input-inline" style="width: 13%">
                             <select name="goodName" lay-filter="ILSelect" class="layui-form-select" lay-verify="required">
+                                <option value="">未选择</option>
                                 <c:forEach items="${GoodListResult.data}" var="item">
                                     <option>${item.goodName}</option>
                                 </c:forEach>
                             </select>
+
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">入货价</label>
@@ -154,8 +173,9 @@
                             <label class="layui-form-label">供应商</label>
                             <div class="layui-input-inline">
                             <select name="ILFrom" lay-filter="ILSelect" class="layui-form-select" lay-verify="required">
-                                <c:forEach items="${GoodListResult.data}" var="item">
-                                    <option>${item.supName}</option>
+                                <option value="">未选择</option>
+                                <c:forEach items="${SupplyResult.data}" var="sup">
+                                    <option>${sup.supName}</option>
                                 </c:forEach>
                             </select>
                             </div>
@@ -184,6 +204,7 @@
             "<label class='layui-form-label'>货物名称</label>" +
             "<div class='layui-input-inline' style='width: 13%'>" +
             "<select name='goodName' lay-filter='ILSelect' class='layui-form-select' lay-verify='required'>" +
+            "<option value=''>未选择</option>" +
             "<c:forEach items='${GoodListResult.data}' var='item'>" +
             "<option>${item.goodName}</option>" +
             "</c:forEach>" +
@@ -205,8 +226,9 @@
             "<label class='layui-form-label'>供应商</label>" +
             "<div class='layui-input-inline'>" +
             "<select name='ILFrom' lay-filter='ILSelect' class='layui-form-select' lay-verify='required'>" +
-            "<c:forEach items='${GoodListResult.data}' var='item'>" +
-            "<option>${item.supName}</option>" +
+            "<option value=''>未选择</option>" +
+            "<c:forEach items='${SupplyResult.data}' var='sup'>" +
+            "<option>${sup.supName}</option>" +
             "</c:forEach>" +
             "</select>" +
             "</div>" +
@@ -243,7 +265,6 @@
         //监听提交
         form.on('submit(submitBut)', function (data) {
             //提交结果
-            console.log($('#addInList').serialize());
             addInorder();
             return false;
         });

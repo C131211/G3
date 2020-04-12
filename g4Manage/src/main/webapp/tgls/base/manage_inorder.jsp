@@ -277,7 +277,7 @@
 
                 })
             }
-        })
+        });
         $(function () {
             //检查是否拥有标识
             checkLogin(${sessionScope.result.data.uID});

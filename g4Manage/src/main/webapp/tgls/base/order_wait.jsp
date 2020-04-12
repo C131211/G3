@@ -33,7 +33,6 @@
     <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css" media="all">
     <%--引入js--%>
     <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
-    <script src="../../js/out_intoData.js"></script>
 
 <body>
 <div class="cBody">
@@ -49,7 +48,6 @@
             <div class="layui-tab-item">
                 <table class="layui-hide" id="outWait" lay-filter="outWaitTools"></table>
             </div>
-
         </div>
     </div>
 </div>
@@ -66,41 +64,47 @@
         //监听Tab切换，以改变地址hash值
         element.on('tab(myPage)', function () {
             location.hash = 'test1=' + this.getAttribute('lay-id');
-            console.log(this.getAttribute('lay-id'));
         });
     });
 </script>
 
 <%--入货单的--%>
 <script id="inbarDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="intoDetails">查看库单详情</a>
     <a class="layui-btn layui-btn-xs" lay-event="submit">确认</a>
 </script>
 <script>
     layui.use('table', function () {
         var table = layui.table;
-
         table.render({
             elem: '#inWait'
-            , url: '/demo/table/user/'
-            , toolbar: '#intoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-            , defaultToolbar: ['exports', 'print',]
-            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , url: '/getNotDealInList'
+            ,request: {
+                pageName: 'page' //页码的参数名称，默认：page
+                ,limitName: 'rows' //每页数据量的参数名，默认：limit
+            }
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,page:true     //开启分页
+            ,height:'full-200'  //高度最大化自适应
+            ,toolbar: '#intoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            ,defaultToolbar: ['exports', 'print' ]
+            ,method:'post'//传输方式
+            ,where:{ILComfirm:'${sessionScope.result.data.uName}'}
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'ILID', title: '出货单号', sort: true}
-                , {field: 'ILby', title: '经手人'}
-                , {field: 'ILComfirm', title: '确认人'}
+                , {field: 'ilid', title: '入货单号',width:380}
+                , {field: 'ilby', title: '经手人'}
+                , {field: 'ilcomfirm', title: '确认人'}
                 , {
-                    field: 'ILStatus', title: '出货单状态', templet: function (d) {
-                        if (d.ILStatus == 0) {
-                            return d.ILStatus = "完成"
+                    field: 'ilstatus', title: '入货单状态', templet: function (d) {
+                        if (d.ilstatus == 1) {
+                            return d.ilstatus = "完成"
                         } else {
-                            return d.ILStatus = "未完成"
+                            return d.ilstatus = "未完成"
                         }
                     }
-
                 }
-                , {field: 'right', title: '操作', toolbar: '#inbarDemo', width: 144}
+                , {field: 'right', title: '操作', toolbar: '#inbarDemo', width: 200}
             ]]
         });
         //监听行工具事件
@@ -118,6 +122,20 @@
                     layer.close(index);
                 });
             }
+            else if (obj.event === 'intoDetails') {
+                layer.open({
+                    title: "入货单信息修改",
+                    type: 2,
+                    area: ['70%', '60%'],
+                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                    maxmin: true,
+                    end: function () {
+                        window.location.reload();
+                    },
+                    content: '/userOperation?ILID=' + data.ILID + '&pageType=edit',
+
+                })
+            }
         });
     });
 </script>
@@ -125,6 +143,7 @@
 <%--出货单的--%>
 
 <script id="outbarDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="outtoDetails">查看库单详情</a>
     <a class="layui-btn layui-btn-xs" lay-event="submit">确认</a>
 </script>
 <script>
@@ -133,26 +152,34 @@
 
         table.render({
             elem: '#outWait'
-            , url: '/demo/table/user/'
-            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            , toolbar: '#outtoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-            , defaultToolbar: ['exports', 'print']
+            , url: '/getNotDealOutList'
+            ,request: {
+                pageName: 'page' //页码的参数名称，默认：page
+                ,limitName: 'rows' //每页数据量的参数名，默认：limit
+            }
+            ,where:{olComfirm:'${sessionScope.result.data.uName}'}
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,page:true     //开启分页
+            ,height:'full-200'  //高度最大化自适应
+            ,toolbar: '#outtoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            ,defaultToolbar: ['exports', 'print' ]
+            ,method:'post'//传输方式
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'olId', title: '出货单号', sort: true}
+                , {field: 'olId', title: '出货单号',width:380}
                 , {field: 'olBy', title: '经手人'}
                 , {field: 'olComfirm', title: '确认人'}
                 , {
-                    field: 'OLStatus', title: '出货单状态', templet: function (d) {
-                        if (d.OLStatus == 0) {
-                            return d.OLStatus = "完成"
+                    field: 'olStatus', title: '出货单状态', templet: function (d) {
+                        if (d.olStatus == 1) {
+                            return d.olStatus = "完成"
                         } else {
-                            return d.OLStatus = "未完成"
+                            return d.olStatus = "未完成"
                         }
                     }
 
                 }
-                , {field: 'right', title: '操作', toolbar: '#outbarDemo', width: 144}
+                , {field: 'right', title: '操作', toolbar: '#outbarDemo', width: 200}
             ]]
         });
         //监听行工具事件
@@ -169,6 +196,20 @@
                     });
                     layer.close(index);
                 });
+            }
+            else if (obj.event === 'outtoDetails') {
+                layer.open({
+                    title: "入货单信息修改",
+                    type: 2,
+                    area: ['70%', '60%'],
+                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                    maxmin: true,
+                    end: function () {
+                        window.location.reload();
+                    },
+                    content: '/userOperation?olId=' + data.olId + '&pageType=edit',
+
+                })
             }
         });
     });

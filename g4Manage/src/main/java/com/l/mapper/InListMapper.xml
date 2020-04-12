@@ -14,7 +14,7 @@
     
     
         <select id="selNoDeal" parameterType="String" resultType="com.l.pojo.InList">
-            select inlist,ILBy,ILComfirm,ILStatus from inlist where ILStatus = 0 and ILComfirm =#{0} or ILComfirm is null or ILComfirm = '' group by ILID
+            select ILID,ILBy,ILComfirm,ILStatus from inlist where ILStatus = 0 and (ILComfirm =#{0} or ILComfirm is null or ILComfirm = '') group by ILID
         </select>
 
 </mapper>

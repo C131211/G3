@@ -50,13 +50,17 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">出库库名</label>
                     <div class="layui-input-inline" style="width: 25%">
-                        <select name="sID" id="sID" class="layui-form-select"></select>
+                        <select name="sID" id="sID" class="layui-form-select" lay-verify="required">
+                            <option value="">未选择</option>
+                        </select>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">确认人</label>
                         <div class="layui-input-inline">
-                            <select type="text" id="olComfirm" name="ILComfirm" placeholder="请输入" autocomplete="off"
-                                    class="layui-form-select"></select>
+                            <select type="text" id="olComfirm" name="olComfirm" placeholder="请输入" autocomplete="off"
+                                    class="layui-form-select">
+                                <option value="">未选择</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -67,6 +71,7 @@
                         <label class="layui-form-label">货物名称</label>
                         <div class="layui-input-inline" style="width: 13%">
                             <select name="goodName" lay-filter="OLSelect" class="layui-form-select" lay-verify="required">
+                                <option value="">未选择</option>
                                 <c:forEach items="${GoodListResult.data}" var="item">
                                     <option>${item.goodName}</option>
                                 </c:forEach>
@@ -75,8 +80,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">出货价</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="olPrice" placeholder="请输入" autocomplete="off"
-                                       class="layui-input" lay-verify="required">
+                                <input type="text" name="olPrice" autocomplete="off" class="layui-input" lay-verify="required" value="${item.gOutprice}">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -90,8 +94,9 @@
                         <label class="layui-form-label">经销商</label>
                         <div class="layui-input-inline">
                             <select name="olDestin" lay-filter="ILSelect" class="layui-form-select" lay-verify="required">
-                                <c:forEach items="${GoodListResult.data}" var="item">
-                                    <option>${item.buyName}</option>
+                                <option value="">未选择</option>
+                                <c:forEach items="${BuyerResult.data}" var="buy">
+                                    <option>${buy.buyName}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -120,6 +125,7 @@
             "<label class='layui-form-label'>货物名称</label>" +
             "<div class='layui-input-inline' style='width: 13%'>" +
             "<select name='goodName' lay-filter='OLSelect' class='layui-form-select' lay-verify='required'>" +
+            "<option value=''>未选择</option>" +
             "<c:forEach items='${GoodListResult.data}' var='item'>" +
             "<option>${item.goodName}</option>" +
             "</c:forEach>" +
@@ -141,8 +147,9 @@
             "<label class='layui-form-label'>经销商</label>" +
             "<div class='layui-input-inline'>" +
             "<select name='olDestin' lay-filter='OLSelect' class='layui-form-select' lay-verify='required'>" +
-            "<c:forEach items='${GoodListResult.data}' var='item'>" +
-            "<option>${item.buyName}</option>" +
+            "<option value=''>未选择</option>" +
+            "<c:forEach items='${BuyerResult.data}' var='buy'>" +
+            "<option>${buy.buyName}</option>" +
             "</c:forEach>" +
             "</select>" +
             "</div>" +
@@ -156,7 +163,7 @@
     //提交
     function addOutorder() {
         $.ajax({
-            url: "/addInList",
+            url: "/addOutList",
             type: "POST",
             dataType: "json",
             data: $('#addOutList').serialize(),
@@ -177,14 +184,17 @@
     layui.use('form', function () {
         var form = layui.form;
         //监听提交
+        form.on('select(OLSelect)', function(data) {
+            <c:forEach items="${GoodListResult.data}" var="money">
+
+            </c:forEach>
+        });
         form.on('submit(submitBut)', function (data) {
             //提交结果
-            console.log($('#addOutList').serialize());
             addOutorder();
             return false;
         });
     });
-
 
     $(function () {
         //获取下拉框数据
@@ -201,7 +211,20 @@
                 }
             }
         });
-
+        //经销商选择
+        $.ajax({
+            url: "/getBuyer",
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                if (data.status == 200) {
+                    //接收到成功的提示
+                    reloadForm();
+                } else {
+                    alert(data.msg);
+                }
+            }
+        });
         //仓库选择
         $.ajax({
             url: "/getSaveName",
@@ -236,7 +259,7 @@
                         var option = $("<option />");
                         option.html(data.data[i].uName);
                         option.val(data.data[i].uName);
-                        $("#ILComfirm").append(option);
+                        $("#olComfirm").append(option);
                     }
                     reloadForm();
                 } else {
