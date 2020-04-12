@@ -48,6 +48,7 @@
                 <input type="text" name="buyIncharge" autocomplete="off"
                        class="layui-input">
             </div>
+            <i class="iconfont icon-huaban bt"></i>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">经销商联系方式</label>
@@ -66,7 +67,7 @@
     <script>
         function addBuyer() {
             $.ajax({
-                url: "/addUser",//添加用户
+                url: "/addBuyer",//添加用户
                 type: "POST",
                 dataType: "json",
                 data: $('#addBuyer').serialize(),

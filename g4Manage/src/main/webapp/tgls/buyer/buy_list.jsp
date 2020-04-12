@@ -80,7 +80,7 @@
         var table = layui.table;
         table.render({
             elem: '#buyList'   //表格ID
-            ,url:'/userList' //数据接口
+            ,url:'/getAllBuyerPage' //数据接口
             ,request: {
                 pageName: 'page' //页码的参数名称，默认：page
                 ,limitName: 'rows' //每页数据量的参数名，默认：limit
@@ -126,7 +126,7 @@
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     $.ajax({
-                        url: "/userDelById",
+                        url: "/delBuyerById",
                         type: "POST",
                         dataType: "json",
                         data: {buyId:data.buyId},

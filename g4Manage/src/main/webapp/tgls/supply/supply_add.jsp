@@ -48,6 +48,7 @@
                 <input type="text" name="supIncharge" required lay-verify="required|ZHCheck" autocomplete="off"
                        class="layui-input">
             </div>
+            <i class="iconfont icon-huaban bt"></i>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">供应商联系方式</label>

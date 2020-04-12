@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -18,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
     <script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
     <script src="/js/checkLogin.js"></script>
+    <script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <%--引入css--%>
     <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css"  media="all">
     <%--引入js--%>
@@ -32,21 +32,21 @@
         <div class="layui-form-item">
             <label class="layui-form-label">经销商名字</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="buyName" id="buyName"
+                <input type="text" name="buyName" id="buyName" required lay-verify="required|ZHCheck"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">经销商负责人</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="buyIncharge" id="buyIncharge"
+                <input type="text" name="buyIncharge" id="buyIncharge" required lay-verify="required|ZHCheck"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">经销商联系方式</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="buyTel" id="buyTel" autocomplete="off" class="layui-input">
+                <input type="text" name="buyTel" id="buyTel" lay-verify="required|phone" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -62,7 +62,7 @@
             //监听提交
             form.on('submit(submitBut)', function (data) {
                 $.ajax({
-                    url: "/editUser",
+                    url: "/editBuyer",
                     dataType: "json",
                     type: "POST",
                     data: $('#updateBuyer').serialize(),
@@ -87,7 +87,7 @@
             checkLogin(${sessionScope.result.data.uID});
             //请求该id的用户数据
             $.ajax({
-                url: "/selUserById",
+                url: "/getBuyerById",
                 dataType: "json",
                 type: "POST",
                 data: {buyId:"${requestScope.buyId}"},

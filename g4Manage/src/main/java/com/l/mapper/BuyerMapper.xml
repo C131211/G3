@@ -21,7 +21,7 @@
     </delete>
 
     <select id="selBuyerById" resultType="com.l.pojo.Buyer" parameterType="int">
-        select from buyer where buyId=#{0}
+        select * from buyer where buyId=#{0}
     </select>
 
 

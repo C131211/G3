@@ -33,7 +33,7 @@ public class PageController {
                 return "tgls/supply/supply_update.jsp";
             }else if (pageType.equals("buyerEdit")){
                 req.setAttribute("buyId",id);
-                return "tgls/buyer/buyer_update.jsp";
+                return "tgls/buyer/buy_update.jsp";
             } else {
                 return "/tgls/error/error_canshu.jsp";
             }

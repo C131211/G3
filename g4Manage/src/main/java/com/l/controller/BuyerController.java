@@ -51,8 +51,8 @@ public class BuyerController {
      */
     @RequestMapping("/delBuyerById")
     @ResponseBody
-    public GResult delBuyerById(int buyid){
-        return buyerService.delBuyerById(buyid);
+    public GResult delBuyerById(int buyId){
+        return buyerService.delBuyerById(buyId);
     }
 
     /**
@@ -86,8 +86,8 @@ public class BuyerController {
      */
     @RequestMapping("/getBuyerById")
     @ResponseBody
-    public GResult getBuyerById(int buyid){
-        return buyerService.selBuyerById(buyid);
+    public GResult getBuyerById(int buyId){
+        return buyerService.selBuyerById(buyId);
     }
 
 
