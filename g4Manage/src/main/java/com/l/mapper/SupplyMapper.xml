@@ -19,4 +19,8 @@
     <delete id="delSupplyById" parameterType="int">
         delete from supply where supId=#{0}
     </delete>
+
+    <select id="selSupplyById" parameterType="int" resultType="com.l.pojo.Supply">
+                select * from supply where buyId = #{0}
+     </select>
 </mapper>

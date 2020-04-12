@@ -41,4 +41,11 @@ public interface SupplyService {
      */
     GResult getSupply();
 
+    /**
+     * 根据Id获取该供应商的信息
+     * @param supId
+     * @return
+     */
+    GResult selSupplyById(int supId);
+
 }

@@ -89,4 +89,18 @@ public class SupplyServiceImpl  implements SupplyService {
         }
         return result;
     }
+
+    @Override
+    public GResult selSupplyById(int supId) {
+        GResult result = new GResult();
+        Supply supply = supplyMapper.selSupplyById(supId);
+        if (supply!=null){
+            result.setMsg("OK");
+            result.setStatus(200);
+            result.setData(supply);
+        }else {
+            result.setMsg("获取失败");
+        }
+        return result;
+    }
 }

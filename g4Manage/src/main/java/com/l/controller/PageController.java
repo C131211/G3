@@ -28,6 +28,12 @@ public class PageController {
             }else if (pageType.equals("saveEdit")){
                 req.setAttribute("sID",id);
                 return "/tgls/saveManage/save_update.jsp";
+            }else if(pageType.equals("supplyEdit")){
+                req.setAttribute("supId",id);
+                return "";
+            }else if (pageType.equals("buyerEdit")){
+                req.setAttribute("buyId",id);
+                return "";
             } else {
                 return "/tgls/error/error_canshu.jsp";
             }

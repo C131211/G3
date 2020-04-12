@@ -33,4 +33,11 @@ public interface SupplyMapper {
      */
     int updSupplyById(Supply supply);
 
+    /**
+     * 根据Id获取该供应商的信息
+     * @param supId
+     * @return
+     */
+    Supply selSupplyById(int supId);
+
 }

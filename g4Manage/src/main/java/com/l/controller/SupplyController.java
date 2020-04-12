@@ -73,5 +73,16 @@ public class SupplyController {
         return supplyService.getSupply();
     }
 
+    /**
+     * 根据id获取供应商信息
+     * @param supId
+     * @return
+     */
+    @RequestMapping("/getSupplyById")
+    @ResponseBody
+    public GResult getSupplyById(int supId){
+        return supplyService.selSupplyById(supId);
+    }
+
 
 }
