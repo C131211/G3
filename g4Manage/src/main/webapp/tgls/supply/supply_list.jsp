@@ -129,7 +129,7 @@
                     end: function () {
                         window.location.reload();
                     },
-                    content: '/PageOperation?id='+data.supId+'&pageType=supEdit',
+                    content: '/PageOperation?id='+data.supId+'&pageType=supplyEdit',
 
                 })
             }

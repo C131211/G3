@@ -13,7 +13,7 @@
       </insert>
 
     <update id="updSupplyById" parameterType="com.l.pojo.Supply">
-        update supply supName=#{supName} ,supIncharge=#{supIncharge},supTel=#{supTel} where  supId=#{supId}
+        update supply set supName=#{supName} ,supIncharge=#{supIncharge},supTel=#{supTel} where  supId=#{supId}
     </update>
 
     <delete id="delSupplyById" parameterType="int">
@@ -21,6 +21,6 @@
     </delete>
 
     <select id="selSupplyById" parameterType="int" resultType="com.l.pojo.Supply">
-                select * from supply where buyId = #{0}
+                select * from supply where supId = #{0}
      </select>
 </mapper>

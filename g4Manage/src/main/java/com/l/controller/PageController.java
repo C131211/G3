@@ -30,10 +30,10 @@ public class PageController {
                 return "/tgls/saveManage/save_update.jsp";
             }else if(pageType.equals("supplyEdit")){
                 req.setAttribute("supId",id);
-                return "";
+                return "tgls/supply/supply_update.jsp";
             }else if (pageType.equals("buyerEdit")){
                 req.setAttribute("buyId",id);
-                return "";
+                return "tgls/buyer/buyer_update.jsp";
             } else {
                 return "/tgls/error/error_canshu.jsp";
             }

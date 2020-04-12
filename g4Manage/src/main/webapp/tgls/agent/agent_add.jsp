@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
     <script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/js/layui-v2.5.6/layui/css/layui.css">
+    <script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <%--引入layUI--%>
     <script type="text/javascript" src="/js/layui-v2.5.6/layui/layui.js"></script>
     <!-- 公共样式 结束 -->
@@ -25,7 +26,7 @@
 
 <body class="cBody">
 <div>
-    <form id="addAgent" class="layui-form" >
+    <form id="addAgent" class="layui-form">
         <div class="layui-form-item">
             <label class="layui-form-label">工号（登录账号）</label>
             <div class="layui-input-inline shortInput">
@@ -37,8 +38,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label">员工名字</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uName" required lay-verify="required" placeholder="例:张三(只允许输入中文)"
-                       autocomplete="off" class="layui-input">
+                <input type="text" name="uName" required lay-verify="required|ZHCheck" autocomplete="off"
+                       class="layui-input">
             </div>
             <i class="iconfont icon-huaban bt"></i>
         </div>
@@ -63,8 +64,8 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">用户角色</label>
-            <div class="layui-input-inline shortInput"  >
-                <select name="rID" id="rID" required lay-verify="required" class="layui-form-select"  autocomplete="off">
+            <div class="layui-input-inline shortInput">
+                <select name="rID" id="rID" required lay-verify="required" class="layui-form-select" autocomplete="off">
                     <option value="0">超级管理员</option>
                     <option value="1">仓管员</option>
                     <option value="2">运输员</option>
@@ -102,7 +103,7 @@
                     if (data.status == 200) {
                         //接收到成功的提示
                         layer.msg("添加成功");
-                        window.setTimeout('parent.layer.closeAll()',500);
+                        window.setTimeout('parent.layer.closeAll()', 500);
                     } else {
                         alert(data.msg);
                     }

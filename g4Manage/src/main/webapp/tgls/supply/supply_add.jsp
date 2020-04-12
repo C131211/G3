@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
     <script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/js/layui-v2.5.6/layui/css/layui.css">
+    <script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <%--引入layUI--%>
     <script type="text/javascript" src="/js/layui-v2.5.6/layui/layui.js"></script>
     <!-- 公共样式 结束 -->
@@ -44,7 +45,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">供应商负责人</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="supIncharge" autocomplete="off"
+                <input type="text" name="supIncharge" required lay-verify="required|ZHCheck" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
