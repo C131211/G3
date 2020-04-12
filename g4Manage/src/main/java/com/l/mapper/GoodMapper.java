@@ -20,5 +20,12 @@ public interface GoodMapper {
      */
     int insGood(Good good);
 
+    /**
+     * 根据id修改货物信息
+     * @param good
+     * @return
+     */
+    int updGoodById(Good good);
+
 
 }

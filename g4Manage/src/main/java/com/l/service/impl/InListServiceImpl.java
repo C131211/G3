@@ -1,10 +1,7 @@
 package com.l.service.impl;
 
 import com.l.commons.pojo.GResult;
-import com.l.mapper.GoodMapper;
 import com.l.mapper.InListMapper;
-import com.l.mapper.SaveMapper;
-import com.l.pojo.Good;
 import com.l.pojo.InList;
 import com.l.service.InListService;
 import org.springframework.stereotype.Service;
@@ -24,10 +21,6 @@ import java.util.regex.Pattern;
 public class InListServiceImpl implements InListService {
 
     @Resource
-    private GoodMapper goodMapper;
-    @Resource
-    private SaveMapper saveMapper;
-    @Resource
     private InListMapper inListMapper;
 
 
@@ -38,12 +31,7 @@ public class InListServiceImpl implements InListService {
         Pattern p = Pattern.compile("[\\d.]+");
         Date date = new Date();
         String ILID = UUID.randomUUID().toString();
-        int goodIndex = -1;
-        String goods = "";
         List<InList> list = new ArrayList<>();
-        Good good = new Good();
-        good.setsID(sID);
-        String gid = null;
 
         //解析参数
         String[] ilPrices = ILprice.split(",");
@@ -77,34 +65,25 @@ public class InListServiceImpl implements InListService {
                 inList.setILComfirm(ILComfirm);
             }
             inList.setILTotal(Integer.parseInt(ilPrices[i]) * Integer.parseInt(iLNums[i]));
-            gid = UUID.randomUUID().toString();
-            inList.setgID(gid);
-            //添加货物
-            good.setgID(gid);
-            good.setgSatime(date);
-            good.setgInprice(Integer.parseInt(ilPrices[i]));
-            good.setgName(goodNames[i]);
-            good.setgStatus(1);
-            good.setgNum(Integer.parseInt(iLNums[i]));
-            goodIndex = goodMapper.insGood(good);
-            if (goodIndex<0){
-                throw new Exception("货物新建错误");
-            }
             list.add(inList);
         }
         //添加入库单
         int inListIndex = -1;
         for (InList inLists : list) {
            inListIndex +=  inListMapper.insInList(inLists);
-            goods += inLists.getgID()+",";
         }
-        //写入仓库
+     /*   //写入仓库
         int i = saveMapper.updSaveGoods(sID, goods);
         if (i>0&& inListIndex>0){
             result.setMsg("OK");
             result.setStatus(200);
+        }*/
+        if (inListIndex>0){
+            result.setMsg("OK");
+            result.setStatus(200);
+        }else {
+            result.setMsg("申请失败，请联系管理员");
         }
-
         return result;
     }
 }

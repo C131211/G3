@@ -17,4 +17,8 @@
                  VALUES(#{gID},#{gName},#{gNum},#{gInprice},#{gOutprice},#{gExplain},#{gSatime},#{sID},#{gStatus})
         </insert>
 
+        <update id="updGoodById" parameterType="com.l.pojo.Good">
+                update good set gNum=#{gNum},
+        </update>
+
 </mapper>

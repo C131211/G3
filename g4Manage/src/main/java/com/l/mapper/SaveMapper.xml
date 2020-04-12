@@ -58,4 +58,8 @@
                 update save set  goods=#{1} where sID=#{0}
         </update>
 
+        <select id="selSaveGoodsById" parameterType="int" resultType="String">
+                select goods from save where sID=#{0}
+        </select>
+
 </mapper>

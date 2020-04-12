@@ -56,5 +56,11 @@ public interface SaveMapper {
      */
     int updSaveGoods(int sID,String goods);
 
+    /**
+     * 根据id获取到该仓库的货物id集
+     * @return
+     */
+    String selSaveGoodsById(int sID);
+
 
 }
