@@ -32,13 +32,13 @@ public class GoodListController {
 
     /**
      *增加类别
-     * @param goodName
+     * @param goodList
      * @return
      */
     @RequestMapping("/addGoodList")
     @ResponseBody
-    public GResult addGoodList(String goodName){
-        return goodListService.insGoodList(goodName);
+    public GResult addGoodList(GoodList goodList){
+        return goodListService.insGoodList(goodList);
     }
 
     /**
