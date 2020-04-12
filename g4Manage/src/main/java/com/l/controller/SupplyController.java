@@ -26,8 +26,8 @@ public class SupplyController {
      */
     @RequestMapping("/getAllSupplyPage")
     @ResponseBody
-    public DataGrid getAllSupplyPage(int page,int count){
-        return supplyService.selAllSupply(page, count);
+    public DataGrid getAllSupplyPage(int page,int rows){
+        return supplyService.selAllSupply(page, rows);
     }
 
     /**

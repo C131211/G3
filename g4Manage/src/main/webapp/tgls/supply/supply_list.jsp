@@ -41,30 +41,8 @@
 <body class="cBody">
 <div>
     <div class="supplierList">
-        <form class="layui-form" action="">
-            <div class="layui-form-item">
-                <div class="layui-input-inline">
-                    <input type="text"  id="selectSuyName" required lay-verify="required" placeholder="输入经销商名"
-                           autocomplete="off" class="layui-input">
-                </div>
-                <button class="layui-btn" lay-submit lay-filter="formDemo" id="select">检索</button>
-            </div>
-        </form>
-    </div>
-
     <table class="layui-hide" id="supList" lay-filter="supTools"></table>
-
-    <script>
-        layui.use('form', function () {
-            var form = layui.form;
-            //监听提交
-            form.on('submit(formDemo)', function (data) {
-                layer.msg(JSON.stringify(data.field));
-                return false;
-            });
-        });
-    </script>
-
+    </div>
 </div>
 <script id="barDemo" type="text/html">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -80,7 +58,7 @@
         var table = layui.table;
         table.render({
             elem: '#supList'   //表格ID
-            ,url:'/userList' //数据接口
+            ,url:'/getAllSupplyPage' //数据接口
             ,request: {
                 pageName: 'page' //页码的参数名称，默认：page
                 ,limitName: 'rows' //每页数据量的参数名，默认：limit
@@ -126,7 +104,7 @@
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     $.ajax({
-                        url: "/userDelById",
+                        url: "/delSupplyById",
                         type: "POST",
                         dataType: "json",
                         data: {supId:data.supId},
@@ -151,26 +129,11 @@
                     end: function () {
                         window.location.reload();
                     },
-                    content: '/PageOperation?id='+data.supId+'&pageType=buyerEdit',
+                    content: '/PageOperation?id='+data.supId+'&pageType=supEdit',
 
                 })
             }
         });
-
-
-        //查询作用
-        $("#select").click(function (){
-            table.reload("supList",{
-                where: { //设定异步数据接口的额外参数，任意设
-                    SupName: $("#selectSupName").val()
-                }
-                ,page: {
-                    curr: 1 //重新从第 1 页开始
-                }
-            });
-        })
-
-
     });
 
 

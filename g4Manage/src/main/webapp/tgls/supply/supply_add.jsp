@@ -65,7 +65,7 @@
     <script>
         function addSupply() {
             $.ajax({
-                url: "/addUser",//添加用户
+                url: "/addSupply",//添加用户
                 type: "POST",
                 dataType: "json",
                 data: $('#addSupplier').serialize(),

@@ -62,7 +62,7 @@
             //监听提交
             form.on('submit(submitBut)', function (data) {
                 $.ajax({
-                    url: "/editUser",
+                    url: "/editSupply",
                     dataType: "json",
                     type: "POST",
                     data: $('#updateSupplier').serialize(),
@@ -87,7 +87,7 @@
             checkLogin(${sessionScope.result.data.uID});
             //请求该id的用户数据
             $.ajax({
-                url: "/selUserById",
+                url: "/getSupply",
                 dataType: "json",
                 type: "POST",
                 data: {supId:"${requestScope.supId}"},

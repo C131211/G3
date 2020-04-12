@@ -9,7 +9,7 @@
       </select>
 
       <insert id="insSupply" parameterType="com.l.pojo.Supply">
-          insert into supply values(default ,#(supName),#(buyIncharge),#(buyTel))
+          insert into supply values(default ,#{supName},#{supIncharge},#{supTel})
       </insert>
 
     <update id="updSupplyById" parameterType="com.l.pojo.Supply">
