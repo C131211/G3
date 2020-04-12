@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by c on 2020/4/12.
@@ -70,8 +72,11 @@ public class BuyerController {
      */
     @RequestMapping("/getBuyer")
     @ResponseBody
-    public GResult getBuyer(){
-        return buyerService.getBuyer();
+    public GResult getBuyer(HttpServletRequest req){
+        HttpSession session = req.getSession();
+        GResult result = buyerService.getBuyer();
+        session.setAttribute("GoodListResult",result);
+        return result;
     }
 
     /**

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by c on 2020/4/12.
@@ -64,13 +66,16 @@ public class SupplyController {
     }
 
     /**
-     * 获取供应商信息
+     * 获取供应商信息（选择录入时用）
      * @return
      */
     @RequestMapping("/getSupply")
     @ResponseBody
-    public GResult getSupply(){
-        return supplyService.getSupply();
+    public GResult getSupply(HttpServletRequest req){
+        HttpSession session = req.getSession();
+        GResult result = supplyService.getSupply();
+        session.setAttribute("GoodListResult",result);
+        return result;
     }
 
     /**
