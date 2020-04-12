@@ -1,5 +1,6 @@
 package com.l.service;
 
+import com.l.commons.pojo.DataGrid;
 import com.l.commons.pojo.GResult;
 import com.l.pojo.InList;
 
@@ -14,4 +15,12 @@ public interface InListService {
      * @return
      */
     GResult insInList(String ILprice,String ILNum,String ILFrom,String ILBy,int sID,String goodName,String ILComfirm) throws Exception;
+
+    /**
+     * 查询所有未处理的入库单
+     * @param ILComfirm
+     * @return
+     */
+    DataGrid selNoDeal(String ILComfirm,int page,int rows);
+
 }

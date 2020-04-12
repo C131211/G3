@@ -11,5 +11,10 @@
                 insert into inlist (ILID,gID,ILprice,ILNum,ILTotal,ILDate,ILFrom,ILBy,ILComfirm,sID,ILStatus,goodName)
                  VALUES (#{ILID},#{gID},#{ILprice},#{ILNum},#{ILTotal},#{ILDate},#{ILFrom},#{ILBy},#{ILComfirm},#{sID},#{ILStatus},#{goodName})
         </insert>
+    
+    
+        <select id="selNoDeal" parameterType="String" resultType="com.l.pojo.InList">
+            select * from inlist where ILStatus = 0 and ILComfirm =#{0} or ILComfirm is null or ILComfirm = ''
+        </select>
 
 </mapper>

@@ -12,4 +12,8 @@
                  VALUES (#{olId},#{olDate},#{gID},#{olPrice},#{olNum},#{olTotal},#{olDestin},#{olBy},#{olComfirm},#{sID},#{olStatus},#{goodName})
         </insert>
 
+    <select id="selNoDeal" parameterType="String" resultType="com.l.pojo.OutList">
+            select * from outlist where olStatus = 0 and olComfirm =#{0} or olComfirm is null or olComfirm = ''
+    </select>
+
 </mapper>

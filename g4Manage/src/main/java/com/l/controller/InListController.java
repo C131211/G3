@@ -1,5 +1,6 @@
 package com.l.controller;
 
+import com.l.commons.pojo.DataGrid;
 import com.l.commons.pojo.GResult;
 import com.l.service.InListService;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,19 @@ public class InListController {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * 查询指定为空或者自己的 未处理的入库单
+     * @param ILComfirm
+     * @param page
+     * @param rows
+     * @return
+     */
+    @RequestMapping("/getNotDealInList")
+    @ResponseBody
+    public DataGrid getNotDealInList(String ILComfirm,int page,int rows){
+        return inListService.selNoDeal(ILComfirm, page, rows);
     }
 
 }

@@ -1,5 +1,8 @@
 package com.l.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.l.commons.pojo.DataGrid;
 import com.l.commons.pojo.GResult;
 import com.l.mapper.InListMapper;
 import com.l.pojo.InList;
@@ -85,5 +88,18 @@ public class InListServiceImpl implements InListService {
             result.setMsg("申请失败，请联系管理员");
         }
         return result;
+    }
+
+    @Override
+    public DataGrid selNoDeal(String ILComfirm,int page,int rows) {
+        PageHelper.startPage(page, rows);
+        List<InList> list = inListMapper.selNoDeal(ILComfirm);
+        PageInfo<InList> pi = new PageInfo<>(list);
+        DataGrid dataGrid = new DataGrid();
+        dataGrid.setData(pi.getList());
+        dataGrid.setCount(pi.getTotal());
+        dataGrid.setCode(0);
+        dataGrid.setMsg("OK");
+        return dataGrid;
     }
 }

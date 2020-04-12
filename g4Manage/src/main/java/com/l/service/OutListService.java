@@ -1,5 +1,6 @@
 package com.l.service;
 
+import com.l.commons.pojo.DataGrid;
 import com.l.commons.pojo.GResult;
 
 /**
@@ -19,5 +20,5 @@ public interface OutListService {
      */
     GResult insOutList(String  olPrice,String  olNum,String olDestin,String olBy,String olComfirm,int sID,String goodName);
 
-
+    DataGrid selNoDeal(String olComfirm,int page,int rows);
 }

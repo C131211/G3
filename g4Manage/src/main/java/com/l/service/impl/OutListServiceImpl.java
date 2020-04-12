@@ -1,5 +1,8 @@
 package com.l.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.l.commons.pojo.DataGrid;
 import com.l.commons.pojo.GResult;
 import com.l.mapper.GoodMapper;
 import com.l.mapper.OutListMapper;
@@ -133,5 +136,18 @@ public class OutListServiceImpl  implements OutListService {
 
 
         return result;
+    }
+
+    @Override
+    public DataGrid selNoDeal(String olComfirm, int page, int rows) {
+        PageHelper.startPage(page, rows);
+        List<OutList> list = outListMapper.selNoDeal(olComfirm);
+        PageInfo<OutList> pi = new PageInfo<>(list);
+        DataGrid dataGrid = new DataGrid();
+        dataGrid.setData(pi.getList());
+        dataGrid.setCount(pi.getTotal());
+        dataGrid.setCode(0);
+        dataGrid.setMsg("OK");
+        return dataGrid;
     }
 }
