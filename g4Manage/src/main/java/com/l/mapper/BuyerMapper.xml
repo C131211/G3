@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.l.mapper.BuyerMapper">
+      <select id="selAllBuyer" resultType="com.l.pojo.Buyer">
+              select * from buyer
+      </select>
+
+      <insert id="insBuyer" parameterType="com.l.pojo.Buyer">
+          insert into buyer values(default ,#{buyName},#{buyIncharge},#{buyTel})
+      </insert>
+
+    <update id="updBuyerById" parameterType="com.l.pojo.Buyer">
+        update buyer set buyName=#{buyName} ,buyIncharge=#{buyIncharge},buyTel=#{buyTel} where  buyId=#{buyId}
+    </update>
+
+    <delete id="delBuyerById" parameterType="int">
+        delete from buyer where buyId=#{0}
+    </delete>
+
+    <select id="selBuyerById" resultType="com.l.pojo.Buyer" parameterType="int">
+        select from buyer where buyId=#{0}
+    </select>
+
+
+</mapper>

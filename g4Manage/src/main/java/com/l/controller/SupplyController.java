@@ -21,7 +21,7 @@ public class SupplyController {
     /**
      * 分页显示供应商信息
      * @param page
-     * @param count
+     * @param rows
      * @return
      */
     @RequestMapping("/getAllSupplyPage")
