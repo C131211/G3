@@ -75,7 +75,7 @@ public class BuyerController {
     public GResult getBuyer(HttpServletRequest req){
         HttpSession session = req.getSession();
         GResult result = buyerService.getBuyer();
-        session.setAttribute("GoodListResult",result);
+        session.setAttribute("BuyerResult",result);
         return result;
     }
 

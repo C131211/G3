@@ -74,7 +74,7 @@ public class SupplyController {
     public GResult getSupply(HttpServletRequest req){
         HttpSession session = req.getSession();
         GResult result = supplyService.getSupply();
-        session.setAttribute("GoodListResult",result);
+        session.setAttribute("SupplyResult",result);
         return result;
     }
 
