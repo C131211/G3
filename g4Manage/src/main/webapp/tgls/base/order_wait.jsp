@@ -80,20 +80,20 @@
         table.render({
             elem: '#inWait'
             , url: '/getNotDealInList'
-            ,request: {
+            , request: {
                 pageName: 'page' //页码的参数名称，默认：page
-                ,limitName: 'rows' //每页数据量的参数名，默认：limit
+                , limitName: 'rows' //每页数据量的参数名，默认：limit
             }
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            ,page:true     //开启分页
-            ,height:'full-200'  //高度最大化自适应
-            ,toolbar: '#intoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-            ,defaultToolbar: ['exports', 'print' ]
-            ,method:'post'//传输方式
-            ,where:{ILComfirm:'${sessionScope.result.data.uName}'}
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , page: true     //开启分页
+            , height: 'full-200'  //高度最大化自适应
+            , toolbar: '#intoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['exports', 'print']
+            , method: 'post'//传输方式
+            , where: {ILComfirm: '${sessionScope.result.data.uName}'}
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'ilid', title: '入货单号',width:380}
+                , {field: 'ilid', title: '入货单号', width: 380}
                 , {field: 'ilby', title: '经手人'}
                 , {field: 'ilcomfirm', title: '确认人'}
                 , {
@@ -117,7 +117,7 @@
                     url: "1234",//
                     type: "POST",
                     dataType: "json",
-                    data: {ILID: data.ilid,ilstatus:1},
+                    data: {ILID: data.ilid, ilstatus: 1},
                     success: function (data) {
                         if (data.status == 200) {
                             //接收到成功的提示
@@ -128,8 +128,7 @@
                     }
 
                 })
-            }
-            else if (obj.event === 'intoDetails') {
+            } else if (obj.event === 'intoDetails') {
                 layer.open({
                     title: "订单详细信息",
                     type: 2,
@@ -142,8 +141,7 @@
                     content: '/PageOperation?id=' + data.ilid + '&pageType=inlistDetail',
 
                 });
-            }
-            else if (obj.event === 'reject') {
+            } else if (obj.event === 'reject') {
                 $.ajax({
                     url: "1234",//
                     type: "POST",
@@ -161,7 +159,7 @@
 
                 })
             }
-    })
+        })
     })
 </script>
 
@@ -179,20 +177,20 @@
         table.render({
             elem: '#outWait'
             , url: '/getNotDealOutList'
-            ,request: {
+            , request: {
                 pageName: 'page' //页码的参数名称，默认：page
-                ,limitName: 'rows' //每页数据量的参数名，默认：limit
+                , limitName: 'rows' //每页数据量的参数名，默认：limit
             }
-            ,where:{olComfirm:'${sessionScope.result.data.uName}'}
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            ,page:true     //开启分页
-            ,height:'full-200'  //高度最大化自适应
-            ,toolbar: '#outtoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-            ,defaultToolbar: ['exports', 'print' ]
-            ,method:'post'//传输方式
+            , where: {olComfirm: '${sessionScope.result.data.uName}'}
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , page: true     //开启分页
+            , height: 'full-200'  //高度最大化自适应
+            , toolbar: '#outtoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['exports', 'print']
+            , method: 'post'//传输方式
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'olId', title: '出货单号',width:380}
+                , {field: 'olId', title: '出货单号', width: 380}
                 , {field: 'olBy', title: '经手人'}
                 , {field: 'olComfirm', title: '确认人'}
                 , {
@@ -214,23 +212,47 @@
             //console.log(obj)
             if (obj.event === 'submit') {
                 $.ajax({
-                url: "1234",//
-                type: "POST",
-                dataType: "json",
-                data: {olId: data.olId,olStatus:1},
-                success: function (data) {
-                    if (data.status == 200) {
-                        //接收到成功的提示
-                        layer.msg("提交");
-                        window.location.reload();
-                    } else {
-                        alert(data.msg);
+                    url: "1234",//
+                    type: "POST",
+                    dataType: "json",
+                    data: {olId: data.olId, olStatus: 1},
+                    success: function (data) {
+                        if (data.status == 200) {
+                            //接收到成功的提示
+                            layer.msg("提交");
+                            window.location.reload();
+                        } else {
+                            alert(data.msg);
+                        }
                     }
-                }
+                })
+            } else if (obj.event === 'outtoDetails') {
+                layer.open({
+                    title: "订单详细信息",
+                    type: 2,
+                    area: ['70%', '60%'],
+                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                    maxmin: true,
+                    end: function () {
+                        window.location.reload();
+                    },
+                    content: '/PageOperation?id=' + data.olId + '&pageType=outlistDetail',
 
-            })
-            }
-            else if (obj.event === 'cancel') {
+                });
+            } else if (obj.event === 'intoDetails') {
+                layer.open({
+                    title: "订单详细信息",
+                    type: 2,
+                    area: ['70%', '60%'],
+                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
+                    maxmin: true,
+                    end: function () {
+                        window.location.reload();
+                    },
+                    content: '/PageOperation?id=' + data.ilid + '&pageType=inlistDetail',
+
+                });
+            } else if (obj.event === 'cancel') {
                 $.ajax({
                     url: "1234",//
                     type: "POST",
@@ -249,7 +271,7 @@
                 })
             }
         })
-    });
+    })
 </script>
 
 

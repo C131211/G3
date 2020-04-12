@@ -66,8 +66,7 @@
 
 <%--历史列表--%>
 <script id="alloutbarDemo" type="text/html">
-    <a class="layui-btn layui-btn-xs" lay-event="alloutedit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="alloutdel">删除</a>
+    <a class="layui-btn layui-btn-xs" lay-event="alloutDetails">查看详情</a>
 </script>
 <script>
     //初始化表格
@@ -76,11 +75,16 @@
         table.render({
             elem: '#all_outList'   //表格ID
             , url: '/userList' //数据接口
+            , request: {
+                pageName: 'page' //页码的参数名称，默认：page
+                , limitName: 'rows' //每页数据量的参数名，默认：limit
+            }
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , page: true     //开启分页
             , height: 'full-200'  //高度最大化自适应
             , toolbar: '#allouttoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['exports', 'print']
+            , method: 'post'//传输方式
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'olId', title: '出货单号', sort: true}
@@ -105,27 +109,9 @@
         //监听行工具事件
         table.on('tool(alloutOLTools)', function (obj) {
             var data = obj.data;
-            if (obj.event === 'alloutdel') {
-                layer.confirm('真的删除行么', function (index) {
-                    $.ajax({
-                        url: "/userDelById",//添加用户
-                        type: "POST",
-                        dataType: "json",
-                        data: {olId: data.olId},
-                        success: function (data) {
-                            if (data.status == 200) {
-                                //接收到成功的提示
-                                window.location.reload();
-                            } else {
-                                alert(data.msg);
-                            }
-                        }
-
-                    })
-                });
-            } else if (obj.event === 'alloutedit') {
+            if (obj.event === 'alloutDetails') {
                 layer.open({
-                    title: "出货单信息修改",
+                    title: "详细信息",
                     type: 2,
                     area: ['70%', '60%'],
                     scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
@@ -133,7 +119,7 @@
                     end: function () {
                         window.location.reload();
                     },
-                    content: '/userOperation?olId=' + data.olId + '&pageType=edit',
+                    content: '/PageOperation?id=' + data.olId + '&pageType=outlistDetail',
 
                 })
             }
@@ -143,8 +129,7 @@
 
 <%--今日列表--%>
 <script id="tooutbarDemo" type="text/html">
-    <a class="layui-btn layui-btn-xs" lay-event="tooutedit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="tooutdel">删除</a>
+    <a class="layui-btn layui-btn-xs" lay-event="tooutDetails">编辑</a>
 </script>
 <script>
     layui.use('table', function () {
@@ -152,11 +137,16 @@
         table.render({
             elem: '#today_outList'   //表格ID
             , url: '/userList' //数据接口
+            , request: {
+                pageName: 'page' //页码的参数名称，默认：page
+                , limitName: 'rows' //每页数据量的参数名，默认：limit
+            }
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , page: true     //开启分页
             , height: 'full-200'  //高度最大化自适应
             , toolbar: '#toouttoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['exports', 'print']
+            , method: 'post'//传输方式
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'olId', title: '出货单号', sort: true}
@@ -180,27 +170,9 @@
         //监听行工具事件
         table.on('tool(tooutOLTools)', function (obj) {
             var data = obj.data;
-            if (obj.event === 'tooutdel') {
-                layer.confirm('真的删除行么', function (index) {
-                    $.ajax({
-                        url: "/userDelById",//添加用户
-                        type: "POST",
-                        dataType: "json",
-                        data: {olId: data.olId},
-                        success: function (data) {
-                            if (data.status == 200) {
-                                //接收到成功的提示
-                                window.location.reload();
-                            } else {
-                                alert(data.msg);
-                            }
-                        }
-
-                    })
-                });
-            } else if (obj.event === 'tooutedit') {
+            if (obj.event === 'tooutDetails') {
                 layer.open({
-                    title: "出货单信息修改",
+                    title: "出货单详细信息",
                     type: 2,
                     area: ['70%', '60%'],
                     scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
@@ -208,7 +180,7 @@
                     end: function () {
                         window.location.reload();
                     },
-                    content: '/userOperation?olId=' + data.olId + '&pageType=edit',
+                    content: '/PageOperation?olId=' + data.olId + '&pageType=outlistDetail',
 
                 })
             }
