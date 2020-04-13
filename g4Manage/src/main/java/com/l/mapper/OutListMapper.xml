@@ -20,4 +20,13 @@
         select * from outlist where olId = #{0};
     </select>
 
+    <update id="updOutListOinion" >
+        update  outlist  set olStatus =1,orderoOinion=#{0} where olId=#{1}
+    </update>
+
+    <update id="updOutListOrder" parameterType="com.l.pojo.OutList">
+        update inlist set orderOinion=1,olStatus = 1 where goodName=#{goodName} and olBy=#{olBy} and olDate=#{olDate} and sID=#{sID}
+    </update>
+
+
 </mapper>

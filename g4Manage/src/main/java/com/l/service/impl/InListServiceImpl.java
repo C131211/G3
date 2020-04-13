@@ -196,8 +196,8 @@ public class InListServiceImpl implements InListService {
             result.setStatus(200);
             result.setMsg("审核成功");
         }else {
-            result.setMsg("系统错误");
+            throw new Exception("系统错误");
         }
-        return null;
+        return result;
     }
 }

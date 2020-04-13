@@ -19,23 +19,14 @@ public class OutList {
     private int sID;
     private int olStatus;
     private String goodName;
+    private int orderOinion;
 
-    @Override
-    public String toString() {
-        return "OutList{" +
-                "olId='" + olId + '\'' +
-                ", olDate=" + olDate +
-                ", gID='" + gID + '\'' +
-                ", olPrice=" + olPrice +
-                ", olNum=" + olNum +
-                ", olTotal=" + olTotal +
-                ", olDestin='" + olDestin + '\'' +
-                ", olBy='" + olBy + '\'' +
-                ", olComfirm='" + olComfirm + '\'' +
-                ", sID=" + sID +
-                ", olStatus=" + olStatus +
-                ", goodName='" + goodName + '\'' +
-                '}';
+    public int getOrderOinion() {
+        return orderOinion;
+    }
+
+    public void setOrderOinion(int orderOinion) {
+        this.orderOinion = orderOinion;
     }
 
     public String getOlId() {

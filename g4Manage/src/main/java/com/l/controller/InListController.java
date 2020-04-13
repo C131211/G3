@@ -78,6 +78,7 @@ public class InListController {
         try {
             gResult = inListService.updInListById(ILID, orderOinion);
         } catch (Exception e) {
+            gResult.setMsg(e.toString());
             e.printStackTrace();
         }
         return gResult;
