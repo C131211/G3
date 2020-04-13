@@ -30,4 +30,10 @@ public interface InListService {
      */
     DataGrid selInListById(String ILID,int page,int rows);
 
+    /**
+     * 根据订单id修改信息，更新仓库和货物信息
+     * @return
+     */
+    GResult updInListById(String ILID,int orderOinion) throws Exception;
+
 }

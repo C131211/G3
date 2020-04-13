@@ -26,6 +26,16 @@ public class InList {
 
     private String goodName;
 
+    private int orderOinion;
+
+    public int getOrderOinion() {
+        return orderOinion;
+    }
+
+    public void setOrderOinion(int orderOinion) {
+        this.orderOinion = orderOinion;
+    }
+
     public InList() {
     }
 

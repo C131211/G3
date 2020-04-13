@@ -34,6 +34,9 @@
                         <if test="sName!=null and sName!=''">
                                 sName = #{sName},
                         </if>
+                        <if test="sNsave!=null and sNsave!=''">
+                                sNsave = #{sNsave},
+                        </if>
                         <if test="sTsave!=null and sTsave!=''">
                                 sTsave = #{sTsave},
                         </if>
@@ -42,6 +45,9 @@
                         </if>
                         <if test="sExplain!=null and sExplain!=''">
                                 sExplain = #{sExplain},
+                        </if>
+                         <if test="goods!=null and goods!=''">
+                                 goods = #{goods},
                         </if>
                                 sStatus = #{sStatus},
                 </set>

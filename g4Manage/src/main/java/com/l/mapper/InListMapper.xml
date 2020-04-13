@@ -20,5 +20,12 @@
         <select id="selInListById" parameterType="String" resultType="com.l.pojo.InList">
             select * from  inlist where ILID=#{0}
         </select>
+    <update id="updInListOinion" >
+        update  inlist  set ILStatus =1,orderoOinion=#{0} where ILID=#{1}
+    </update>
+
+    <update id="updInListOrder" parameterType="com.l.pojo.InList">
+        update inlist set gID=#{gID},ILStatus=1,orderOinion=1 where goodName=#{goodName} and ILBy=#{ILBy} and ILDate=#{ILDate} and sID=#{sID}
+    </update>
 
 </mapper>

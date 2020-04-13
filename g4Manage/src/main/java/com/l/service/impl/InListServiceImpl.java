@@ -4,8 +4,12 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.l.commons.pojo.DataGrid;
 import com.l.commons.pojo.GResult;
+import com.l.mapper.GoodMapper;
 import com.l.mapper.InListMapper;
+import com.l.mapper.SaveMapper;
+import com.l.pojo.Good;
 import com.l.pojo.InList;
+import com.l.pojo.Save;
 import com.l.service.InListService;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +29,10 @@ public class InListServiceImpl implements InListService {
 
     @Resource
     private InListMapper inListMapper;
+    @Resource
+    private GoodMapper goodMapper;
+    @Resource
+    private SaveMapper saveMapper;
 
 
     @Override
@@ -114,5 +122,82 @@ public class InListServiceImpl implements InListService {
         dataGrid.setCode(0);
         dataGrid.setMsg("OK");
         return dataGrid;
+    }
+
+
+    @Override
+    public GResult updInListById(String ILID, int orderOinion) throws Exception {
+        GResult result = new GResult();
+        int index = -1;
+        //判断是否允许入库
+        if (orderOinion==1){//同意
+            //查询订单详情
+            List<InList> inLists = inListMapper.selInListById(ILID);
+            for (InList inList : inLists) {
+                //查询good里面是否已经有该供应商的货物
+                Good good = goodMapper.selGoodByMore(inList.getGoodName(), inList.getsID(), inList.getILFrom());
+                if (good!=null){//有此货物 修改信息
+                    good.setgNum((good.getgNum()+inList.getILNum()));
+                    good.setgSatime(new Date());
+                    index = goodMapper.updGoodById(good);
+                    //写入inList
+                    inList.setgID(good.getgID());
+                    inList.setILStatus(1);
+                    inList.setOrderOinion(1);
+                    index = inListMapper.updInListOrder(inList);
+                    //修改仓库的现存量
+                    Save save = saveMapper.selSaveById(inList.getsID());
+                    if (save!=null){
+                        save.setsNsave(save.getsNsave()+inList.getILNum());
+                        index = saveMapper.updSave(save);
+                    }else {
+                        throw new Exception("仓库获取出错");
+                    }
+                }else {//没有此货物新增
+                    Good goodNew = new Good();
+                    String gid = UUID.randomUUID().toString();
+                    goodNew.setgID(gid);
+                    goodNew.setgName(inList.getGoodName());
+                    goodNew.setgNum(inList.getILNum());
+                    goodNew.setgInprice(inList.getILprice());
+                    goodNew.setgSatime(new Date());
+                    goodNew.setsID(inList.getsID());
+                    goodNew.setgStatus(1);
+                    goodNew.setSupName(inList.getILFrom());
+                    index = goodMapper.insGood(goodNew);
+                    //写入inList
+                    inList.setgID(gid);
+                    inList.setILStatus(1);
+                    inList.setOrderOinion(1);
+                    index = inListMapper.updInListOrder(inList);
+                    //修改仓库的信息
+                    Save save = saveMapper.selSaveById(inList.getsID());
+                    if (save!=null){
+                        save.setsNsave(save.getsNsave()+inList.getILNum());
+                        save.setGoods(save.getGoods()+gid+",");
+                        index = saveMapper.updSave(save);
+                    }else {
+                        throw new Exception("仓库获取出错");
+                    }
+                }
+            }
+        }else if (orderOinion==0){//拒绝
+            //改变审核意见，返回信息
+            index  = inListMapper.updInListOinion(0, ILID);
+            result.setStatus(200);
+            result.setMsg("审核成功");
+        }else {
+            //参数错误
+            result.setMsg("参数错误");
+        }
+
+
+        if (index>0){
+            result.setStatus(200);
+            result.setMsg("审核成功");
+        }else {
+            result.setMsg("系统错误");
+        }
+        return null;
     }
 }
