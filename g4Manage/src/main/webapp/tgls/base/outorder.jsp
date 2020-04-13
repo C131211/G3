@@ -129,7 +129,7 @@
 
 <%--今日列表--%>
 <script id="tooutbarDemo" type="text/html">
-    <a class="layui-btn layui-btn-xs" lay-event="tooutDetails">编辑</a>
+    <a class="layui-btn layui-btn-xs" lay-event="tooutDetails">查看详情</a>
 </script>
 <script>
     layui.use('table', function () {

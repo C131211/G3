@@ -76,7 +76,7 @@
 
 <%--历史列表--%>
 <script id="allinbarDemo" type="text/html">
-    <a class="layui-btn layui-btn-xs" lay-event="allinDetail">查看详情</a>
+    <a class="layui-btn layui-btn-xs" lay-event="allinDetails">查看详情</a>
 </script>
 <script>
     //初始化表格
@@ -97,7 +97,7 @@
             , method: 'post'//传输方式
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'ILID', title: '入货单号', sort: true, event: 'allDetails'}
+                , {field: 'ILID', title: '入货单号', sort: true}
                 , {field: 'ILDate', title: '入货日期', sort: true}
                 , {field: 'sID', title: '入货仓库', sort: true}
                 , {field: 'ILFrom', title: '合作商', sort: true}
@@ -139,7 +139,7 @@
 
 <%--今日列表--%>
 <script id="toinbarDemo" type="text/html">
-    <a class="layui-btn layui-btn-xs" lay-event="toinDetail">查看详情</a>
+    <a class="layui-btn layui-btn-xs" lay-event="toinDetails">查看详情</a>
 </script>
 <script>
     layui.use('table', function () {
@@ -159,7 +159,7 @@
             , method: 'post'//传输方式
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'ILID', title: '入货单号', sort: true}
+                , {field: 'ilid', title: '入货单号', sort: true}
                 , {field: 'ILDate', title: '入货日期', sort: true}
                 , {field: 'sID', title: '入货仓库', sort: true}
                 , {field: 'ILFrom', title: '合作商', sort: true}
@@ -180,7 +180,7 @@
         //监听行工具事件
         table.on('tool(todayILTools)', function (obj) {
             var data = obj.data;
-            if (obj.event === 'toinDetail') {
+            if (obj.event === 'toinDetails') {
                 layer.open({
                     title: "订单详细信息",
                     type: 2,
