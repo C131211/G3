@@ -13,12 +13,16 @@
         </select>
         
         <insert id="insGood" parameterType="com.l.pojo.Good">
-                insert into good (gID,gName,gNum,gInprice,gOutprice,gExplain,gSatime,sID,gStatus)
-                 VALUES(#{gID},#{gName},#{gNum},#{gInprice},#{gOutprice},#{gExplain},#{gSatime},#{sID},#{gStatus})
+                insert into good (gID,gName,gNum,gInprice,gOutprice,gExplain,gSatime,sID,gStatus,supName)
+                 VALUES(#{gID},#{gName},#{gNum},#{gInprice},#{gOutprice},#{gExplain},#{gSatime},#{sID},#{gStatus},#{supName})
         </insert>
 
         <update id="updGoodById" parameterType="com.l.pojo.Good">
-                update good set gNum=#{gNum},
+                update good set gNum=#{gNum},gSatime=#{gSatime} where gID=#{gID}
         </update>
+
+        <select id="selGoodByMore" resultType="com.l.pojo.Good">
+                select * from good where gName=#{0},sID=#{1},supName=#{2}
+        </select>
 
 </mapper>

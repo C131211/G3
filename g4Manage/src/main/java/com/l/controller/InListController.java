@@ -65,4 +65,23 @@ public class InListController {
         return inListService.selInListById(ILID, page, rows);
     }
 
+    /**
+     * 入库审核
+     * @param ILID
+     * @param orderOinion
+     * @return
+     */
+    @RequestMapping("/dealInListById")
+    @ResponseBody
+    public GResult dealInListById(String ILID,int orderOinion){
+        GResult gResult = new GResult();
+        try {
+            gResult = inListService.updInListById(ILID, orderOinion);
+        } catch (Exception e) {
+            gResult.setMsg(e.toString());
+            e.printStackTrace();
+        }
+        return gResult;
+    }
+
 }

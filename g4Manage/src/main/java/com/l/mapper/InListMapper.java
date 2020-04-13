@@ -28,4 +28,20 @@ public interface InListMapper {
      * @return
      */
     List<InList> selInListById(String ILID);
+
+    /**
+     * 拒绝订单后设置信息
+     * @param orderOinion
+     * @param ILID
+     * @return
+     */
+    int updInListOinion(int orderOinion,String ILID);
+
+    /**
+     * 更新同意入库后的订单
+     * @param inList
+     * @return
+     */
+    int updInListOrder(InList inList);
+
 }

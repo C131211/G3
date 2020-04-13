@@ -51,5 +51,25 @@ public class OutListController {
     }
 
 
+    /**
+     * 出库审核
+     * @param olId
+     * @param orderOinion
+     * @return
+     */
+    @RequestMapping("/dealOutListById")
+    @ResponseBody
+    public GResult dealOutListById(String olId,int orderOinion){
+        GResult gResult = new GResult();
+        try {
+            gResult = outListService.updOutListById(olId, orderOinion);
+        } catch (Exception e) {
+            gResult.setMsg(e.toString());
+            e.printStackTrace();
+        }
+        return gResult;
+    }
+
+
 
 }

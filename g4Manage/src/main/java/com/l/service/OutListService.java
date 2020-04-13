@@ -35,4 +35,11 @@ public interface OutListService {
      * @return
      */
     DataGrid selOutListById(String olId,int page,int rows);
+
+    /**
+     * 根据订单id修改信息，更新仓库和货物信息
+     * @return
+     */
+    GResult updOutListById(String olId,int orderOinion) throws Exception;
+
 }

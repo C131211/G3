@@ -16,12 +16,13 @@ public class Good {
     private Date gSatime;
     private int sID;
     private int gStatus;
+    private String supName;
 
 
     @Override
     public String toString() {
         return "Good{" +
-                "gID=" + gID +
+                "gID='" + gID + '\'' +
                 ", gName='" + gName + '\'' +
                 ", gNum=" + gNum +
                 ", gInprice=" + gInprice +
@@ -30,7 +31,16 @@ public class Good {
                 ", gSatime=" + gSatime +
                 ", sID=" + sID +
                 ", gStatus=" + gStatus +
+                ", supName='" + supName + '\'' +
                 '}';
+    }
+
+    public String getSupName() {
+        return supName;
+    }
+
+    public void setSupName(String supName) {
+        this.supName = supName;
     }
 
     public Good() {

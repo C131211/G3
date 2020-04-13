@@ -9,6 +9,7 @@ import com.l.mapper.OutListMapper;
 import com.l.mapper.SaveMapper;
 import com.l.pojo.Good;
 import com.l.pojo.OutList;
+import com.l.pojo.Save;
 import com.l.service.OutListService;
 import org.springframework.stereotype.Service;
 
@@ -92,6 +93,12 @@ public class OutListServiceImpl  implements OutListService {
                     outList.setGoodName(goodNames[i]);
                     //添加该货物的数量
                     totalGoodNums += goodById.getgNum();
+                    if (totalGoodNums< nums){
+                        outList.setgID(goodById.getgID()+",");
+                    }
+                    if (goodById.getgNum()>=nums){
+                        outList.setgID(goodById.getgID());
+                    }
                 }
             }
             //判断是否拥有该货物
@@ -103,21 +110,6 @@ public class OutListServiceImpl  implements OutListService {
                 //判断数量属否足够
                 if (totalGoodNums < nums) {
                     //提交待审核
-                 /*   //修改货物的信息
-                    for (String str : goodsStrs) {
-                        //根据货物id查询该货物详情
-                        Good goodById = goodMapper.selGoodById(str);
-                        if (goodById.getgName().equals(goodNames[i].trim()) && nums>0) {
-                            if (goodById.getgNum()>nums){
-                                goodById.setgNum(goodById.getgNum()-nums);
-                            }else {
-                                nums = nums - goodById.getgNum();
-                                goodById.setgNum(0);
-                            }
-
-                        }
-                    }*/
-
                 } else {
                     //返回数量不足的信息
                     result.setMsg(goodName + "的数量不足，无法满足出仓要求");
@@ -164,5 +156,75 @@ public class OutListServiceImpl  implements OutListService {
         dataGrid.setCode(0);
         dataGrid.setMsg("OK");
         return dataGrid;
+    }
+
+    @Override
+    public GResult updOutListById(String olId, int orderOinion) throws Exception {
+        GResult result = new GResult();
+        int index = -1;
+        if (orderOinion==0){//拒绝出库
+            index = outListMapper.updOutListOinion(0, olId);
+            result.setStatus(200);
+            result.setMsg("审核成功");
+        }else if (orderOinion==1){//同意
+            //查询订单详情
+            List<OutList> outLists = outListMapper.selOutListById(olId);
+            for (OutList outList : outLists) {
+                //设置订单状态
+                outList.setOlStatus(1);
+                outList.setOrderOinion(1);
+                index = outListMapper.updOutListOrder(outList);
+                int nums = outList.getOlNum();
+                //解析gid
+                String gids = outList.getgID();
+                String[] gidstrs = gids.split(",");
+                for (String gidstr : gidstrs) {
+                    if (gidstr!=null && !gidstr.equals("")){
+                        //根据gid去修改数量
+                        Good good = goodMapper.selGoodById(gidstr);
+                        if (null != good && good.getgNum()<nums){
+                            good.setgNum(0);
+                            nums = nums-good.getgNum();
+                            index = goodMapper.updGoodById(good);
+                            //修改仓库现存量
+                            Save save = saveMapper.selSaveById(outList.getsID());
+                            if (save!=null){
+                                save.setsNsave(save.getsNsave()-good.getgNum());
+                                index = saveMapper.updSave(save);
+                            }else {
+                                throw new Exception("仓库获取出错");
+                            }
+                        }else if(good==null){
+                            throw  new Exception("货物获取失败");
+                        }else {
+                            good.setgNum(good.getgNum()-nums);
+                            index = goodMapper.updGoodById(good);
+                            //修改仓库现存量
+                            Save save = saveMapper.selSaveById(outList.getsID());
+                            if (save!=null){
+                                save.setsNsave(save.getsNsave()-nums);
+                                index = saveMapper.updSave(save);
+                                nums = 0;
+                            }else {
+                                throw new Exception("仓库获取出错");
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }else {
+           result.setMsg("参数错误");
+        }
+
+
+        if (index>0){
+            result.setStatus(200);
+            result.setMsg("审核成功");
+        }else {
+            throw new Exception("系统错误");
+        }
+        return result;
     }
 }

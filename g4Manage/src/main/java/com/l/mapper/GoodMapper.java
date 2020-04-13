@@ -27,5 +27,14 @@ public interface GoodMapper {
      */
     int updGoodById(Good good);
 
+    /**
+     * 根据信息查询货物
+     * @param gName
+     * @param sID
+     * @param supName
+     * @return
+     */
+    Good selGoodByMore(String gName,int sID,String supName);
+
 
 }

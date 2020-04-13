@@ -30,4 +30,22 @@ public interface OutListMapper {
      */
     List<OutList> selOutListById(String olId);
 
+
+
+    /**
+     * 拒绝订单后设置信息
+     * @param orderOinion
+     * @param olId
+     * @return
+     */
+    int updOutListOinion(int orderOinion,String olId);
+
+
+    /**
+     * 更新同意入库后的订单
+     * @param outList
+     * @return
+     */
+    int updOutListOrder(OutList outList);
+
 }
