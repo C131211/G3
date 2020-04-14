@@ -5,6 +5,7 @@ import com.l.commons.pojo.GResult;
 import com.l.service.OutListService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -69,6 +70,19 @@ public class OutListController {
         }
         return gResult;
     }
+
+
+    /**
+     * 根据经手人获取订单信息，可按时间段搜索
+     * @return
+     */
+    @RequestMapping("/getOutListByILBy")
+    @ResponseBody
+    public DataGrid getOutListByILBy(int page, int rows, String olBy, @RequestParam(defaultValue = "0") String startTime, @RequestParam(defaultValue = "now()")String endTime){
+        return outListService.selOutListByILBy(page, rows, olBy, startTime, endTime);
+    }
+
+
 
 
 

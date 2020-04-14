@@ -42,4 +42,16 @@ public interface OutListService {
      */
     GResult updOutListById(String olId,int orderOinion) throws Exception;
 
+
+    /**
+     * 根据经手人查询，可按时间段查询
+     * @param page
+     * @param rows
+     * @param olBy
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    DataGrid selOutListByILBy(int page,int rows,String olBy,String startTime,String endTime);
+
 }

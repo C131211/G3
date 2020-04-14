@@ -48,4 +48,13 @@ public interface OutListMapper {
      */
     int updOutListOrder(OutList outList);
 
+
+    /**
+     * 通过经手人查询该用户的所有订单
+     * @param olBy
+     * @return
+     */
+    List<OutList> selOutListByILBy(String olBy, String startTime, String endTime);
+
+
 }

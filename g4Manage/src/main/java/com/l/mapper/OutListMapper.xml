@@ -28,5 +28,12 @@
         update outlist set orderOinion=1,olStatus = 1 where goodName=#{goodName} and olBy=#{olBy} and olDate=#{olDate} and sID=#{sID}
     </update>
 
+    <select id="selOutListByILBy" parameterType="String" resultType="com.l.pojo.OutList">
+        select * from outlist where olBy=#{0}
+        and olDate &gt;= UNIX_TIMESTAMP(#{1})
+        and olDate &lt; UNIX_TIMESTAMP(#{2})
+        GROUP BY olId
+    </select>
+
 
 </mapper>
