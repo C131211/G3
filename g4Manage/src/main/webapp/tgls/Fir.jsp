@@ -31,11 +31,11 @@
     <script src="/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <!-- 公共样式 结束 -->
     <%--引入css--%>
-    <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css"  media="all">
     <%--引入js--%>
-    <script src="../../js/out_intoData.js"></script>
+    <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
+    <%--引入时间格式转换--%>
     <script src="/js/TimeFormat.js" charset="utf-8"></script>
-    <!-- 公共样式 结束 -->
 
 </head>
 <body class="cBody">
@@ -85,18 +85,32 @@
          style="width: 75%;height:100%;float: left;position: relative;background-color: #00aaee"></div>
     <div class="middle-left" style="width: 50%;height:100%;float:left;">
         <div class="announce"
-             style="border-style: solid;width: 98.5%;height: 300px;float: left;background-color: whitesmoke">
+             style="border-style: solid;width: 98.5%;height: 688px;float: left;background-color: lightgoldenrodyellow">
             <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">
-                通知栏</p>
-            <div class="content">
-
-            </div>
-        </div>
-        <div class="event"
-             style="border-style: solid;width:98.5%;height: 374px;background-color: cornsilk;margin-top: 10px;float: left">
-            <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">
-                未处理事件</p>
-            <div class="content">
+                轻松一刻</p>
+            <div class="layui-carousel" id="test1" lay-filter="test1" style="float:left;">
+                <div carousel-item="">
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/1.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/2.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/3.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/4.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/5.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/6.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/7.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/8.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/9.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/10.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/11.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/12.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/13.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/14.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/15.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/16.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/17.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/18.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/19.jpg"></div>
+                    <div><img style="width: 100%;height: 650px" src="/layui/images/animals/20.jpg"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -114,7 +128,22 @@
     </div>
 
 </div>
-<script src="../js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
+
+<script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['carousel', 'form'], function(){
+        var carousel = layui.carousel
+            ,form = layui.form;
+
+        //常规轮播
+        carousel.render({
+            elem: '#test1'
+            ,arrow: 'always'
+            ,width:'100%'
+            ,height:'650px'
+        });
+    });
+</script>
 <script>
     layui.use('laydate', function () {
         var laydate = layui.laydate;

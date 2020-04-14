@@ -40,6 +40,8 @@ public class InListServiceImpl implements InListService {
         Date date = new Date();
         String ILID = UUID.randomUUID().toString();
         List<InList> list = new ArrayList<>();
+        int nums = 0;
+        int saveNums = 0;
 
         //解析参数
         String[] ilPrices = ILprice.split(",");
@@ -62,6 +64,7 @@ public class InListServiceImpl implements InListService {
 
             if (m.matches()){
                 inList.setILNum(Integer.parseInt(iLNums[i]));
+                nums += Integer.parseInt(iLNums[i]);
             }
 
             inList.setsID(sID);
@@ -74,6 +77,13 @@ public class InListServiceImpl implements InListService {
             }
             inList.setILTotal(Integer.parseInt(ilPrices[i]) * Integer.parseInt(iLNums[i]));
             list.add(inList);
+        }
+        //判断仓库容量是否足够
+        Save save = saveMapper.selSaveById(sID);
+        saveNums = save.getsTsave()-save.getsNsave();
+        if (nums>saveNums){//不足
+            result.setMsg("该仓库容量不足");
+            return result;
         }
         //添加入库单
         int inListIndex = -1;
