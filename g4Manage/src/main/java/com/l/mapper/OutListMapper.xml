@@ -13,7 +13,7 @@
         </insert>
 
     <select id="selNoDeal" parameterType="String" resultType="com.l.pojo.OutList">
-            select olId, olBy,olComfirm,olStatus from outlist where olStatus = 0 and olComfirm =#{0} or olComfirm is null or olComfirm = '' group by olId
+            select olId, olBy,olComfirm,olStatus from outlist where olStatus = 0 and (olComfirm =#{0} or olComfirm is null or olComfirm = '') group by olId
     </select>
     
     <select id="selOutListById" parameterType="String" resultType="com.l.pojo.OutList">
