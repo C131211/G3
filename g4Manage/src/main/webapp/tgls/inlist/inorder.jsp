@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css" media="all">
     <%--引入js--%>
     <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
+    <script src="/js/TimeFormat.js" charset="utf-8"></script>
 
 <body>
 <div class="cBody">
@@ -131,18 +132,19 @@
             , method: 'post'//传输方式
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'ILID', title: '入货单号', sort: true}
-                , {field: 'ILDate', title: '入货日期', sort: true}
+                , {field: 'ilid', title: '入货单号', width:300}
+                , {field: 'ildate', title: '入货日期', sort: true,
+                    templet:'<div>{{ Format(d.ildate,"yyyy-MM-dd")}}</div>'}
                 , {field: 'sID', title: '入货仓库', sort: true}
-                , {field: 'ILFrom', title: '合作商', sort: true}
-                , {field: 'ILBy', title: '经手人', sort: true}
-                , {field: 'ILComfirm', title: '确认人', sort: true}
+                , {field: 'ilfrom', title: '合作商', sort: true}
+                , {field: 'ilby', title: '经手人', sort: true}
+                , {field: 'ilcomfirm', title: '确认人', sort: true}
                 , {
-                    field: 'ILStatus', title: '入货单状态', templet: function (d) {
-                        if (d.ILStatus == 0) {
-                            return d.ILStatus = "完成"
+                    field: 'ilstatus', title: '入货单状态', templet: function (d) {
+                        if (d.ilstatus == 1) {
+                            return d.ilstatus = "完成"
                         } else {
-                            return d.ILStatus = "未完成"
+                            return d.ilstatus = "未完成"
                         }
                     }
                 }

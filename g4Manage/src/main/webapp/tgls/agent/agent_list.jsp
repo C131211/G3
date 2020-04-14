@@ -86,12 +86,11 @@
             ,method:'post'//传输方式
             ,cols: [[
                 {type:'checkbox',fixed:'left'}
-                ,{field:'uID', width:80, title: 'ID', sort: true}
                 ,{field: 'uAccount', title: '工号(用户名)', width:120}
                  ,{field: 'uName', title: '员工名', width:80}
                  ,{field: 'uPwd', title: '密码', width:80}
                  ,{field: 'uTel', title: '手机号', width: 130}
-                 ,{field: 'uAddr', title: '住址', width: 230}
+                 ,{field: 'uAddr', title: '住址', width: 310}
                  ,{field: 'uHiredate', title: '入职时间', width: 150, sort: true,
                     templet:'<div>{{ Format(d.uHiredate,"yyyy-MM-dd")}}</div>'
                 }

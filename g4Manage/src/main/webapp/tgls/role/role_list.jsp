@@ -60,12 +60,11 @@
     <table class="layui-hide" id="rList" lay-filter="rTools"></table>
 </div>
 <script id="barDemo" type="text/html">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script id="toolbarDemo" type="text/html">
     <div class="layui-btn-container">
-<%--        <button class="layui-btn layui-btn-sm" lay-event="addRole">增加新角色</button>--%>
+        <button class="layui-btn layui-btn-sm" lay-event="addRole">增加新角色</button>
     </div>
 </script>
 <script>
@@ -86,9 +85,8 @@
             , defaultToolbar: ['exports', 'print',]
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                ,{field: 'rID', title: '角色ID', width: 100, sort:'true'}
                 ,{field: 'rName', title: '角色名称',width: 150,}
-                ,{field: 'rExplain', title: '角色说明', }
+                ,{field: 'rExplain', title: '角色说明',width:500 }
                 ,{
                     field: 'rStatus', title: '角色状态', templet: function (d) {
                         if(d.rStatus==0){
@@ -98,7 +96,7 @@
                         }
                     }
                 }
-                // , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
+                , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
             ]]
         });
         //头工具栏事件
@@ -126,7 +124,7 @@
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     $.ajax({
-                        url: "/userDelById",//添加用户
+                        url: "/delRoleById",
                         type: "POST",
                         dataType: "json",
                         data: {rID:data.rID},
@@ -140,18 +138,6 @@
                         }
 
                     })
-                });
-            } else if (obj.event === 'edit') {
-                layer.open({
-                    title: "角色信息修改",
-                    type: 2,
-                    area: ['70%', '60%'],
-                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
-                    maxmin: true,
-                    end: function () {
-                        window.location.reload();
-                    },
-                    content: '/PageOperation?id='+data.rID+'&pageType=roleEdit'
                 });
             }
         });

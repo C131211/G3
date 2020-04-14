@@ -125,18 +125,18 @@
             , method: 'post'//传输方式
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'olId', title: '出货单号', sort: true}
+                , {field: 'olId', title: '出货单号', width:300}
                 , {field: 'olDate', title: '出货日期', sort: true}
                 , {field: 'sID', title: '出货仓库', sort: true}
                 , {field: 'olDestin', title: '合作商', sort: true}
                 , {field: 'olBy', title: '经手人', sort: true}
                 , {field: 'olComfirm', title: '确认人', sort: true}
                 , {
-                    field: 'OLStatus', title: '出货单状态', templet: function (d) {
-                        if (d.OLStatus == 0) {
-                            return d.OLStatus = "完成"
+                    field: 'olStatus', title: '出货单状态', templet: function (d) {
+                        if (d.olStatus == 1) {
+                            return d.olStatus = "完成"
                         } else {
-                            return d.OLStatus = "未完成"
+                            return d.olStatus = "未完成"
                         }
                     }
                 }

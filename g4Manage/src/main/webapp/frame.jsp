@@ -94,7 +94,6 @@
 				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-yunying left"></i>仓库和商品管理<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/save_list.jsp',this)">仓库信息</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodsManage/goods_list.jsp',this)">商品信息</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodlist/gl_list.jsp',this)">货物类别</a></dt>
 				</dl>
 			</li>
@@ -110,12 +109,6 @@
 				</dl>
 			</li>
 			<li>
-				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-icon left"></i>报表模块<i class="iconfont icon-dajiantouyou right"></i></a>
-				<dl>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/reportForm/reportForm1.jsp',this)">出货单统计报表</a></dt>
-				</dl>
-			</li>
-			<li>
 				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/qdAPI.jsp',this)"><i class="iconfont icon-zhishi left"></i>前端API</a>
 			</li>
 			<li>
@@ -125,7 +118,6 @@
 				<a class="menuFA" href="login.html"> <i class="iconfont icon-084tuichu left"></i>注销</a>
 			</li>
 		</ul>
-
 	</div>
 </div>
 <!-- 左侧菜单 - 结束 -->

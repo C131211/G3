@@ -12,11 +12,11 @@
     </select>
 
     <insert id="insRole" parameterType="com.l.pojo.Role">
-        insert into role (rID,rName,rExplain,rStatus) values (#rID,#rName,#rExplain,#rStatus)
+        insert into role (rID,rName,rExplain,rStatus) values (#{rID},#{rName},#{rExplain},#{rStatus})
     </insert>
 
     <delete id="delRoleById" parameterType="int">
-        delete role where rID=#{0}
+        delete from role where rID=#{0}
     </delete>
 
 
