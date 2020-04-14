@@ -41,4 +41,18 @@ public class RoleController {
         return roleService.insRole(role);
     }
 
+
+    /**
+     *
+     *删除角色
+     * @param rID
+     * @return
+     */
+    @RequestMapping("/delRoleById")
+    @ResponseBody
+    public GResult delRoleById(int rID) {
+        return roleService.delRole(rID);
+    }
+
+
 }

@@ -23,5 +23,12 @@ public interface RoleMapper {
      */
     int insRole(Role role);
 
+    /**
+     * 删除角色
+     * @param rID
+     * @return
+     */
+    int delRoleById(int rID);
+
 
 }

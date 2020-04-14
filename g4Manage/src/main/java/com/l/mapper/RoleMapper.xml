@@ -15,5 +15,9 @@
         insert into role (rID,rName,rExplain,rStatus) values (#rID,#rName,#rExplain,#rStatus)
     </insert>
 
+    <delete id="delRoleById" parameterType="int">
+        delete role where rID=#{0}
+    </delete>
+
 
 </mapper>

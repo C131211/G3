@@ -13,4 +13,11 @@ public interface RoleService {
 
     GResult insRole(Role role);
 
+    /**
+     * 删除角色
+     * @param rID
+     * @return
+     */
+    GResult delRole(int rID);
+
 }

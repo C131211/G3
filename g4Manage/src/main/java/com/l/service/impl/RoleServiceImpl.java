@@ -35,11 +35,26 @@ public class RoleServiceImpl implements RoleService {
         int index = -1;
         GResult result = new GResult();
         index = roleMapper.insRole(role);
-        if (index<0){
+        if (index>0){
             result.setMsg("OK");
             result.setStatus(200);
         }else {
             result.setMsg("添加失败");
+        }
+
+        return result;
+    }
+
+    @Override
+    public GResult delRole(int rID) {
+        int index = -1;
+        GResult result = new GResult();
+        index = roleMapper.delRoleById(rID);
+        if (index>0){
+            result.setMsg("OK");
+            result.setStatus(200);
+        }else {
+            result.setMsg("删除失败");
         }
 
         return result;
