@@ -129,7 +129,6 @@
 
 </div>
 
-<script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>
 <script>
     layui.use(['carousel', 'form'], function(){
         var carousel = layui.carousel

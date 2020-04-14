@@ -64,10 +64,7 @@
 	<div class="menu">
 		<ul>
 			<li>
-				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/Fir.jsp',this)"><i class="iconfont icon-shouye left"></i>系统首页</i></a>
-			</li>
-			<li>
-				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/announce.jsp',this)"><i class="iconfont icon-tongzhi left"></i>发布通知</i></a>
+				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/Fir.jsp',this)"><i class="iconfont icon-shouye left"></i>系统首页</a>
 			</li>
 			<li>
 				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-yonghu left"></i>个人信息管理<i class="iconfont icon-dajiantouyou right"></i></a>
@@ -115,7 +112,7 @@
 				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/iconfont.html',this)"><i class="iconfont icon-huojian left"></i>iconfont字体库</a>
 			</li>
 			<li>
-				<a class="menuFA" href="login.html"> <i class="iconfont icon-084tuichu left"></i>注销</a>
+				<a class="menuFA" href="index.jsp"> <i class="iconfont icon-084tuichu left"></i>注销</a>
 			</li>
 		</ul>
 	</div>
