@@ -36,4 +36,16 @@ public interface InListService {
      */
     GResult updInListById(String ILID,int orderOinion) throws Exception;
 
+    /**
+     * 根据经手人查询，可按时间段查询
+     * @param page
+     * @param rows
+     * @param ILBy
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    DataGrid selInListByILBy(int page,int rows,String ILBy,String startTime,String endTime);
+
+
 }

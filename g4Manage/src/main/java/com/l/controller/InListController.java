@@ -84,4 +84,16 @@ public class InListController {
         return gResult;
     }
 
+
+    /**
+     * 根据经手人获取订单信息，可按时间段搜索
+     * @return
+     */
+    @RequestMapping("/getInListByILBy")
+    @ResponseBody
+    public DataGrid getInListByILBy(int page,int rows,String ILBy,@RequestParam(defaultValue = "0") String startTime,@RequestParam(defaultValue = "now()")String endTime){
+        return inListService.selInListByILBy(page, rows, ILBy, startTime, endTime);
+    }
+
+
 }

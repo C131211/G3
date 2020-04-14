@@ -3,6 +3,7 @@ package com.l.mapper;
 import com.l.pojo.Good;
 import com.l.pojo.InList;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,5 +44,12 @@ public interface InListMapper {
      * @return
      */
     int updInListOrder(InList inList);
+
+    /**
+     * 通过经手人查询该用户的所有订单
+     * @param ILBy
+     * @return
+     */
+    List<InList> selInListByILBy(String ILBy, String startTime,String endTime);
 
 }

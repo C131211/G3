@@ -197,4 +197,17 @@ public class InListServiceImpl implements InListService {
         }
         return result;
     }
+
+    @Override
+    public DataGrid selInListByILBy(int page, int rows, String ILBy, String startTime, String endTime) {
+        PageHelper.startPage(page, rows);
+        List<InList> list = inListMapper.selInListByILBy(ILBy,startTime,endTime);
+        PageInfo<InList> pi = new PageInfo<>(list);
+        DataGrid dataGrid = new DataGrid();
+        dataGrid.setData(pi.getList());
+        dataGrid.setCount(pi.getTotal());
+        dataGrid.setCode(0);
+        dataGrid.setMsg("OK");
+        return dataGrid;
+    }
 }
