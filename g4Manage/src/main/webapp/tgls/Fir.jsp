@@ -43,11 +43,31 @@
         <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">个人信息</p>
         <div class="Image" style="text-align: center">
         <img src="/images/headImgs/${result.data.uPhoto}" style="width: 140px;height: 140px;">
-            <div style="font-size: large;">工号：${sessionScope.result.data.uAccount}</div>
-            <div style="font-size: large;">姓名：${sessionScope.result.data.uName}</div>
-            <div style="font-size: large;">手机号：${sessionScope.result.data.uTel}</div>
-            <div style="font-size: large;">入职时间：${sessionScope.result.data.uHiredate}</div>
-        </div>
+                <table style="width: 100%;float: left;font-size: large">
+                    <colgroup>
+                        <col width="40%">
+                        <col width="60%">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <td>工号：</td>
+                        <td>${sessionScope.result.data.uAccount}</td>
+                    </tr>
+                    <tr>
+                        <td>姓名：</td>
+                        <td>${sessionScope.result.data.uName}</td>
+                    </tr>
+                    <tr>
+                        <td>手机号：</td>
+                        <td>${sessionScope.result.data.uTel}</td>
+                    </tr>
+                    <tr>
+                        <td>入职时间：</td>
+                        <td>${sessionScope.result.data.uHiredate}</td>
+                    </tr>
+                    </tbody>
+                </table>
+    </div>
     </div>
     <div class="datetime" style="border-style: solid;width: 97%;height: 374px;background-color: seashell;margin-top: 10px">
     <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">日历</p>
@@ -74,7 +94,10 @@
         <div class="tips" style="width: 98.5%;height: 688px;float:left;border-style: solid;">
             <p style="border-bottom-style: dashed;text-align: center;width: 100%;float: left;font-family: 楷体;font-size: xx-large">
                 备忘录</p>
-            <textarea class="layui-textarea" style="width: 100%;height: 648px" name="tip"></textarea>
+            <textarea class="layui-textarea" style="width: 100%;height: 602px" name="tip"></textarea>
+            <div style="border-top-style: dashed;text-align: center;width: 100%;float: left;font-size: xx-large;">
+                <button class="layui-btn layui-btn-lg layui-btn-primary layui-btn-radius" type="button" style="float: right;">保存</button>
+                </div>
         </div>
     </div>
 
@@ -91,6 +114,11 @@
             ,position: 'static'
         });
     });
+</script>
+<script>
+    function x() {
+
+    }
 </script>
 </body>
 

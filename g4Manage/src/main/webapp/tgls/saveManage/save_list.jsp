@@ -138,8 +138,7 @@
                 "<th>货物名</th> " +
                 "<th>货物数量</th>" +
                 "<th>进货价</th>" +
-                "<th>出货价</th><" +
-                "th>商品描述</th>" +
+                "<th>商品描述</th>" +
                 "<th>进仓日期</th>" +
                 " <th>储存仓库号</th>" +
                 "<th>货物状态</th>" +
@@ -153,7 +152,7 @@
                     item.gStatus='正常';
                 }
                 item.gSatime = Format(item.gSatime,"yyyy-MM-dd")
-                htmlStr += "<tr> <td>"+item.gName+"</td> <td>"+item.gNum+"</td> <td>"+item.gInprice+"</td> <td>"+item.gOutprice+"</td> <td>"+item.gExplain+"</td> <td>"+item.gSatime+"</td> <td>"+item.sID+"</td>  <td >"+item.gStatus+"</td> </tr>";
+                htmlStr += "<tr> <td>"+item.gName+"</td> <td>"+item.gNum+"</td> <td>"+item.gInprice+"</td> <td>"+item.gExplain+"</td> <td>"+item.gSatime+"</td> <td>"+item.sID+"</td>  <td >"+item.gStatus+"</td> </tr>";
             })
             htmlStr +=  "</tbody> </table> </div>"
             if(obj.event === 'detail') {

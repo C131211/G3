@@ -76,7 +76,6 @@
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/modify_password.jsp',this)">密码修改</a></dt>
 				</dl>
 			</li>
-
 			<li>
 				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-wodeyewuyuan left"></i>用户与角色管理<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
@@ -92,28 +91,21 @@
 				</dl>
 			</li>
 			<li>
-				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-liuliangyunpingtaitubiao03 left"></i>权限与功能管理<i class="iconfont icon-dajiantouyou right"></i></a>
-				<dl>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/pow/power_list.jsp',this)">权限列表</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/func/function_list.jsp',this)">功能列表</a></dt>
-				</dl>
-			</li>
-			<li>
 				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-yunying left"></i>仓库和商品管理<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/save_list.jsp',this)">仓库信息</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodsManage/goods_list.jsp',this)">商品信息</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodlist/gl_list.jsp',this)">货物类别</i></a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodlist/gl_list.jsp',this)">货物类别</a></dt>
 				</dl>
 			</li>
 			<li>
 				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-dingdan left"></i>订单管理<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/inorder_add.jsp',this)">新增入货单</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/outorder_add.jsp',this)">新增出货单</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/inlist/inorder_add.jsp',this)">新增入货单</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/outlist/outorder_add.jsp',this)">新增出货单</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/order_wait.jsp',this)">待处理货单</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/outorder.jsp',this)">出货单统计</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/inorder.jsp',this)">入货单统计</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/inlist/inorder.jsp',this)">入货单统计</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/outlist/outorder.jsp',this)">出货单统计</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/maintain.jsp',this)">维护中页面</a></dt>
 				</dl>
 			</li>
@@ -130,7 +122,7 @@
 				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/iconfont.html',this)"><i class="iconfont icon-huojian left"></i>iconfont字体库</a>
 			</li>
 			<li>
-				<a class="menuFA" href="login.html"> <i class="iconfont icon-084tuichu left"></i>注销</i></a>
+				<a class="menuFA" href="login.html"> <i class="iconfont icon-084tuichu left"></i>注销</a>
 			</li>
 		</ul>
 

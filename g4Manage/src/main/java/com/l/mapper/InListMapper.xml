@@ -25,13 +25,13 @@
     </update>
 
     <update id="updInListOrder" parameterType="com.l.pojo.InList">
-        update inlist set gID=#{gID},ILStatus=1,orderOinion=1 where goodName=#{goodName} and ILBy=#{ILBy} and ILDate=#{ILDate} and sID=#{sID}
+        update inlist set gID=#{gID},ILStatus=1,orderOinion=1,ILComfirm=#{ILComfirm} where goodName=#{goodName} and ILBy=#{ILBy} and ILDate=#{ILDate} and sID=#{sID} and ILFrom=#{ILFrom}
     </update>
 
     <select id="selInListByILBy" parameterType="String" resultType="com.l.pojo.InList">
         select * from inlist where ILBy=#{0}
-        and ILDate &gt;= UNIX_TIMESTAMP(#{1})
-        and ILDate &lt; UNIX_TIMESTAMP(#{2})
+        and ILDate &gt;= #{1}
+        and ILDate &lt; #{2}
         GROUP BY ILID
     </select>
 

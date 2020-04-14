@@ -73,10 +73,10 @@ public class InListController {
      */
     @RequestMapping("/dealInListById")
     @ResponseBody
-    public GResult dealInListById(String ILID,int orderOinion){
+    public GResult dealInListById(String ILID,int orderOinion,String ILComfirm){
         GResult gResult = new GResult();
         try {
-            gResult = inListService.updInListById(ILID, orderOinion);
+            gResult = inListService.updInListById(ILID, orderOinion,ILComfirm);
         } catch (Exception e) {
             gResult.setMsg(e.toString());
             e.printStackTrace();

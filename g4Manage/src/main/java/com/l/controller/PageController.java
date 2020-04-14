@@ -36,11 +36,11 @@ public class PageController {
                 return "/tgls/buyer/buy_update.jsp";
             }else if (pageType.equals("inlistDetail")) {
                 req.setAttribute("ILID", id);
-                return "/tgls/base/Inorder_detail.jsp";
+                return "/tgls/inlist/Inorder_detail.jsp";
             }
             else if (pageType.equals("outlistDetail")) {
                 req.setAttribute("olId", id);
-                return "/tgls/base/Outorder_detail.jsp";
+                return "/tgls/outlist/Outorder_detail.jsp";
             } else {
                 return "/tgls/error/error_canshu.jsp";
             }

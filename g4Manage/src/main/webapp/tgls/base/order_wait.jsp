@@ -117,7 +117,7 @@
                     url: "/dealInListById",//
                     type: "POST",
                     dataType: "json",
-                    data: {ILID: data.ilid, ilstatus: 1,orderOinion:1},
+                    data: {ILID: data.ilid, orderOinion:1,ILComfirm:'${sessionScope.result.data.uName}'},
                     success: function (data) {
                         if (data.status == 200) {
                             //接收到成功的提示
@@ -146,7 +146,7 @@
                     url: "/dealInListById",//
                     type: "POST",
                     dataType: "json",
-                    data: {ILID: data.ilid, ilstatus: 2,orderOinion:0},
+                    data: {ILID: data.ilid,orderOinion:0,ILComfirm:'${sessionScope.result.data.uName}'},
                     success: function (data) {
                         if (data.status == 200) {
                             //接收到成功的提示
@@ -214,7 +214,7 @@
                     url: "/dealOutListById",//
                     type: "POST",
                     dataType: "json",
-                    data: {olId: data.olId, olStatus: 1,orderOinion:1},
+                    data: {olId: data.olId,orderOinion:1,olComfirm:'${sessionScope.result.data.uName}'},
                     success: function (data) {
                         if (data.status == 200) {
                             //接收到成功的提示
@@ -242,7 +242,7 @@
                     url: "/dealOutListById",//
                     type: "POST",
                     dataType: "json",
-                    data: {olId: data.olId, olStatus: 2,orderOinion:0},
+                    data: {olId: data.olId, orderOinion:0,olComfirm:'${sessionScope.result.data.uName}'},
                     success: function (data) {
                         if (data.status == 200) {
                             //接收到成功的提示

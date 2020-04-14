@@ -74,21 +74,6 @@
                 </dl>
             </li>
             <li>
-                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-gongyingshang left"></i>经销和供应管理<i class="iconfont icon-dajiantouyou right"></i></a>
-                <dl>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/buyer/buy_list_look.jsp',this)">经销商</a></dt>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/supply/look_sup_list.jsp',this)">供应商</a></dt>
-                </dl>
-            </li>
-            <li>
-                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-dingdan left"></i>订单管理<i class="iconfont icon-dajiantouyou right"></i></a>
-                <dl>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/inorder_add.jsp',this)">新增入货单</a></dt>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/outorder_add.jsp',this)">新增出货单</a></dt>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/outorder.jsp',this)">出货单统计</a></dt>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/inorder.jsp',this)">入货单统计</a></dt>
-                </dl>
-            </li>
                 <a class="menuFA" href="login.html"> <i class="iconfont icon-084tuichu left"></i>注销</a>
             </li>
         </ul>

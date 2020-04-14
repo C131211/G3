@@ -49,14 +49,21 @@ public class UserController {
             result.setMsg("登录成功");
             result.setData(user);
             session.setAttribute("result",result);
-            return "redirect:页面路径";
+            return "redirect:/manage.jsp";
         }else if (user != null && user.getrID()==2){//运输员
             //存在
             result.setStatus(200);
             result.setMsg("登录成功");
             result.setData(user);
             session.setAttribute("result",result);
-            return "redirect:页面路径";
+            return "redirect:/trans.jsp";
+        }else if (user != null ){//其他新增
+            //存在
+            result.setStatus(200);
+            result.setMsg("登录成功");
+            result.setData(user);
+            session.setAttribute("result",result);
+            return "redirect:extraRole.jsp";
         } else {
             //不存在
             result.setMsg("用户名或者密码错误");

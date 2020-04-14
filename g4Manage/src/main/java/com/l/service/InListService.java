@@ -34,7 +34,7 @@ public interface InListService {
      * 根据订单id修改信息，更新仓库和货物信息
      * @return
      */
-    GResult updInListById(String ILID,int orderOinion) throws Exception;
+    GResult updInListById(String ILID,int orderOinion,String ILComfirm) throws Exception;
 
     /**
      * 根据经手人查询，可按时间段查询
