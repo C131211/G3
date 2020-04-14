@@ -152,8 +152,7 @@ public class InListServiceImpl implements InListService {
                     }
                 }else {//没有此货物新增
                     Good goodNew = new Good();
-                    Random random = new Random();
-                    String gid = UUID.randomUUID().toString()+random.nextInt(100);
+                    String gid = UUID.randomUUID().toString();
                     goodNew.setgID(gid);
                     goodNew.setgName(inList.getGoodName());
                     goodNew.setgNum(inList.getILNum());
@@ -164,7 +163,7 @@ public class InListServiceImpl implements InListService {
                     goodNew.setSupName(inList.getILFrom());
                     index = goodMapper.insGood(goodNew);
                     //写入inList
-                    inList.setgID(gid);
+                    inList.setgID(goodNew.getgID());
                     inList.setILStatus(1);
                     inList.setOrderOinion(1);
                     index = inListMapper.updInListOrder(inList);
