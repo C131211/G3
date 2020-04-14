@@ -66,10 +66,10 @@ public class SaveServiceImpl implements SaveService {
         //如果传进来的user为空，即查询所有的用户
         if (save.getsName()==null||save.getsName().equals("")){
             List<Save> list = saveMapper.selAllSave(save);
-            List<Good> goods = new ArrayList<>();
             String goodsStr = "";
             for (Save saveList : list) {
                 if (saveList.getGoods()!=null&&!saveList.getGoods().equals("")){
+                    List<Good> goods = new ArrayList<>();
                     //解析货物id   1，2，3
                     String[] strs = saveList.getGoods().trim().split(",");
                     for (String str : strs) {
@@ -101,13 +101,12 @@ public class SaveServiceImpl implements SaveService {
             //替换成红色
             String  str = "<span style='color:red'>"+str0+"</span>";
             List<Save> list = saveMapper.selAllSave(save);
-            List<Good> goods = new ArrayList<>();
             String goodsStr = "";
             for(Save saveList:list){
                 saveList.setsName(saveList.getsName().replace(str0, str));
-
                 //设置货物信息
                 if (saveList.getGoods()!=null&&!saveList.getGoods().equals("")){
+                    List<Good> goods = new ArrayList<>();
                     //解析货物id   1，2，3
                     String[] strs = saveList.getsName().trim().split(",");
                     for (String str1 : strs) {
