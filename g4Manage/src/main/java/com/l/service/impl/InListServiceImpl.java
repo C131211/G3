@@ -81,7 +81,7 @@ public class InListServiceImpl implements InListService {
         //添加入库单
         int inListIndex = -1;
         for (InList inLists : list) {
-           inListIndex +=  inListMapper.insInList(inLists);
+           inListIndex =  inListMapper.insInList(inLists);
         }
      /*   //写入仓库
         int i = saveMapper.updSaveGoods(sID, goods);

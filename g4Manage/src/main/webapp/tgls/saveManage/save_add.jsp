@@ -46,10 +46,11 @@
                 <input type="text" name="sAddr" required lay-verify="required" autocomplete="off" class="layui-input">
             </div>
         </div>
+        <input type="hidden" name="sNsave" class="layui-input" value="0">
         <div class="layui-form-item">
             <label class="layui-form-label">仓库总容量</label>
             <div class="layui-input-block">
-                <input type="text" name="sTsave" required lay-verify="required" autocomplete="off" class="layui-input">
+                <input type="text" name="sTsave" required lay-verify="required|number" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">

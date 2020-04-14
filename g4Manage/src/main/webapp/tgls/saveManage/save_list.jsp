@@ -14,7 +14,6 @@
     <script src="/framework/jquery-ui-1.10.4.min.js"></script>
     <script src="/framework/jquery.mousewheel.min.js"></script>
     <script src="/framework/jquery.mCustomScrollbar.min.js"></script>
-    <script src="/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <!-- 公共样式 结束 -->
 
     <%--引入css--%>
@@ -159,7 +158,7 @@
             htmlStr +=  "</tbody> </table> </div>"
             if(obj.event === 'detail') {
                 layer.open({
-                    title: "详细仓库货物",
+                    title: "仓库详细货物",
                     type: 1,
                     area: ['70%', '60%'],
                     scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽

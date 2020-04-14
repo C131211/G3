@@ -108,7 +108,7 @@ public class OutListServiceImpl  implements OutListService {
                 return result;
             }else {
                 //判断数量属否足够
-                if (totalGoodNums < nums) {
+                if (totalGoodNums >= nums) {
                     //提交待审核
                 } else {
                     //返回数量不足的信息

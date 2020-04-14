@@ -11,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
     <script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/js/layui-v2.5.6/layui/css/layui.css">
-    <script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <%--引入layUI--%>
     <script type="text/javascript" src="/js/layui-v2.5.6/layui/layui.js"></script>
     <!-- 公共样式 结束 -->
@@ -30,7 +29,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">工号（登录账号）</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uAccount" id="Account" required lay-verify="required" autocomplete="off"
+                <input type="text" name="uAccount" id="Account" required lay-verify="required|number" autocomplete="off"
                        class="layui-input">
             </div>
             <i class="iconfont icon-huaban bt"></i>
@@ -53,13 +52,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">手机号码</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uTel" autocomplete="off" class="layui-input">
+                <input type="text" name="uTel" autocomplete="off" required lay-verify="required|phone" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">住址</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uAddr" autocomplete="off" class="layui-input">
+                <input type="text" name="uAddr" required lay-verify="required|ZHCheck" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -119,6 +118,13 @@
                 //提交结果
                 addUser();
                 return false;
+            });
+            form.verify({
+                //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+                ZHCheck: [
+                    /^[\u0391-\uFFE5]+$/
+                    ,'只允许输入中文'
+                ]
             });
         })
 

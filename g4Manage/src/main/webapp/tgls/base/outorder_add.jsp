@@ -80,13 +80,13 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">出货价</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="olPrice" autocomplete="off" class="layui-input" lay-verify="required" value="${item.gOutprice}">
+                                <input type="text" name="olPrice" required lay-verify="required|number" autocomplete="off" class="layui-input" lay-verify="required" value="${item.gOutprice}">
                             </div>
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">数量</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="olNum" placeholder="请输入" autocomplete="off"
+                                <input type="text" name="olNum" required lay-verify="required|number" placeholder="请输入" autocomplete="off"
                                        class="layui-input" lay-verify="required">
                             </div>
                         </div>
@@ -134,13 +134,13 @@
             "<div class='layui-inline'>" +
             "<label class='layui-form-label'>出货价</label>" +
             "<div class='layui-input-inline'>" +
-            "<input type='text' name='olPrice' placeholder='请输入' autocomplete='off' class='layui-input' lay-verify='required'>" +
+            "<input type='text' name='olPrice' placeholder='请输入' required lay-verify='required|number' autocomplete='off' class='layui-input' lay-verify='required'>" +
             "</div>" +
             "</div>" +
             "<div class='layui-inline'>" +
             "<label class='layui-form-label'> 数量</label>" +
             "<div class='layui-input-inline'>" +
-            "<input type='text' name='olNum' placeholder='请输入' autocomplete='off' class='layui-input' lay-verify='required'>" +
+            "<input type='text' name='olNum' placeholder='请输入' required lay-verify='required|number' autocomplete='off' class='layui-input' lay-verify='required'>" +
             "</div>" +
             "</div>" +
             "<div class='layui-inline'>" +
@@ -184,11 +184,11 @@
     layui.use('form', function () {
         var form = layui.form;
         //监听提交
-        form.on('select(OLSelect)', function(data) {
-            <c:forEach items="${GoodListResult.data}" var="money">
+        <%--form.on('select(OLSelect)', function(data) {--%>
+        <%--    <c:forEach items="${GoodListResult.data}" var="money">--%>
 
-            </c:forEach>
-        });
+        <%--    </c:forEach>--%>
+        <%--});--%>
         form.on('submit(submitBut)', function (data) {
             //提交结果
             addOutorder();

@@ -158,14 +158,14 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">入货价</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="ILprice" placeholder="请输入" autocomplete="off"
+                                <input type="text" name="ILprice" placeholder="请输入" required lay-verify="required|number" autocomplete="off"
                                        class="layui-input" lay-verify="required">
                             </div>
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">数量</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="ILNum" placeholder="请输入" autocomplete="off"
+                                <input type="text" name="ILNum" placeholder="请输入" required lay-verify="required|number" autocomplete="off"
                                        class="layui-input" lay-verify="required">
                             </div>
                         </div>
@@ -213,13 +213,13 @@
             "<div class='layui-inline'>" +
             "<label class='layui-form-label'>入货价</label>" +
             "<div class='layui-input-inline'>" +
-            "<input type='text' name='ILprice' placeholder='请输入' autocomplete='off' class='layui-input' lay-verify='required'>" +
+            "<input type='text' name='ILprice' placeholder='请输入' required lay-verify='required|number' autocomplete='off' class='layui-input' lay-verify='required'>" +
             "</div>" +
             "</div>" +
             "<div class='layui-inline'>" +
             "<label class='layui-form-label'>数量</label>" +
             "<div class='layui-input-inline'>" +
-            "<input type='text' name='ILNum' placeholder='请输入' autocomplete='off' class='layui-input' lay-verify='required'>" +
+            "<input type='text' name='ILNum' placeholder='请输入' required lay-verify='required|number' autocomplete='off' class='layui-input' lay-verify='required'>" +
             "</div>" +
             "</div>" +
             "<div class='layui-inline'>" +

@@ -50,7 +50,7 @@
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['exports', 'print',]
             , cols: [[
-                {type: 'checkbox', fixed: 'left'}
+                {type:'checkbox',fixed:'left'}
                 , {field: 'goodName', title: '货物类名',}
                 , {field: 'ilprice', title: '入货价',}
                 , {field: 'ilnum', title: '入货量',}

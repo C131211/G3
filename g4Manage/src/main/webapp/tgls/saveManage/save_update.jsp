@@ -32,14 +32,14 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">仓库名字</label>
 			<div class="layui-input-inline shortInput">
-				<input type="text" name="sName" id="sName"
+				<input type="text" name="sName" id="sName" required lay-verify="required"
 					   autocomplete="off" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">总存量</label>
 			<div class="layui-input-inline shortInput">
-                <input type="text" name="sTsave" id="sTsave"
+                <input type="text" name="sTsave" id="sTsave" required lay-verify="required|number"
 						  autocomplete="off" class="layui-input">
 
 			</div>
@@ -47,7 +47,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">仓库地址</label>
 			<div class="layui-input-inline shortInput">
-				<input type="text" name="sAddr" id="sAddr"
+				<input type="text" name="sAddr" id="sAddr" required lay-verify="required"
 					   autocomplete="off" class="layui-input">
 			</div>
 		</div>
@@ -63,11 +63,9 @@
 			<label class="layui-form-label">仓库状态</label>
 			<div class="layui-input-inline shortInput">
 				<select name="sStatus" id="sStatus">
-					<option value="0">
-						正常
+					<option value="0">正常
 					</option>
-					<option value="1">
-						锁定
+					<option value="1">锁定
 					</option>
 				</select>
 			</div>

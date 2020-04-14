@@ -20,7 +20,6 @@
     <link rel="stylesheet" type="text/css" href="/layui/css/layui.css">
     <script type="text/javascript" src="/layui/layui.js"></script>
     <script src="/js/checkLogin.js"></script>
-    <script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <!-- 公共样式 结束 -->
 
 </head>
@@ -39,7 +38,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">出货价</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="gOutprice" id="gOutprice" required lay-verify="required"
+                <input type="text" name="gOutprice" id="gOutprice" required lay-verify="required|number"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -71,6 +70,13 @@
                     }
                 });
                 return false;
+            });
+            form.verify({
+                //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+                ZHCheck: [
+                    /^[\u0391-\uFFE5]+$/
+                    ,'只允许输入中文'
+                ]
             });
         });
     </script>

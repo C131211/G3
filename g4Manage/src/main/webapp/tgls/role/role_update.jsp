@@ -32,8 +32,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label">角色名</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="rName" id="rName"
-                       required autocomplete="off" class="layui-input">
+                <input type="text" name="rName" id="rName" required lay-verify="required|ZHCheck"
+                       autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -86,6 +86,13 @@
                     }
                 });
                 return false;
+            });
+            form.verify({
+                //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+                ZHCheck: [
+                    /^[\u0391-\uFFE5]+$/
+                    ,'只允许输入中文'
+                ]
             });
         });
     </script>

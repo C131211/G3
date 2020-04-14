@@ -11,7 +11,6 @@ public class Good {
     private String gName;
     private int gNum;
     private int gInprice;
-    private int gOutprice;
     private String gExplain;
     private Date gSatime;
     private int sID;
@@ -26,7 +25,6 @@ public class Good {
                 ", gName='" + gName + '\'' +
                 ", gNum=" + gNum +
                 ", gInprice=" + gInprice +
-                ", gOutprice=" + gOutprice +
                 ", gExplain='" + gExplain + '\'' +
                 ", gSatime=" + gSatime +
                 ", sID=" + sID +
@@ -76,14 +74,6 @@ public class Good {
 
     public void setgInprice(int gInprice) {
         this.gInprice = gInprice;
-    }
-
-    public int getgOutprice() {
-        return gOutprice;
-    }
-
-    public void setgOutprice(int gOutprice) {
-        this.gOutprice = gOutprice;
     }
 
     public String getgExplain() {

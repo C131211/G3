@@ -36,16 +36,16 @@
         <div class="layui-form-item">
             <label class="layui-form-label">角色名称</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="rName" autocomplete="off" class="layui-input">
+                <input type="text" name="rName" required lay-verify="required|ZHCheck" autocomplete="off" class="layui-input">
             </div>
+            <i class="iconfont icon-huaban bt"></i>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">角色说明</label>
             <div class="layui-input-inline shortInput">
-                <textarea name="rExplain" lay-verify="required" autocomplete="off" class="layui-textarea">
+                <textarea name="rExplain" autocomplete="off" class="layui-textarea">
                 </textarea>
             </div>
-            <i class="iconfont icon-huaban bt"></i>
         </div>
         <label class="layui-form-label">角色状态</label>
         <div class="layui-input-block">
@@ -88,6 +88,13 @@
             //提交结果
             addRole();
             return false;
+        });
+        form.verify({
+            //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+            ZHCheck: [
+                /^[\u0391-\uFFE5]+$/
+                ,'只允许输入中文'
+            ]
         });
     })
 

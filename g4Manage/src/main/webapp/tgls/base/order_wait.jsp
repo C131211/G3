@@ -114,10 +114,10 @@
             //console.log(obj)
             if (obj.event === 'submit') {
                 $.ajax({
-                    url: "1234",//
+                    url: "/dealInListById",//
                     type: "POST",
                     dataType: "json",
-                    data: {ILID: data.ilid, ilstatus: 1},
+                    data: {ILID: data.ilid, ilstatus: 1,orderOinion:1},
                     success: function (data) {
                         if (data.status == 200) {
                             //接收到成功的提示
@@ -143,14 +143,13 @@
                 });
             } else if (obj.event === 'reject') {
                 $.ajax({
-                    url: "1234",//
+                    url: "/dealInListById",//
                     type: "POST",
                     dataType: "json",
-                    data: {ILID: data.ilid, ilstatus: 2},
+                    data: {ILID: data.ilid, ilstatus: 2,orderOinion:0},
                     success: function (data) {
                         if (data.status == 200) {
                             //接收到成功的提示
-                            layer.msg("提交");
                             window.location.reload();
                         } else {
                             alert(data.msg);
@@ -168,7 +167,7 @@
 <script id="outbarDemo" type="text/html">
     <a class="layui-btn layui-btn-xs" lay-event="outtoDetails">查看库单详情</a>
     <a class="layui-btn layui-btn-xs" lay-event="submit">确认</a>
-    <a class="layui-btn layui-btn-xs" lay-event="cancel">确认</a>
+    <a class="layui-btn layui-btn-xs" lay-event="cancel">取消</a>
 </script>
 <script>
     layui.use('table', function () {
@@ -212,14 +211,13 @@
             //console.log(obj)
             if (obj.event === 'submit') {
                 $.ajax({
-                    url: "1234",//
+                    url: "/dealOutListById",//
                     type: "POST",
                     dataType: "json",
-                    data: {olId: data.olId, olStatus: 1},
+                    data: {olId: data.olId, olStatus: 1,orderOinion:1},
                     success: function (data) {
                         if (data.status == 200) {
                             //接收到成功的提示
-                            layer.msg("提交");
                             window.location.reload();
                         } else {
                             alert(data.msg);
@@ -239,29 +237,15 @@
                     content: '/PageOperation?id=' + data.olId + '&pageType=outlistDetail',
 
                 });
-            } else if (obj.event === 'intoDetails') {
-                layer.open({
-                    title: "订单详细信息",
-                    type: 2,
-                    area: ['70%', '60%'],
-                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
-                    maxmin: true,
-                    end: function () {
-                        window.location.reload();
-                    },
-                    content: '/PageOperation?id=' + data.ilid + '&pageType=inlistDetail',
-
-                });
             } else if (obj.event === 'cancel') {
                 $.ajax({
-                    url: "1234",//
+                    url: "/dealOutListById",//
                     type: "POST",
                     dataType: "json",
-                    data: {olId: data.olId, olStatus: 2},
+                    data: {olId: data.olId, olStatus: 2,orderOinion:0},
                     success: function (data) {
                         if (data.status == 200) {
                             //接收到成功的提示
-                            layer.msg("提交");
                             window.location.reload();
                         } else {
                             alert(data.msg);

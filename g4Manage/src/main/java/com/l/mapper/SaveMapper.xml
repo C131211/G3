@@ -56,7 +56,7 @@
 
 
         <select id="selSaveById" parameterType="int" resultType="com.l.pojo.Save">
-                select sID,sName, sTsave,sAddr,sExplain,sStatus from save where sID=#{0}
+                select * from save where sID=#{0}
         </select>
 
 

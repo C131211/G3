@@ -17,7 +17,6 @@
     <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
     <script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
     <script src="/js/checkLogin.js"></script>
-    <script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <%--引入css--%>
     <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css"  media="all">
     <%--引入js--%>
@@ -77,6 +76,13 @@
                     }
                 });
                 return false;
+            });
+            form.verify({
+                //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+                ZHCheck: [
+                    /^[\u0391-\uFFE5]+$/
+                    ,'只允许输入中文'
+                ]
             });
         });
     </script>

@@ -38,7 +38,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">真实姓名</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uName" id="uName"
+                <input type="text" name="uName" id="uName" required lay-verify="required|ZHCheck"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -52,13 +52,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">手机号</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uTel" id="uTel" autocomplete="off" class="layui-input">
+                <input type="text" name="uTel" id="uTel" required lay-verify="required|phone" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">住址</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uAddr" id="uAddr" autocomplete="off" class="layui-input">
+                <input type="text" name="uAddr" id="uAddr" required lay-verify="required|ZHCheck" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -110,6 +110,13 @@
                     }
                 });
                 return false;
+            });
+            form.verify({
+                //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+                ZHCheck: [
+                    /^[\u0391-\uFFE5]+$/
+                    ,'只允许输入中文'
+                ]
             });
         });
     </script>
