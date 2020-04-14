@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.l.mapper.ForgetTextMapper">
+     <insert id="insForgetByUID" parameterType="com.l.pojo.ForgetText">
+         insert into forgettext values(default ,#{forget},#{uID})
+     </insert>
+    
+    <update id="updForgetByUID" parameterType="com.l.pojo.ForgetText">
+        update forgettext set forget=#{forget} where uID=#{uID}
+    </update>
+
+    <select id="selForgetByUID" parameterType="int" resultType="com.l.pojo.ForgetText">
+        select * from forgettext where uID=#{0}
+    </select>
+
+
+</mapper>
