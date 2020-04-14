@@ -13,7 +13,7 @@ public interface UserService {
      * 用户登录服务
      * @return
      */
-    GResult selUserByPwd(String uAccount, String uPwd) ;
+    User selUserByPwd(String uAccount, String uPwd) ;
 
 
     /**

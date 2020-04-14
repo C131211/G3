@@ -33,12 +33,33 @@ public class UserController {
     //访问的域名
     @RequestMapping("/login")
     public String login(String uAccount, String uPwd, HttpServletRequest req){
-        GResult result = userService.selUserByPwd(uAccount, uPwd);
+        GResult result = new GResult();
+        User user = userService.selUserByPwd(uAccount, uPwd);
         HttpSession session = req.getSession();
-        if (result.getData()!=null){
+        if (user != null && user.getrID()==0){//超级管理员
+            //存在
+            result.setStatus(200);
+            result.setMsg("登录成功");
+            result.setData(user);
             session.setAttribute("result",result);
             return "redirect:/frame.jsp";
-        }else {
+        }else if(user != null && user.getrID()==1){//仓管员
+            //存在
+            result.setStatus(200);
+            result.setMsg("登录成功");
+            result.setData(user);
+            session.setAttribute("result",result);
+            return "redirect:页面路径";
+        }else if (user != null && user.getrID()==2){//运输员
+            //存在
+            result.setStatus(200);
+            result.setMsg("登录成功");
+            result.setData(user);
+            session.setAttribute("result",result);
+            return "redirect:页面路径";
+        } else {
+            //不存在
+            result.setMsg("用户名或者密码错误");
             return "redirect:/index.jsp";
         }
     }

@@ -22,26 +22,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public GResult selUserByPwd(String uAccount, String uPwd)  {
-
-        User user = userMapper.selUserByPwd(uAccount, uPwd);
-        //创建结果集
-        GResult result = new GResult();
-
-        //判断该用户是否存在
-        if (user==null){
-            //不存在
-            result.setMsg("用户名或者密码错误");
-            return result;
-        }else {
-            //存在
-            //修改日期格式
-            result.setStatus(200);
-            result.setMsg("登录成功");
-            result.setData(user);
-            return result;
-        }
-
+    public User selUserByPwd(String uAccount, String uPwd)  {
+    return userMapper.selUserByPwd(uAccount, uPwd);
     }
 
     @Override
