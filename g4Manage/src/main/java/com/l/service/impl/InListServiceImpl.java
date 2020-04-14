@@ -14,10 +14,7 @@ import com.l.service.InListService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -155,7 +152,8 @@ public class InListServiceImpl implements InListService {
                     }
                 }else {//没有此货物新增
                     Good goodNew = new Good();
-                    String gid = UUID.randomUUID().toString();
+                    Random random = new Random();
+                    String gid = UUID.randomUUID().toString()+random.nextInt(100);
                     goodNew.setgID(gid);
                     goodNew.setgName(inList.getGoodName());
                     goodNew.setgNum(inList.getILNum());

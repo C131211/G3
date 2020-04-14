@@ -71,21 +71,22 @@ public class SaveServiceImpl implements SaveService {
             for (Save saveList : list) {
                 if (saveList.getGoods()!=null&&!saveList.getGoods().equals("")){
                     //解析货物id   1，2，3
-                    String[] strs = saveList.getGoods().split(",");
+                    String[] strs = saveList.getGoods().trim().split(",");
                     for (String str : strs) {
                         //查询该货物的信息
-                        Good good = goodMapper.selGoodById(str);
-                        if (good!=null){
-                            //放到List里面
-                            goods.add(good);
-                            goodsStr += str+",";
+                        if (str!=null && !str.equals("")){
+                            Good good = goodMapper.selGoodById(str);
+                            if (good!=null){
+                                //放到List里面
+                                goods.add(good);
+                                goodsStr += str+",";
+                            }
                         }
                     }
                     saveList.setGoods(goodsStr);
                     saveList.setGood(goods);
                 }
                 saveMapper.updSaveGoods(saveList.getsID(),saveList.getGoods());
-
             }
             PageInfo<Save> pi = new PageInfo<>(list);
             dataGrid.setData(pi.getList());
@@ -108,14 +109,16 @@ public class SaveServiceImpl implements SaveService {
                 //设置货物信息
                 if (saveList.getGoods()!=null&&!saveList.getGoods().equals("")){
                     //解析货物id   1，2，3
-                    String[] strs = saveList.getsName().split(",");
+                    String[] strs = saveList.getsName().trim().split(",");
                     for (String str1 : strs) {
                         //查询该货物的信息
-                        Good good = goodMapper.selGoodById(str1);
-                        if (good!=null){
-                            //放到List里面
-                            goods.add(good);
-                            goodsStr += str1+",";
+                        if (str!=null && !str.equals("")){
+                            Good good = goodMapper.selGoodById(str1);
+                            if (good!=null){
+                                //放到List里面
+                                goods.add(good);
+                                goodsStr += str1+",";
+                            }
                         }
                     }
                     saveList.setGoods(goodsStr);
