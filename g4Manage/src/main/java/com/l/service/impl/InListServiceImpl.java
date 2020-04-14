@@ -171,7 +171,7 @@ public class InListServiceImpl implements InListService {
                     Save save = saveMapper.selSaveById(inList.getsID());
                     if (save!=null){
                         save.setsNsave(save.getsNsave()+inList.getILNum());
-                        save.setGoods(save.getGoods()+gid+",");
+                        save.setGoods(save.getGoods()+goodNew.getgID()+",");
                         index = saveMapper.updSave(save);
                     }else {
                         throw new Exception("仓库获取出错");
