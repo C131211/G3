@@ -85,6 +85,8 @@
                 <dl>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/look_save_list.jsp',this)">仓库</a></dt>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodlist/look_gl_list.jsp',this)">货物</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/manage_inorder.jsp',this)">入库统计</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/manage_outorder.jsp',this)">出库统计</a></dt>
                 </dl>
             </li>
             <li>
@@ -93,8 +95,8 @@
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/inlist/inorder_add.jsp',this)">新增入货单</a></dt>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/outlist/outorder_add.jsp',this)">新增出货单</a></dt>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/order_wait.jsp',this)">待处理货单</a></dt>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/inlist/inorder.jsp',this)">入货单统计</a></dt>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/outlist/outorder.jsp',this)">出货单统计</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/all_inorder.jsp',this)">入货单统计</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/all_outorder.jsp',this)">出货单统计</a></dt>
                 </dl>
             </li>
             <li>
