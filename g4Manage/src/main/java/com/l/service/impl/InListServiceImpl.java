@@ -196,6 +196,7 @@ public class InListServiceImpl implements InListService {
             Save save = saveMapper.selSaveById(inLists.get(0).getsID());
             if (nums+save.getsNsave()==save.getsTsave()){
                 //修改仓库的总容量
+                save.setsStatus(1);
                 index = saveMapper.updSave(save);
             }
         }else if (orderOinion==0){//拒绝
