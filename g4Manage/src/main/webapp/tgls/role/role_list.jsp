@@ -35,29 +35,9 @@
 <div>
     <div class="roleList">
         <form class="layui-form" action="">
-            <div class="layui-form-item">
-                <div class="layui-input-inline">
-                    <input type="text" name="selectRName" required lay-verify="required" placeholder="输入角色名" autocomplete="off"
-                           class="layui-input">
-                </div>
-                <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
-            </div>
-        </form>
-
-        <script>
-            layui.use('form', function () {
-                var form = layui.form;
-
-                //监听提交
-                form.on('submit(formDemo)', function (data) {
-                    layer.msg(JSON.stringify(data.field));
-                    return false;
-                });
-            });
-        </script>
-    </div>
-
     <table class="layui-hide" id="rList" lay-filter="rTools"></table>
+        </form>
+    </div>
 </div>
 <script id="barDemo" type="text/html">
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
@@ -141,17 +121,6 @@
                 });
             }
         });
-        //查询作用
-        $("#select").click(function (){
-            table.reload("rList",{
-                where: { //设定异步数据接口的额外参数，任意设
-                    rName: $("#selectRName").val()
-                }
-                ,page: {
-                    curr: 1 //重新从第 1 页开始
-                }
-            });
-        })
     });
 </script>
 </body>

@@ -35,26 +35,8 @@
 <div>
     <div class="glList">
         <form class="layui-form" action="">
-            <div class="layui-form-item">
-                <div class="layui-input-inline">
-                    <input type="text" name="selectGlName" required lay-verify="required" placeholder="输入货物类名" autocomplete="off"
-                           class="layui-input">
-                </div>
-                <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
-            </div>
-        </form>
-        <script>
-            layui.use('form', function () {
-                var form = layui.form;
-
-                //监听提交
-                form.on('submit(formDemo)', function (data) {
-                    layer.msg(JSON.stringify(data.field));
-                    return false;
-                });
-            });
-        </script>
         <table class="layui-hide" id="glList" lay-filter="glTools"></table>
+        </form>
     </div>
 </div>
 </body>
