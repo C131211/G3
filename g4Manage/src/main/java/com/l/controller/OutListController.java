@@ -82,7 +82,21 @@ public class OutListController {
         return outListService.selOutListByILBy(page, rows, olBy, startTime, endTime);
     }
 
-
+    /**
+     * 仓库统计
+     * @param page
+     * @param rows
+     * @param goodName
+     * @param sID
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    @RequestMapping("/getSaveOutList")
+    @ResponseBody
+    public DataGrid getSaveOutList(int page, int rows, String goodName, int sID,@RequestParam(defaultValue = "0") String startTime,@RequestParam(defaultValue = "now()") String endTime){
+        return outListService.selSaveOutList(page, rows, goodName, sID, startTime, endTime);
+    }
 
 
 

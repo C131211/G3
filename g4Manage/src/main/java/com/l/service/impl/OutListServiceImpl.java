@@ -245,4 +245,18 @@ public class OutListServiceImpl  implements OutListService {
         dataGrid.setMsg("OK");
         return dataGrid;
     }
+
+
+    @Override
+    public DataGrid selSaveOutList(int page, int rows, String goodName, int sID, String startTime, String endTime) {
+        PageHelper.startPage(page, rows);
+        List<OutList> list = outListMapper.selSaveOutList(goodName, sID, startTime, endTime);
+        PageInfo<OutList> pi = new PageInfo<>(list);
+        DataGrid dataGrid = new DataGrid();
+        dataGrid.setData(pi.getList());
+        dataGrid.setCount(pi.getTotal());
+        dataGrid.setCode(0);
+        dataGrid.setMsg("OK");
+        return dataGrid;
+    }
 }

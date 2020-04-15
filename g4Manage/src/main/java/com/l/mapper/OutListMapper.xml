@@ -29,10 +29,38 @@
     </update>
 
     <select id="selOutListByILBy" parameterType="String" resultType="com.l.pojo.OutList">
-        select * from outlist where olBy=#{0}
-        and olDate &gt;= UNIX_TIMESTAMP(#{1})
-        and olDate &lt; UNIX_TIMESTAMP(#{2})
-        GROUP BY olId
+        select * from outlist
+        <where>
+            <if test="olBy!=null and olBy!=''">
+                and olBy=#{0}
+            </if>
+            and olDate &gt;= UNIX_TIMESTAMP(#{1})
+            and olDate &lt; UNIX_TIMESTAMP(#{2})
+            GROUP BY olId
+        </where>
+    </select>
+
+    <select id="selSaveOutList" resultType="com.l.pojo.OutList">
+        select sum(olNum) as olNum,SUM(olTotal) as olTotal
+        <if test="sID!=null and sID!=''">
+            ,sID
+        </if>
+        <if test="goodName!=null and goodName!=''">
+            ,goodName
+        </if>
+        from outlist
+        <where>
+            and olStatus='1'
+            and orderOinion='1'
+            <if test="sID!=null and sID!=''">
+                and sID=#{1}
+            </if>
+            <if test="goodName!=null and goodName!=''">
+                and goodName={0}
+            </if>
+            and olDate &gt;= #{2}
+            and olDate &lt; #{3}
+        </where>
     </select>
 
 

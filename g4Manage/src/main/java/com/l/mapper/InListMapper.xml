@@ -29,12 +29,14 @@
     </update>
 
     <select id="selInListByILBy"  resultType="com.l.pojo.InList">
-        select * from inlist where
-        <if test="ILBy!=null and ILBy!=''">
-            ILBy=#{0}
-        </if>
-        and ILDate &gt;= #{1}
-        and ILDate &lt; #{2}
+        select * from inlist
+        <where>
+            <if test="ILBy!=null and ILBy!=''">
+               and ILBy=#{0}
+            </if>
+            and ILDate &gt;= #{1}
+            and ILDate &lt; #{2}
+        </where>
         GROUP BY ILID
     </select>
 
@@ -43,7 +45,7 @@
         <if test="sID!=null and sID!=''">
             ,sID
         </if>
-        <if test="sID!=null and sID!=''">
+        <if test="goodName!=null and goodName!=''">
             ,goodName
         </if>
         from inlist
