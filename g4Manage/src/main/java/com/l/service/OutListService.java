@@ -54,4 +54,17 @@ public interface OutListService {
      */
     DataGrid selOutListByILBy(int page,int rows,String olBy,String startTime,String endTime);
 
+    /**
+     * 仓库统计
+     * @param page
+     * @param rows
+     * @param goodName
+     * @param sID
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    DataGrid selSaveOutList(int page,int rows,String goodName,int sID,String startTime,String endTime);
+
+
 }

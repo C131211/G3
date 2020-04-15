@@ -57,4 +57,15 @@ public interface OutListMapper {
     List<OutList> selOutListByILBy(String olBy, String startTime, String endTime);
 
 
+    /**
+     * 仓库统计
+     * @param goodName
+     * @param sID
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    List<OutList> selSaveOutList(String goodName,int sID,String startTime,String endTime);
+
+
 }
