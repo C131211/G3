@@ -28,19 +28,19 @@
         update outlist set orderOinion=1,olStatus = 1 where goodName=#{goodName} and olBy=#{olBy} and olDate=#{olDate} and sID=#{sID}
     </update>
 
-    <select id="selOutListByILBy" parameterType="String" resultType="com.l.pojo.OutList">
+    <select id="selOutListByILBy" parameterType="Map" resultType="com.l.pojo.OutList">
         select * from outlist
         <where>
             <if test="olBy!=null and olBy!=''">
-                and olBy=#{0}
+                and olBy=#{olBy}
             </if>
-            and olDate &gt;= UNIX_TIMESTAMP(#{1})
-            and olDate &lt; UNIX_TIMESTAMP(#{2})
+            and olDate &gt;= #{startTime}
+            and olDate &lt; #{endTime}
             GROUP BY olId
         </where>
     </select>
 
-    <select id="selSaveOutList" resultType="com.l.pojo.OutList">
+    <select id="selSaveOutList" parameterType="Map" resultType="com.l.pojo.OutList">
         select sum(olNum) as olNum,SUM(olTotal) as olTotal
         <if test="sID!=null and sID!=''">
             ,sID
@@ -53,13 +53,13 @@
             and olStatus='1'
             and orderOinion='1'
             <if test="sID!=null and sID!=''">
-                and sID=#{1}
+                and sID=#{sID}
             </if>
             <if test="goodName!=null and goodName!=''">
-                and goodName={0}
+                and goodName=#{goodName}
             </if>
-            and olDate &gt;= #{2}
-            and olDate &lt; #{3}
+            and olDate &gt;= #{startTime}
+            and olDate &lt; #{endTime}
         </where>
     </select>
 

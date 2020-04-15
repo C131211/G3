@@ -85,8 +85,8 @@
                 <dl>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/inlist/inorder_add.jsp',this)">新增入货单</a></dt>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/outlist/outorder_add.jsp',this)">新增出货单</a></dt>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/inlist/inorder.jsp',this)">入货单统计</a></dt>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/outlist/outorder.jsp',this)">出货单统计</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/inlist/inorder.jsp',this)">个人入货单统计</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/outlist/outorder.jsp',this)">个人出货单统计</a></dt>
                 </dl>
             </li>
             <li>

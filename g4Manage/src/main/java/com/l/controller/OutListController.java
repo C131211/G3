@@ -94,7 +94,7 @@ public class OutListController {
      */
     @RequestMapping("/getSaveOutList")
     @ResponseBody
-    public DataGrid getSaveOutList(int page, int rows, String goodName, int sID,@RequestParam(defaultValue = "0") String startTime,@RequestParam(defaultValue = "now()") String endTime){
+    public DataGrid getSaveOutList(int page, int rows, String goodName, String sID,@RequestParam(defaultValue = "0") String startTime,@RequestParam(defaultValue = "now()") String endTime){
         return outListService.selSaveOutList(page, rows, goodName, sID, startTime, endTime);
     }
 

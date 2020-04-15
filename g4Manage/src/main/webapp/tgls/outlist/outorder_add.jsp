@@ -184,11 +184,6 @@
     layui.use('form', function () {
         var form = layui.form;
         //监听提交
-        <%--form.on('select(OLSelect)', function(data) {--%>
-        <%--    <c:forEach items="${GoodListResult.data}" var="money">--%>
-
-        <%--    </c:forEach>--%>
-        <%--});--%>
         form.on('submit(submitBut)', function (data) {
             //提交结果
             addOutorder();

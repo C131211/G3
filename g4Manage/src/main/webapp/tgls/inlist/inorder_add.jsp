@@ -36,6 +36,13 @@
     <script src="/js/TimeFormat.js" charset="utf-8"></script>
 
     <script type="text/javascript">
+        //刷新表单
+        function reloadForm() {
+            layui.use('form', function () {
+                var form = layui.form;
+                form.render();
+            });
+        }
         $(function () {
             //获取下拉框数据
             $.ajax({
@@ -188,13 +195,6 @@
 </form>
 
 <script>
-    //刷新表单
-    function reloadForm() {
-        layui.use('form', function () {
-            var form = layui.form;
-            form.render();
-        });
-    }
 
 
     //增加行

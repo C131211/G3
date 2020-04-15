@@ -64,7 +64,7 @@ public interface OutListService {
      * @param endTime
      * @return
      */
-    DataGrid selSaveOutList(int page,int rows,String goodName,int sID,String startTime,String endTime);
+    DataGrid selSaveOutList(int page,int rows,String goodName,String sID,String startTime,String endTime);
 
 
 }

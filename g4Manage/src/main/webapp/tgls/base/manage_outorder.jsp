@@ -1,4 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Richard Lyu
+  Date: 2020/3/11
+  Time: 15:14
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -20,255 +28,196 @@
     <script src="/framework/jquery-ui-1.10.4.min.js"></script>
     <script src="/framework/jquery.mousewheel.min.js"></script>
     <script src="/framework/jquery.mCustomScrollbar.min.js"></script>
-    <script src="/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <!-- 公共样式 结束 -->
-
     <%--引入css--%>
     <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css" media="all">
     <%--引入js--%>
     <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
+    <%--引入时间格式转换--%>
+    <script src="/js/TimeFormat.js" charset="utf-8"></script>
+    <%--选择数据--%>
+    <script type="text/javascript">
+        //刷新表单
+        function reloadForm() {
+            layui.use('form', function () {
+                var form = layui.form;
+                form.render();
+            });
+        }
+        $(function () {
+            //获取下拉框数据
+            $.ajax({
+                url: "/getAllGoodList",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        reloadForm();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+            //仓库选择
+            $.ajax({
+                url: "/getSaveName",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        for (var i = 0; i < data.data.length; i++) {
+                            var option = $("<option />");
+                            option.html(data.data[i].sName);
+                            option.val(data.data[i].sID);
+                            $("#sID").append(option);
+                        }
+                        reloadForm();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            })
+        })
+    </script>
 
 </head>
-
-<body>
-<div class="cBody">
-    <div class="layui-tab" lay-filter="myPage">
-        <ul class="layui-tab-title">
-            <li class="layui-this" lay-id="historyList">历史列表</li>
-            <li lay-id="todayList">今日列表</li>
-        </ul>
-        <div class="layui-tab-content">
-            <div class="layui-tab-item layui-show">
-                <table class="layui-hide" id="all_outList" lay-filter="alloutOLTools"></table>
+<body class="cBody">
+<div>
+    <form class="layui-form" id="countInlist">
+        <div class="layui-form-item">
+            <div class="layui-input-inline">
+                <select name="sID" id="sID" class="layui-form-select">
+                    <option value="">请选择仓库</option>
+                </select>
             </div>
-            <div class="layui-tab-item">
-                <table class="layui-hide" id="today_outList" lay-filter="tooutOLTools"></table>
+            <div class="layui-input-inline">
+                <select name="goodName" id="goodName" class="layui-form-select">
+                    <option value="">请选择货物</option>
+                    <c:forEach items="${GoodListResult.data}" var="item">
+                        <option>${item.goodName}</option>
+                    </c:forEach>
+                </select>
             </div>
+            <div class="layui-input-inline">
+                <input type="text" id="startTime" name="startTime" autocomplete="off" placeholder="请选择开始时间"
+                       class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+                <input type="text" id="endTime" name="endTime" autocomplete="off" placeholder="请选择结束时间"
+                       class="layui-input">
+            </div>
+            <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
         </div>
-    </div>
+        <div>
+            <table class="layui-hide" id="outListcount" lay-filter="countTools"></table>
+        </div>
+    </form>
 </div>
-</body>
+<%--搜索--%>
 <script>
-    layui.use('element', function () {
-        var element = layui.element;
+    layui.use('form', function () {
+        var form = layui.form;
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+<%--时间--%>
+<script>
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        var endDate = laydate.render({
+            elem: '#endTime',//选择器结束时间
+            type: 'datetime',
+            min: "1970-1-1",//设置min默认最小值
+            done: function (value, date) {
+                startDate.config.max = {
+                    year: date.year,
+                    month: date.month - 1,//关键
+                    date: date.date,
+                    hours: 0,
+                    minutes: 0,
+                    seconds: 0
+                }
+            }
+        });
 
-        //获取hash来切换选项卡，假设当前地址的hash为lay-id对应的值
-        var layid = location.hash.replace(/^#test1=/, '');
-        element.tabChange('myPage', layid); //假设当前地址为：http://a.com#test1=222，那么选项卡会自动切换到“发送消息”这一项
-
-        //监听Tab切换，以改变地址hash值
-        element.on('tab(myPage)', function () {
-            location.hash = 'test1=' + this.getAttribute('lay-id');
-            console.log(this.getAttribute('lay-id'));
+        //日期范围
+        var startDate = laydate.render({
+            elem: '#startTime',
+            type: 'datetime',
+            max: "2099-12-31",//设置一个默认最大值
+            done: function (value, date) {
+                endDate.config.min = {
+                    year: date.year,
+                    month: date.month - 1, //关键
+                    date: date.date,
+                    hours: 0,
+                    minutes: 0,
+                    seconds: 0
+                };
+            }
         });
     });
 </script>
 
-<%--历史列表--%>
-<script id="alloutbarDemo" type="text/html">
-    <a class="layui-btn layui-btn-xs" lay-event="alloutedit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="alloutdel">删除</a>
+<%--表格--%>
+<script id="countinbarDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="allinDetails">查看详情</a>
 </script>
 <script>
     //初始化表格
     layui.use('table', function () {
         var table = layui.table;
         table.render({
-            elem: '#all_outList'   //表格ID
-            , url: '/userList' //数据接口
+            elem: '#outListcount'   //表格ID
+            , url: '/getSaveOutList' //数据接口
+            , request: {
+                pageName: 'page' //页码的参数名称，默认：page
+                , limitName: 'rows' //每页数据量的参数名，默认：limit
+            }
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , page: true     //开启分页
             , height: 'full-200'  //高度最大化自适应
-            , toolbar: '#allouttoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , toolbar: '#countintoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['exports', 'print']
+            , method: 'post'//传输方式
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'olId', title: '出货单号', sort: true}
-                , {field: 'olDate', title: '出货日期', sort: true}
-                , {field: 'sID', title: '出货仓库', sort: true}
-                , {field: 'olDestin', title: '合作商', sort: true}
-                , {field: 'olBy', title: '经手人', sort: true}
-                , {field: 'olComfirm', title: '确认人', sort: true}
-                , {
-                    field: 'OLStatus', title: '出货单状态', templet: function (d) {
-                        if (d.OLStatus == 0) {
-                            return d.OLStatus = "完成"
-                        } else {
-                            return d.OLStatus = "未完成"
+                , {field: 'goodName', title: '货物', width:100,templet: function (d) {
+                        if(d.goodName==null){
+                            return d.goodName="全部货物"
+                        }else {
+                            return d.goodName
                         }
-                    }
-                }
-                , {field: 'right', title: '操作', toolbar: '#alloutbarDemo', width: 144}
+                    } }
+                , {field: 'olNum', title: '货物总数', }
+                , {field: 'olTotal', title: '货物总价', }
+                , {field: 'sID', title: '入货仓库' ,templet: function (d) {
+                        if(d.sID==0){
+                            return d.sID="全部仓库"
+                        }else {
+                            return d.sID
+                        }
+                    } }
             ]]
         });
-
-        //监听行工具事件
-        table.on('tool(alloutOLTools)', function (obj) {
-            var data = obj.data;
-            if (obj.event === 'alloutdel') {
-                layer.confirm('真的删除行么', function (index) {
-                    $.ajax({
-                        url: "/userDelById",//添加用户
-                        type: "POST",
-                        dataType: "json",
-                        data: {olId: data.olId},
-                        success: function (data) {
-                            if (data.status == 200) {
-                                //接收到成功的提示
-                                window.location.reload();
-                            } else {
-                                alert(data.msg);
-                            }
-                        }
-
-                    })
-                });
-            } else if (obj.event === 'alloutedit') {
-                layer.open({
-                    title: "出货单信息修改",
-                    type: 2,
-                    area: ['70%', '60%'],
-                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
-                    maxmin: true,
-                    end: function () {
-                        window.location.reload();
-                    },
-                    content: '/userOperation?olId=' + data.olId + '&pageType=edit',
-
-                })
-            }
-        })
-        $(function () {
-            //检查是否拥有标识
-            checkLogin(${sessionScope.result.data.uID});
-            //请求该id的用户数据
-            $.ajax({
-                url: "/selUserById",
-                dataType: "json",
-                type: "POST",
-                data: {olDate:"${requestScope.olDate}"},
-                success: function (data) {
-                    if (data.status == 200) {
-                        layui.use('form', function () {
-                            var form = layui.form;
-                            $("#olID").val(data.data.olID);
-                            $("#sID").val(data.data.sID);
-                            $("#olDate").val(data.data.olDate);
-                            $("#olBy").val(data.data.olBy);
-                            $("#olComfirm").val(data.data.olComfirm);
-                            $("#olDestin").val(data.data.olDestin);
-                            $("#olStatus").val(data.data.olStatus);
-                            form.render();
-                        });
-                    } else {
-                        layer.msg("获取失败");
-                    }
+        //查询作用
+        $("#select").click(function (){
+            table.reload("outListcount",{
+                where: { //设定异步数据接口的额外参数，任意设
+                    sID: $("#sID").val(),goodName:$("#goodName").val(),startTime: $("#startTime").val(),endTime: $("#endTime").val()
+                }
+                ,page: {
+                    curr: 1 //重新从第 1 页开始
                 }
             });
-        });
-    })
-</script>
-
-<%--今日列表--%>
-<script id="tooutbarDemo" type="text/html">
-    <a class="layui-btn layui-btn-xs" lay-event="tooutedit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="tooutdel">删除</a>
-</script>
-<script>
-    layui.use('table', function () {
-        var table = layui.table;
-        table.render({
-            elem: '#today_outList'   //表格ID
-            , url: '/userList' //数据接口
-            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            , page: true     //开启分页
-            , height: 'full-200'  //高度最大化自适应
-            , toolbar: '#toouttoolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-            , defaultToolbar: ['exports', 'print']
-            , cols: [[
-                {type: 'checkbox', fixed: 'left'}
-                , {field: 'olId', title: '出货单号', sort: true}
-                , {field: 'olDate', title: '出货日期', sort: true}
-                , {field: 'sID', title: '出货仓库', sort: true}
-                , {field: 'olDestin', title: '合作商', sort: true}
-                , {field: 'olBy', title: '经手人', sort: true}
-                , {field: 'olComfirm', title: '确认人', sort: true}
-                , {
-                    field: 'OLStatus', title: '出货单状态', templet: function (d) {
-                        if (d.OLStatus == 0) {
-                            return d.OLStatus = "完成"
-                        } else {
-                            return d.OLStatus = "未完成"
-                        }
-                    }
-                }
-                , {field: 'right', title: '操作', toolbar: '#tooutbarDemo', width: 144}
-            ]]
-        });
-        //监听行工具事件
-        table.on('tool(tooutOLTools)', function (obj) {
-            var data = obj.data;
-            if (obj.event === 'tooutdel') {
-                layer.confirm('真的删除行么', function (index) {
-                    $.ajax({
-                        url: "/userDelById",//添加用户
-                        type: "POST",
-                        dataType: "json",
-                        data: {olId: data.olId},
-                        success: function (data) {
-                            if (data.status == 200) {
-                                //接收到成功的提示
-                                window.location.reload();
-                            } else {
-                                alert(data.msg);
-                            }
-                        }
-
-                    })
-                });
-            } else if (obj.event === 'tooutedit') {
-                layer.open({
-                    title: "出货单信息修改",
-                    type: 2,
-                    area: ['70%', '60%'],
-                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
-                    maxmin: true,
-                    end: function () {
-                        window.location.reload();
-                    },
-                    content: '/userOperation?olId=' + data.olId + '&pageType=edit',
-
-                })
-            }
         })
-        $(function () {
-            //检查是否拥有标识
-            checkLogin(${sessionScope.result.data.uID});
-            //请求该id的用户数据
-            $.ajax({
-                url: "/selUserById",
-                dataType: "json",
-                type: "POST",
-                data: {olDate:"${requestScope.olDate}"},
-                success: function (data) {
-                    if (data.status == 200) {
-                        layui.use('form', function () {
-                            var form = layui.form;
-                            $("#olID").val(data.data.olID);
-                            $("#sID").val(data.data.sID);
-                            $("#olDate").val(data.data.olDate);
-                            $("#olBy").val(data.data.olBy);
-                            $("#olComfirm").val(data.data.olComfirm);
-                            $("#olDestin").val(data.data.olDestin);
-                            $("#olStatus").val(data.data.olStatus);
-                            form.render();
-                        });
-                    } else {
-                        layer.msg("获取失败");
-                    }
-                }
-            });
-        });
     })
 </script>
+</body>
 </html>

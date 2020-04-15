@@ -3,6 +3,7 @@ package com.l.mapper;
 import com.l.pojo.OutList;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by c on 2020/4/12.
@@ -51,21 +52,16 @@ public interface OutListMapper {
 
     /**
      * 通过经手人查询该用户的所有订单
-     * @param olBy
      * @return
      */
-    List<OutList> selOutListByILBy(String olBy, String startTime, String endTime);
+    List<OutList> selOutListByILBy(Map map);
 
 
     /**
      * 仓库统计
-     * @param goodName
-     * @param sID
-     * @param startTime
-     * @param endTime
      * @return
      */
-    List<OutList> selSaveOutList(String goodName,int sID,String startTime,String endTime);
+    List<OutList> selSaveOutList(Map map);
 
 
 }

@@ -5,6 +5,7 @@ import com.l.pojo.InList;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by c on 2020/3/29.
@@ -47,19 +48,14 @@ public interface InListMapper {
 
     /**
      * 通过经手人查询该用户的所有订单
-     * @param ILBy
      * @return
      */
-    List<InList> selInListByILBy(String ILBy, String startTime,String endTime);
+    List<InList> selInListByILBy(Map map);
 
     /**
      * 仓库统计
-     * @param goodName
-     * @param sID
-     * @param startTime
-     * @param endTime
      * @return
      */
-    List<InList> selSaveInList(String goodName,int sID,String startTime,String endTime);
+    List<InList> selSaveInList(Map map);
 
 }

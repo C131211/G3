@@ -222,7 +222,11 @@ public class InListServiceImpl implements InListService {
     @Override
     public DataGrid selInListByILBy(int page, int rows, String ILBy, String startTime, String endTime) {
         PageHelper.startPage(page, rows);
-        List<InList> list = inListMapper.selInListByILBy(ILBy,startTime,endTime);
+        Map map = new HashMap();
+        map.put("ILBy",ILBy);
+        map.put("startTime",startTime);
+        map.put("endTime",endTime);
+        List<InList> list = inListMapper.selInListByILBy(map);
         PageInfo<InList> pi = new PageInfo<>(list);
         DataGrid dataGrid = new DataGrid();
         dataGrid.setData(pi.getList());
@@ -233,9 +237,14 @@ public class InListServiceImpl implements InListService {
     }
 
     @Override
-    public DataGrid selSaveInList(int page, int rows, String goodName, int sID, String startTime, String endTime) {
+    public DataGrid selSaveInList(int page, int rows, String goodName, String sID, String startTime, String endTime) {
         PageHelper.startPage(page, rows);
-        List<InList> list = inListMapper.selSaveInList(goodName,sID,startTime,endTime);
+        Map map = new HashMap();
+        map.put("goodName",goodName);
+        map.put("sID",sID);
+        map.put("startTime",startTime);
+        map.put("endTime",endTime);
+        List<InList> list = inListMapper.selSaveInList(map);
         PageInfo<InList> pi = new PageInfo<>(list);
         DataGrid dataGrid = new DataGrid();
         dataGrid.setData(pi.getList());

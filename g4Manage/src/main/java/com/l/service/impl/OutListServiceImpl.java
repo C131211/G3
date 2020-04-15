@@ -14,10 +14,7 @@ import com.l.service.OutListService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -122,11 +119,12 @@ public class OutListServiceImpl  implements OutListService {
         //添加入库单
         int outListIndex = -1;
         for (OutList outList : list) {
-            outListIndex += outListMapper.insOutList(outList) ;
-           // goods += outList.getgID()+",";
+            outListIndex = outListMapper.insOutList(outList) ;
         }
         if (outListIndex >0){
             result.setStatus(200);
+        }else {
+            result.setMsg("添加失败");
         }
 
         return result;
@@ -236,7 +234,11 @@ public class OutListServiceImpl  implements OutListService {
     @Override
     public DataGrid selOutListByILBy(int page, int rows, String olBy, String startTime, String endTime) {
         PageHelper.startPage(page, rows);
-        List<OutList> list = outListMapper.selOutListByILBy(olBy, startTime, endTime);
+        Map map  = new HashMap<>();
+        map.put("olBy",olBy);
+        map.put("startTime",startTime);
+        map.put("endTime",endTime);
+        List<OutList> list = outListMapper.selOutListByILBy(map);
         PageInfo<OutList> pi = new PageInfo<>(list);
         DataGrid dataGrid = new DataGrid();
         dataGrid.setData(pi.getList());
@@ -248,9 +250,14 @@ public class OutListServiceImpl  implements OutListService {
 
 
     @Override
-    public DataGrid selSaveOutList(int page, int rows, String goodName, int sID, String startTime, String endTime) {
+    public DataGrid selSaveOutList(int page, int rows, String goodName, String sID, String startTime, String endTime) {
         PageHelper.startPage(page, rows);
-        List<OutList> list = outListMapper.selSaveOutList(goodName, sID, startTime, endTime);
+        Map map  = new HashMap<>();
+        map.put("goodName",goodName);
+        map.put("sID",sID);
+        map.put("startTime",startTime);
+        map.put("endTime",endTime);
+        List<OutList> list = outListMapper.selSaveOutList(map);
         PageInfo<OutList> pi = new PageInfo<>(list);
         DataGrid dataGrid = new DataGrid();
         dataGrid.setData(pi.getList());

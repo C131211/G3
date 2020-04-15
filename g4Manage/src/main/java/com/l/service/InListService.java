@@ -57,5 +57,5 @@ public interface InListService {
      * @param endTime
      * @return
      */
-    DataGrid selSaveInList(int page,int rows,String goodName,int sID,String startTime,String endTime);
+    DataGrid selSaveInList(int page,int rows,String goodName,String sID,String startTime,String endTime);
 }

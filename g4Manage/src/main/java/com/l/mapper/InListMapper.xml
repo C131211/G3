@@ -28,14 +28,14 @@
         update inlist set gID=#{gID},ILStatus=1,orderOinion=1,ILComfirm=#{ILComfirm} where goodName=#{goodName} and ILBy=#{ILBy} and ILDate=#{ILDate} and sID=#{sID} and ILFrom=#{ILFrom}
     </update>
 
-    <select id="selInListByILBy"  resultType="com.l.pojo.InList">
+    <select id="selInListByILBy" parameterType="Map" resultType="com.l.pojo.InList">
         select * from inlist
         <where>
             <if test="ILBy!=null and ILBy!=''">
-               and ILBy=#{0}
+               and ILBy=#{ILBy}
             </if>
-            and ILDate &gt;= #{1}
-            and ILDate &lt; #{2}
+            and ILDate &gt;= #{startTime}
+            and ILDate &lt; #{endTime}
         </where>
         GROUP BY ILID
     </select>
@@ -53,13 +53,13 @@
             and ILStatus='1'
             and orderOinion='1'
             <if test="sID!=null and sID!=''">
-                and sID=#{1}
+                and sID=#{sID}
             </if>
             <if test="goodName!=null and goodName!=''">
-                and goodName={0}
+                and goodName=#{goodName}
             </if>
-            and ILDate &gt;= #{2}
-            and ILDate &lt; #{3}
+            and ILDate &gt;= #{startTime}
+            and ILDate &lt; #{endTime}
         </where>
     </select>
 
