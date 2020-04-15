@@ -63,9 +63,9 @@
 			<label class="layui-form-label">仓库状态</label>
 			<div class="layui-input-inline shortInput">
 				<select name="sStatus" id="sStatus">
-					<option value="1">正常
+					<option value="0">正常
 					</option>
-					<option value="0">锁定
+					<option value="1">禁用
 					</option>
 				</select>
 			</div>
