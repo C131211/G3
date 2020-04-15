@@ -52,4 +52,14 @@ public interface InListMapper {
      */
     List<InList> selInListByILBy(String ILBy, String startTime,String endTime);
 
+    /**
+     * 仓库统计
+     * @param goodName
+     * @param sID
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    List<InList> selSaveInList(String goodName,int sID,String startTime,String endTime);
+
 }
