@@ -41,9 +41,7 @@
 <body class="cBody">
 <div>
     <div class="buyerList">
-        <form>
             <table class="layui-hide" id="lookBuyList" lay-filter="buyTools"></table>
-        </form>
     </div>
 </div>
 <script>

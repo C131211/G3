@@ -34,9 +34,7 @@
 <body class="cBody">
 <div>
     <div class="glList">
-        <form class="layui-form" action="">
         <table class="layui-hide" id="glList" lay-filter="glTools"></table>
-        </form>
     </div>
 </div>
 </body>

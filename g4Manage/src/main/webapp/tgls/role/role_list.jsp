@@ -34,9 +34,7 @@
 <body class="cBody">
 <div>
     <div class="roleList">
-        <form class="layui-form" action="">
-    <table class="layui-hide" id="rList" lay-filter="rTools"></table>
-        </form>
+            <table class="layui-hide" id="rList" lay-filter="rTools"></table>
     </div>
 </div>
 <script id="barDemo" type="text/html">

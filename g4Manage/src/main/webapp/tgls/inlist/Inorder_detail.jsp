@@ -28,9 +28,7 @@
 
 <body class="cBody">
 <div>
-    <form class="glList">
         <table class="layui-hide" id="inListDetails" lay-filter="inDetailTools"></table>
-    </form>
 </div>
 </body>
 <script>

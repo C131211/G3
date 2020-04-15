@@ -110,10 +110,11 @@
             </div>
             <button class="layui-btn" lay-submit lay-filter="formDemo" id="select">检索</button>
         </div>
+    </form>
         <div>
             <table class="layui-hide" id="outListcount" lay-filter="countTools"></table>
         </div>
-    </form>
+
 </div>
 <%--搜索--%>
 <script>

@@ -35,7 +35,7 @@ public class RoleController {
      * @param role
      * @return
      */
-    @RequestMapping("addRole")
+    @RequestMapping("/addRole")
     @ResponseBody
     public GResult addRole(Role role) {
         return roleService.insRole(role);

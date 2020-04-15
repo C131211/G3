@@ -26,10 +26,7 @@
 
 <body class="cBody">
 <div>
-    <form class="glList">
-
         <table class="layui-hide" id="outListDetails" lay-filter="outDetailTools"></table>
-    </form>
 </div>
 </body>
 <script>

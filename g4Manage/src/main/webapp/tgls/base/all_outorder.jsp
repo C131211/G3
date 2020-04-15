@@ -46,10 +46,11 @@
             </div>
             <button class="layui-btn" lay-submit lay-filter="formDemo" id="select">检索</button>
         </div>
+    </form>
         <div>
             <table class="layui-hide" id="all_outList" lay-filter="alloutOLTools"></table>
         </div>
-    </form>
+
 </div>
 </body>
 <%--搜索--%>
