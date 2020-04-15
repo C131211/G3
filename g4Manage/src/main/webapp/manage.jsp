@@ -98,7 +98,7 @@
                 </dl>
             </li>
             <li>
-                <a class="menuFA" href="login.html"> <i class="iconfont icon-084tuichu left"></i>注销</i></a>
+                <a class="menuFA" href="login.html"> <i class="iconfont icon-084tuichu left"></i>注销</a>
             </li>
         </ul>
 
