@@ -67,31 +67,41 @@
                 <a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/Fir.jsp',this)"><i class="iconfont icon-shouye left"></i>系统首页</i></a>
             </li>
             <li>
-                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-yonghu left"></i>个人信息管理<i class="iconfont icon-dajiantouyou right"></i></a>
+                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-wodeyewuyuan left"></i>个人信息管理<i class="iconfont icon-dajiantouyou right"></i></a>
                 <dl>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/modify_perinfo.jsp',this)">个人信息</a></dt>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/modify_password.jsp',this)">密码修改</a></dt>
                 </dl>
             </li>
             <li>
-                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-gongyingshang left"></i>经销和供应管理<i class="iconfont icon-dajiantouyou right"></i></a>
+                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-gongyingshang left"></i>客户信息<i class="iconfont icon-dajiantouyou right"></i></a>
                 <dl>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/buyer/buy_list_look.jsp',this)">经销商</a></dt>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/supply/look_sup_list.jsp',this)">供应商</a></dt>
                 </dl>
             </li>
             <li>
-                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-dingdan left"></i>订单管理<i class="iconfont icon-dajiantouyou right"></i></a>
+                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-shangpin left"></i>仓库和货物信息<i class="iconfont icon-dajiantouyou right"></i></a>
                 <dl>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/inorder_add.jsp',this)">新增入货单</a></dt>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/outorder_add.jsp',this)">新增出货单</a></dt>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/outorder.jsp',this)">出货单统计</a></dt>
-                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/inorder.jsp',this)">入货单统计</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/look_save_list.jsp',this)">仓库</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodlist/look_gl_list.jsp',this)">货物</a></dt>
                 </dl>
             </li>
-                <a class="menuFA" href="login.html"> <i class="iconfont icon-084tuichu left"></i>注销</a>
+            <li>
+                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-dingdan left"></i>订单管理<i class="iconfont icon-dajiantouyou right"></i></a>
+                <dl>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/inlist/inorder_add.jsp',this)">新增入货单</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/outlist/outorder_add.jsp',this)">新增出货单</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/order_wait.jsp',this)">待处理货单</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/inlist/inorder.jsp',this)">入货单统计</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/outlist/outorder.jsp',this)">出货单统计</a></dt>
+                </dl>
+            </li>
+            <li>
+                <a class="menuFA" href="login.html"> <i class="iconfont icon-084tuichu left"></i>注销</i></a>
             </li>
         </ul>
+
     </div>
 </div>
 <!-- 左侧菜单 - 结束 -->
