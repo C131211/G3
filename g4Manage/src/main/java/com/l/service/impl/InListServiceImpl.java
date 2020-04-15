@@ -136,6 +136,7 @@ public class InListServiceImpl implements InListService {
     public GResult updInListById(String ILID, int orderOinion,String ILComfirm) throws Exception {
         GResult result = new GResult();
         int index = -1;
+        int nums = 0;
         //判断是否允许入库
         if (orderOinion==1){//同意
             //查询订单详情
@@ -156,6 +157,7 @@ public class InListServiceImpl implements InListService {
                     //修改仓库的现存量
                     Save save = saveMapper.selSaveById(inList.getsID());
                     if (save!=null){
+                        nums += inList.getILNum();
                         save.setsNsave(save.getsNsave()+inList.getILNum());
                         index = saveMapper.updSave(save);
                     }else {
@@ -182,6 +184,7 @@ public class InListServiceImpl implements InListService {
                     //修改仓库的信息
                     Save save = saveMapper.selSaveById(inList.getsID());
                     if (save!=null){
+                        nums += inList.getILNum();
                         save.setsNsave(save.getsNsave()+inList.getILNum());
                         save.setGoods(save.getGoods()+gid+",");
                         index = saveMapper.updSave(save);
@@ -189,6 +192,11 @@ public class InListServiceImpl implements InListService {
                         throw new Exception("仓库获取出错");
                     }
                 }
+            }
+            Save save = saveMapper.selSaveById(inLists.get(0).getsID());
+            if (nums+save.getsNsave()==save.getsTsave()){
+                //修改仓库的总容量
+                index = saveMapper.updSave(save);
             }
         }else if (orderOinion==0){//拒绝
             //改变审核意见，返回信息

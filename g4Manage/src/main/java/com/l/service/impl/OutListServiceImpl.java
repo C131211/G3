@@ -203,6 +203,10 @@ public class OutListServiceImpl  implements OutListService {
                             Save save = saveMapper.selSaveById(outList.getsID());
                             if (save!=null){
                                 save.setsNsave(save.getsNsave()-nums);
+                                //如果仓库已满，设置为未满
+                                if (save.getsStatus()==1){
+                                    save.setsStatus(0);
+                                }
                                 index = saveMapper.updSave(save);
                                 nums = 0;
                             }else {
