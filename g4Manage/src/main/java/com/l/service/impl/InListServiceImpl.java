@@ -231,4 +231,17 @@ public class InListServiceImpl implements InListService {
         dataGrid.setMsg("OK");
         return dataGrid;
     }
+
+    @Override
+    public DataGrid selSaveInList(int page, int rows, String goodName, int sID, String startTime, String endTime) {
+        PageHelper.startPage(page, rows);
+        List<InList> list = inListMapper.selSaveInList(goodName,sID,startTime,endTime);
+        PageInfo<InList> pi = new PageInfo<>(list);
+        DataGrid dataGrid = new DataGrid();
+        dataGrid.setData(pi.getList());
+        dataGrid.setCount(pi.getTotal());
+        dataGrid.setCode(0);
+        dataGrid.setMsg("OK");
+        return dataGrid;
+    }
 }

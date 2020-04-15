@@ -47,5 +47,15 @@ public interface InListService {
      */
     DataGrid selInListByILBy(int page,int rows,String ILBy,String startTime,String endTime);
 
-
+    /**
+     * 仓库统计
+     * @param page
+     * @param rows
+     * @param goodName
+     * @param sID
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    DataGrid selSaveInList(int page,int rows,String goodName,int sID,String startTime,String endTime);
 }

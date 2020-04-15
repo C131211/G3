@@ -95,5 +95,19 @@ public class InListController {
         return inListService.selInListByILBy(page, rows, ILBy, startTime, endTime);
     }
 
+    /**
+     * 仓库统计
+     * @param page
+     * @param rows
+     * @param goodName
+     * @param sID
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    public DataGrid getSaveInList(int page, int rows, String goodName, int sID,@RequestParam(defaultValue = "0") String startTime,@RequestParam(defaultValue = "now()") String endTime){
+        return inListService.selSaveInList(page, rows, goodName, sID, startTime, endTime);
+    }
+
 
 }
