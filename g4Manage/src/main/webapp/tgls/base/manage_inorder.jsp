@@ -108,7 +108,7 @@
                 <input type="text" id="endTime" name="endTime" autocomplete="off" placeholder="请选择结束时间"
                        class="layui-input">
             </div>
-            <button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
+            <button class="layui-btn" lay-submit lay-filter="formDemo" id="select">检索</button>
         </div>
         <div>
             <table class="layui-hide" id="inListcount" lay-filter="countTools"></table>
@@ -121,7 +121,6 @@
         var form = layui.form;
         //监听提交
         form.on('submit(formDemo)', function (data) {
-            layer.msg(JSON.stringify(data.field));
             return false;
         });
     });
