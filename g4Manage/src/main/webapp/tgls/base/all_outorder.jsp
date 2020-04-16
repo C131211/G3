@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -27,29 +28,154 @@
     <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css" media="all">
     <%--引入js--%>
     <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
+    <script>
+        //刷新表单
+        function reloadForm() {
+            layui.use('form', function () {
+                var form = layui.form;
+                form.render();
+            });
+        }
+
+        $(function () {
+            //获取下拉框数据
+            $.ajax({
+                url: "/getAllGoodList",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        reloadForm();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+            //经销商选择
+            $.ajax({
+                url: "/getBuyer",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        reloadForm();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+            //仓库选择
+            $.ajax({
+                url: "/getSaveName",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        for (var i = 0; i < data.data.length; i++) {
+                            var option = $("<option />");
+                            option.html(data.data[i].sName);
+                            option.val(data.data[i].sID);
+                            $("#sID").append(option);
+                        }
+                        reloadForm();
+
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+
+            //确认人选择
+            $.ajax({
+                url: "/getRoleUser",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        for (var i = 0; i < data.data.length; i++) {
+                            var option = $("<option />");
+                            option.html(data.data[i].uName);
+                            option.val(data.data[i].uName);
+                            $("#olComfirm").append(option);
+                        }
+                        reloadForm();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            })
+
+        })
+
+    </script>
 
 </head>
 
 <body>
 <div class="cBody">
-    <form>
-        <div class="layui-form-inline">
-            <label class="layui-form-label">订单时间</label>
-            <div class="layui-input-inline">
-                <input type="text" id="startTime" name="startTime" autocomplete="off" placeholder="请输入开始时间"
-                       class="layui-input">
+    <form class="layui-form">
+        <fieldset class="layui-elem-field">
+            <div class="layui-form-item" style="padding-top: 20px">
+                <div class="layui-inline">
+                    <label class="layui-form-label">搜索关键字</label>
+                    <div class="layui-input-inline">
+                        <select name="sID" id="sID" class="layui-form-select">
+                            <option value="">请选择仓库</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select name="goodName" id="goodName" class="layui-form-select">
+                            <option value="">请选择货物</option>
+                            <c:forEach items="${GoodListResult.data}" var="item">
+                                <option>${item.goodName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select type="text" id="olBy" name="olBy" autocomplete="off"
+                                class="layui-form-select">
+                            <option value="">请选择经手人</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select type="text" id="olComfirm" name="olComfirm" autocomplete="off"
+                                class="layui-form-select">
+                            <option value="">请选择确认人</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select name="olDestin" id="olDestin" class="layui-form-select">
+                            <option value="">请选择经销商</option>
+                            <c:forEach items="${BuyerResult.data}" var="buy">
+                                <option>${buy.buyName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <button class="layui-btn" lay-submit lay-filter="formDemo" id="select">检索</button>
+                </div>
             </div>
-            至
-            <div class="layui-input-inline">
-                <input type="text" id="endTime" name="endTime" autocomplete="off" placeholder="请输入结束时间"
-                       class="layui-input">
+            <div class="layui-form-item" style="padding-top: 10px">
+                <div class="layui-inline">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="startTime" name="startTime" autocomplete="off" placeholder="请选择开始时间"
+                               class="layui-input">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" id="endTime" name="endTime" autocomplete="off" placeholder="请选择结束时间"
+                               class="layui-input">
+                    </div>
+                </div>
             </div>
-            <button class="layui-btn" lay-submit lay-filter="formDemo" id="select">检索</button>
-        </div>
+        </fieldset>
     </form>
-        <div>
-            <table class="layui-hide" id="all_outList" lay-filter="alloutOLTools"></table>
-        </div>
+    <div>
+        <table class="layui-hide" id="all_outList" lay-filter="alloutOLTools"></table>
+    </div>
 
 </div>
 </body>
@@ -124,10 +250,10 @@
             , method: 'post'//传输方式
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'olId', title: '出货单号', width:300}
+                , {field: 'olId', title: '出货单号', width: 300}
                 , {field: 'olDate', title: '出货日期', sort: true}
                 , {field: 'sID', title: '出货仓库', sort: true}
-                , {field: 'olDestin', title: '合作商', sort: true}
+                , {field: 'olDestin', title: '经销商', sort: true}
                 , {field: 'olBy', title: '经手人', sort: true}
                 , {field: 'olComfirm', title: '确认人', sort: true}
                 , {
@@ -162,12 +288,18 @@
             }
         });
         //查询作用
-        $("#select").click(function (){
-            table.reload("all_outList",{
+        $("#select").click(function () {
+            table.reload("all_outList", {
                 where: { //设定异步数据接口的额外参数，任意设
-                    startTime: $("#startTime").val(),endTime: $("#endTime").val()
+                    sID: $("#sID").val(),
+                    goodName: $("#goodName").val(),
+                    olBy: $("#olBy").val(),
+                    olComfirm: $("#olComfirm").val(),
+                    olDestin: $("#olDestin").val(),
+                    startTime: $("#startTime").val(),
+                    endTime: $("#endTime").val()
                 }
-                ,page: {
+                , page: {
                     curr: 1 //重新从第 1 页开始
                 }
             });

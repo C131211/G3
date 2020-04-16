@@ -44,7 +44,7 @@
 </script>
 <script id="toolbarDemo" type="text/html">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="addGoodList">新增货物类别</button>
+        <button class="layui-btn layui-btn-sm" lay-event="addGoodList">新增货物型号</button>
     </div>
 </script>
 <script>
@@ -64,7 +64,7 @@
             , defaultToolbar: ['exports', 'print',]
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'goodName', title: '货物类别名', }
+                , {field: 'goodName', title: '货物类型', }
                 , {field: 'gOutprice', title: '出货价', width: 80}
                 , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
             ]]
@@ -75,7 +75,7 @@
             switch(obj.event) {
                 case 'addGoodList':
                     layer.open({
-                        title: "增加货物类别",
+                        title: "增加货物型号",
                         type: 2,
                         area: ['70%', '60%'],
                         scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
@@ -111,7 +111,7 @@
                 });
             } else if(obj.event === 'edit') {
                 layer.open({
-                    title: "货物类别修改",
+                    title: "货物型号修改",
                     type: 2,
                     area: ['70%', '60%'],
                     scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽

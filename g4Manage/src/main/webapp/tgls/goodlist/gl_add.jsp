@@ -34,7 +34,7 @@
 <div>
     <form id="addGoodList" class="layui-form" action="">
         <div class="layui-form-item">
-            <label class="layui-form-label">货物类别名称</label>
+            <label class="layui-form-label">货物型号名称</label>
             <div class="layui-input-inline shortInput">
                 <input type="text" name="goodName" id="goodName" required lay-verify="required|ZHCheck" autocomplete="off"
                        class="layui-input">

@@ -197,7 +197,7 @@
                     } }
                 , {field: 'olNum', title: '货物总数', }
                 , {field: 'olTotal', title: '货物总价', }
-                , {field: 'sID', title: '入货仓库' ,templet: function (d) {
+                , {field: 'sID', title: '出货仓库' ,templet: function (d) {
                         if(d.sID==0){
                             return d.sID="全部仓库"
                         }else {

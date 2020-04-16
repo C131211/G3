@@ -134,7 +134,7 @@
                 , {field: 'ildate', title: '入货日期', sort: true,
                     templet:'<div>{{ Format(d.ildate,"yyyy-MM-dd")}}</div>'}
                 , {field: 'sID', title: '入货仓库', sort: true}
-                , {field: 'ilfrom', title: '合作商', sort: true}
+                , {field: 'ilfrom', title: '供货商', sort: true}
                 , {field: 'ilby', title: '经手人', sort: true}
                 , {field: 'ilcomfirm', title: '确认人', sort: true}
                 , {

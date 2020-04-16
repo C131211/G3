@@ -29,7 +29,7 @@
     <form id="updateGoodList" class="layui-form" enctype="multipart/form-data">
         <input type="hidden" name="glId" id="glId">
         <div class="layui-form-item">
-            <label class="layui-form-label">货物类别名字</label>
+            <label class="layui-form-label">货物型号名称</label>
             <div class="layui-input-inline shortInput">
                 <input type="text" name="goodName" id="goodName" required lay-verify="required|ZHCheck"
                        autocomplete="off" class="layui-input">

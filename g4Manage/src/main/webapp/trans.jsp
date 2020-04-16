@@ -81,6 +81,13 @@
                 </dl>
             </li>
             <li>
+                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-shangpin left"></i>仓库和货物资料<i class="iconfont icon-dajiantouyou right"></i></a>
+                <dl>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/look_save_list.jsp',this)">仓库</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodlist/look_gl_list.jsp',this)">货物</a></dt>
+                </dl>
+            </li>
+            <li>
                 <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-dingdan left"></i>订单管理<i class="iconfont icon-dajiantouyou right"></i></a>
                 <dl>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/inlist/inorder_add.jsp',this)">新增入货单</a></dt>

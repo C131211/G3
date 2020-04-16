@@ -127,7 +127,7 @@
                 , {field: 'olId', title: '出货单号', width:300}
                 , {field: 'olDate', title: '出货日期', sort: true}
                 , {field: 'sID', title: '出货仓库', sort: true}
-                , {field: 'olDestin', title: '合作商', sort: true}
+                , {field: 'olDestin', title: '经销商', sort: true}
                 , {field: 'olBy', title: '经手人', sort: true}
                 , {field: 'olComfirm', title: '确认人', sort: true}
                 , {

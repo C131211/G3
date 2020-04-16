@@ -58,8 +58,7 @@
             , defaultToolbar: ['exports', 'print',]
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'glId', title: '货物类别ID', width: 120}
-                , {field: 'goodName', title: '货物类别名', }
+                , {field: 'goodName', title: '货物型号', }
                 , {field: 'gOutprice', title: '出货价', width: 80}
             ]]
         });

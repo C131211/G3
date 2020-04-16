@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -34,27 +35,150 @@
     <%--引入js--%>
     <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
     <script src="/js/TimeFormat.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        //刷新表单
+        function reloadForm() {
+            layui.use('form', function () {
+                var form = layui.form;
+                form.render();
+            });
+        }
+        $(function () {
+            //获取下拉框数据
+            $.ajax({
+                url: "/getAllGoodList",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        reloadForm();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+            //供应商选择
+            $.ajax({
+                url: "/getSupply",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        reloadForm();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+            //仓库选择
+            $.ajax({
+                url: "/getSaveName",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        for (var i = 0; i < data.data.length; i++) {
+                            var option = $("<option />");
+                            option.html(data.data[i].sName);
+                            option.val(data.data[i].sID);
+                            $("#sID").append(option);
+                        }
+                        reloadForm();
+
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+
+            //确认人选择
+            $.ajax({
+                url: "/getRoleUser",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        for (var i = 0; i < data.data.length; i++) {
+                            var option = $("<option />");
+                            option.html(data.data[i].uName);
+                            option.val(data.data[i].uName);
+                            $("#ILComfirm").append(option);
+                        }
+                        reloadForm();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            })
+
+        })
+    </script>
 
 <body>
 <div class="cBody">
-    <form>
-        <div class="layui-form-inline">
-            <label class="layui-form-label">订单时间</label>
-            <div class="layui-input-inline">
-                <input type="text" id="startTime" name="startTime" autocomplete="off" placeholder="请输入开始时间"
-                       class="layui-input">
+    <form class="layui-form">
+        <fieldset class="layui-elem-field">
+            <div class="layui-form-item" style="padding-top: 20px">
+                <div class="layui-inline">
+                    <label class="layui-form-label">搜索关键字</label>
+                    <div class="layui-input-inline">
+                        <select name="sID" id="sID" class="layui-form-select">
+                            <option value="">请选择仓库</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select name="goodName" id="goodName" class="layui-form-select">
+                            <option value="">请选择货物</option>
+                            <c:forEach items="${GoodListResult.data}" var="item">
+                                <option>${item.goodName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select type="text" id="ILBy" name="ILBy" autocomplete="off"
+                                class="layui-form-select">
+                            <option value="">请选择经手人</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select type="text" id="ILComfirm" name="ILComfirm" autocomplete="off"
+                                class="layui-form-select">
+                            <option value="">请选择确认人</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select name="ILFrom" id="ILFrom" class="layui-form-select">
+                            <option value="">请选择供应商</option>
+                            <c:forEach items="${SupplyResult.data}" var="sup">
+                                <option>${sup.supName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <button class="layui-btn" lay-submit lay-filter="formDemo" id="select">检索</button>
+                </div>
             </div>
-            至
-            <div class="layui-input-inline">
-                <input type="text" id="endTime" name="endTime" autocomplete="off" placeholder="请输入结束时间"
-                       class="layui-input">
-            </div>
-            <button class="layui-btn" lay-submit lay-filter="formDemo" id="select">检索</button>
-        </div>
+                    <div class="layui-form-item" style="padding-top: 10px">
+                        <div class="layui-inline">
+                            <label class="layui-form-label"></label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="startTime" name="startTime" autocomplete="off" placeholder="请选择开始时间"
+                                   class="layui-input">
+                        </div>
+                        <div class="layui-input-inline">
+                            <input type="text" id="endTime" name="endTime" autocomplete="off" placeholder="请选择结束时间"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+        </fieldset>
     </form>
-        <div>
-            <table class="layui-hide" id="all_inList" lay-filter="allILTools"></table>
-        </div>
+    <div>
+        <table class="layui-hide" id="all_inList" lay-filter="allILTools"></table>
+    </div>
 </div>
 </body>
 <%--搜索--%>
@@ -130,11 +254,13 @@
             , method: 'post'//传输方式
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'ilid', title: '入货单号', width:300}
-                , {field: 'ildate', title: '入货日期', sort: true,
-                    templet:'<div>{{ Format(d.ildate,"yyyy-MM-dd")}}</div>'}
+                , {field: 'ilid', title: '入货单号', width: 300}
+                , {
+                    field: 'ildate', title: '入货日期', sort: true,
+                    templet: '<div>{{ Format(d.ildate,"yyyy-MM-dd")}}</div>'
+                }
                 , {field: 'sID', title: '入货仓库', sort: true}
-                , {field: 'ilfrom', title: '合作商', sort: true}
+                , {field: 'ilfrom', title: '供应商', sort: true}
                 , {field: 'ilby', title: '经手人', sort: true}
                 , {field: 'ilcomfirm', title: '确认人', sort: true}
                 , {
@@ -168,12 +294,18 @@
             }
         })
         //查询作用
-        $("#select").click(function (){
-            table.reload("all_inList",{
+        $("#select").click(function () {
+            table.reload("all_inList", {
                 where: { //设定异步数据接口的额外参数，任意设
-                    startTime: $("#startTime").val(),endTime: $("#endTime").val()
+                    sID: $("#sID").val(),
+                    goodName: $("#goodName").val(),
+                    ILBy: $("#ILBy").val(),
+                    ILComfirm: $("#ILComfirm").val(),
+                    ILFrom: $("#ILFrom").val(),
+                    startTime: $("#startTime").val(),
+                    endTime: $("#endTime").val()
                 }
-                ,page: {
+                , page: {
                     curr: 1 //重新从第 1 页开始
                 }
             });
