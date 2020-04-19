@@ -64,7 +64,7 @@
             , defaultToolbar: ['exports', 'print',]
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'goodName', title: '货物类型', }
+                , {field: 'goodName', title: '货物型号名称', }
                 , {field: 'gOutprice', title: '出货价', width: 80}
                 , {field: 'right', title: '操作', toolbar: '#barDemo', width: 144}
             ]]
