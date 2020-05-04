@@ -72,6 +72,26 @@
                     }
                 }
             });
+            //经手人选择
+            $.ajax({
+                url: "/getByUsers",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == 200) {
+                        //接收到成功的提示
+                        for (var i = 0; i < data.data.length; i++) {
+                            var option = $("<option />");
+                            option.html(data.data[i].uName);
+                            option.val(data.data[i].uName);
+                            $("#ILBy").append(option);
+                        }
+                        reloadForm();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
             //仓库选择
             $.ajax({
                 url: "/getSaveName",
