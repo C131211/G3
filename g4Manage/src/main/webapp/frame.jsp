@@ -92,6 +92,7 @@
 				<dl>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/save_list.jsp',this)">仓库信息</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodlist/gl_list.jsp',this)">货物类别</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/good/good_list.jsp',this)">货物信息</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/manage_inorder.jsp',this)">入库统计</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/manage_outorder.jsp',this)">出库统计</a></dt>
 				</dl>
@@ -114,7 +115,7 @@
 				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/iconfont.html',this)"><i class="iconfont icon-huojian left"></i>iconfont字体库</a>
 			</li>
 			<li>
-				<a class="menuFA" href="index.jsp"> <i class="iconfont icon-084tuichu left"></i>注销</a>
+				<a class="menuFA" href="/quitSys"> <i class="iconfont icon-084tuichu left"></i>注销</a>
 			</li>
 		</ul>
 	</div>

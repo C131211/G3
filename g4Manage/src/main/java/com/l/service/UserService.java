@@ -75,4 +75,10 @@ public interface UserService {
      */
     GResult selUserByRid();
 
+    /**
+     * 查询所有用户，不分页
+     * @return
+     */
+    GResult selUsers();
+
 }

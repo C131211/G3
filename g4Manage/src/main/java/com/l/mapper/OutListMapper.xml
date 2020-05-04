@@ -43,6 +43,9 @@
             <if test="goodName!=null and goodName!=''">
                 and goodName=#{goodName}
             </if>
+             <if test="sID!=null and sID!=''">
+                and sID=#{sID}
+            </if>
             and olDate &gt;= #{startTime}
             and olDate &lt; #{endTime}
             GROUP BY olId

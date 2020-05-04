@@ -220,13 +220,14 @@ public class InListServiceImpl implements InListService {
     }
 
     @Override
-    public DataGrid selInListByILBy(int page, int rows, String ILBy,String ILComfirm,String ILFrom,String goodName, String startTime, String endTime) {
+    public DataGrid selInListByILBy(int page, int rows, String ILBy,String ILComfirm,String ILFrom,String goodName,String sID,String startTime, String endTime) {
         PageHelper.startPage(page, rows);
         Map map = new HashMap();
         map.put("ILBy",ILBy);
         map.put("ILComfirm",ILComfirm);
         map.put("ILFrom",ILFrom);
         map.put("goodName",goodName);
+        map.put("sID",sID);
         map.put("startTime",startTime);
         map.put("endTime",endTime);
         List<InList> list = inListMapper.selInListByILBy(map);

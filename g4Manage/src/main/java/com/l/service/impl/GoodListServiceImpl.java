@@ -23,7 +23,6 @@ public class GoodListServiceImpl implements GoodListService {
     @Override
     public DataGrid selAllGoodList(int page,int rows) {
         PageHelper.startPage(page, rows);
-        GResult result = new GResult();
         List<GoodList> list = goodListMapper.selAllGoodList();
 
         PageInfo<GoodList> pi = new PageInfo<>(list);

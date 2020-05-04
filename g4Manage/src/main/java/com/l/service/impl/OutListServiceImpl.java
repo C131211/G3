@@ -232,13 +232,14 @@ public class OutListServiceImpl  implements OutListService {
 
 
     @Override
-    public DataGrid selOutListByILBy(int page, int rows, String olBy,String olComfirm,String olDestin,String goodName, String startTime, String endTime) {
+    public DataGrid selOutListByILBy(int page, int rows, String olBy,String olComfirm,String olDestin,String goodName,String sID, String startTime, String endTime) {
         PageHelper.startPage(page, rows);
         Map map  = new HashMap<>();
         map.put("olBy",olBy);
         map.put("olComfirm",olComfirm);
         map.put("olDestin",olDestin);
         map.put("goodName",goodName);
+        map.put("sID",sID);
         map.put("startTime",startTime);
         map.put("endTime",endTime);
         List<OutList> list = outListMapper.selOutListByILBy(map);

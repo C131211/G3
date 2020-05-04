@@ -25,4 +25,19 @@
                 select * from good where gName=#{0} and sID=#{1} and supName=#{2}
         </select>
 
+        <select id="selGoods" parameterType="Map" resultType="com.l.pojo.Good">
+                select * from good
+                <where>
+                        <if test="gName!=null and gName!=''">
+                                and gName=#{gName}
+                        </if>
+                         <if test="sID!=null and sID!=''">
+                                and sID=#{sID}
+                        </if>
+                         <if test="supName!=null and supName!=''">
+                                and supName=#{supName}
+                         </if>
+                </where>
+        </select>
+
 </mapper>

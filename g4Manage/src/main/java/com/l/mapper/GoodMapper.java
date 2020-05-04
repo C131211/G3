@@ -2,6 +2,9 @@ package com.l.mapper;
 
 import com.l.pojo.Good;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by c on 2020/3/29.
  */
@@ -36,5 +39,9 @@ public interface GoodMapper {
      */
     Good selGoodByMore(String gName,int sID,String supName);
 
-
+    /**
+     * 根据信息筛选出货物
+     * @return
+     */
+    List<Good> selGoods(Map map);
 }

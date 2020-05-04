@@ -91,8 +91,8 @@ public class InListController {
      */
     @RequestMapping("/getInListByILBy")
     @ResponseBody
-    public DataGrid getInListByILBy(int page,int rows,String ILBy,String ILComfirm,String ILFrom,String goodName,@RequestParam(defaultValue = "0") String startTime,@RequestParam(defaultValue = "now()")String endTime){
-        return inListService.selInListByILBy(page, rows, ILBy,ILComfirm,ILFrom,goodName,startTime, endTime);
+    public DataGrid getInListByILBy(int page,int rows,String ILBy,String ILComfirm,String ILFrom,String goodName,String sID,@RequestParam(defaultValue = "0") String startTime,@RequestParam(defaultValue = "now()")String endTime){
+        return inListService.selInListByILBy(page, rows, ILBy,ILComfirm,ILFrom,goodName,sID,startTime, endTime);
     }
 
     /**

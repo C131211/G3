@@ -45,7 +45,7 @@ public interface InListService {
      * @param endTime
      * @return
      */
-    DataGrid selInListByILBy(int page,int rows,String ILBy,String ILComfirm,String ILFrom,String goodName,String startTime,String endTime);
+    DataGrid selInListByILBy(int page,int rows,String ILBy,String ILComfirm,String ILFrom,String goodName,String sID,String startTime,String endTime);
 
     /**
      * 仓库统计

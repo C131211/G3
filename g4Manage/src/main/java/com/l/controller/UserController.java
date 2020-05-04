@@ -211,4 +211,15 @@ public class UserController {
         return "redirect:index.jsp";
     }
 
+    /**
+     * 查询用户选择
+     * @return
+     */
+    @RequestMapping("/getByUsers")
+    @ResponseBody
+    public GResult selUsers(){
+        return userService.selUsers();
+    }
+
+
 }

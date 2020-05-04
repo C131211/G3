@@ -85,6 +85,7 @@
                 <dl>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/look_save_list.jsp',this)">仓库</a></dt>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodlist/look_gl_list.jsp',this)">货物</a></dt>
+                    <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/good/good_list.jsp',this)">货物信息</a></dt>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/manage_inorder.jsp',this)">入库统计</a></dt>
                     <dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/manage_outorder.jsp',this)">出库统计</a></dt>
                 </dl>
