@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
             result.setMsg("OK");
             return result;
         }else {
-            result.setMsg("error");
+            result.setMsg("添加失败");
             return result;
         }
     }

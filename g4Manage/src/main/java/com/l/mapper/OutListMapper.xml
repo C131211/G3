@@ -34,6 +34,15 @@
             <if test="olBy!=null and olBy!=''">
                 and olBy=#{olBy}
             </if>
+            <if test="olComfirm!=null and olComfirm!=''">
+                and olComfirm=#{olComfirm}
+            </if>
+            <if test="olDestin!=null and olDestin!=''">
+                and olDestin=#{olDestin}
+            </if>
+            <if test="goodName!=null and goodName!=''">
+                and goodName=#{goodName}
+            </if>
             and olDate &gt;= #{startTime}
             and olDate &lt; #{endTime}
             GROUP BY olId

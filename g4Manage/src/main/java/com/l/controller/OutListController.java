@@ -78,8 +78,8 @@ public class OutListController {
      */
     @RequestMapping("/getOutListByILBy")
     @ResponseBody
-    public DataGrid getOutListByILBy(int page, int rows, String olBy, @RequestParam(defaultValue = "0") String startTime, @RequestParam(defaultValue = "now()")String endTime){
-        return outListService.selOutListByILBy(page, rows, olBy, startTime, endTime);
+    public DataGrid getOutListByILBy(int page, int rows, String olBy,String olComfirm,String olDestin,String goodName, @RequestParam(defaultValue = "0") String startTime, @RequestParam(defaultValue = "now()")String endTime){
+        return outListService.selOutListByILBy(page, rows, olBy,olComfirm,olDestin,goodName, startTime, endTime);
     }
 
     /**

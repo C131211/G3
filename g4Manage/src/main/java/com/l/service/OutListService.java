@@ -52,7 +52,7 @@ public interface OutListService {
      * @param endTime
      * @return
      */
-    DataGrid selOutListByILBy(int page,int rows,String olBy,String startTime,String endTime);
+    DataGrid selOutListByILBy(int page,int rows,String olBy,String olComfirm,String olDestin,String goodName,String startTime,String endTime);
 
     /**
      * 仓库统计

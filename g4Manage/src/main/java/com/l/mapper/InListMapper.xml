@@ -34,6 +34,15 @@
             <if test="ILBy!=null and ILBy!=''">
                and ILBy=#{ILBy}
             </if>
+             <if test="ILComfirm!=null and ILComfirm!=''">
+               and ILComfirm=#{ILComfirm}
+            </if>
+             <if test="ILFrom!=null and ILFrom!=''">
+               and ILFrom=#{ILFrom}
+            </if>
+             <if test="goodName!=null and goodName!=''">
+               and goodName=#{goodName}
+            </if>
             and ILDate &gt;= #{startTime}
             and ILDate &lt; #{endTime}
         </where>

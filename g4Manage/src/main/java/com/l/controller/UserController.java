@@ -30,45 +30,57 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    //访问的域名
+
     @RequestMapping("/login")
     public String login(String uAccount, String uPwd, HttpServletRequest req){
         GResult result = new GResult();
         User user = userService.selUserByPwd(uAccount, uPwd);
         HttpSession session = req.getSession();
-        if (user != null && user.getrID()==0){//超级管理员
-            //存在
-            result.setStatus(200);
-            result.setMsg("登录成功");
-            result.setData(user);
-            session.setAttribute("result",result);
-            return "redirect:/frame.jsp";
-        }else if(user != null && user.getrID()==1){//仓管员
-            //存在
-            result.setStatus(200);
-            result.setMsg("登录成功");
-            result.setData(user);
-            session.setAttribute("result",result);
-            return "redirect:/manage.jsp";
-        }else if (user != null && user.getrID()==2){//运输员
-            //存在
-            result.setStatus(200);
-            result.setMsg("登录成功");
-            result.setData(user);
-            session.setAttribute("result",result);
-            return "redirect:/trans.jsp";
-        }else if (user != null ){//其他新增
-            //存在
-            result.setStatus(200);
-            result.setMsg("登录成功");
-            result.setData(user);
-            session.setAttribute("result",result);
-            return "redirect:extraRole.jsp";
-        } else {
-            //不存在
+        //判断是否存在用户
+        if (user!=null) {
+            //用户是否被锁定
+            if (user.getuStatus() == 1) {
+                //正常
+                if ( user.getrID() == 0) {//超级管理员
+                    //存在
+                    result.setStatus(200);
+                    result.setMsg("登录成功");
+                    result.setData(user);
+                    session.setAttribute("result", result);
+                    return "redirect:/frame.jsp";
+                } else if ( user.getrID() == 1) {//仓管员
+                    //存在
+                    result.setStatus(200);
+                    result.setMsg("登录成功");
+                    result.setData(user);
+                    session.setAttribute("result", result);
+                    return "redirect:/manage.jsp";
+                } else if ( user.getrID() == 2) {//运输员
+                    //存在
+                    result.setStatus(200);
+                    result.setMsg("登录成功");
+                    result.setData(user);
+                    session.setAttribute("result", result);
+                    return "redirect:/trans.jsp";
+                }  else {//其他新增
+                    result.setStatus(200);
+                    result.setMsg("登录成功");
+                    result.setData(user);
+                    session.setAttribute("result", result);
+                    return "redirect:extraRole.jsp";
+                }
+            }else {
+                result.setMsg("用户已被禁用，请联系管理员");
+                req.setAttribute("result",result);
+                return "/index.jsp";
+            }
+        }else {
+            //空的
             result.setMsg("用户名或者密码错误");
-            return "redirect:/index.jsp";
+            req.setAttribute("result",result);
+            return "/index.jsp";
         }
+
     }
 
 
@@ -185,6 +197,18 @@ public class UserController {
     @ResponseBody
     public GResult getRoleUser(){
         return userService.selUserByRid();
+    }
+
+    /**
+     * 注销
+     * @param req
+     * @return
+     */
+    @RequestMapping("/quitSys")
+    public String quitUser(HttpServletRequest req){
+        HttpSession session = req.getSession();
+        session.invalidate();
+        return "redirect:index.jsp";
     }
 
 }

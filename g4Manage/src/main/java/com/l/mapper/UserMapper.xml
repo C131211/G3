@@ -40,7 +40,9 @@
     </select>
 
     <insert id="insUser" parameterType="com.l.pojo.User">
-        insert into user (uID,uAccount,uPwd,uName,uTel,uAddr,uHiredate,rID,uStatus) values(DEFAULT,#{uAccount},#{uPwd},#{uName},#{uTel},#{uAddr},#{uHiredate},#{rID},#{uStatus})
+        insert into user (uAccount,uPwd,uName,uTel,uAddr,uHiredate,rID,uStatus)
+         select #{uAccount},#{uPwd},#{uName},#{uTel},#{uAddr},#{uHiredate},#{rID},#{uStatus}
+		from dual where not exists(SELECT #{uAccount} FROM user WHERE uAccount=#{uAccount})
     </insert>
 
     <select id="selAllUser" resultType="com.l.pojo.User" parameterType="com.l.pojo.User">
