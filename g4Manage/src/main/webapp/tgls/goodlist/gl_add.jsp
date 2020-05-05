@@ -36,7 +36,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">货物型号名称</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="goodName" id="goodName" required lay-verify="required|ZHCheck" autocomplete="off"
+                <input type="text" name="goodName" id="goodName" autocomplete="off"
                        class="layui-input">
             </div>
             <i class="iconfont icon-huaban bt"></i>
