@@ -87,8 +87,8 @@
         //密码显示操作
         var passImg2 = document.getElementById("pass_new");
         var passImg3 = document.getElementById("pass_com");
-        var passInput2 = document.getElementById("newPwd");
-        var passInput3 = document.getElementById("comfirmPwd");
+        var passInput2 = document.getElementById("uPwd");
+        var passInput3 = document.getElementById("comPwd");
 
         function hideShowPsw2() {
             if (passInput2.type == "password") {

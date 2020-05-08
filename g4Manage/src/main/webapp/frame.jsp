@@ -91,7 +91,7 @@
 				<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-yunying left"></i>仓库和商品管理<i class="iconfont icon-dajiantouyou right"></i></a>
 				<dl>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/saveManage/save_list.jsp',this)">仓库信息</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodlist/gl_list.jsp',this)">货物类别</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodlist/gl_list.jsp',this)">货物型号</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/good/good_list.jsp',this)">货物信息</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/manage_inorder.jsp',this)">入库统计</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/manage_outorder.jsp',this)">出库统计</a></dt>

@@ -48,8 +48,8 @@
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'goodName', title: '货物类名', }
-                , {field: 'olPrice', title: '入货价', }
-                , {field: 'olNum', title: '入货量', }
+                , {field: 'olPrice', title: '出货价', }
+                , {field: 'olNum', title: '出货量', }
                 , {field: 'olTotal', title: '货物小计', }
                 , {field: 'olDate', title: '货单日期',
                     templet:'<div>{{ Format(d.olDate,"yyyy-MM-dd")}}</div>'
