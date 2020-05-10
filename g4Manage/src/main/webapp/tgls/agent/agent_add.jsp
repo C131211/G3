@@ -58,7 +58,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">住址</label>
             <div class="layui-input-inline shortInput">
-                <input type="text" name="uAddr" required lay-verify="required|ZHCheck" autocomplete="off" class="layui-input">
+                <input type="text" name="uAddr" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
