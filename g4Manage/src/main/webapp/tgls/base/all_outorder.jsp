@@ -23,11 +23,11 @@
     <script src="/framework/jquery.mCustomScrollbar.min.js"></script>
     <script src="/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
     <!-- 公共样式 结束 -->
-
     <%--引入css--%>
     <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css" media="all">
     <%--引入js--%>
     <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
+    <script src="/js/TimeFormat.js" charset="utf-8"></script>
     <script>
         //刷新表单
         function reloadForm() {
@@ -270,7 +270,8 @@
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'olId', title: '出货单号', width: 300}
-                , {field: 'olDate', title: '出货日期', sort: true}
+                , {field: 'olDate', title: '出货日期', sort: true,
+                    templet: '<div>{{ Format(d.olDate,"yyyy-MM-dd")}}</div>'}
                 , {field: 'sID', title: '出货仓库', sort: true}
                 , {field: 'olDestin', title: '经销商', sort: true}
                 , {field: 'olBy', title: '经手人', sort: true}

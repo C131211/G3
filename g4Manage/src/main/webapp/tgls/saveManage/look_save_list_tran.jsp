@@ -73,27 +73,8 @@
                         }
                     }
                 }
-                , {field: 'good', title: '查看仓库货物详情', toolbar: '#LookbarDemo', width: 144}
             ]]
         });
-        //监听行工具事件
-        table.on('tool(sTools)', function (obj) {
-            var data = obj.data;
-            if(obj.event === 'detail') {
-                layer.open({
-                    title: "查看仓库货物",
-                    type: 2,
-                    area: ['70%', '60%'],
-                    scrollbar: false,	//默认：true,默认允许浏览器滚动，如果设定scrollbar: false，则屏蔽
-                    maxmin: true,
-                    end: function () {
-                        window.location.reload();
-                    },
-                    content: '/PageOperation?id=' + data.sID + '&pageType=saveDetail',
-
-                });
-            }
-        })
     })
 </script>
 </body>

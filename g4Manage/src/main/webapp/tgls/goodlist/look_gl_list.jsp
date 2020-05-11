@@ -59,7 +59,7 @@
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'goodName', title: '货物型号', }
-                , {field: 'gOutprice', title: '出货价', width: 80}
+                , {field: 'gOutprice', title: '参考出货价'}
             ]]
         });
     });

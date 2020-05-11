@@ -17,7 +17,7 @@
     </select>
     
     <select id="selOutListById" parameterType="String" resultType="com.l.pojo.OutList">
-        select * from outlist where olId = #{0};
+        select * from outlist where olId = #{0}
     </select>
 
     <update id="updOutListOinion" >

@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css" media="all">
     <%--引入js--%>
     <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
+    <script src="/js/TimeFormat.js" charset="utf-8"></script>
 
 </head>
 
@@ -235,7 +236,8 @@
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'olId', title: '出货单号', width: 300}
-                , {field: 'olDate', title: '出货日期', sort: true}
+                , {field: 'olDate', title: '出货日期', sort: true,
+                    templet: '<div>{{ Format(d.olDate,"yyyy-MM-dd")}}</div>'}
                 , {field: 'sID', title: '出货仓库', sort: true}
                 , {field: 'olDestin', title: '经销商', sort: true}
                 , {field: 'olBy', title: '经手人', sort: true}
