@@ -18,7 +18,7 @@ public interface OutListService {
      * @param goodName
      * @return
      */
-    GResult insOutList(String  olPrice,String  olNum,String olDestin,String olBy,String olComfirm,int sID,String goodName);
+    GResult insOutList(String  olPrice,String  olNum,String olDestin,String olBy,String olComfirm,int sID,String goodName,String supName);
 
     /**
      * 查询未处理的出库单

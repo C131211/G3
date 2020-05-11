@@ -32,7 +32,7 @@ public class OutListServiceImpl  implements OutListService {
     private OutListMapper outListMapper;
 
     @Override
-    public GResult insOutList(String  olPrice, String  olNum, String olDestin, String olBy, String olComfirm, int sID, String goodName) {
+    public GResult insOutList(String  olPrice, String  olNum, String olDestin, String olBy, String olComfirm, int sID, String goodName,String supName) {
         GResult result = new GResult();
         //表达式对象
         Pattern p = Pattern.compile("[\\d.]+");
@@ -47,6 +47,7 @@ public class OutListServiceImpl  implements OutListService {
         String[] olNums = olNum.split(",");
         String[] olDestins = olDestin.split(",");
         String[] goodNames = goodName.split(",");
+        String[] supNames = supName.split(",");
         //出货价格解析
         for (int i = 0; i < olPrices.length; i++) {
             int price = 0;
@@ -86,7 +87,7 @@ public class OutListServiceImpl  implements OutListService {
                 //根据货物id查询该货物详情
                 Good goodById = goodMapper.selGoodById(str);
                 //通过goodName去判断是否拥有这货物
-                if (goodById!=null && goodById.getgName().equals(goodNames[i].trim())) {
+                if (goodById!=null && goodById.getgName().equals(goodNames[i].trim()) && goodById.getSupName().equals(supNames[i].trim())) {
                     outList.setGoodName(goodNames[i]);
                     //添加该货物的数量
                     totalGoodNums += goodById.getgNum();

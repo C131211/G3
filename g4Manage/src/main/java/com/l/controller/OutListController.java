@@ -20,8 +20,8 @@ public class OutListController {
 
     @RequestMapping("/addOutList")
     @ResponseBody
-    public GResult addOutList(String  olPrice,String  olNum,String olDestin,String olBy,String olComfirm,int sID,String goodName){
-        return outListService.insOutList(olPrice, olNum, olDestin, olBy, olComfirm, sID, goodName);
+    public GResult addOutList(String  olPrice,String  olNum,String olDestin,String olBy,String olComfirm,int sID,String goodName,String supName){
+        return outListService.insOutList(olPrice, olNum, olDestin, olBy, olComfirm, sID, goodName,supName);
     }
 
 
