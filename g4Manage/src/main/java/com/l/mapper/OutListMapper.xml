@@ -8,8 +8,8 @@
 
 <mapper namespace="com.l.mapper.OutListMapper">
         <insert id="insOutList" parameterType="com.l.pojo.OutList">
-                insert into Outlist (olId,olDate,gID,olPrice,olNum,olTotal,olDestin,olBy,olComfirm,sID,olStatus,goodName)
-                 VALUES (#{olId},#{olDate},#{gID},#{olPrice},#{olNum},#{olTotal},#{olDestin},#{olBy},#{olComfirm},#{sID},#{olStatus},#{goodName})
+                insert into Outlist (olId,olDate,gID,olPrice,olNum,olTotal,olDestin,olBy,olComfirm,sID,olStatus,goodName,supName)
+                 VALUES (#{olId},#{olDate},#{gID},#{olPrice},#{olNum},#{olTotal},#{olDestin},#{olBy},#{olComfirm},#{sID},#{olStatus},#{goodName},#{supName})
         </insert>
 
     <select id="selNoDeal" parameterType="String" resultType="com.l.pojo.OutList">

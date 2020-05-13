@@ -20,6 +20,15 @@ public class OutList {
     private int olStatus;
     private String goodName;
     private int orderOinion;
+    private String supName;
+
+    public String getSupName() {
+        return supName;
+    }
+
+    public void setSupName(String supName) {
+        this.supName = supName;
+    }
 
     public int getOrderOinion() {
         return orderOinion;

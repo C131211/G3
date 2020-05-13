@@ -89,6 +89,7 @@ public class OutListServiceImpl  implements OutListService {
                 //通过goodName去判断是否拥有这货物
                 if (goodById!=null && goodById.getgName().equals(goodNames[i].trim()) && goodById.getSupName().equals(supNames[i].trim())) {
                     outList.setGoodName(goodNames[i]);
+                    outList.setSupName(supName);
                     //添加该货物的数量
                     totalGoodNums += goodById.getgNum();
                     if (totalGoodNums< nums){
