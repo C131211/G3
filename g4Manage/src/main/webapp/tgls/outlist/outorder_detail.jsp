@@ -48,6 +48,7 @@
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'goodName', title: '货物类名', }
+                , {field: 'supName', title: '供应商', }
                 , {field: 'olPrice', title: '出货价', }
                 , {field: 'olNum', title: '出货量', }
                 , {field: 'olTotal', title: '货物小计', }

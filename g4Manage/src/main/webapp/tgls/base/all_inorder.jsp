@@ -284,6 +284,15 @@
                 , {field: 'ilby', title: '经手人', sort: true}
                 , {field: 'ilcomfirm', title: '确认人', sort: true}
                 , {
+                    field: 'orderOinion', title: '审核意见', templet: function (d) {
+                        if (d.orderOinion == 1) {
+                            return d.olStatus = "同意"
+                        } else {
+                            return d.olStatus = "拒绝"
+                        }
+                    }
+                }
+                , {
                     field: 'ilstatus', title: '入货单状态', templet: function (d) {
                         if (d.ilstatus == 1) {
                             return d.ilstatus = "完成"

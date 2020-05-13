@@ -277,6 +277,15 @@
                 , {field: 'olBy', title: '经手人', sort: true}
                 , {field: 'olComfirm', title: '确认人', sort: true}
                 , {
+                    field: 'orderOinion', title: '审核意见', templet: function (d) {
+                        if (d.orderOinion == 1) {
+                            return d.olStatus = "同意"
+                        } else {
+                            return d.olStatus = "拒绝"
+                        }
+                    }
+                }
+                , {
                     field: 'olStatus', title: '出货单状态', templet: function (d) {
                         if (d.olStatus == 1) {
                             return d.olStatus = "完成"
