@@ -4,25 +4,17 @@
 
 <head>
     <meta charset="UTF-8">
-
     <!-- 公共样式 开始 -->
     <link rel="stylesheet" type="text/css" href="/css/base.css">
     <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
     <script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
-    <!-- 滚动条插件 -->
-    <link rel="stylesheet" type="text/css" href="../../css/jquery.mCustomScrollbar.css">
-    <script src="/framework/jquery-ui-1.10.4.min.js"></script>
-    <script src="/framework/jquery.mousewheel.min.js"></script>
-    <script src="/framework/jquery.mCustomScrollbar.min.js"></script>
-    <!-- 公共样式 结束 -->
-
     <%--引入css--%>
     <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css"  media="all">
     <%--引入js--%>
     <script src="/js/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
     <%--引入时间格式转换--%>
     <script src="/js/TimeFormat.js" charset="utf-8"></script>
-
+    <!-- 公共样式 结束 -->
     <style>
         .layui-table img {
             max-width: none;

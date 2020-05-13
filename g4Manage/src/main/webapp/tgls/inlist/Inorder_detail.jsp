@@ -16,9 +16,7 @@
     <link rel="stylesheet" type="text/css" href="/css/base.css">
     <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
     <script type="text/javascript" src="/framework/jquery-1.11.3.min.js"></script>
-    <!-- 滚动条插件 -->
     <!-- 公共样式 结束 -->
-
     <%--引入css--%>
     <link rel="stylesheet" href="/js/layui-v2.5.6/layui/css/layui.css" media="all">
     <%--引入js--%>
