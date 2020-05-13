@@ -42,7 +42,7 @@
             <i class="iconfont icon-huaban bt"></i>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">出货价</label>
+            <label class="layui-form-label">参考出货价</label>
             <div class="layui-input-inline shortInput">
                 <input type="text" name="gOutprice" id="gOutprice" required lay-verify="required|number" autocomplete="off"
                        class="layui-input">

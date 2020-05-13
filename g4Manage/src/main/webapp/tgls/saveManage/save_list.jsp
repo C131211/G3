@@ -89,7 +89,7 @@
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'sName', title: '仓库名字', width: 100,}
                 , {field: 'sNsave', title: '现存量', width: 80}
-                , {field: 'sTsave', title: '仓库上限', width: 100}
+                , {field: 'sTsave', title: '仓库存量上限', width: 100}
                 , {field: 'sAddr', title: '仓库地址', width: 200}
                 , {field: 'sExplain', title: '仓库说明', }
                 , {

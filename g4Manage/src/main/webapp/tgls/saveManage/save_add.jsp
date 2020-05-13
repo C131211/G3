@@ -48,7 +48,7 @@
         </div>
         <input type="hidden" name="sNsave" class="layui-input" value="0">
         <div class="layui-form-item">
-            <label class="layui-form-label">仓库上限</label>
+            <label class="layui-form-label">仓库存量上限</label>
             <div class="layui-input-block">
                 <input type="text" name="sTsave" required lay-verify="required|number" autocomplete="off" class="layui-input">
             </div>

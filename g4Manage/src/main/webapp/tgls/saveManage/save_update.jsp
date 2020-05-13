@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">仓库上限</label>
+			<label class="layui-form-label">仓库存量上限</label>
 			<div class="layui-input-inline shortInput">
                 <input type="text" name="sTsave" id="sTsave" required lay-verify="required|number"
 						  autocomplete="off" class="layui-input">
