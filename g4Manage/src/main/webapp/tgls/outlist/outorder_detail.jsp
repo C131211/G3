@@ -52,11 +52,7 @@
                 , {field: 'olPrice', title: '出货价', }
                 , {field: 'olNum', title: '出货量', }
                 , {field: 'olTotal', title: '货物小计', }
-                , {field: 'olDate', title: '货单日期',
-                    templet:'<div>{{ Format(d.olDate,"yyyy-MM-dd")}}</div>'
-                }
                 , {field: 'olDestin', title: '经销商', }
-                , {field: 'olBy', title: '经手人', }
                 , {field: 'sID', title: '仓库号', }
             ]]
         });

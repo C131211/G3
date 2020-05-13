@@ -166,8 +166,8 @@
 
 <script id="outbarDemo" type="text/html">
     <a class="layui-btn layui-btn-xs" lay-event="outtoDetails">查看库单详情</a>
-    <a class="layui-btn layui-btn-xs" lay-event="submit">确认</a>
-    <a class="layui-btn layui-btn-xs" lay-event="cancel">取消</a>
+    <a class="layui-btn layui-btn-xs" lay-event="comfirm">确认</a>
+    <a class="layui-btn layui-btn-xs" lay-event="reject">取消</a>
 </script>
 <script>
     layui.use('table', function () {
@@ -209,7 +209,7 @@
         table.on('tool(outWaitTools)', function (obj) {
             var data = obj.data;
             //console.log(obj)
-            if (obj.event === 'submit') {
+            if (obj.event === 'comfirm') {
                 $.ajax({
                     url: "/dealOutListById",//
                     type: "POST",
@@ -237,7 +237,7 @@
                     content: '/PageOperation?id=' + data.olId + '&pageType=outlistDetail',
 
                 });
-            } else if (obj.event === 'cancel') {
+            } else if (obj.event === 'reject') {
                 $.ajax({
                     url: "/dealOutListById",//
                     type: "POST",
