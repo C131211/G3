@@ -103,16 +103,11 @@
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/inlist/inorder_add.jsp',this)">新增入货单</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/outlist/outorder_add.jsp',this)">新增出货单</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/order_wait.jsp',this)">待处理货单</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/inorder_wait.jsp',this)">待处理入货单</a></dt>
+					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/outorder_wait.jsp',this)">待处理出货单</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/all_inorder.jsp',this)">入货单统计</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/all_outorder.jsp',this)">出货单统计</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/maintain.jsp',this)">维护中页面</a></dt>
 				</dl>
-			</li>
-			<li>
-				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/qdAPI.jsp',this)"><i class="iconfont icon-zhishi left"></i>前端API</a>
-			</li>
-			<li>
-				<a class="menuFA" href="javascript:void(0)" onclick="menuCAClick('tgls/iconfont.html',this)"><i class="iconfont icon-huojian left"></i>iconfont字体库</a>
 			</li>
 			<li>
 				<a class="menuFA" href="/quitSys"> <i class="iconfont icon-084tuichu left"></i>注销</a>
