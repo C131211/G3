@@ -40,7 +40,7 @@ public class PageController {
             }
             else if (pageType.equals("outlistDetail")) {
                 req.setAttribute("olId", id);
-                return "/tgls/outlist/Outorder_detail.jsp";
+                return "/tgls/outlist/outorder_detail.jsp";
             }
             else if (pageType.equals("saveDetail")) {
                 req.setAttribute("sID", id);

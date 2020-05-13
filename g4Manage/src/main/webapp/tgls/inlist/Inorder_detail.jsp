@@ -56,7 +56,7 @@
                 , {field: 'ildate', title: '货单日期',
                     templet:'<div>{{ Format(d.ildate,"yyyy-MM-dd")}}</div>'
                     }
-                , {field: 'ilfrom', title: '供货商',}
+                , {field: 'ilfrom', title: '供应商',}
                 , {field: 'ilby', title: '经手人',}
                 , {field: 'sID', title: '仓库号',}
             ]]

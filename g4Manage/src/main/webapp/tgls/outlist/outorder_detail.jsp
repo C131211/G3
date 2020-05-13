@@ -54,7 +54,7 @@
                 , {field: 'olDate', title: '货单日期',
                     templet:'<div>{{ Format(d.olDate,"yyyy-MM-dd")}}</div>'
                 }
-                , {field: 'olDestin', title: '供货商', }
+                , {field: 'olDestin', title: '经销商', }
                 , {field: 'olBy', title: '经手人', }
                 , {field: 'sID', title: '仓库号', }
             ]]
