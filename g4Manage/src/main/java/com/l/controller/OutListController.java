@@ -60,10 +60,10 @@ public class OutListController {
      */
     @RequestMapping("/dealOutListById")
     @ResponseBody
-    public GResult dealOutListById(String olId,int orderOinion){
+    public GResult dealOutListById(String olId,int orderOinion,String olComfirm){
         GResult gResult = new GResult();
         try {
-            gResult = outListService.updOutListById(olId, orderOinion);
+            gResult = outListService.updOutListById(olId, orderOinion,olComfirm);
         } catch (Exception e) {
             gResult.setMsg(e.toString());
             e.printStackTrace();

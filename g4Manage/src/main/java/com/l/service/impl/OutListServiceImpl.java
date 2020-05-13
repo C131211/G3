@@ -159,7 +159,7 @@ public class OutListServiceImpl  implements OutListService {
     }
 
     @Override
-    public GResult updOutListById(String olId, int orderOinion) throws Exception {
+    public GResult updOutListById(String olId, int orderOinion,String olComfirm) throws Exception {
         GResult result = new GResult();
         int index = -1;
         if (orderOinion==0){//拒绝出库
@@ -173,6 +173,7 @@ public class OutListServiceImpl  implements OutListService {
                 //设置订单状态
                 outList.setOlStatus(1);
                 outList.setOrderOinion(1);
+                outList.setOlComfirm(olComfirm);
                 index = outListMapper.updOutListOrder(outList);
                 int nums = outList.getOlNum();
                 //解析gid

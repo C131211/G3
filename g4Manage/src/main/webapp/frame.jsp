@@ -103,8 +103,6 @@
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/inlist/inorder_add.jsp',this)">新增入货单</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/outlist/outorder_add.jsp',this)">新增出货单</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/order_wait.jsp',this)">待处理货单</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/inorder_wait.jsp',this)">待处理入货单</a></dt>
-					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/outorder_wait.jsp',this)">待处理出货单</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/all_inorder.jsp',this)">入货单统计</a></dt>
 					<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/base/all_outorder.jsp',this)">出货单统计</a></dt>
 				</dl>
