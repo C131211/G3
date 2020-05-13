@@ -68,39 +68,52 @@
             <div id="test">
                 <div class="layui-form-item">
                     <div class="layui-inline">
-                        <label class="layui-form-label">货物名称</label>
+                        <label class="layui-form-label">出货货物</label>
                         <div class="layui-input-inline" style="width: 13%">
-                            <select name="goodName" lay-filter="OLSelect" class="layui-form-select" lay-verify="required">
-                                <option value="">未选择</option>
+                            <select name="goodName" lay-filter="OLSelect" class="layui-form-select"
+                                    lay-verify="required">
+                                <option value="">选择货物</option>
                                 <c:forEach items="${GoodListResult.data}" var="item">
                                     <option>${item.goodName}</option>
                                 </c:forEach>
                             </select>
                         </div>
+                        <div class="layui-input-inline" style="width: 13%">
+                            <select name="supName" lay-filter="ILSelect" class="layui-form-select"
+                                    lay-verify="required">
+                                <option value="">选择供应商</option>
+                                <c:forEach items="${SupplyResult.data}" var="sup">
+                                    <option>${sup.supName}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">出货价</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="olPrice" required lay-verify="required|number" autocomplete="off" class="layui-input" lay-verify="required" value="${item.gOutprice}">
+                            <div class="layui-input-inline" style="width: 100px">
+                                <input type="text" name="olPrice" required lay-verify="required|number" placeholder="请输入"
+                                       autocomplete="off" class="layui-input" lay-verify="required">
                             </div>
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">数量</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="olNum" required lay-verify="required|number" placeholder="请输入" autocomplete="off"
+                            <div class="layui-input-inline" style="width: 100px">
+                                <input type="text" name="olNum" required lay-verify="required|number" placeholder="请输入"
+                                       autocomplete="off"
                                        class="layui-input" lay-verify="required">
                             </div>
                         </div>
                         <div class="layui-inline">
-                        <label class="layui-form-label">经销商</label>
-                        <div class="layui-input-inline">
-                            <select name="olDestin" lay-filter="ILSelect" class="layui-form-select" lay-verify="required">
-                                <option value="">未选择</option>
-                                <c:forEach items="${BuyerResult.data}" var="buy">
-                                    <option>${buy.buyName}</option>
-                                </c:forEach>
-                            </select>
+                            <label class="layui-form-label">经销商</label>
+                            <div class="layui-input-inline">
+                                <select name="olDestin" lay-filter="ILSelect" class="layui-form-select"
+                                        lay-verify="required">
+                                    <option value="">请选择经销商</option>
+                                    <c:forEach items="${BuyerResult.data}" var="buy">
+                                        <option>${buy.buyName}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -122,24 +135,32 @@
     function add_tab_line() {
         var div = $("<div class='layui-form-item'>" +
             "<div class='layui-inline'>" +
-            "<label class='layui-form-label'>货物名称</label>" +
+            "<label class='layui-form-label'>出货货物</label>" +
             "<div class='layui-input-inline' style='width: 13%'>" +
             "<select name='goodName' lay-filter='OLSelect' class='layui-form-select' lay-verify='required'>" +
-            "<option value=''>未选择</option>" +
+            "<option value=''>选择货物</option>" +
             "<c:forEach items='${GoodListResult.data}' var='item'>" +
             "<option>${item.goodName}</option>" +
             "</c:forEach>" +
             "</select>" +
             "</div>" +
+            "<div class='layui-input-inline' style='width: 13%'>" +
+            "<select name='supName' lay-filter='OLSelect' class='layui-form-select' lay-verify='required'>" +
+            "<option value=''>选择供应商</option>" +
+            "<c:forEach items='${SupplyResult.data}' var='sup'>" +
+            "<option>${sup.supName}</option>" +
+            "</c:forEach>" +
+            "</select>" +
+            "</div>" +
             "<div class='layui-inline'>" +
             "<label class='layui-form-label'>出货价</label>" +
-            "<div class='layui-input-inline'>" +
+            "<div class='layui-input-inline' style='width: 100px'>" +
             "<input type='text' name='olPrice' placeholder='请输入' required lay-verify='required|number' autocomplete='off' class='layui-input' lay-verify='required'>" +
             "</div>" +
             "</div>" +
             "<div class='layui-inline'>" +
             "<label class='layui-form-label'> 数量</label>" +
-            "<div class='layui-input-inline'>" +
+            "<div class='layui-input-inline' style='width: 100px'>" +
             "<input type='text' name='olNum' placeholder='请输入' required lay-verify='required|number' autocomplete='off' class='layui-input' lay-verify='required'>" +
             "</div>" +
             "</div>" +
@@ -147,7 +168,7 @@
             "<label class='layui-form-label'>经销商</label>" +
             "<div class='layui-input-inline'>" +
             "<select name='olDestin' lay-filter='OLSelect' class='layui-form-select' lay-verify='required'>" +
-            "<option value=''>未选择</option>" +
+            "<option value=''>请选择经销商</option>" +
             "<c:forEach items='${BuyerResult.data}' var='buy'>" +
             "<option>${buy.buyName}</option>" +
             "</c:forEach>" +
@@ -209,6 +230,20 @@
         //经销商选择
         $.ajax({
             url: "/getBuyer",
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                if (data.status == 200) {
+                    //接收到成功的提示
+                    reloadForm();
+                } else {
+                    alert(data.msg);
+                }
+            }
+        });
+        //供应商选择
+        $.ajax({
+            url: "/getSupply",
             type: "POST",
             dataType: "json",
             success: function (data) {

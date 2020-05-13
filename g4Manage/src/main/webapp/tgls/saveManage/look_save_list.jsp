@@ -58,7 +58,6 @@
             , defaultToolbar: ['exports', 'print',]
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'sID', title: '仓库ID', width: 80,}
                 , {field: 'sName', title: '仓库名字', width: 100,}
                 , {field: 'sNsave', title: '现存量', width: 80}
                 , {field: 'sTsave', title: '仓库上限', width: 120}
