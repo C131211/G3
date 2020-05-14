@@ -34,7 +34,7 @@
                         <if test="sName!=null and sName!=''">
                                 sName = #{sName},
                         </if>
-                        <if test="sNsave!=null and sNsave!=''">
+                        <if test="sNsave!=null">
                                 sNsave = #{sNsave},
                         </if>
                         <if test="sTsave!=null and sTsave!=''">
