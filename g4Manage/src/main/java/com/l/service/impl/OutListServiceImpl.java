@@ -190,7 +190,7 @@ public class OutListServiceImpl  implements OutListService {
                             //修改仓库现存量
                             Save save = saveMapper.selSaveById(outList.getsID());
                             if (save!=null){
-                                save.setsNsave(save.getsNsave()-good.getgNum());
+                                save.setsNsave(save.getsNsave()-nums);
                                 index = saveMapper.updSave(save);
                             }else {
                                 throw new Exception("仓库获取出错");
