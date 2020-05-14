@@ -163,7 +163,7 @@ public class OutListServiceImpl  implements OutListService {
         GResult result = new GResult();
         int index = -1;
         if (orderOinion==0){//拒绝出库
-            index = outListMapper.updOutListOinion(0, olId);
+            index = outListMapper.updOutListOinion(0, olId,olComfirm);
             result.setStatus(200);
             result.setMsg("审核成功");
         }else if (orderOinion==1){//同意

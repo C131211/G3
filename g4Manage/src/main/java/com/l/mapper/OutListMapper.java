@@ -39,7 +39,7 @@ public interface OutListMapper {
      * @param olId
      * @return
      */
-    int updOutListOinion(int orderOinion,String olId);
+    int updOutListOinion(int orderOinion,String olId,String olComfirm);
 
 
     /**

@@ -201,7 +201,7 @@ public class InListServiceImpl implements InListService {
             }
         }else if (orderOinion==0){//拒绝
             //改变审核意见，返回信息
-            index  = inListMapper.updInListOinion(0, ILID);
+            index  = inListMapper.updInListOinion(0, ILID,ILComfirm);
             result.setStatus(200);
             result.setMsg("审核成功");
         }else {

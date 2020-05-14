@@ -37,7 +37,7 @@ public interface InListMapper {
      * @param ILID
      * @return
      */
-    int updInListOinion(int orderOinion,String ILID);
+    int updInListOinion(int orderOinion,String ILID,String ILComfirm);
 
     /**
      * 更新同意入库后的订单

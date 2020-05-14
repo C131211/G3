@@ -21,7 +21,7 @@
             select * from  inlist where ILID=#{0}
         </select>
     <update id="updInListOinion" >
-        update  inlist  set ILStatus =1,orderOinion=#{0} where ILID=#{1}
+        update  inlist  set ILStatus =1,orderOinion=#{0},ILComfirm=#{2} where ILID=#{1}
     </update>
 
     <update id="updInListOrder" parameterType="com.l.pojo.InList">

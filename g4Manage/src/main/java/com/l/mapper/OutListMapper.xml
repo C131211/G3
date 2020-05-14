@@ -21,7 +21,7 @@
     </select>
 
     <update id="updOutListOinion" >
-        update  outlist  set olStatus =1,orderOinion=#{0} where olId=#{1}
+        update  outlist  set olStatus =1,orderOinion=#{0},olComfirm=#{2} where olId=#{1}
     </update>
 
     <update id="updOutListOrder" parameterType="com.l.pojo.OutList">
