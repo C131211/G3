@@ -48,7 +48,6 @@
             , method: 'post'//传输方式
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'buyId', width: 80, title: 'ID', sort: true}
                 , {field: 'buyName', title: '经销商名', width: 130}
                 , {field: 'buyIncharge', title: '经销商负责人', width: 130}
                 , {field: 'buyTel', title: '经销商联系方式'}

@@ -54,6 +54,7 @@
             <div class="layui-input-inline shortInput">
                 <input type="text" name="uTel" autocomplete="off" required lay-verify="required|phone" autocomplete="off" class="layui-input">
             </div>
+            <i class="iconfont icon-huaban bt"></i>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">住址</label>

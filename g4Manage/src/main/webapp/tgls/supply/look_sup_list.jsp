@@ -48,7 +48,6 @@
             , method: 'post'//传输方式
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'supId', width: 80, title: 'ID', sort: true}
                 , {field: 'supName', title: '供应商名', width: 130}
                 , {field: 'supIncharge', title: '供应商负责人', width: 130}
                 , {field: 'supTel', title: '供应商联系方式'}
