@@ -41,7 +41,7 @@ public interface InListMapper {
 
     /**
      * 更新同意入库后的订单
-     * @param inList
+     * @param inList 订单
      * @return
      */
     int updInListOrder(InList inList);
