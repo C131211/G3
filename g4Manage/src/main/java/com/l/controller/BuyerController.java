@@ -46,7 +46,7 @@ public class BuyerController {
 
     /**
      * 根据Id删除经销商
-     * @param buyid
+     * @param buyId
      * @return
      */
     @RequestMapping("/delBuyerById")
@@ -81,7 +81,7 @@ public class BuyerController {
 
     /**
      * 根据id获取经销商信息
-     * @param buyid
+     * @param buyId
      * @return
      */
     @RequestMapping("/getBuyerById")
